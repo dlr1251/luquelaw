@@ -11,11 +11,14 @@ import mdx from "@astrojs/mdx";
 import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
+import tailwind from "@astrojs/tailwind";
+
+// https://astro.build/config
 export default defineConfig({
   integrations: [
   // Enable Preact to support Preact JSX components.
   preact(),
   // Enable React for the Algolia search component.
-  react(), mdx(), svelte()],
+  react(), mdx(), svelte(), tailwind()],
   site: `http://astro.build`
 });
