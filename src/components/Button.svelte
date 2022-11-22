@@ -26,4 +26,9 @@
     </div>
   </div>
 </div>
+Before giving, the mind of the giver is happy; while giving, the mind of the giver is made peaceful; 
+and having given, the mind of the giver is uplifted.
+
+
+
 <a href="https://buy.stripe.com/14k3dG2cg2Nee7m8ww" class="btn">Donate</a>
