@@ -2,7 +2,7 @@
 	let string = `Esta string contains some <b>HTML</b>HTML!!!*`;
 </script>
 
-<p>{string}</p>
+<p>{@html string}</p>
 <button class="btn">Button</button>
 <div class="dropdown">
   <label tabindex="0" class="btn m-1">Click</label>
@@ -26,3 +26,4 @@
     </div>
   </div>
 </div>
+<a href="https://buy.stripe.com/14k3dG2cg2Nee7m8ww" class="btn">Donate</a>
