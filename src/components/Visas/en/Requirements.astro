@@ -1,0 +1,73 @@
+---
+import ThePassport from "./req/ThePassport.svelte";    
+const Passport = ThePassport
+import TheLetter from "./req/TheLetter.svelte";    
+const Letter = TheLetter
+import TheEntranceStamp from "./req/TheEntranceStamp.svelte";    
+const EntranceStamp = TheEntranceStamp
+import TheBankStatements from "./req/TheBankStatements.svelte";    
+const BankStatements = TheBankStatements
+import TheHealthInsurance from "./req/TheHealthInsurance.svelte";    
+const HealthInsurance = TheHealthInsurance
+import TheCriminalRecords from "./req/TheCriminalRecords.svelte";    
+const CriminalRecords = TheCriminalRecords
+    
+    let requirements = [
+        {
+            title: 'The Passport',
+            description: Passport
+        },
+        {
+            title: 'The Letter',
+            description: Letter
+        },
+        {
+            title: 'The Entrance Stamp',
+            description: EntranceStamp
+        },
+        {
+            title: 'The Bank Statements',
+            description: BankStatements
+        },
+        {
+            title: 'The Health Insurance',
+            description: HealthInsurance
+        },
+        {
+            title: 'The Criminal Records',
+            description: CriminalRecords
+        },
+    ]
+---
+
+
+
+<div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+    <input type="checkbox" /> 
+    <div class="collapse-title text-xl font-medium">
+      PREPARE THE DOCUMENTS
+    </div>
+    <div class="collapse-content"> 
+
+     {requirements.map( (req, i) => (
+        <>
+            
+            <div class="form-control">
+                <label class="label cursor-pointer">
+                    <span class="label-text"><label for={`my-modal-${i+1}`} class="link">{req.title}</label></span> 
+                    <input type="checkbox" class="checkbox checkbox-primary" />
+                </label>
+            </div>
+
+            <input type="checkbox" id={`my-modal-${i+1}`} class="modal-toggle" />
+            <label for={`my-modal-${i+1}`} class="modal cursor-pointer">
+                <label class="modal-box relative" for="">
+                    <Fragment class="py-4" set:html={req.description.render().html}></Fragment>
+                </label>
+            </label>
+        </>
+     ))}
+
+    </div>
+</div>
+

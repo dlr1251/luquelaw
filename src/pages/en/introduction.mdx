@@ -4,7 +4,7 @@ description: Docs intro
 layout: ../../layouts/MainLayout.astro
 ---
 import Intro from '../../components/Svelte/Intro.svelte';
-import VisaRequirements from '../../components/Visas/en/Requirements.svelte'
+import VisaRequirements from '../../components/Visas/en/Requirements.astro'
 
 <Intro client:idle/>
 
@@ -15,9 +15,4 @@ Depending on your health insurance coverage and other factors, they can give you
 
 For applying for the visa, you will need this:
 
-1. Your passport must have an expiration date or validity for more than 6 months at the time you submit the request. You will need a copy of your passport on the page where you have your personal data (name, birthdate, etc.)
-2. You need a letter from the foreign company you are working for, signed by its legal representative, indicating the type of relationship and the type of remmuneration you are getting. This letter must include your name, passport, the name of the company, its address and Tax ID.
-3. Demonstrate through bank statements that your monthly income has been more than $3 Million COP (around $600USD) for the last 3 months.
-4. Health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country.
-
-<VisaRequirements client:load/>
+<VisaRequirements />
