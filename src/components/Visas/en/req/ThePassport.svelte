@@ -5,6 +5,7 @@
     ]
 </script>
 
+<h4>The passport requirements</h4>
 {#each reqs as pr }
     <div class="form-control">
         <label class="label cursor-pointer">

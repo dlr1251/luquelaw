@@ -1,4 +1,6 @@
 ---
+import ThePhoto from "./req/ThePhoto.svelte";    
+const Photo = ThePhoto
 import ThePassport from "./req/ThePassport.svelte";    
 const Passport = ThePassport
 import TheLetter from "./req/TheLetter.svelte";    
@@ -13,6 +15,10 @@ import TheCriminalRecords from "./req/TheCriminalRecords.svelte";
 const CriminalRecords = TheCriminalRecords
     
     let requirements = [
+        {
+            title: 'The Photo',
+            description: Photo
+        },
         {
             title: 'The Passport',
             description: Passport
@@ -45,7 +51,7 @@ const CriminalRecords = TheCriminalRecords
 <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
     <input type="checkbox" /> 
     <div class="collapse-title text-xl font-medium">
-      PREPARE THE DOCUMENTS
+      1. PREPARE THE DOCUMENTS
     </div>
     <div class="collapse-content"> 
 
@@ -71,3 +77,22 @@ const CriminalRecords = TheCriminalRecords
     </div>
 </div>
 
+<div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+    <div class="collapse-title text-xl font-medium">
+       2. SUBMIT THE APPLICATION
+    </div>
+    <div class="collapse-content"> 
+        <div class="form-control">
+            <label class="label cursor-pointer">
+                <span class="label-text">The application process is made online from <a href="https://tramitesmre.cancilleria.gov.co/tramites/enlinea/solicitarVisa.xhtml" target="_blank">this link.</a></span> 
+                <input type="checkbox" class="checkbox checkbox-primary" />
+            </label>
+        </div>
+        <div class="form-control">
+            <label class="label cursor-pointer">
+                <span class="label-text">You can find a walkthrough guide (in spanish) in <a href="https://www.cancilleria.gov.co/visa-linea" target="_blank">this link.</a></span> 
+                <input type="checkbox" class="checkbox checkbox-primary" />
+            </label>
+        </div>
+    </div>
+  </div>
