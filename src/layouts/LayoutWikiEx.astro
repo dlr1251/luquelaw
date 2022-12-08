@@ -19,11 +19,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 const githubEditUrl = `${CONFIG.GITHUB_EDIT_URL}/${currentFile}`;
-import NavbarWiki from '../components/Navs/NavbarWiki.astro';
-import DrawerEmprendedores from '../components/Navs/DrawerEmprendedores.astro';
+import NavbarWikiEx from '../components/Navs/NavbarWikiEx.astro';
 ---
 
-<html lang={frontmatter.lang ?? 'en-us'} class="initial">
+<html class="initial">
 	<head>
 		<HeadCommon />
 		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
@@ -47,7 +46,6 @@ import DrawerEmprendedores from '../components/Navs/DrawerEmprendedores.astro';
 						1fr
 					);
 				overflow-x: hidden;
-				/* overflow-y: hidden; */
 			}
 
 			.grid-sidebar {
@@ -104,10 +102,6 @@ import DrawerEmprendedores from '../components/Navs/DrawerEmprendedores.astro';
 					display: flex;
 				}
 			}
-			/* .drawer-toggle ~ .drawer-content {
-				overflow-y: hidden;
-			} */
-
 		</style>
 		<style is:global>
 			.layout > * {
@@ -128,8 +122,7 @@ import DrawerEmprendedores from '../components/Navs/DrawerEmprendedores.astro';
 
 	<body>
 		<!-- <Header currentPage={currentPage} /> -->
-		<NavbarWiki/>
-		<!-- <DrawerEmprendedores/> -->
+		<NavbarWikiEx/>
 		<div class="drawer">
 			<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
 			<div class="drawer-content flex flex-col items-center justify-center">

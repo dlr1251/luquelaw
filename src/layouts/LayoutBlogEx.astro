@@ -1,0 +1,66 @@
+---
+import HeadCommon from '../components/HeadCommon.astro';
+import HeadSEO from '../components/HeadSEO.astro';
+import Header from '../components/Header/Header.astro';
+import PageContent from '../components/PageContent/PageContent.astro';
+
+import * as CONFIG from '../config';
+import type { MarkdownHeading } from 'astro';
+import Footer from '../components/Footer/Footer.astro';
+
+type Props = {
+	frontmatter: CONFIG.Frontmatter;
+	headings: MarkdownHeading[];
+};
+
+const { frontmatter, headings } = Astro.props as Props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPage = Astro.url.pathname;
+const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
+import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
+---
+
+<html>
+	<head>
+		<HeadCommon />
+		<!-- <HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} /> -->
+		<title>
+			
+		</title>
+		<style>
+			.drawer-toggle ~ .drawer-content {
+				overflow-y: hidden;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<!-- <Header currentPage={currentPage} /> -->
+		<!-- <HeadCommon /> -->
+		<NavbarExpatsBlog/>
+		<div class="drawer drawer-mobile">
+			<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
+			<div class="drawer-content flex flex-col items-center justify-center px-4">
+			  <!-- Page content here -->
+			  <slot />
+			  <!-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> -->
+			
+			</div> 
+			<div class="drawer-side">
+			  <label for="my-drawer-2" class="drawer-overlay"></label> 
+			  <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+				<!-- Sidebar content here -->
+				<li><a href="/ex/blog/posts/1">Post 1</a></li>
+				<li><a href="/ex/blog/posts/2">Post 2</a></li>
+				<li><a href="/ex/blog/posts/3">Post 3</a></li>
+				<li><a href="/ex/blog/posts/4">Post 4</a></li>
+				<li><a href="/ex/blog/posts/1">Post 5</a></li>
+				<li><a href="/ex/blog/posts/1">Post 6</a></li>
+			  </ul>
+			
+			</div>
+		  </div>
+		<Footer path={currentFile} />
+	</body>
+</html>
