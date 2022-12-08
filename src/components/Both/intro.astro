@@ -1,34 +1,53 @@
 ---
 
 ---
-<div>
-	<h2 class="h2 text-center">Please select your profile</h2>
+<div class="mt-3">
+	<h4 class="h4 text-center">Please select your profile</h4>
+	<h4 class="h4 text-center">Selecciona tu perfil</h4>
 </div>
 
-<div class="container mx-auto h-screen flex flex-row items-center justify-center">
-	<div class="card h-fit w-96 bg-base-100 shadow-xl">
-		<figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+<div class="container mx-auto min-h-auto flex flex-col sm:flex-row items-center justify-center">
+	
+	<div class="card h-fit w-96 bg-base-100 m-2 shadow-xl">
 		<div class="card-body">
-		<h2 class="card-title">Emprendedores</h2>
-		<p>Registro de marca</p>
-		<p>Estudio previo</p>
-		<p>Contratos</p>
-		<div class="card-actions justify-end">
-			<a href="/em" class="btn btn-primary">Ingresar</a>
-		</div>
+			<h2 class="card-title">Emprendedores</h2>
+			<div tabindex="0" class="collapse collapse-plus border border-secondary-500 bg-primary-100 rounded-box">
+				<div class="collapse-title card-title text-sm font-medium">
+					Servicios
+				</div>
+				<div class="collapse-content"> 
+					<ul class="menu">
+						<li>Registro de marca</li>
+						<li>Estudio previo</li>
+						<li>Contratos</li>
+						<li>Asesoría legal</li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-actions">
+				<a href="/em" class="btn btn-md btn-primary w-full">Ingresar</a>
+			</div>
 		</div>
 	</div>
 
-	<div class="card h-fit w-96 bg-base-100 shadow-xl">
-		<figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+	<div class="card h-fit w-96 bg-base-100 m-2 shadow-xl">
 		<div class="card-body">
-		<h2 class="card-title">Foreigners</h2>
-		<p>Visas</p>
-		<p>Investments</p>
-		<p>Expats services</p>
-		<div class="card-actions justify-end">
-			<a href="/ex" class="btn btn-primary">Ingresar</a>
-		</div>
+			<h2 class="card-title">Expats</h2>
+			<div tabindex="0" class="collapse collapse-plus border border-secondary-500 bg-primary-100 rounded-box">
+				<div class="collapse-title card-title text-sm font-medium">
+					Services
+				</div>
+				<div class="collapse-content"> 
+					<ul class="menu">
+						<li>Immigration</li>
+						<li>Real Estate</li>
+						<li>Legal advise</li>
+					</ul>
+				</div>
+			</div>
+			<div class="card-actions">
+				<a href="/ex" class="btn btn-md btn-primary w-full">Enter</a>
+			</div>
 		</div>
 	</div>
 </div>

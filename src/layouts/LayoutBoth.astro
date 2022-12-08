@@ -20,9 +20,9 @@ const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 ---
 
-<html lang="es">
+<html>
 	<head>
-
+		<HeadCommon/>
 	</head>
 
 	<body>
@@ -51,12 +51,19 @@ const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 				</div> 
 				<div class="drawer-side">
 				<label for="my-drawer-3" class="drawer-overlay"></label> 
-				<ul class="menu p-4 w-80 bg-base-100">
-					<!-- Sidebar content here -->
-					<li><a>About us</a></li>
-					<li><a>Contact</a></li>
-					
-				</ul>
+
+				<ul class="menu bg-base-100 w-80 p-2 rounded-box">
+					<li class="menu-title">
+					  <span>Services</span>
+					</li>
+					<li><a>For expats</a></li>
+					<li><a>For entrepreneurs</a></li>
+					<li class="menu-title">
+					  <span>Information</span>
+					</li>
+					<li><a>Legal wiki</a></li>
+					<li><a>Blog</a></li>
+				  </ul>
 				
 				</div>
 			</div>
