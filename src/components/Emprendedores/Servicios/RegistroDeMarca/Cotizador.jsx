@@ -62,7 +62,7 @@ const Cotizador = () => {
       <div className="w-96">
 
         <MultiSelect
-          className="bg-base-100"
+          className=""
           focusSearchOnOpen
           hasSelectAll={false}
           options={options}
