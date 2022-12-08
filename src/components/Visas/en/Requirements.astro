@@ -78,6 +78,7 @@ const CriminalRecords = TheCriminalRecords
 </div>
 
 <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+    <input type="checkbox" /> 
     <div class="collapse-title text-xl font-medium">
        2. SUBMIT THE APPLICATION
     </div>
@@ -85,19 +86,20 @@ const CriminalRecords = TheCriminalRecords
         <div class="form-control">
             <label class="label cursor-pointer">
                 <span class="label-text">The application process is made online from <a href="https://tramitesmre.cancilleria.gov.co/tramites/enlinea/solicitarVisa.xhtml" target="_blank">this link.</a></span> 
-                <input type="checkbox" class="checkbox checkbox-primary" />
+                <input type="checkbox" id={Math.random()*10} class="checkbox checkbox-primary" />
             </label>
         </div>
         <div class="form-control">
             <label class="label cursor-pointer">
                 <span class="label-text">You can find a walkthrough guide (in spanish) in <a href="https://www.cancilleria.gov.co/visa-linea" target="_blank">this link.</a></span> 
-                <input type="checkbox" class="checkbox checkbox-primary" />
+                <input type="checkbox" id={Math.random()*10} class="checkbox checkbox-primary" />
             </label>
         </div>
     </div>
-  </div>
+</div>
 
 <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+    <input type="checkbox" /> 
 <div class="collapse-title text-xl font-medium">
     3. MAKE THE FIRST PAYMENT
 </div>
@@ -105,19 +107,20 @@ const CriminalRecords = TheCriminalRecords
     <div class="form-control">
         <label class="label cursor-pointer">
             <span class="label-text">Once submitted your application, you will receive an email with an unique identification number of your process. In the same email you will get the instructions to pay for the study of the Visa ($52 USD)</span> 
-            <input type="checkbox" class="checkbox checkbox-primary" />
+            <input type="checkbox" id={Math.random()*10} class="checkbox checkbox-primary" />
         </label>
     </div>
     <div class="form-control">
         <label class="label cursor-pointer">
             <span class="label-text">You have to pay within the ten (10) days once you have applied. If you don’t pay in this period of time, the visa will be denied.</span> 
-            <input type="checkbox" class="checkbox checkbox-primary" />
+            <input type="checkbox" id={Math.random()*10} class="checkbox checkbox-primary" />
         </label>
     </div>
 </div>
 </div>
 
 <div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+<input type="checkbox" /> 
 <div class="collapse-title text-xl font-medium">
     4. REQUIREMENTS (OPTIONAL)
 </div>
@@ -156,4 +159,4 @@ const CriminalRecords = TheCriminalRecords
             </label>
         </div>
     </div>
-    </div>
+</div>

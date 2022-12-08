@@ -21,6 +21,7 @@
     "@docsearch/css": "^3.1.0",
     "@docsearch/react": "^3.1.0",
     "@nextui-org/react": "^1.0.0-beta.10",
+    "@tailwindcss/typography": "^0.5.8",
     "@types/node": "^18.0.0",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.9",

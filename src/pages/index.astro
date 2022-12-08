@@ -1,5 +1,10 @@
-<script is:inline>
-	// Redirect your homepage to the first page of documentation.
-	// If you have a landing page, remove this script and add it here!
-	window.location.pathname = `/en/introduction`;
-</script>
+---
+import LayoutBoth from '../layouts/LayoutBoth.astro';
+import BothIntro from '../components/Both/intro.astro'
+---
+
+<LayoutBoth>
+
+	<BothIntro/>
+
+</LayoutBoth>

@@ -1,0 +1,60 @@
+---
+import LayoutEmprendedores from "../../layouts/LayoutEmprendedores.astro";
+const services = [
+  {
+    title: 'Registro de marca',
+    description: 'For cool remote workers'
+  },
+  {
+    title: 'Estudio previo',
+    description: 'For cool remote workers'
+  },
+  {
+    title: 'Redacción de contratos',
+    description: 'For cool remote workers'
+  },
+  {
+    title: 'Registro Invima',
+    description: 'For cool remote workers'
+  },
+  {
+    title: 'Constitución de Empresa',
+    description: 'For cool remote workers'
+  },
+]
+ 
+
+---
+<LayoutEmprendedores>
+    
+    <div class="hero h-screen bg-base-200">
+        <div class="hero-content text-center">
+          <div class="max-w-md">
+            <h1 class="text-5xl font-bold">Emprendedores</h1>
+            <p class="py-6">Registra tu marca, crea tu empresa, formaliza tus reclamos y atiende a tus clientes.</p>
+            <button class="btn btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
+
+      {services.map((service, i) => (
+        <>
+          <div class="card w-96 bg-base-100 shadow-xl">
+            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <div class="card-body">
+              <h2 class="card-title">
+                {service.title}!
+                <div class="badge badge-secondary">NEW</div>
+              </h2>
+              <p>{service.description}</p>
+              <div class="card-actions justify-end">
+                <div class="badge badge-outline">Fashion</div> 
+                <div class="badge badge-outline">Products</div>
+              </div>
+            </div>
+          </div>
+        </>    
+      ))}
+
+    
+</LayoutEmprendedores>
