@@ -18,6 +18,7 @@
     "@astrojs/react": "^1.2.2",
     "@astrojs/svelte": "^1.0.2",
     "@astrojs/tailwind": "^2.1.2",
+    "@astrojs/vue": "^1.2.1",
     "@docsearch/css": "^3.1.0",
     "@docsearch/react": "^3.1.0",
     "@nextui-org/react": "^1.0.0-beta.10",
@@ -30,8 +31,12 @@
     "preact": "^10.7.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-multi-select-component": "^4.3.4",
+    "react-tailwindcss-select": "^1.6.0",
     "svelte": "^3.53.1",
-    "tailwindcss": "^3.2.4"
+    "tailwindcss": "^3.2.4",
+    "vue": "^3.2.45",
+    "vue-multiselect": "^2.1.6"
   },
   "devDependencies": {
     "html-escaper": "^3.0.3"

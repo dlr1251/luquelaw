@@ -1,35 +1,122 @@
 ---
+import LayoutEmprendedores from "../../../layouts/LayoutEmprendedores.astro";
+import Cotizador from "../../../components/Emprendedores/Servicios/RegistroDeMarca/Cotizador";
+
+
+const steps = [
+    {
+        title: 'Solicitud',
+        description: [
+            'Una vez recibido el pago de tasas y honorarios, y los documentos requeridos, te enviaremos un contrato de prestación de servicios y un poder especial para adelantar el trámite ante la SIC',
+            'Presentaremos la solicitud y te enviaremos una constancia de radicación por correo electrónico y whatsapp.'
+        ]
+    },
+    {
+        title: 'Examen de forma',
+        description: [
+            'La solicitud pasará a un examen de forma durante quince (15) días hábiles, en donde la SIC estudiará los datos plasmados en el formulario de la solicitud y podrá hacer requerimientos sobre el mismo. Si es el caso, nosotros las responderemos.',
+        ]
+    },
+    {
+        title: 'Publicación',
+        description: [
+            'Cuando la solicitud pase el examen de forma se ordenará la publicación en la Gaceta de Propiedad Industrial durante treinta (30) días hábiles. Durante este periódo, la solicitud podrá recibir oposiciones de terceros interesados en la negación del registro.',
+            'Si recibes una oposición, tienes 30 días hábiles para contestarla. Nuestro servicio de contestación a oposiciones tiene un valor adicional de $350.000.'
+        ]
+    },
+    {
+        title: 'Examen de fondo y resolucion',
+        description: [
+            'Luego de la etapa de la publicación, la solicitud pasará a examen de fondo. En esta etapa se estudiará la solicitud, verificando que la marca cumpla con los requisitos legales y proferirá la resolución que concede o niega la marca.',
+            'La SIC expedirá la resolución que concede o no el registro de tu marca. Esta resolución es susceptible de apelarse.'
+        ]
+    },
+
+]
+
+const preguntas = [
+    {
+        title: '1. ¿Debo ser empresa para registrar mi marca?',
+        description: 'No es necesario tener registro mercantil como comerciante ni como empresa para registrar tu marca, puedes solicitarla sólo con tu cédula, pero si lo tienes, podrás acceder a descuentos en las tasas de la SIC.',
+    },
+    {
+        title: '2. ¿Debo tener logo para solicitar el registro?',
+        description: 'No es necesario tener logo. Puedes solicitarla solo con el nombre de la marca.'
+    },
+    {
+        title: '3. ¿Cuánto se demora el proceso de registro?',
+        description: 'Desde el momento de radicación de la solicitud, el proceso puede durar entre seis (6) meses y un (1) año.',
+    },
+    {
+        title: '4. ¿La marca puede registrarse a nombre de varias personas?',
+        description: 'Sí, puede registrarse a nombre de varias personas tanto naturales como jurídicas.',
+    },
+
+]
+
+
 
 ---
-<!--
+<style>
+.rmsc *, .rmsc .item-renderer {
+    color: black !important;
+}
+</style>
 
-    Te ayudamos a registrar tu marca
 
-    Obtén el registro de tu marca de una manera segura, económica y rápida
+    <div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/800/arch);">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="">
+                <h1 class="mb-5 text-5xl font-bold">Te ayudamos a registrar tu marca</h1>
+                <p class="mb-5">Obtén el registro de tu marca de una manera segura, económica y rápida.</p>
+                <button class="btn btn-primary">desde 586.000 COP*</button>
+            </div>
+        </div>
+    </div>
 
-    desde 586.000 COP*
+    <Cotizador client:visible/>
 
-    <Cotizador/>
+    <div class="hero min-h-screen bg-base-200">
+        <div class="hero-content flex-col lg:flex-row">
+          <img src="https://placeimg.com/260/400/arch" class="max-w-sm rounded-lg shadow-2xl" />
+          <div>
+            <h1 class="text-5xl font-bold">Antes de iniciar el proceso de registro!</h1>
+            <p class="py-6">te recomendamos realizarle un estudio previo a tu marca a través del cual conocerás si existen marcas idénticas o similares que puedan representar un riesgo para el registro de la tuya.</p>
+            <button class="btn btn-primary"> ✅ Desde $115.000</button>
+            <button class="btn btn-primary"> ✅ En un día hábil</button>
+          </div>
+        </div>
+    </div>
+    
+    
+    <div class="container mx-auto">
 
-    Antes de iniciar el proceso de registro, te recomendamos realizarle un estudio previo a tu marca a través del cual conocerás si existen marcas idénticas o similares que puedan representar un riesgo para el registro de la tuya.
-    ✅ Desde $115.000
-    ✅ En un día hábil
+        {steps.map( (step, i) => (
+            <div class="grid grid-cols-2 my-3">
+                <div class="">
+                    <div class="rounded-full bg-grey-200">{i+1}</div>
+                    <h4>{step.title}</h4>
+                </div>
+                <div class="">{step.description.map((par, j) => <p>{par}</p>) }</div>
+            </div>
+        ))}
 
-    ¿Cómo es el proceso de registro de marca?
+ 
 
-    1. Solicitud
+        <h2>Preguntas frecuentes</h2>
+        {preguntas.map((pregunta, k)=>(
+            <div class="collapse">
+                <input type="checkbox" class="peer" /> 
+                <div class="collapse-title bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                    {pregunta.title}
+                </div>
+                <div class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+                    <p>{pregunta.description}</p>
+                </div>
+            </div>
+        ))}
+        
+    </div>
 
-    Una vez recibido el pago de tasas y honorarios, y los documentos requeridos, te enviaremos un contrato de prestación de servicios y un poder especial para adelantar el trámite ante la SIC
-    Presentaremos la solicitud y te enviaremos una constancia de radicación por correo electrónico y whatsapp.
-
-    2. Examen de forma
-    La solicitud pasará a un examen de forma durante quince (15) días hábiles, en donde la SIC estudiará los datos plasmados en el formulario de la solicitud y podrá hacer requerimientos sobre el mismo. Si es el caso, nosotros las responderemos.
-
-    3. Publicación
-    Cuando la solicitud pase el examen de forma se ordenará la publicación en la Gaceta de Propiedad Industrial durante treinta (30) días hábiles. Durante este periódo, la solicitud podrá recibir oposiciones de terceros interesados en la negación del registro.
-    Si recibes una oposición, tienes 30 días hábiles para contestarla. Nuestro servicio de contestación a oposiciones tiene un valor adicional de $350.000.
-
-    4. Examen de fondo y resolucion
-    Luego de la etapa de la publicación, la solicitud pasará a examen de fondo. En esta etapa se estudiará la solicitud, verificando que la marca cumpla con los requisitos legales y proferirá la resolución que concede o niega la marca.
-    La SIC expedirá la resolución que concede o no el registro de tu marca. Esta resolución es susceptible de apelarse.
- -->
+</LayoutEmprendedores>

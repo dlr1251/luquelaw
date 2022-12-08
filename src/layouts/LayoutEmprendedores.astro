@@ -32,6 +32,10 @@ const githubEditUrl = `${CONFIG.GITHUB_EDIT_URL}/${currentFile}`;
 			.drawer-toggle ~ .drawer-content {
 				overflow-y: hidden;
 			}
+			.drawer {
+				height: auto;
+				min-height: 100vh;
+			}
 		</style>
 	</head>
 
@@ -44,7 +48,7 @@ const githubEditUrl = `${CONFIG.GITHUB_EDIT_URL}/${currentFile}`;
 					<!-- Navbar -->
 					<NavbarEmprendedores/>
 					<!-- Page content here -->
-					<div class="">
+					<div class="w-full">
 						<slot/>
 					</div>
 					</div> 
