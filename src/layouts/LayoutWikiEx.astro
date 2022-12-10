@@ -20,6 +20,7 @@ const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 const githubEditUrl = `${CONFIG.GITHUB_EDIT_URL}/${currentFile}`;
 import NavbarWikiEx from '../components/Navs/NavbarWikiEx.astro';
+import DrawerWikiEx from '../components/Navs/DrawerWikiEx.astro';
 ---
 
 <html class="initial">
@@ -140,14 +141,7 @@ import NavbarWikiEx from '../components/Navs/NavbarWikiEx.astro';
 					</aside>
 				</main>
 			</div> 
-			<div class="drawer-side">
-			  <label for="my-drawer-3" class="drawer-overlay"></label> 
-			  <ul class="menu p-4 w-80 bg-base-100 text-base-content">
-				<!-- Sidebar content here -->
-				<li><a>Sidebar Item 1</a></li>
-				<li><a>Sidebar Item 2</a></li>
-			  </ul>			
-			</div>
+			<DrawerWikiEx/>
 		</div>
 		<Footer path={currentFile} />
 	</body>
