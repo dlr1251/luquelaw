@@ -6,7 +6,7 @@ const allPosts = await Astro.glob('../../../pages/em/blog/posts/*.mdx');
     This is the blog index
     {allPosts.map((post,i)=>(
         <>
-            {console.log(post.frontmatter)}
+            <h3>{post.frontmatter.title}</h3>
         </>
     ))}
 </LayoutBlog>

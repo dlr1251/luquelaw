@@ -20,6 +20,7 @@ const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.astro';
 import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
 import DisqusPlugin from '../components/Both/disqus-plugin.astro';
+const allPosts = await Astro.glob('../pages/em/blog/posts/*.mdx');
 ---
 
 <html>
@@ -58,6 +59,21 @@ import DisqusPlugin from '../components/Both/disqus-plugin.astro';
 			  <label for="my-drawer-2" class="drawer-overlay"></label> 
 			  <ul class="menu p-4 w-80 bg-base-100 text-base-content">
 				<!-- Sidebar content here -->
+				<li class="menu-title">
+					<span>Más M</span>
+					<li><a href="/em/wiki">Wiki</a></li>
+					<li><a href="/both/es/contacto">Contacto</a></li>
+					<li><a href="/ex">Expats</a></li>
+				</li>
+				<li class="menu-title">
+					<span>Servicios</span>
+				</li>
+				<li><a href="/em/servicios/registro-de-marca">Registro de Marca</a></li>
+				<li><a href="/em/servicios/estudio-previo">Estudio previo</a></li>
+				<li><a href="/em/servicios/redaccion-de-contratos">Redacción de contratos</a></li>
+				<li class="menu-title">
+					<span>Entradas anteriores</span>
+				</li>
 				<li><a href="/em/blog/posts/como-utilizar-minutas">Cómo utilizar minutas</a></li>
 				<li><a href="/em/blog/posts/5-tips-de-contratos">5 tips a la hora de firmar un contrato</a></li>
 				<li><a href="/em/blog/posts/contrato-marketing-digital">Un contrato de márketing digital</a></li>

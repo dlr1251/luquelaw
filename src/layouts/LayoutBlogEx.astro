@@ -18,6 +18,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
+import DisqusPlugin from '../components/Both/disqus-plugin.astro';
 ---
 
 <html>
@@ -28,10 +29,9 @@ import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
 			
 		</title>
 		<style>
-			.drawer-toggle ~ .drawer-content {
-				overflow-y: hidden;
+			.prose {
+				max-width: 70ch;
 			}
-
 		</style>
 	</head>
 
@@ -41,22 +41,36 @@ import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
 		<NavbarExpatsBlog/>
 		<div class="drawer drawer-mobile">
 			<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-			<div class="drawer-content flex flex-col items-center justify-center px-4">
-			  <!-- Page content here -->
-			  <slot />
-			  <!-- <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label> -->
-			
+			<div class="drawer-content overflow-auto m-3 text-justify">
+				<article class="prose mx-auto">
+					<slot />
+				</article>
+				<div class="my-5">
+					<DisqusPlugin />
+				</div>
 			</div> 
 			<div class="drawer-side">
 			  <label for="my-drawer-2" class="drawer-overlay"></label> 
 			  <ul class="menu p-4 w-80 bg-base-100 text-base-content">
 				<!-- Sidebar content here -->
-				<li><a href="/ex/blog/posts/1">The Digital Nomad Visa Confusion</a></li>
-				<li><a href="/ex/blog/posts/2">Post 2</a></li>
-				<li><a href="/ex/blog/posts/3">Post 3</a></li>
-				<li><a href="/ex/blog/posts/4">Post 4</a></li>
-				<li><a href="/ex/blog/posts/1">Post 5</a></li>
-				<li><a href="/ex/blog/posts/1">Post 6</a></li>
+				<li class="menu-title">
+					<span>More M</span>
+					<li><a href="/ex/wiki">Wiki</a></li>
+					<li><a href="/both/en/contact">Contacto</a></li>
+					<li><a href="/em">Emprendedores</a></li>
+				</li>
+				<li class="menu-title">
+					<span>Services</span>
+				</li>
+				<li><a href="/ex/services/immigration">Immigration</a></li>
+				<li><a href="/ex/services/">More Services</a></li>
+				<li><a href="/em/servicios/redaccion-de-contratos">Redacción de contratos</a></li>
+				<li class="menu-title">
+					<span>Previous posts</span>
+				</li>
+				<li><a href="/ex/blog/posts/dnv-confusion">The Digital Nomad Visa Confusion</a></li>
+				<li><a href="/ex/blog/posts/counting-your-days">Counting your days</a></li>
+			  </ul>
 			  </ul>
 			
 			</div>
