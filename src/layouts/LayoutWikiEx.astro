@@ -3,7 +3,7 @@ import HeadCommon from '../components/HeadCommon.astro';
 import HeadSEO from '../components/HeadSEO.astro';
 import Header from '../components/Header/Header.astro';
 import PageContent from '../components/PageContent/PageContent.astro';
-import LeftSidebar from '../components/LeftSidebar/LeftSidebar.astro';
+import LeftSidebarEx from '../components/LeftSidebar/LeftSidebarEx.astro';
 import RightSidebar from '../components/RightSidebar/RightSidebar.astro';
 import * as CONFIG from '../config';
 import type { MarkdownHeading } from 'astro';
@@ -128,7 +128,7 @@ import NavbarWikiEx from '../components/Navs/NavbarWikiEx.astro';
 			<div class="drawer-content flex flex-col items-center justify-center">
 				<main class="layout">
 					<aside id="grid-left" class="grid-sidebar" title="Site Navigation">
-						<LeftSidebar currentPage={currentPage} />
+						<LeftSidebarEx currentPage={currentPage} />
 					</aside>
 					<div id="grid-main">
 						<PageContent frontmatter={frontmatter} headings={headings} githubEditUrl={githubEditUrl}>

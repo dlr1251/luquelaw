@@ -28,10 +28,9 @@ import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.
 			
 		</title>
 		<style>
-			p {
-				margin-bottom: .75rem;
+			.prose {
+				max-width: 70ch;
 			}
-
 		</style>
 	</head>
 
@@ -43,7 +42,7 @@ import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.
 			<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 			<div class="drawer-content overflow-auto m-3 text-justify">
 			  <!-- Page content here -->
-			  	<article class="prose">
+			  	<article class="prose mx-auto">
 
 				  <slot />
 
