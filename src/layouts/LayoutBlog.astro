@@ -19,6 +19,7 @@ const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.astro';
 import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
+import DisqusPlugin from '../components/Both/disqus-plugin.astro';
 ---
 
 <html>
@@ -49,7 +50,7 @@ import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
 				  <slot />
 
 				</article>
-
+				<DisqusPlugin />
 			</div> 
 			<div class="drawer-side">
 			  <label for="my-drawer-2" class="drawer-overlay"></label> 

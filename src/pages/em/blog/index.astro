@@ -1,6 +1,12 @@
 ---
 import LayoutBlog from "../../../layouts/LayoutBlog.astro";
+const allPosts = await Astro.glob('../../../pages/em/blog/posts/*.mdx');
 ---
 <LayoutBlog>
     This is the blog index
+    {allPosts.map((post,i)=>(
+        <>
+            {console.log(post.frontmatter)}
+        </>
+    ))}
 </LayoutBlog>
