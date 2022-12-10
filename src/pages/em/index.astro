@@ -36,25 +36,28 @@ const services = [
           </div>
         </div>
       </div>
+      <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
 
-      {services.map((service, i) => (
-        <>
-          <div class="card w-96 bg-base-100 shadow-xl">
-            <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
-            <div class="card-body">
-              <h2 class="card-title">
-                {service.title}!
-                <div class="badge badge-secondary">NEW</div>
-              </h2>
-              <p>{service.description}</p>
-              <div class="card-actions justify-end">
-                <div class="badge badge-outline">Fashion</div> 
-                <div class="badge badge-outline">Products</div>
+        {services.map((service, i) => (
+            <>
+              <div class="card w-96 sm:w-60 md:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
+                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">
+                    {service.title}!
+                    <div class="badge badge-secondary">NEW</div>
+                  </h2>
+                  <p>{service.description}</p>
+                  <div class="card-actions justify-end">
+                    <div class="badge badge-outline">Fashion</div> 
+                    <div class="badge badge-outline">Products</div>
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-        </>    
-      ))}
+            </>    
+        ))}
+
+      </div>
 
     
 </LayoutEmprendedores>

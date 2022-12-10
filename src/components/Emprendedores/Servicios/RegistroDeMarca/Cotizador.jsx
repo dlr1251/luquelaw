@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MultiSelect } from "react-multi-select-component";
+import { useEffect } from 'react';
 
 const options = [
   { label: '1. Abonos; Aditivos para combustibles; Productos químicos', value: '1' },
@@ -51,27 +52,120 @@ const options = [
 
 const Cotizador = () => {
   const [selected, setSelected] = useState([]);
+  const [calidad, setCalidad] = useState(null);
+  const [tasas, setTasas] = useState(0);
+  const [honorarios, setHonorarios] = useState(0);
+  const [estudio, setEstudio] = useState(0);
+
+
+  const handleChange = (e) => {
+    setCalidad(e.target.value); 
+  } 
+
+  const calculate = () => {
+    let numeroClases = selected.length
+         
+    if (numeroClases >= 1 && numeroClases <= 3){                     
+        setHonorarios(380000)
+        setEstudio(115000)
+    }
+    else if (numeroClases > 3) {
+        setHonorarios(700000 + ((numeroClases-3) * 75000) )
+        setEstudio(115000 + (numeroClases-3) * 50000)
+    }
+     else {
+        setHonorarios(0);
+        setEstudio(0)
+    } 
+
+
+    if (calidad === 'normal') {
+        if (numeroClases > 1){                          
+            setTasas(1003500 + (numeroClases * 501500)-501500 )
+        } else if (numeroClases === 0) {
+            setTasas(0);
+        } else {
+            setTasas(1003500);
+        }
+    } else if (calidad === 'sas') {
+        if (numeroClases > 1){                
+            setTasas(723000 + (numeroClases * 361500)-361500 )
+        } else if (numeroClases === 0) {
+            setTasas(0);
+        } else {
+            setTasas(723000);
+        }
+    } else if (calidad === 'menor') {
+        if (numeroClases > 1){                
+            setTasas(69000 + (numeroClases * 69000)-69000 )
+        } else if (numeroClases === 0) {
+            setTasas(0);
+        } else {                
+            setTasas(69000);
+        }
+    } else {
+        setTasas(0);
+        setHonorarios(0);
+
+    }
+
+  }
+
+useEffect(() => {  
+  calculate()
+ })
+
 
   return (
     <div className="m-4 p-3 container mx-auto">
       <h4>Calcula aquí cuánto valdría registrar tu marca</h4>
-      <div className="">Selecciona tu calidad</div>
-      <input type="radio" name="radio-5" className="radio radio-success" />
-      <input type="radio" name="radio-5" className="radio radio-success" />
-      <div className="">Selecciona las clases</div>
-      <div className="w-96">
+      <div className="grid grid-cols-1 md:grid-cols-2">
+        <div className="w-80 max-w-96">
+          <h4>Selecciona tu calidad</h4>
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">SAS</span> 
+              <input type="radio" name="radio-10" value="sas" className="radio checked:bg-red-500" onChange={handleChange}  />
+            </label>
+          </div>
+          <div className="form-control">
+            <label className="label cursor-pointer">
+              <span className="label-text">Full</span> 
+              <input type="radio" name="radio-10" value="normal" className="radio checked:bg-blue-500" onChange={handleChange}  />
+            </label>
+          </div>
 
-        <MultiSelect
-          className=""
-          focusSearchOnOpen
-          hasSelectAll={false}
-          options={options}
-          value={selected}
-          onChange={setSelected}
-          labelledBy="Select"
-          />
+
+          <h4>Selecciona las clases</h4>
+          <div className="w-80 max-w-96">
+            <MultiSelect
+              className="text-black"
+              focusSearchOnOpen
+              hasSelectAll={false}
+              options={options}
+              value={selected}
+              onChange={setSelected}
+              labelledBy="Select"
+              />
+          </div>
         </div>
 
+        <div className="resumen">
+          <h4>Resumen</h4>
+          <div className="clases">
+            <span>Clases seleccionadas:</span>
+            <ul>
+              {selected.map((clase,l) => <li key={l}>{clase.label}</li> )}
+            </ul>
+          </div>
+          <span>Calidad: {calidad ? calidad : 'selecciona tu calidad'}</span>
+          <h4>Valores:</h4>
+          <h4>Tasas: {tasas ? tasas : '0'}</h4>
+          <h4>Estudio previo: {estudio ? estudio : '0'}</h4>
+          <h4>Honorarios: {honorarios ? honorarios : 'selecciona clases y calidad'}</h4>
+          <h4>Total:{tasas+honorarios+estudio}</h4>
+        </div>
+      </div>
     </div>
   );
 };
