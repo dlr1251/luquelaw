@@ -28,9 +28,8 @@ import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.
 			
 		</title>
 		<style>
-			.drawer-toggle ~ .drawer-content {
-				/* overflow-y: hidden; */
-				height: auto;
+			p {
+				margin-bottom: .75rem;
 			}
 
 		</style>
@@ -42,9 +41,13 @@ import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.
 		<NavbarEmprendedoresBlog/>
 		<div class="drawer drawer-mobile">
 			<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
-			<div class="drawer-content overflow-auto m-3">
+			<div class="drawer-content overflow-auto m-3 text-justify">
 			  <!-- Page content here -->
-			  <slot />
+			  	<article class="prose">
+
+				  <slot />
+
+				</article>
 
 			</div> 
 			<div class="drawer-side">
