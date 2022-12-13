@@ -3,10 +3,24 @@ import LayoutBlog from "../../../layouts/LayoutBlog.astro";
 const allPosts = await Astro.glob('../../../pages/em/blog/posts/*.mdx');
 ---
 <LayoutBlog>
-    This is the blog index
-    {allPosts.map((post,i)=>(
-        <>
-            <h3>{post.frontmatter.title}</h3>
-        </>
-    ))}
+   
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-2">
+
+        {allPosts.map((post, i) => (
+            <>
+              <div class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
+                <div class="card-body">
+                  <h2 class="card-title">
+                    {post.frontmatter.title}
+                  </h2>
+                  <p>{post.frontmatter.description}</p>
+                  <div class="card-actions justify-start">
+                    <a href={`${post.url}`} class="btn btn-primary">Ver</a> 
+                  </div>
+                </div>
+              </div>
+            </>    
+        ))}
+
+      </div>
 </LayoutBlog>
