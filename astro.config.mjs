@@ -18,6 +18,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
+  output: 'server',
   integrations: [
   // Enable Preact to support Preact JSX components.
   preact(),
