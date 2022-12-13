@@ -51,10 +51,9 @@ const sidebarItems = [
 			sidebarItems.map((item, i) => (
 				<li>
 					<div class="nav-group">
-						<h2>{item.title}</h2>
+						<h4>{item.title}</h4>
 						<ul>
 							{item.children.map((child) => {
-			
 								return (
 									<li class="nav-link">
 										<a href={child.url}>

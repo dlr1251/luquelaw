@@ -3,15 +3,15 @@ import LayoutEmprendedores from "../../layouts/LayoutEmprendedores.astro";
 const services = [
   {
     title: 'Registro de marca',
-    description: 'For cool remote workers'
+    description: 'Protege tu marca de la mejor manera'
   },
   {
     title: 'Estudio previo',
-    description: 'For cool remote workers'
+    description: 'Diagnostica los riesgos de tu registro'
   },
   {
     title: 'Redacción de contratos',
-    description: 'For cool remote workers'
+    description: '¿Sin tiempo para revisar o redactar contratos?'
   },
   {
     title: 'Registro Invima',
@@ -40,17 +40,14 @@ const services = [
 
         {services.map((service, i) => (
             <>
-              <div class="card w-96 sm:w-60 md:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+              <div class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
                 <div class="card-body">
                   <h2 class="card-title">
-                    {service.title}!
-                    <div class="badge badge-secondary">NEW</div>
+                    {service.title}
                   </h2>
                   <p>{service.description}</p>
-                  <div class="card-actions justify-end">
-                    <div class="badge badge-outline">Fashion</div> 
-                    <div class="badge badge-outline">Products</div>
+                  <div class="card-actions justify-start">
+                    <a class="badge badge-outline">Ver</a> 
                   </div>
                 </div>
               </div>

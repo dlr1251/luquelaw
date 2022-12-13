@@ -1,5 +1,28 @@
 ---
 import LayoutForeigners from "../../layouts/LayoutForeigners.astro";
+const services = [
+  {
+    title: 'Visas',
+    description: 'Protege tu marca de la mejor manera'
+  },
+  {
+    title: 'Immigration services',
+    description: 'Diagnostica los riesgos de tu registro'
+  },
+  {
+    title: 'Renting property',
+    description: '¿Sin tiempo para revisar o redactar contratos?'
+  },
+  {
+    title: 'Buying property',
+    description: 'For cool remote workers'
+  },
+  {
+    title: 'Starting a company',
+    description: 'For cool remote workers'
+  },
+]
+ 
 ---
 <LayoutForeigners>
     
@@ -8,22 +31,29 @@ import LayoutForeigners from "../../layouts/LayoutForeigners.astro";
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Expats</h1>
             <p class="py-6">Get your visa, file your claim, all bilingual.</p>
-            <a class="btn btn-primary" href="/ex/services">Our services</a>
           </div>
         </div>
-      </div>
+    </div>
 
-      <div class="hero min-h-screen bg-base-200">
-        <div class="hero-content flex-col lg:flex-row">
-          <img src="https://placeimg.com/260/400/arch" class="max-w-sm rounded-lg shadow-2xl" />
-          <div>
-            <h1 class="text-5xl font-bold">Get your visa!</h1>
-            <p class="py-6">This is how to.</p>
-            <button class="btn btn-primary">Get Started</button>
-          </div>
-        </div>
-      </div>
-    
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+
+      {services.map((service, i) => (
+          <>
+            <div class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
+              <div class="card-body">
+                <h2 class="card-title">
+                  {service.title}
+                </h2>
+                <p>{service.description}</p>
+                <div class="card-actions">
+                  <a class="btn w-full">Ver</a> 
+                </div>
+              </div>
+            </div>
+          </>    
+      ))}
+
+    </div>
 
     
 </LayoutForeigners>
