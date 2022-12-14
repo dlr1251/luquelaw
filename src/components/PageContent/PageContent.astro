@@ -13,13 +13,16 @@ const { frontmatter, headings } = Astro.props as Props;
 const title = frontmatter.title;
 ---
 
-<article id="article" class="content">
+<article id="article" class="">
 	<section class="main-section">
-		<h1 class="content-title" id="overview">{title}</h1>
+		
 		<nav class="block sm:hidden">
 			<TableOfContents client:media="(max-width: 50em)" headings={headings} />
 		</nav>
-		<slot />
+		<div class="mt-5">
+			<h1 class="mt-5" id="overview">{title}</h1>
+			<slot />
+		</div>
 	</section>
 </article>
 
