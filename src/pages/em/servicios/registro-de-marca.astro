@@ -90,12 +90,12 @@ const preguntas = [
     <div class="container mx-auto">
 
         {steps.map( (step, i) => (
-            <div class="grid grid-cols-1 md:grid-cols-2 my-3">
-                <div class="flex flex-col ">
-                    <div class="rounded-full bg-grey-200">{i+1}</div>
-                    <h4>{step.title}</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 my-3 border border-slate-600 rounded-lg p-3 shadow-lg">
+                <div class="flex flex-col justify-center">
+                    <h1 class="bg-grey-200 mb-1">{i+1}</h1>
+                    <div class="mt-2 text-lg">{step.title}</div>
                 </div>
-                <div class="">{step.description.map((par, j) => <p>{par}</p>) }</div>
+                <div class="">{step.description.map((par, j) => <p class="text-justify">{par}</p>) }</div>
             </div>
         ))}
 

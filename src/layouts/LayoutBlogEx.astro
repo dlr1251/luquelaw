@@ -19,6 +19,7 @@ const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
 import DisqusPlugin from '../components/Both/disqus-plugin.astro';
+import DrawerBlogEx from '../components/Navs/DrawerBlogEx.astro';
 ---
 
 <html>
@@ -49,6 +50,7 @@ import DisqusPlugin from '../components/Both/disqus-plugin.astro';
 					<DisqusPlugin />
 				</div>
 			</div>
+			<DrawerBlogEx/>
 		</div>
 		<Footer path={currentFile} />
 	</body>

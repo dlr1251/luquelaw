@@ -1,0 +1,96 @@
+---
+import LayoutEmprendedores from "../../layouts/LayoutEmprendedores.astro";
+
+const promises = [
+    'Ser sincero y realista con sus diagnósticos',
+    'Buscar soluciones legales a problemas complejos',
+    'Escuchar y considerar las necesidades de sus clientes',
+    'Compromiso con cada marca que confíe en nosotros para su protección',
+]
+
+const values = [
+    'Amamos compartir el conocimiento para enriquecer las decisiones de los emprendedores colombianos',
+    'Somos tus defensores en situaciones díficiles',
+    'Creemos en el derecho como el mejor mecanismo para solucionar y evitar conflictos',
+]
+
+
+---
+<LayoutEmprendedores>
+
+    <div class="hero min-h-screen" style="background-image: url(https://placeimg.com/1000/800/arch);">
+        <div class="hero-overlay bg-opacity-60"></div>
+        <div class="hero-content text-center text-neutral-content">
+            <div class="max-w-md">
+                <h1 class="mb-5 text-5xl font-bold">Nosotros</h1>
+                <p class="mb-5">somos tus guías legales en proyectos y negocios</p>
+            </div>
+        </div>
+    </div>
+    <div class="container mx-auto">
+        <div class="hero min-h-screen bg-base-200">
+            <div class="hero-content flex-col md:flex-row-reverse">
+              <img src="https://placeimg.com/260/400/arch" class="max-w-sm rounded-lg shadow-2xl" />
+              <div>
+                <h1 class="text-5xl font-bold">Emprendedores abogados</h1>
+                <p class="py-4">Somos una firma boutique colombiana, ubicada en Medellín Antioquia con un enfoque especial en el derecho empresarial.</p>
+                <p class="py-4">Como emprendedores que somos conocemos los retos actuales a los que se enfrenta entrar a este mundo, por lo que buscamos ser ese apoyo legal para quienes deciden recorrer este camino.</p>
+                <p class="py-4">Hemos trabajado apoyando legalmente a empresarios alrededor del país, principalmente en Medellín, pero también en Cali, Valledupar, Bogotá, Casanare, Pereira y Montería.</p>
+                <p class="py-4">Nos apasiona compartir el conocimiento y darle color al derecho para que esté a la mano de todos, nos encanta la creatividad, por eso aplicamos diseño legal a cada uno de nuestros documentos, nos caracterizamos por traducir a lenguaje simple esos términos confusos que tiene la ley.</p>
+                <button class="btn btn-primary">Get Started</button>
+              </div>
+            </div>
+        </div>
+        <h3 class="text-center my-3">Capital M promete...</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-4 gap-2">
+            {promises.map((promise, i)=>(
+                <div class="card w-96 md:w-80 m-2 bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <p>{promise}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+        <h3 class="text-center my-3">Nuestra filosofía</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 md:grid-cols-3 gap-2 mx-auto">
+            {values.map((value, i)=>(
+                <div class="card w-96 md:w-80 bg-base-100 shadow-xl">
+                    <div class="card-body">
+                        <p>{value}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+        <div class="divider"></div> 
+        <h2 class="text-center mx-auto my-3">Nuestro equipo</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+                <figure><img src="https://placeimg.com/400/225/arch" alt="Daniel Luque Restrepo" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">Daniel Luque Restrepo</h2>
+                  <p>Abogado comercialista. Habla español, inglés, francés, alemán e italiano. Egresado de la Universidad Pontificia Bolivariana, con estudios de derecho en la Universidad de Zaragoza, España.</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Contactalo</button>
+                  </div>
+                </div>
+              </div>
+              <div class="card w-96 bg-base-100 shadow-xl mx-auto">
+                <figure><img src="https://placeimg.com/400/225/arch" alt="María Fernanda Duarte Correa" /></figure>
+                <div class="card-body">
+                  <h2 class="card-title">María Fernanda Duarte Correa</h2>
+                  <p>Abogada comercialista experta en propiedad industrial y Derecho administrativo. Egresada de la Universidad Pontificia Bolivariana y con diversos cursos de la Superintendencia de Industria y Comercio.</p>
+                  <div class="card-actions justify-end">
+                    <button class="btn btn-primary">Contactala</button>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+
+        
+
+
+
+    </div>
+</LayoutEmprendedores>
