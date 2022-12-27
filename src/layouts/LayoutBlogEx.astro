@@ -25,9 +25,9 @@ import DrawerBlogEx from '../components/Navs/DrawerBlogEx.astro';
 <html>
 	<head>
 		<HeadCommon />
-		<!-- <HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} /> -->
+		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
 		<title>
-			
+			{frontmatter.title}
 		</title>
 		<style>
 			.prose {
@@ -46,7 +46,7 @@ import DrawerBlogEx from '../components/Navs/DrawerBlogEx.astro';
 				<article class="prose mx-auto">
 					<slot />
 				</article>
-				<div class="my-5 mx-auto p-5 container">
+				<div class="my-5 mx-auto p-0 prose">
 					<DisqusPlugin />
 				</div>
 			</div>
