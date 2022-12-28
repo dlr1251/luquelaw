@@ -17,12 +17,15 @@ import tailwind from "@astrojs/tailwind";
 import vue from "@astrojs/vue";
 
 // https://astro.build/config
+import image from "@astrojs/image";
+
+// https://astro.build/config
 export default defineConfig({
   // output: 'server',
   integrations: [
   // Enable Preact to support Preact JSX components.
   preact(),
   // Enable React for the Algolia search component.
-  react(), mdx(), svelte(), tailwind(), vue()],
-  site: `http://astro.build`
+  react(), mdx(), svelte(), tailwind(), vue(), image({serviceEntryPoint: '@astrojs/image/sharp'})],
+  site: `https://capitaleme.com`
 });
