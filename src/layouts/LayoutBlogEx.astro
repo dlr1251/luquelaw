@@ -1,8 +1,6 @@
 ---
 import HeadCommon from '../components/HeadCommon.astro';
 import HeadSEO from '../components/HeadSEO.astro';
-import Header from '../components/Header/Header.astro';
-import PageContent from '../components/PageContent/PageContent.astro';
 
 import * as CONFIG from '../config';
 import type { MarkdownHeading } from 'astro';
@@ -11,6 +9,7 @@ import Footer from '../components/Footer/Footer.astro';
 type Props = {
 	frontmatter: CONFIG.Frontmatter;
 	headings: MarkdownHeading[];
+
 };
 
 const { frontmatter, headings } = Astro.props as Props;
@@ -18,17 +17,22 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
 import NavbarExpatsBlog from '../components/Navs/NavbarExpatsBlog.astro';
-import DisqusPlugin from '../components/Both/disqus-plugin.astro';
 import DrawerBlogEx from '../components/Navs/DrawerBlogEx.astro';
+import DisqusPlugin from '../components/Both/disqus-plugin.astro';
+import Comments from '../components/Both/comments.astro';
+import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
+
 ---
 
 <html>
 	<head>
 		<HeadCommon />
 		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
+
 		<title>
-			{frontmatter.title}
+			{frontmatter.title ? frontmatter.title : title}
 		</title>
+		
 		<style>
 			.prose {
 				max-width: 70ch;
@@ -48,10 +52,12 @@ import DrawerBlogEx from '../components/Navs/DrawerBlogEx.astro';
 				</article>
 				<div class="my-5 mx-auto p-0 prose">
 					<DisqusPlugin />
+					<FbChatPlugin/>
+					<!-- <Comments/> -->
 				</div>
 			</div>
 			<DrawerBlogEx/>
 		</div>
-		<Footer path={currentFile} />
+		<Footer />
 	</body>
 </html>
