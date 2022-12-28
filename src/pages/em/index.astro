@@ -3,23 +3,27 @@ import LayoutEmprendedores from "../../layouts/LayoutEmprendedores.astro";
 const services = [
   {
     title: 'Registro de marca',
-    description: 'Protege tu marca de la mejor manera'
+    description: 'Protege tu marca de la mejor manera',
+    url: '/em/servicios/registro-de-marca'
   },
   {
     title: 'Estudio previo',
-    description: 'Diagnostica los riesgos de tu registro'
+    description: 'Diagnostica los riesgos de tu registro',
+    url: '/em/servicios/estudio-previo'
   },
   {
     title: 'Redacción de contratos',
-    description: '¿Sin tiempo para revisar o redactar contratos?'
+    description: '¿Sin tiempo para revisar o redactar contratos?',
+    url: '/em/servicios/redaccion-de-contratos'
   },
-  {
-    title: 'Registro Invima',
-    description: 'For cool remote workers'
-  },
+  // {
+  //   title: 'Registro Invima',
+  //   description: 'For cool remote workers'
+  // },
   {
     title: 'Constitución de Empresa',
-    description: 'For cool remote workers'
+    description: 'Formaliza tu negocio',
+    url: '/em/servicios/creacion-de-empresa'
   },
 ]
  
@@ -27,33 +31,27 @@ const services = [
 ---
 <LayoutEmprendedores>
     
-    <div class="hero h-screen bg-base-200">
+    <div class="hero h-screen md:h-80 bg-base-200">
         <div class="hero-content text-center">
           <div class="max-w-md">
             <h1 class="text-5xl font-bold">Emprendedores</h1>
             <p class="py-6">Registra tu marca, crea tu empresa, formaliza tus reclamos y atiende a tus clientes.</p>
-            <button class="btn btn-primary">Get Started</button>
           </div>
         </div>
       </div>
-      <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
-
+      <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
         {services.map((service, i) => (
             <>
-              <div class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
-                <div class="card-body">
+              <a href={service.url} class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
+                <div class="card-body hover:outline-none">
                   <h2 class="card-title">
                     {service.title}
                   </h2>
                   <p>{service.description}</p>
-                  <div class="card-actions justify-start">
-                    <a class="badge badge-outline">Ver</a> 
-                  </div>
                 </div>
-              </div>
+              </a>
             </>    
         ))}
-
       </div>
 
     
