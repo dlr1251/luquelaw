@@ -1,5 +1,5 @@
 export const SITE = {
-	title: 'Luque Law',
+	title: 'Capital M',
 	description: 'Get your Visa, tackle burocracy, enjoy Colombia.',
 	defaultLanguage: 'en_US',
 };
