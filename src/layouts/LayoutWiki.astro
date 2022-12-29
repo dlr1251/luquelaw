@@ -1,7 +1,7 @@
 ---
 import HeadCommon from '../components/HeadCommon.astro';
 import HeadSEO from '../components/HeadSEO.astro';
-import Header from '../components/Header/Header.astro';
+
 import PageContent from '../components/PageContent/PageContent.astro';
 import LeftSidebar from '../components/LeftSidebar/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar/RightSidebar.astro';
@@ -18,13 +18,16 @@ const { frontmatter, headings } = Astro.props as Props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
-const githubEditUrl = `${CONFIG.GITHUB_EDIT_URL}/${currentFile}`;
-import NavbarWiki from '../components/Navs/NavbarWiki.astro';
+import NavbarBlog from '../components/Navs/NavbarBlog.astro';
 import DrawerEmprendedores from '../components/Navs/DrawerEmprendedores.astro';
-import DrawerWiki from '../components/Navs/DrawerWiki.astro';
+import DrawerBlog from '../components/Navs/DrawerBlog.astro';
+const currentUrl = Astro.url.pathname;
+import servEm from '../pages/em/servicios/servicios.js'
+import servEx from '../pages/ex/services/services.js'
+const isEm = currentUrl.startsWith('/em')
 ---
 
-<html lang={frontmatter.lang ?? 'en-us'} class="initial">
+<html class="initial">
 	<head>
 		<HeadCommon />
 		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
@@ -34,8 +37,6 @@ import DrawerWiki from '../components/Navs/DrawerWiki.astro';
 		<style>
 			body {
 				width: 100%;
-				display: grid;
-				grid-template-rows: var(--theme-navbar-height) 1fr;
 				--gutter: 0.5rem;
 				--doc-padding: 2rem;
 			}
@@ -105,9 +106,7 @@ import DrawerWiki from '../components/Navs/DrawerWiki.astro';
 					display: flex;
 				}
 			}
-			/* .drawer-toggle ~ .drawer-content {
-				overflow-y: hidden;
-			} */
+	
 
 		</style>
 		<style is:global>
@@ -128,9 +127,8 @@ import DrawerWiki from '../components/Navs/DrawerWiki.astro';
 	</head>
 
 	<body>
-		<!-- <Header currentPage={currentPage} /> -->
-		<NavbarWiki/>
-		<!-- <DrawerEmprendedores/> -->
+
+		{ isEm ? <NavbarBlog servEm={servEm} /> : <NavbarBlog servEx={servEx} /> }
 		<div class="drawer">
 			<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
 			<div class="drawer-content flex flex-col">
@@ -139,16 +137,16 @@ import DrawerWiki from '../components/Navs/DrawerWiki.astro';
 						<LeftSidebar currentPage={currentPage} />
 					</aside>
 					<div id="grid-main">
-						<PageContent frontmatter={frontmatter} headings={headings} githubEditUrl={githubEditUrl}>
+						<PageContent frontmatter={frontmatter} headings={headings} >
 							<slot />
 						</PageContent>
 					</div>
 					<aside id="grid-right" class="grid-sidebar" title="Table of Contents">
-						<RightSidebar headings={headings} githubEditUrl={githubEditUrl} />
+						<RightSidebar headings={headings}  />
 					</aside>
 				</main>
 			</div> 
-			<DrawerWiki/>
+			{ isEm ? <DrawerBlog servEm={servEm} /> : <DrawerBlog servEx={servEx} /> }
 		</div>
 		<Footer path={currentFile} />
 	</body>

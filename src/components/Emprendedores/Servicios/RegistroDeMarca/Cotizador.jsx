@@ -149,7 +149,6 @@ useEffect(() => {
               />
           </div>
         </div>
-
         <div className="resumen">
           <h4>Resumen</h4>
           <div className="clases">

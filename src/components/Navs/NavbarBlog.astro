@@ -1,0 +1,40 @@
+---
+const { servEm, servEx } = Astro.props;
+const currentUrl = Astro.url.pathname;
+const isEm = currentUrl.startsWith('/em')
+const isEx = currentUrl.startsWith('/ex')
+---
+<div class="w-full navbar bg-base-300">
+    <div class="flex-none lg:hidden">
+    <label for="my-drawer-2" class="btn btn-square btn-ghost">
+        <svg xmlns="http://www.w3.org/2000/svg" 
+             fill="none" 
+             viewBox="0 0 24 24" 
+             class="inline-block w-6 h-6 stroke-current">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </label>
+    </div> 
+    <div class="flex-1 px-2 mx-2"><a href="/">Home</a></div>
+    <div class="flex-none hidden lg:block">
+      <ul class="menu menu-horizontal">
+          <!-- Navbar menu content here -->
+          { isEm || isEx ? <div class="dropdown">
+            <label tabindex="0" class="btn m-1">{isEm ? 'Servicios' : 'Services'}</label>
+            <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-80">
+              { isEm ? servEm.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) : servEx.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) }
+            </ul>
+          </div> : <div>Capital M</div>}
+          { isEm ? <li><a href="/em/wiki">Wiki</a></li> : '' }
+          { isEx ? <li><a href="/ex/wiki">Wiki</a></li> : '' }
+          { isEm ? <li><a href="/em/blog">Blog</a></li> : '' }
+          { isEx ? <li><a href="/ex/blog">Blog</a></li> : '' }
+          { isEm ? <li><a href="/contacto">Contacto</a></li> : '' }
+          { isEx ? <li><a href="/contact-us">Contact us</a></li> : '' }
+          <div class="divider divider-horizontal"></div>
+          { isEm ? <li><a href="/ex">Expats</a></li> : '' }
+          { isEx ? <li><a href="/em">Emprendedores</a></li> : '' }
+      </ul>
+    </div>
+</div>
+

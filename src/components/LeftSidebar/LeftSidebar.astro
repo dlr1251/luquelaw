@@ -55,30 +55,69 @@ const sidebarItems = [
         ]
     },
 ]
+const sidebarItemsEx = [
+    {
+        title: 'Immigration',
+        text: 'world',
+        children: [
+            {
+                label: 'Visas',
+                url: '/ex/wiki/visas'
+            },
+            {
+                label: 'Digital Nomad Visa',
+                url: '/ex/wiki/visas/digital-nomad'
+            },
+        ]
+    },
+]
+const currentUrl = Astro.url.pathname
+const isEm = currentUrl.startsWith('/em')
 ---
 
 <nav aria-labelledby="grid-left">
 	<ul class="nav-groups">
-		{
-			sidebarItems.map((item, i) => (
-				<li>
-					<div class="nav-group">
-						<h4>{item.title}</h4>
-						<ul>
-							{item.children.map((child) => {
-								return (
-									<li class="nav-link">
-										<a href={child.url}>
-											{child.label}
-										</a>
-									</li>
-								);
-							})}
-						</ul>
-					</div>
-				</li>
-			))
-		}
+		{ 
+			isEm ?
+				sidebarItems.map((item, i) => (
+					<li>
+						<div class="nav-group">
+							<h4>{item.title}</h4>
+							<ul>
+								{item.children.map((child) => {
+									return (
+										<li class="nav-link">
+											<a href={child.url}>
+												{child.label}
+											</a>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
+					</li>
+				))
+			:
+				sidebarItemsEx.map((item, j) => (
+					<li>
+						<div class="nav-group">
+							<h4>{item.title}</h4>
+							<ul>
+								{item.children.map((child) => {
+									return (
+										<li class="nav-link">
+											<a href={child.url}>
+												{child.label}
+											</a>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
+					</li>
+				))
+			}
+			
 	</ul>
 </nav>
 

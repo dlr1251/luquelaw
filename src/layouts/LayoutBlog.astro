@@ -1,8 +1,6 @@
 ---
 import HeadCommon from '../components/HeadCommon.astro';
 import HeadSEO from '../components/HeadSEO.astro';
-import Header from '../components/Header/Header.astro';
-import PageContent from '../components/PageContent/PageContent.astro';
 
 import * as CONFIG from '../config';
 import type { MarkdownHeading } from 'astro';
@@ -17,47 +15,46 @@ const { frontmatter, headings } = Astro.props as Props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const currentPage = Astro.url.pathname;
 const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
-import NavbarEmprendedoresBlog from '../components/Navs/NavbarEmprendedoresBlog.astro';
+import NavbarBlog from '../components/Navs/NavbarBlog.astro';
 import DrawerBlog from '../components/Navs/DrawerBlog.astro';
 import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
 import DisqusPlugin from '../components/Both/disqus-plugin.astro';
+
 const allPosts = await Astro.glob('../pages/em/blog/posts/*.mdx');
+const currentUrl = Astro.url.pathname;
+import servEm from '../pages/em/servicios/servicios.js'
+import servEx from '../pages/ex/services/services.js'
+const isEm = currentUrl.startsWith('/em')
+const isEx = currentUrl.startsWith('/ex')
 ---
 
 <html>
 	<head>
 		<HeadCommon />
 		<!-- <HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} /> -->
-		<title>
-			
-		</title>
 		<style>
 			.prose {
 				max-width: 70ch;
 			}
 		</style>
 	</head>
-
 	<body>
-		<!-- <Header currentPage={currentPage} /> -->
-		<!-- <HeadCommon /> -->
 		<FbChatPlugin/>
-		<NavbarEmprendedoresBlog/>
+		{ isEm ? <NavbarBlog servEm={servEm} /> : <NavbarBlog servEx={servEx} /> }
 		<div class="drawer drawer-mobile">
 			<input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
 			<div class="drawer-content overflow-auto m-3 text-justify">
-			  <!-- Page content here -->
 			  	<article class="prose mx-auto">
-
 				  <slot />
-
 				</article>
-				<div class="my-5">
-					<DisqusPlugin />
-				</div>
+				{ currentUrl.startsWith('/em/blog') || currentUrl.startsWith('/ex/blog') ? <div class="my-5"><DisqusPlugin /></div> : ''}
+				
 			</div> 
-			<DrawerBlog/>
+
+			{ isEm ? <DrawerBlog servEm={servEm} /> : '' }
+			{ isEx ? <DrawerBlog servEx={servEx} /> : '' }
+
 		  </div>
-		<Footer path={currentFile} />
+		<Footer />
 	</body>
 </html>
