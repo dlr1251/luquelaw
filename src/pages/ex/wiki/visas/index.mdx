@@ -19,8 +19,8 @@ If you are looking for services in order to get a visa yourself, check this sect
                     <div class="swap-on">{visa.reach.es}<span class="ml-2 badge">English</span></div>
                     <div class="swap-off">{visa.reach.en}<span class="ml-2 badge">Original</span></div>
                 </label>
-                <label for="my-modal" class="btn">Requirements</label>
-                <input type="checkbox" id="my-modal" class="modal-toggle" />
+                <label for={`my-modal-${i}`} class="btn">Requirements</label>
+                <input type="checkbox" id={`my-modal-${i}`} class="modal-toggle" />
                 <div class="modal">
                 <div class="modal-box">
                     <h3 class="font-bold text-lg">Requirements for {visa.modality}</h3>
@@ -28,12 +28,12 @@ If you are looking for services in order to get a visa yourself, check this sect
                         <div class="form-control">
                             <label class="label cursor-pointer">
                                 <span class="label-text"><label for={`my-modal-${j+1}`} class="link">{req}</label></span> 
-                                <input type="checkbox" class="checkbox checkbox-primary" />
+                                <input type="checkbox" id={Math.random()*10} class="checkbox checkbox-primary" />
                             </label>
                         </div>
                     ))}
                     <div class="modal-action">
-                    <label for="my-modal" class="btn">close</label>
+                    <label for={`my-modal-${i}`} class="btn">close</label>
                     </div>
                 </div>
                 </div>
