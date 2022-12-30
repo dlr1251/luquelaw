@@ -24,7 +24,7 @@ const visas = [
         },
         benefificaries: 'No',
         restrictions: {
-            es: 'La visa V Turismo no permite trabajar en el territorio colombiano.',
+            es: 'La Turismo no permite trabajar en el territorio colombiano.',
             en: 'This visa does not allow you to work in Colombian territory'
         }
     },
@@ -50,7 +50,7 @@ const visas = [
         },
         benefificaries: 'No',
         restrictions: {
-            es: 'La visa V Negocios no permite trabajar en el territorio colombiano ni vincularse al Sistema de Seguridad social en el país.',
+            es: 'La Negocios no permite trabajar en el territorio colombiano ni vincularse al Sistema de Seguridad social en el país.',
             en: 'The V Business visa does not allow you to work in Colombian territory or be linked to the Social Security System in the country'
         }
     },
@@ -96,7 +96,7 @@ const visas = [
             en: 'To attend medical or dental consultation, intervention or treatment as a patient or companion. This visa will be granted for specific treatments, prioritizing those of a specific duration, which are part of the exportable offer of medical services for foreigners'
         },
         vigency: {
-            es: 'Hasta un (1) año y no será prorrogable en el territorio nacional. La visa V otorgada en esta categoría se considera de turismo y la permanencia en el territorio colombiano no podrá superar los ciento ochenta (180) días calendario continuos o discontinuos',
+            es: 'Hasta un (1) año y no será prorrogable en el territorio nacional. La otorgada en esta categoría se considera de turismo y la permanencia en el territorio colombiano no podrá superar los ciento ochenta (180) días calendario continuos o discontinuos',
             en: 'Up to one (1) year and will not be extendable in the national territory. The V visa granted in this category is considered tourism and the permanence in Colombian territory may not exceed one hundred and eighty (180) continuous or discontinuous calendar days'
         },
         requirements: {
@@ -144,7 +144,7 @@ const visas = [
         },
         benefificaries: 'No',
         restrictions: {
-            es: 'Con excepción de los casos en que se otorgue a extranjeros bajo subrogados penales o mecanismos sustitutivos de la pena, la visa V otorgada en esta calidad no permite trabajar en el territorio colombiano.',
+            es: 'Con excepción de los casos en que se otorgue a extranjeros bajo subrogados penales o mecanismos sustitutivos de la pena, la otorgada en esta calidad no permite trabajar en el territorio colombiano.',
             en: 'Except for the cases in which, in the context of a criminal case, the authorities grant you a penalty substitution or surrogate, this visa does not allow you to work in Colombia'
         }
     },
@@ -270,7 +270,7 @@ const visas = [
         type: 'V',
         reach: {
             es: 'Para ingresar y permanecer en el país como voluntario o estudiante en formación religiosa o para llevar a cabo estudios teológicos en instituto u organización de una iglesia o confesión religiosa, debidamente reconocida por el Estado colombiano',
-            en: 'To enter and remain in the country as a religious student or volunteer, or to carry out theological studies in an institute or organization duly recognized by the Colombian State'
+            en: 'To enter and stay in the country as a religious student or volunteer, or to carry out theological studies in an institute or organization duly recognized by the Colombian State'
         },
         vigency: {
             es: 'Hasta un (1) año',
@@ -287,10 +287,10 @@ const visas = [
     
             ],
             en: [
-                'Those established in article 32 of this Resolution',
-                'Certificate of recognition and legal representation of the respective religious organization issued by the Ministry of the Interior or by the competent Diocese or Archdiocese',
+                'Sponsorship from a legal entity',
+                'Certificate of recognition and legal representation of the respective religious organization issued by the Ministry of the Interior or by the Diocese or Archdiocese',
                 'Motivated letter from such religious organization stating the purpose and activities of the foreigner planned in Colombia',
-                'Letter of support from the religious institution for its support. in which case, the requesting entity must prove economic solvency through bank statements with an average of one hundred (100) current monthly legal minimum wages corresponding to the six (6) months prior to the request',
+                'Sponsorship letter from the religious institution, in which case, the requesting entity must prove economic solvency through bank statements with an average of one hundred (100) current monthly legal minimum wages corresponding to the six (6) months prior to the request',
                 'Demonstrate that you have health coverage in Colombia, or a health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for your stay in the country'
 
     
@@ -299,15 +299,15 @@ const visas = [
         benefificaries: 'No',
         restrictions: {
             es: 'No permite solicitar visa tipo M o R en Colombia. Permite ejercer únicamente la actividad registrada y autorizada en la visa. Una vez terminada la actividad de voluntariado el extranjero deberá regresar a su país de origen o residencia',
-            en: ' It does not allow you to apply for a M- or R-type Colombia visa. It allows only the activity registered and authorized in the visa. Once the volunteer activity is over, the foreigner must return to their country of origin or residence'
+            en: ' It does not allow you to apply for a M - or R - type Colombian visa. It allows only the activity registered and authorized in the visa. Once the volunteer activity is over, the foreigner must return to their country of origin or residence'
         }
     },
     {
-        modality: 'Visa V Voluntary or Cooperating',
+        modality: 'Voluntary or Cooperating',
         type: 'V',
         reach: {
             es: 'Para realizar voluntariado de carácter social o de cooperación para el desarrollo',
-            en: 'To carry out volunteering of a social nature or cooperation for development'
+            en: 'To carry out volunteering in social programs or international cooperation for development'
         },
         vigency: {
             es: 'Hasta dos (2) años La ausencia del país por noventa (90) días calendario o más conllevará a la terminación anticipada de la visa.',
@@ -327,27 +327,27 @@ const visas = [
                 
             ],
             en: [
-                'Letter signed by the legal representative of the entity or organization indicating the activity, the program of activities, places where the volunteer will develop the projects and their duration, assuming the economic responsibility of defraying all expenses abroad during their stay in Colombia, as well as the expenses of returning to the country of origin or to the last place of residence of the foreigner at the end of the activities',
+                'Signed letter issued by the Legal Representative of the legal entity or organization in which the foreigner will volunteer, describing the activities and places where the volunteer will do the activities or projects and their duration; and stating that the organization will take care of the expenses of the foreigner during his stay in Colombia, aswell as the expenses in the event of repatriation to his country of origin at the end of said activities',
 
-                'Health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country',
+                'Health insurance policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country',
 
-                'Valid document that proves the legal personality of the entity or organization with no less than five (5) years of incorporation, issued by the competent Colombian authority. or document of incorporation in a country other than Colombia issued within the three (3) months prior to the presentation of the visa application',
+                'Certificate of legal incorporation of the entity or organization in which the foreigner will volunteer, issued by a Colombian or foreign authority. Said organization must be at least five (5) years old. In the case of foreign entities or organizations, the Certificate must be issued at least three months prior to the filling of the application',
 
-                'The requesting entity or organization must prove economic solvency through bank statements with an average of one hundred (100) current legal minimum wages corresponding to the six (6) months prior to the request. In the case of a public entity, it will not be necessary to comply with this requirement'
+                'The sponsoring entity or organization shall certificate economic solvency through bank statements, with an average of one houndred (100) monthly minimum wages in the last six months before the submission of the application. When the sponsoring entity is the public administration, this requirement is not needed'
             ]
         },
-        benefificaries: 'No',
+        benefificaries: 'It may be granted to beneficiaries only when it is considered fully justified',
         restrictions: {
-            es: 'Podrá ser otorgada a beneficiarios de su titular principal únicamente cuando se considere plenamente justificada.',
-            en: 'It may be granted to beneficiaries of its main owner only when it is considered fully justified',
+            es: 'Con este tipo de visa, el extranjero solamente podrá llevar a cabo las acividades de voluntariado que dieron lugar al otorgamiento de esta visa. Una vez concluidas dichas actividades, el etranjero deberá retornar a su país de origen o de residencia. La renovación de esta visa se dará unicamente en casos extraordinarios.',
+            en: 'With this type of visa, the foreigner is only allowed to do the activities of volunteering that got him this visa. Once the volunteering program comes to an end, the foreigner must return to its country of origin or residency. A visa extension will be granted only in exceptional cases.',
         }
     },
     {
-        modality: 'Visa V Cinematographic or audiovisual production',
+        modality: 'Cinematographic or audiovisual production',
         type: 'V',
         reach: {
             es: 'Para participar en producciones cinematográficas o documentales de gran formato.',
-            en: ' To participate in large-format film or documentary productions.'
+            en: ' To participate in cinematographic productions or large-format documentaries.'
         },
         vigency: {
             es: 'Hasta un (1) año.',
@@ -361,23 +361,23 @@ const visas = [
     
             ],
             en: [
-                'Those established in article 32 of this Resolution',
+                'Sponsorship by a legal entity',
 
-                'Health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
+                'Health insurance policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
             ]
         },
         benefificaries: 'No',
         restrictions: {
-            es: 'Esta visa no permite solicitudes en calidad de beneficiario',
-            en: 'This visa does not allow applications as a beneficiary' 
+            es: 'los portadores de pasaporte de países o territorios exentos de visa determinados mediante Resolución, que visiten Colombia como parte de una producción, estarán exentos del trámite de este tipo de visa, siempre que su permanencia en Colombia no sea superior a 90 días que podrá extenderse hasta máximo 180 días continuos o discontinuos año calendario y no reciba salario en el país',
+            en: 'If you are passport holder of a short-stay visa exempted country, you do not need to appy for this visa as long as you do not receive a salary in Colombia, and you stay just 90 days extendable for 90 more' 
         }
     },
     {
-        modality: 'Visa V Digital nomads',
+        modality: 'Digital nomads',
         type: 'V',
         reach: {
             es: 'Para prestar servicios de trabajo remoto o teletrabajo, desde Colombia, a través de medios digitales e internet, exclusivamente para empresas extranjeras, como independiente o vinculado laboralmente, o para iniciar un emprendimiento de contenido digital o tecnologías de la in formación de interés para el país',
-            en: 'To provide remote work or telecommuting services, from Colombia, through digital media and the Internet, exclusively for foreign companies, as independent or labor-related, or to start a digital content or information technology venture of interest to the country'
+            en: 'To work remotely from Colombia and using internet and digital tools, exclusively for foreign companies, as an employee or contractor; or to start a digital based business of interest for the country'
         },
         vigency: {
             es: 'Hasta por dos (2) años',
@@ -398,27 +398,25 @@ const visas = [
     
             ],
             en: [
-                'Be the holder of a passport issued by any of the countries or territories exempt from short-stay visas, according to the Resolution.',
+                'Be the holder of a passport issued by any of the short-stay visa exempted countries or territories.',
 
-                'Letter in Spanish or English, issued by one or several foreign companies for which the foreigner provides his services, indicating the type of relationship and the type of remuneration received by the applicant. If you have a contract with said company, provide it, or demonstrate that you are a partner or co-owner of a company abroad and a letter indicating that your work for the company is carried out remotely',
+                'A letter, in english or spanish, issued by one or several foreign companies for who the foreigner provides services, describing the kind of vinculation and the type of remmuneration that the foreigner receives. If the foreigner has a contract with said company, attach it. Or proove that the foreigner is shareholder-partner of a foreign company and the express indication that his work for that company is carried out remotely',
 
-                'In the case of entrepreneurs, present a motivational letter explaining their entrepreneurial project and the financial and human resources they have or aspire to have for their enterprise',
+                'In the case of entrepreneurs, show a motivational letter explaining the entrepreneurial project and the economical and human resources that the foreigner has or plans to have for said project',
 
-                'Demonstrate through bank statements having minimum income equivalent to three (3) Current Minimum Legal Monthly Wages (SMLMV) during the last 3 months',
+                'Show through bank statements an average income of at least three (3) Colombian monthly minimum wages during the last 3 months',
 
-                'Health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
-
-
+                'Health insurance policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
             ]
         },
         benefificaries: 'Yes',
         restrictions: {
-            es: 'Se permite su solicitud para beneficiarios del titular principal',
+            es: 'Esta visa no permite trabajar o desarrollar actividad remunerada con persona jurídica o natural domiciliada en el territorio nacional',
             en: 'This visa does not allow you to work or develop paid activity with a legal or natural person domiciled in the national territory'
         }
     },
     {
-        modality: 'Visa V Journalistic coverage',
+        modality: 'Journalistic coverage',
         type: 'V',
         reach: {
             es: 'Para efectuar cubrimiento periodístico de corta duración en el país',
@@ -436,14 +434,14 @@ const visas = [
     
             ],
             en: [
-                'Those established in article 32 of this Resolution',
+                'Sponsorship from a legal entity',
 
-                'Health policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
+                'Health insurance policy with coverage in the national territory against all risks in case of accident, illness, maternity, disability, hospitalization, death or repatriation, for the time foreseen for their stay in the country'
             ]
         },
         benefificaries: 'No',
         restrictions: {
-            es: 'La visa V otorgada en esta calidad permite ejercer únicamente la actividad específicamente registrada y autorizada en la visa',
+            es: 'La otorgada en esta calidad permite ejercer únicamente la actividad específicamente registrada y autorizada en la visa',
             en: 'The V visa granted in this capacity allows only the activity specifically registered and authorized in the visa'
         },
 
@@ -456,7 +454,7 @@ const visas = [
         
     },
     {
-        modality: 'Visa V Permanent Correspondent',
+        modality: 'Permanent Correspondent',
         type: 'V',
         reach: {
             es: 'Para desempeñarse en Colombia como corresponsal de prensa permanente de un medio extranjero',
@@ -474,19 +472,19 @@ const visas = [
     
             ],
             en: [
-                'Those established in article 32 of this Resolution',
+                'Sponsorship from a legal entity',
 
                 'The main owner and its beneficiaries must prove a private insurance policy with coverage in the national territory against all risks in the event of an accident. illness, maternity, disability, hospitalization, death or repatriation for the planned time of permanence in the country'
             ]
         },
         benefificaries: 'Yes',
         restrictions: {
-            es: 'Permite a su titular principal solicitar para sus beneficiarios',
-            en: 'Allows your main owner to request for their beneficiaries'
+            es: '',
+            en: ''
         }
     },
     {
-        modality: 'Visa V Technical Assistance',
+        modality: 'Technical Assistance',
         type: 'V',
         reach: {
             es: 'Para prestar asistencia técnica a persona jurídica en Colombia',
@@ -527,7 +525,7 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V Entrepreneurs FTA',
+        modality: 'Entrepreneurs FTA',
         type: 'V',
         reach: {
             es: 'Para facilitar la movilidad de empresarios o personas de negocios, en aplicación de compromisos adquiridos por Colombia en el marco de Tratados de Libre Comercio suscritos y en vigor con otros Estados',
@@ -549,12 +547,12 @@ const visas = [
         },
         benefificaries: 'Yes',
         restrictions: {
-            es: 'La visa V otorgada en esta categoría permite únicamente la prestación de los servicios registrados y autorizados en la visa, y exclusivamente para la organización requirente',
+            es: 'La otorgada en esta categoría permite únicamente la prestación de los servicios registrados y autorizados en la visa, y exclusivamente para la organización requirente',
             en: 'The V visa granted in this category only allows the provision of the services registered and authorized in the visa, and exclusively for the requesting organization'
         }
     },
     {
-        modality: 'Visa V Non-accredited officers',
+        modality: 'Non-accredited officers',
         type: 'V',
         reach: {
             es: 'Para desempeñarse como oficial representante comercial de gobierno de Estado o territorio extranjero, o de agencia gubernamental especializada, en misión que no implique acreditación ante el Ministerio de Relaciones Exteriores',
@@ -580,14 +578,14 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V Holidays and Work',
+        modality: 'Holidays and Work',
         type: 'V',
         reach: {
             es: 'To visit the national territory under Vacation and Work Agreements signed by Colombia that are in force.',
             en: 'To visit the national territory under Vacation and Work Agreements signed by Colombia that are in force'
         },
         vigency: {
-            es: ' Hasta un (1) año, pudiendo permanecer su titular en el territorio colombiano durante todo el tiempo de vigencia de la visa. La visa V otorgada en esta categoría, concede permiso de trabajo abierto',
+            es: ' Hasta un (1) año, pudiendo permanecer su titular en el territorio colombiano durante todo el tiempo de vigencia de la visa. La otorgada en esta categoría, concede permiso de trabajo abierto',
             en: 'Up to one (1) year, and the holder may remain in Colombian territory for the entire duration of the visa. The V visa granted in this category grants an open work permit'
         },
         requirements: {
@@ -637,7 +635,7 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V Professional internship',
+        modality: 'Professional internship',
         type: 'V',
         reach: {
             es: 'Para actividades de práctica laboral en empresas establecidas en Colombia',
@@ -675,7 +673,7 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V - Contractor',
+        modality: 'Contractor',
         type: 'V',
         reach: {
             es: 'Para desempeñar labores temporalmente en Colombia bajo contrato de Prestación de servicios, obra o labor',
@@ -721,7 +719,7 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V Promotion of Internationalization',
+        modality: 'Promotion of Internationalization',
         type: 'V',
         reach: {
             es: 'Para actividades productivas, de innovación o investigación orientadas a la adopción o adaptación de tecnologías que complementen o desarrollen productos. procesos o servicios que contribuyan a fortalecer la competitividad del país; para actividades que contribuyan a incorporar el conocimiento a las prioridades de los planes de desarrollo nacional, regional y territorial; o para actividades o profesiones preestablecidas por la Dirección de Asuntos Migratorios, Consulares y Atención al Ciudadano, que contribuyan a la internacionalización del país',
@@ -747,7 +745,7 @@ const visas = [
         }
     },
     {
-        modality: 'Visa V Rentist',
+        modality: 'Rentist',
         type: 'V',
         reach: {
             es: 'Para extranjeros que reciben una renta periódica y variable de fuente lícita acreditable',
@@ -785,7 +783,7 @@ const visas = [
         }
     },
     {
-        modality: 'isa V Unforeseen cases',
+        modality: 'Unforeseen cases',
         type: 'V',
         reach: {
             es: 'Esta visa se otorgará para casos y circunstancias no previstas en la presente resolución, de manera excepcional y previa valoración de la Autoridad de Visas e Inmigración',

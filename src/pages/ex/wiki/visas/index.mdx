@@ -6,19 +6,32 @@ description: More information!
 ---
 import visas from './visas'
 
-## This is the index of visas
+## What types of visas are there in Colombia?
+
+As every modern sovereign country, Colombia has a regulated immigration policy for foreigners who are looking to recolocate to the country. 
+These rules for every
+
 You will find here legal information regarding Colombian immigration Law.
 
-If you are looking for services in order to get a visa yourself, check this section:
-<div class="">
+If you are looking for services in order to get a visa yourself, check out [this section](/ex/services/immigration)
+
+<div class="grid grid-cols-1 md:grid-cols-2">
         {visas.map((visa, i) => (
             <div class="card bg-base-200 shadow-lg m-3 p-4">
-                <h3 class="text-center">{visa.modality}</h3>
-                <label class="swap">
-                    <input type="checkbox" />
-                    <div class="swap-on">{visa.reach.es}<span class="ml-2 badge">English</span></div>
-                    <div class="swap-off">{visa.reach.en}<span class="ml-2 badge">Original text</span></div>
-                </label>
+                <h3 class="text-center h-24">{visa.modality}</h3>
+                <div class="collapse">
+                    <input type="checkbox" class="peer" /> 
+                    <div class="collapse-title bg-primary text-center text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content">
+                        Aimed for...
+                    </div>
+                    <div class="collapse-content bg-primary text-primary-content peer-checked:bg-secondary peer-checked:text-secondary-content"> 
+                        <label class="swap">
+                            <input type="checkbox" />
+                            <div class="swap-on">{visa.reach.es}<span class="ml-2 badge">English</span></div>
+                            <div class="swap-off">{visa.reach.en}<span class="ml-2 badge">Original text</span></div>
+                        </label>
+                    </div>
+                </div>
                 <label for={`my-modal-${i}`} class="btn">Requirements</label>
                 <input type="checkbox" id={`my-modal-${i}`} class="modal-toggle" />
                 <div class="modal">
@@ -32,6 +45,8 @@ If you are looking for services in order to get a visa yourself, check this sect
                             </label>
                         </div>
                     ))}
+                    <h3 class="font-bold text-lg">Vigency</h3>
+                    <p class="text-sm">{visa.vigency.en}</p>
                     <div class="modal-action">
                     <label for={`my-modal-${i}`} class="btn">close</label>
                     </div>
