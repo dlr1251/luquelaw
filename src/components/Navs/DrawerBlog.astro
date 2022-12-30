@@ -24,9 +24,10 @@ const isEm = currentUrl.startsWith('/em')
         
         <li class="menu-title">
           <span>{isEm ? 'Mas M' : 'More M'}</span>
-          <li><a href="/em/wiki">Wiki</a></li>
-          <li><a href="/both/es/contacto">Contacto</a></li>
-          <li><a href="/ex">Expats</a></li>
+          <li>{isEm ? <a href="/em/wiki">Wiki</a> :<a href="/ex/wiki">Wiki</a>}</li>
+          <li>{isEm ? <a href="/em/blog">Blog</a> :<a href="/ex/blog">Blog</a>}</li>
+          <li><a href="/contacto">Contacto</a></li>
+          <li>{ isEm ? <a href="/ex">Expats</a> : <a href="/em">Emprendedores</a>  }</li>
         </li>
     </ul>
 </div>
