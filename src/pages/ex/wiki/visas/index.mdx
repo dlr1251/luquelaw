@@ -1,10 +1,42 @@
 ---
 layout:  "../../../../layouts/LayoutWiki.astro"
-title: Legal Wiki
+title: All about Colombian Visas
 author: Himanshu
 description: More information!
 ---
+import visas from './visas'
+
 ## This is the index of visas
 You will find here legal information regarding Colombian immigration Law.
 
-If you are looking for services in order to get a visa yourself, check this section
+If you are looking for services in order to get a visa yourself, check this section:
+<div class="">
+        {visas.map((visa, i) => (
+            <div class="card bg-base-200 shadow-lg m-3 p-4">
+                <h3 class="text-center">{visa.modality}</h3>
+                <label class="swap">
+                    <input type="checkbox" />
+                    <div class="swap-on">{visa.reach.es}<span class="ml-2 badge">English</span></div>
+                    <div class="swap-off">{visa.reach.en}<span class="ml-2 badge">Original</span></div>
+                </label>
+                <label for="my-modal" class="btn">Requirements</label>
+                <input type="checkbox" id="my-modal" class="modal-toggle" />
+                <div class="modal">
+                <div class="modal-box">
+                    <h3 class="font-bold text-lg">Requirements for {visa.modality}</h3>
+                    {visa.requirements.en.map((req,j)=>(
+                        <div class="form-control">
+                            <label class="label cursor-pointer">
+                                <span class="label-text"><label for={`my-modal-${j+1}`} class="link">{req}</label></span> 
+                                <input type="checkbox" class="checkbox checkbox-primary" />
+                            </label>
+                        </div>
+                    ))}
+                    <div class="modal-action">
+                    <label for="my-modal" class="btn">close</label>
+                    </div>
+                </div>
+                </div>
+            </div>
+        ))}
+</div>

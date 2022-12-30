@@ -5,6 +5,8 @@ const currentUrl = Astro.url.pathname;
 const { servEm, servEx } = Astro.props;
 const isEm = currentUrl.startsWith('/em')
 ---
+
+
 <div class="drawer-side">
     <label for="my-drawer-2" class="drawer-overlay"></label> 
     <ul class="menu p-4 w-80 bg-base-100 text-base-content">
@@ -28,3 +30,4 @@ const isEm = currentUrl.startsWith('/em')
         </li>
     </ul>
 </div>
+
