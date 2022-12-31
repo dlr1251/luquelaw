@@ -3,27 +3,39 @@ import LayoutBlog from "../../layouts/LayoutBlog.astro";
 const services = [
   {
     title: 'Visas',
-    description: 'Protege tu marca de la mejor manera'
+    description: 'Get your Colombian visa',
+    url: '/ex/services/visas'
   },
   {
     title: 'Immigration services',
-    description: 'Diagnostica los riesgos de tu registro'
+    description: 'Have you been subject to a sanction?',
+    url: '/ex/services/immigration'
   },
   {
-    title: 'Renting property',
-    description: '¿Sin tiempo para revisar o redactar contratos?'
+    title: 'Legal Advice',
+    description: 'Protect your rights',
+    url: '/ex/services/legal-advice'
   },
-  {
-    title: 'Buying property',
-    description: 'For cool remote workers'
-  },
-  {
-    title: 'Starting a company',
-    description: 'For cool remote workers'
-  },
+//   {
+//     title: 'Renting property',
+//     description: '¿Sin tiempo para revisar o redactar contratos?'
+//   },
+//   {
+//     title: 'Buying property',
+//     description: 'For cool remote workers'
+//   },
+//   {
+//     title: 'Starting a company',
+//     description: 'For cool remote workers'
+//   },
 ]
  
 ---
+<style>
+    .prose {
+				max-width: 100%!important;
+    }
+</style>
 <LayoutBlog>
     
   <div class="hero h-screen md:h-80 bg-base-200">
@@ -35,21 +47,18 @@ const services = [
     </div>
   </div>
 
-    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
 
       {services.map((service, i) => (
           <>
-            <div class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 shadow-xl">
-              <div class="card-body">
-                <h2 class="card-title">
-                  {service.title}
-                </h2>
-                <p>{service.description}</p>
-                <div class="card-actions">
-                  <a class="btn w-full">Ver</a> 
+            <a href={service.url} class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
+                <div class="card-body hover:outline-none">
+                  <h2 class="card-title">
+                    {service.title}
+                  </h2>
+                  <p>{service.description}</p>
                 </div>
-              </div>
-            </div>
+            </a>
           </>    
       ))}
 

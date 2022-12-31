@@ -1,5 +1,9 @@
 const servEx = [
     {
+        label: 'Visas',
+        url: '/ex/services/visas'
+    },
+    {
         label: 'Immigration',
         url: '/ex/services/immigration'
     },
