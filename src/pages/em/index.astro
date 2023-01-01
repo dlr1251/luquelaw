@@ -39,10 +39,10 @@ const services = [
           </div>
         </div>
       </div>
-      <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+      <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-4">
         {services.map((service, i) => (
             <>
-              <a href={service.url} class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
+              <a href={service.url} class="card w-96 sm:w-60 md:w-64 lg:w-auto my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
                 <div class="card-body hover:outline-none">
                   <h2 class="card-title">
                     {service.title}
