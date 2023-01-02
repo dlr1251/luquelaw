@@ -1,8 +1,9 @@
 ---
 import LayoutBlog from "../../../layouts/LayoutBlog.astro";
 const allPosts = await Astro.glob('../../../pages/ex/blog/posts/*.mdx');
+const { title } = Astro.props
 ---
-<LayoutBlog>
+<LayoutBlog title="This is the blog expats">
    
     <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
         {allPosts.map((post, i) => (

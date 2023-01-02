@@ -10,6 +10,13 @@ const isEm = currentUrl.startsWith('/em')
 <div class="drawer-side">
     <label for="my-drawer-2" class="drawer-overlay"></label> 
     <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+
+      <li class="menu-title">
+        <span>{isEm ? 'Servicios' : 'Services'}</span>
+      </li>
+
+       {isEm ? servEm.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) : servEx.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) }
+
       <li class="menu-title">
         <span>{isEm ? 'Mas M' : 'More M'}</span>
       </li>
@@ -17,12 +24,7 @@ const isEm = currentUrl.startsWith('/em')
       <li>{isEm ? <a href="/em/blog">Blog</a> :<a href="/ex/blog">Blog</a>}</li>
       <li><a href="/contacto">Contacto</a></li>
       <li>{ isEm ? <a href="/ex">Expats</a> : <a href="/em">Emprendedores</a>  }</li>
-      <li class="menu-title">
-        <span>{isEm ? 'Servicios' : 'Services'}</span>
-      </li>
-
-      {isEm ? servEm.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) : servEx.map((serv, g) => <li><a href={serv.url}>{serv.label}</a></li>) }
-
+   
       <li class="menu-title">
         <span>{isEm ? 'Otros Posts' : 'Other Posts'}</span>
       </li>
