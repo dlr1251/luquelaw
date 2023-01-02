@@ -1,0 +1,19 @@
+---
+import LayoutBlog from "../../../layouts/LayoutBlog.astro";
+const allPosts = await Astro.glob('../../../pages/ex/blog/posts/*.mdx');
+---
+<LayoutBlog>
+   
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+        {allPosts.map((post, i) => (
+            <>
+              <a href={`${post.url}`} class="card w-96 sm:w-60 md:w-64 lg:w-auto my-3 mx-auto sm:my-3 bg-base-100 shadow-xl">
+                <div class="card-body p-2 md:p-4 text-left">
+                  <h2 class="card-title my-3">{post.frontmatter.title}</h2>
+                  <div>{post.frontmatter.description}</div>
+                </div>
+              </a>
+            </>    
+        ))}
+      </div>
+</LayoutBlog>
