@@ -4,22 +4,29 @@ type Props = {
 	path: string;
 };
 const { path } = Astro.props as Props;
+const currentUrl = Astro.url.pathname;
+const isEm = currentUrl.startsWith('/em')
+const isEx = currentUrl.startsWith('/ex')
 ---
 
 <footer class="footer p-10 bg-neutral text-neutral-content">
 	<div>
-	  <span class="footer-title">Services</span> 
+	  <span class="footer-title">{ isEm ? 'Servicios' : 'Services'}</span> 
 	  <a href="https://api.whatsapp.com/send?phone=573146022411&text=Hola!%20Quisiera%20que%20me%20contactaran%20para%20conocer%20mas%20sobre%20sus%20servicios...%0A%0AHi%20there!%20I%27d%20like%20to%20get%20contacted%20to%20book%20an%20appointment" class="link link-hover">Legal Advise</a>
 	</div> 
 	<div>
-	  <span class="footer-title">Company</span> 
-	  <a href="/both/en/about-us" class="link link-hover">About us</a>
-	  <a href="/both/en/contact" class="link link-hover">Contact</a>
+	  <span class="footer-title">{ isEm ? 'Servicios' : 'Services'}</span> 
+	  { isEx ? <a href="/about-us" class="link link-hover">About us</a> : ''}
+	  { isEm ? <a href="/nosotros" class="link link-hover">Nosotros</a> : ''}
+	  { isEx ? <a href="/contact-us" class="link link-hover">Contact us</a> : ''}
+	  { isEm ? <a href="/nosotros" class="link link-hover">Contacto</a> : ''}
 	</div> 
 	<div>
 	  <span class="footer-title">Legal</span> 
-	  <a href="/both/en/terms-of-use" class="link link-hover">Terms of use</a>
-	  <a href="/both/en/privacy-policy" class="link link-hover">Privacy policy</a>
-	  <a href="/both/en/cookie-policy" class="link link-hover">Cookie policy</a>
+		{ isEx ? <a href="/terms-of-use" class="link link-hover">Terms of use</a> : ''}
+	  	{ isEm ? <a href="/terminos-y-condiciones" class="link link-hover">Términos y condiciones</a> : ''}
+		{ isEx ? <a href="/privacy-policy" class="link link-hover">Privacy policy</a> : ''}
+	  	{ isEm ? <a href="/politica-de-privacidad" class="link link-hover">Política de privacidad</a> : ''}
+	  <a href="/cookie-policy" class="link link-hover">Cookie policy</a>
 	</div>
 </footer>
