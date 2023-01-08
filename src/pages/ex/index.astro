@@ -29,7 +29,8 @@ const services = [
 //     description: 'For cool remote workers'
 //   },
 ]
- 
+
+const latestPosts = await Astro.glob('./blog/posts/*.mdx');
 ---
 <style>
     .prose {
@@ -47,21 +48,27 @@ const services = [
     </div>
   </div>
 
-    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
-
+    <h3>Services</h3>
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
       {services.map((service, i) => (
-          <>
-            <a href={service.url} class="card w-96 sm:w-60 md:w-64 lg:w-80 my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
-                <div class="card-body hover:outline-none">
-                  <h2 class="card-title">
-                    {service.title}
-                  </h2>
-                  <p>{service.description}</p>
-                </div>
-            </a>
-          </>    
+          <a href={service.url} class="card card-body hover:outline-none w-96 sm:w-60 md:w-full my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
+                <h2 class="card-title">
+                  {service.title}
+                </h2>
+                <p>{service.description}</p>
+          </a>
       ))}
-
+    </div>
+    <h3>Latest Posts</h3>
+    <div class="container mx-auto grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+      {latestPosts.map((post, i) => (
+          <a href={post.url} class="card card-body hover:outline-none w-96 sm:w-60 md:w-full my-3 mx-auto sm:my-4 bg-base-100 hover:bg-base-600 shadow-md hover:shadow-lg">
+                <h2 class="card-title">
+                  {post.frontmatter.title}
+                </h2>
+                <p>{post.frontmatter.description}</p>
+          </a>
+      ))}
     </div>
 
     

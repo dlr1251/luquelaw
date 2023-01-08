@@ -1,10 +1,85 @@
 ---
-import LayoutBlog from '../layouts/LayoutBlog.astro';
-import BothIntro from '../components/Both/intro.astro'
+import HeadCommon from '../components/HeadCommon.astro';
+import HeadSEO from '../components/HeadSEO.astro';
+
+import * as CONFIG from '../config';
+import type { MarkdownHeading } from 'astro';
+import Footer from '../components/Footer/Footer.astro';
+
+type Props = {
+	frontmatter: CONFIG.Frontmatter;
+	headings: MarkdownHeading[];
+};
+
+const { frontmatter, headings } = Astro.props as Props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const currentPage = Astro.url.pathname;
+const currentFile = `src/pages${currentPage.replace(/\/$/, '')}.md`;
+import NavbarBlog from '../components/Navs/NavbarBlog.astro';
+
+import FbChatPlugin from '../components/Both/fb-chat-plugin.astro';
+
+
+const allPosts = await Astro.glob('../pages/em/blog/posts/*.mdx');
+const currentUrl = Astro.url.pathname;
+import servEm from '../pages/em/servicios/servicios.js'
+import servEx from '../pages/ex/services/services.js'
+const isEm = currentUrl.startsWith('/em')
+const isEx = currentUrl.startsWith('/ex')
+import { Image, Picture } from '@astrojs/image/components';
+import ilLogo from '../../public/logosnew/immigration-law.png';
+import ipLogo from '../../public/logosnew/industrial-property.png';
 ---
 
-<LayoutBlog>
+<html>
+	<head>
+		<HeadCommon />
+		<HeadSEO frontmatter={frontmatter} canonicalUrl={canonicalURL} />
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<FbChatPlugin/>
+		{ isEm ? <NavbarBlog servEm={servEm} /> : <NavbarBlog servEx={servEx} /> }
+		
+		<div class="hero min-h-screen" style="background-image: url(https://images.unsplash.com/photo-1512250431446-d0b4b57b27ec?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=4800);">
+				<div class="hero-overlay bg-opacity-60"></div>
+				<div class="hero-content text-center text-neutral-content">
+					<div class="max-w-xl">
+						<h1 class="mb-5 text-5xl font-bold">Bienvenido, Welcome.</h1>
+						<label class="swap">
+							<input type="checkbox" />
+							<div class="swap-on">Thank you for visiting us. We are a bilingual Law Firm based in Medellín, ready to hear and serve your legal needs. <span class="badge">Español</span></div>
+							<div class="swap-off">Gracias por visitarnos. Somos una firma boutique de Medellin lista para escuchar y responder tus necesidades legales <span class="badge">English</span></div>
+						</label>
+						 
+						<div class="flex flex-col w-full lg:flex-row mt-4">
+							<a href="/em" class="grid flex-grow h-auto w-full card card-body bg-base-300 hover:bg-base-100 rounded-box place-items-center">
+									<h4 class="text-center">Emprendedores</h4>
+									<ul class="menu">
+										<li>Registro de marca</li>
+										<li>Constitución de empresa</li>
+										<li>Asesoría legal</li>
+									</ul>		
+							</a> 
+							<div class="divider lg:divider-horizontal"></div> 
+							<a href="/ex" class="grid flex-grow h-auto w-full card card-body bg-base-300 hover:bg-base-100 rounded-box place-items-center">
+									<h4 class="text-center">Expats</h4>
+									<ul class="menu">
+										<li>Colombian Visas</li>
+										<li>Immigration</li>
+										<li>Legal advice</li>
+									</ul>	
+			
+							</a>
+						</div>
+					</div>
 
-	<BothIntro/>
+				</div>
+		</div>
 
-</LayoutBlog>
+
+		<Footer />
+	</body>
+</html>

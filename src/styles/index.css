@@ -108,7 +108,7 @@ small,
 }
 
 a {
-	color: var(--theme-text-accent);
+	color: white;
 	font-weight: 400;
 	text-underline-offset: 0.08em;
 	align-items: center;
@@ -173,7 +173,7 @@ a > code::before {
 
 a:hover,
 a:focus {
-	text-decoration: underline;
+	text-decoration: none;
 }
 
 a:focus {

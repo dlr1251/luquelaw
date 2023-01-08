@@ -15,7 +15,6 @@ const imageSrc = frontmatter?.image?.src ?? OPEN_GRAPH.image?.src;
 const canonicalImageSrc = new URL(imageSrc, Astro.site);
 const imageAlt = frontmatter?.image?.alt ?? OPEN_GRAPH.image?.alt;
 ---
-{console.log(title)}
 <title>{title ?? frontmatter?.title} {SITE.title}</title>
 <!-- Page Metadata -->
 <link rel="canonical" href={canonicalUrl} />
