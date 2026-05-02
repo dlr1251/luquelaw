@@ -9,5 +9,7 @@ export async function signOut() {
   const supabase = await createClient();
   await supabase.auth.signOut();
   revalidatePath("/", "layout");
+  revalidatePath("/account");
+  revalidatePath("/admin");
   redirect("/login");
 }

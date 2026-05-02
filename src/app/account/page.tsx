@@ -1,57 +1,92 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
-import { createClient } from "@/lib/supabase/server";
-
-import { signOut } from "./actions";
-
-export default async function AccountPage() {
-  const supabase = await createClient();
-  const { data, error } = await supabase.auth.getClaims();
-
-  if (error || !data?.claims) {
-    redirect("/login");
-  }
-
-  const email =
-    typeof data.claims.email === "string" ? data.claims.email : null;
-  const sub = typeof data.claims.sub === "string" ? data.claims.sub : "User";
-
+export default function AccountPage() {
   return (
-    <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 py-16">
-      <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Account
-        </h1>
-        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          You are signed in with a verified session.
+    <div className="space-y-8">
+      <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6 sm:p-8">
+        <h2 className="font-display text-[1.5rem] font-normal leading-tight text-[color:var(--forest)]">
+          Your matters
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-7 text-[color:var(--muted)]">
+          After your initial consultation, a written legal concept and quotation are delivered
+          within three business days. Active engagements and deliverables will be listed here as
+          the portal grows—until then, use{" "}
+          <Link className="font-bold text-[color:var(--caramel)] underline" href="/contact">
+            Contact
+          </Link>{" "}
+          for updates on your file.
         </p>
-        <dl className="mt-6 space-y-3 text-sm">
-          <div>
-            <dt className="font-medium text-zinc-500 dark:text-zinc-400">Email</dt>
-            <dd className="text-zinc-900 dark:text-zinc-100">{email ?? "—"}</dd>
-          </div>
-          <div>
-            <dt className="font-medium text-zinc-500 dark:text-zinc-400">Subject</dt>
-            <dd className="break-all font-mono text-xs text-zinc-800 dark:text-zinc-200">
-              {sub}
-            </dd>
-          </div>
-        </dl>
-        <form className="mt-8 flex flex-wrap gap-3" action={signOut}>
-          <button
-            type="submit"
-            className="inline-flex h-10 items-center justify-center rounded-lg bg-zinc-900 px-4 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-          >
-            Sign out
-          </button>
-          <Link
-            href="/"
-            className="inline-flex h-10 items-center justify-center rounded-lg border border-zinc-300 px-4 text-sm font-medium text-zinc-900 transition hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-100 dark:hover:bg-zinc-900"
-          >
-            Home
-          </Link>
-        </form>
+        <div className="mt-6 border border-[color:var(--caramel)]/30 bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)]">
+          <span className="font-bold text-[color:var(--ink)]">No active matter summary yet.</span>{" "}
+          This space will show the matter reference, stage, and next milestone once an engagement
+          is opened.
+        </div>
+      </div>
+
+      <div className="grid gap-6 sm:grid-cols-2">
+        <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+            Next steps
+          </h3>
+          <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-6 text-[color:var(--muted)]">
+            <li>
+              <span className="font-bold text-[color:var(--ink)]">Book</span> a one-hour
+              consultation if you have not yet.
+            </li>
+            <li>
+              Gather documents and a short timeline for the first call (
+              <Link href="/contact#consultation" className="font-bold text-[color:var(--caramel)] underline">
+                preparation guide
+              </Link>
+              ).
+            </li>
+            <li>
+              Read relevant{" "}
+              <Link href="/clkr" className="font-bold text-[color:var(--caramel)] underline">
+                CLKR
+              </Link>{" "}
+              articles before the meeting when possible.
+            </li>
+          </ol>
+        </div>
+
+        <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+            Resources
+          </h3>
+          <ul className="mt-4 space-y-3 text-sm font-bold">
+            <li>
+              <Link className="text-[color:var(--caramel)] hover:underline" href="/contact#consultation">
+                Book a consultation →
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[color:var(--caramel)] hover:underline" href="/contact">
+                Send an inquiry →
+              </Link>
+            </li>
+            <li>
+              <Link className="text-[color:var(--caramel)] hover:underline" href="/clkr">
+                CLKR legal library →
+              </Link>
+            </li>
+          </ul>
+          <p className="mt-4 text-xs leading-5 text-[color:var(--muted)]">
+            Initial consultations are billed separately; scope and fees follow the written
+            quotation.
+          </p>
+        </div>
+      </div>
+
+      <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--ink)] p-6 text-[color:var(--cream)]">
+        <h3 className="font-display text-lg font-normal text-[color:var(--cream)]">Need help?</h3>
+        <p className="mt-2 text-sm text-[color:var(--footer-fg)]">
+          For scheduling and case questions, email{" "}
+          <a className="font-bold text-[color:var(--caramel)] hover:underline" href="mailto:daniel@luquelaw.co">
+            daniel@luquelaw.co
+          </a>{" "}
+          or use the contact form. Include your matter type and timeline.
+        </p>
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { Container } from "@/components/container";
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { EngagementModel } from "@/components/engagement/EngagementModel";
 
-export default function Home() {
+export default function HomeEs() {
   const booking = useBookingModal();
 
   return (
@@ -17,16 +17,16 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="space-y-6 lg:col-span-8">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
-                Bilingual Legal Counsel in Colombia
+                Asesoría legal bilingüe en Colombia
               </p>
               <h1 className="max-w-3xl font-display text-[2.25rem] font-normal leading-[1.08] tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
                 Daniel Luque Restrepo
               </h1>
               <p className="max-w-2xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
-                Attorney from UPB and Specialist in International Tax Management, Daniel has successfully advised and
-                represented hundreds of foreign clients on real estate transactions, estate planning, immigration
-                matters, businesses, among others. Through his strong network, Daniel is continuously looking to provide
-                high-value legal counsel in an easy way to understand.
+                Abogado egresado de la UPB y especialista en Gestión Tributaria Internacional. Daniel ha asesorado y
+                representado a cientos de clientes extranjeros en transacciones inmobiliarias, planeación patrimonial,
+                asuntos migratorios, negocios, entre otros. A través de su red de aliados, busca brindar asesoría legal
+                de alto valor, clara y fácil de entender.
               </p>
               <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="order-1 w-full max-w-[240px] sm:order-2 sm:w-[240px]">
@@ -48,7 +48,7 @@ export default function Home() {
                       <div className="mt-1">
                         <a
                           className="font-bold text-[color:var(--cream)] hover:underline"
-                          href="https://wa.me/573006791123?text=Hi%20Daniel%2C%20I%20was%20just%20visiting%20your%20website%20and%20want%20to%20ask%20you%20something..."
+                          href="https://wa.me/573006791123?text=Hola%20Daniel%2C%20acabo%20de%20visitar%20tu%20sitio%20web%20y%20quiero%20preguntarte%20algo..."
                           target="_blank"
                           rel="noreferrer"
                         >
@@ -61,13 +61,13 @@ export default function Home() {
 
                 <div className="order-2 flex flex-wrap gap-3 sm:order-1">
                 <button type="button" onClick={booking.open} className="btn-primary btn-primary-lg">
-                  Book a consultation
+                  Agendar consulta
                 </button>
                 <Link
-                  href="/clkr"
+                  href="/es/clkr"
                   className="btn-secondary border-[color:var(--caramel)] bg-transparent text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10 btn-secondary-lg"
                 >
-                  Explore Legal Topics
+                  Explorar temas legales
                 </Link>
                 </div>
               </div>
@@ -75,25 +75,25 @@ export default function Home() {
 
             <EngagementModel
               className="lg:col-span-4"
-              label="Engagement model"
+              label="Modelo de trabajo"
               steps={[
                 {
                   icon: "chat",
-                  title: "Initial consultation",
-                  body: "1 hour to map the facts, identify risks, and define the legal question.",
+                  title: "Consulta inicial",
+                  body: "1 hora para ordenar hechos, identificar riesgos y definir la pregunta jurídica.",
                 },
                 {
                   icon: "doc",
-                  title: "Written concept + quotation",
-                  body: "You receive a written legal concept (Concepto Jurídico) and a formal quotation within 3 business days.",
+                  title: "Concepto + cotización",
+                  body: "Recibes un concepto jurídico escrito y una cotización formal dentro de 3 días hábiles.",
                 },
                 {
                   icon: "plan",
-                  title: "Workplan execution (or retainer)",
-                  body: "Proceed with a scoped workplan, or switch to an hourly retainer for ongoing matters.",
+                  title: "Ejecución (o retainer)",
+                  body: "Avanzamos con un plan acotado, o pasamos a retainer por hora para asuntos continuos.",
                 },
               ]}
-              footer="Deliverables within 3 business days after the consultation."
+              footer="Entrega dentro de 3 días hábiles después de la consulta."
             />
           </div>
         </Container>
@@ -104,19 +104,19 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-7">
               <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
-                Counsel built for international clients operating in Colombia.
+                Asesoría pensada para clientes internacionales en Colombia.
               </h2>
               <p className="text-[15px] leading-7 text-[color:var(--muted)] sm:text-base">
-                Daniel Luque Restrepo is a Colombian attorney based in Medellín,
-                advising on immigration, real estate transactions, commercial matters,
-                civil disputes, and labor issues. Bilingual (English/Spanish).
+                Daniel Luque Restrepo es un abogado colombiano con base en Medellín,
+                enfocado en inmigración, transacciones inmobiliarias, asuntos
+                comerciales, controversias civiles y temas laborales.
               </p>
               <p className="text-[15px] leading-7 text-[color:var(--muted)] sm:text-base">
-                <span className="font-bold text-[color:var(--ink)]">Credentials:</span> JD from{" "}
+                <span className="font-bold text-[color:var(--ink)]">Credenciales:</span> JD de{" "}
                 <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Universidad Pontificia Bolivariana
                 </span>
-                . Former{" "}
+                . Experiencia previa en{" "}
                 <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Capital M Law
                 </span>
@@ -127,97 +127,33 @@ export default function Home() {
             <div className="lg:col-span-5">
               <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
                 <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
-                  Transparent pricing
+                  Tarifas transparentes
                 </div>
                 <dl className="mt-4 space-y-4 text-sm">
                   <div className="flex items-start justify-between gap-6">
-                    <dt className="text-[color:var(--muted)]">Initial consultation (1 hour)</dt>
+                    <dt className="text-[color:var(--muted)]">Consulta inicial (1 hora)</dt>
                     <dd className="text-right font-bold text-[color:var(--ink)]">$55 USD / $220,000 COP</dd>
                   </div>
                   <div className="flex items-start justify-between gap-6">
                     <dt className="text-[color:var(--muted)]">Retainer</dt>
                     <dd className="text-right font-bold text-[color:var(--ink)]">
-                      COP $450,000/hr{" "}
+                      COP $450.000/hora
                       <span className="block text-xs font-normal text-[color:var(--muted)]">
-                        (~USD 110/hr)
+                        (~USD 110/hora)
                       </span>
                     </dd>
                   </div>
                 </dl>
-                <p className="mt-4 text-xs leading-5 text-[color:var(--muted)]">
-                  Fees are adjustable based on complexity and scope.
-                </p>
                 <div className="mt-6 flex flex-wrap gap-3">
-                  <Link href="/contact#consultation" className="btn-primary btn-primary-sm">
-                    Book
+                  <Link href="/es/contact#consultation" className="btn-primary btn-primary-sm">
+                    Agendar
                   </Link>
-                  <Link href="/contact" className="btn-secondary btn-secondary-sm">
-                    Contact
+                  <Link href="/es/contact" className="btn-secondary btn-secondary-sm">
+                    Contacto
                   </Link>
                 </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </section>
-
-      <section className="bg-[color:var(--background)]">
-        <Container className="py-16 sm:py-20">
-          <div className="flex items-end justify-between gap-6">
-            <div className="space-y-3">
-              <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
-                Services
-              </h2>
-              <p className="max-w-2xl text-sm leading-6 text-[color:var(--muted)]">
-                Focused coverage for the matters most common to expats and foreign
-                investors in Colombia.
-              </p>
-            </div>
-            <div className="hidden flex-col items-end gap-2 sm:flex">
-              <Link
-                href="/services"
-                className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
-              >
-                All services →
-              </Link>
-              <Link
-                href="/contact#contact"
-                className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
-              >
-                Ask a question →
-              </Link>
-            </div>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "Legal consulting & advisory",
-                body: "Written legal concepts, opinions, and strategy on Colombian law matters.",
-              },
-              {
-                title: "Immigration law",
-                body: "Investor visas, digital nomad visas, pensioner visas, residency, and naturalization.",
-              },
-              {
-                title: "Real estate transactions",
-                body: "Purchase/sale for foreigners, due diligence, title review, notarial process, and registration.",
-              },
-              {
-                title: "Commercial & corporate",
-                body: "Company formation, contracts, disputes, and compliance.",
-              },
-            ].map((c) => (
-              <div
-                key={c.title}
-                className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6"
-              >
-                <div className="font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
-                  {c.title}
-                </div>
-                <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{c.body}</p>
-              </div>
-            ))}
           </div>
         </Container>
       </section>
@@ -230,22 +166,22 @@ export default function Home() {
                 CLKR
               </p>
               <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[1.8rem]">
-                Colombian Legal Knowledge Repository
+                Repositorio de conocimiento jurídico colombiano
               </h2>
               <p className="max-w-2xl text-sm leading-6 text-[color:var(--hero-muted)] sm:text-base">
-                A living, English-language repository designed to make Colombian law
-                accessible to international clients—precise, practical, and cited.
+                Artículos en inglés para hacer accesible el derecho colombiano a
+                clientes internacionales.
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
-              <Link href="/clkr" className="btn-primary btn-primary-lg">
-                Browse articles
+              <Link href="/es/clkr" className="btn-primary btn-primary-lg">
+                Ver artículos
               </Link>
               <Link
-                href="/clkr/investor-visa"
+                href="/es/clkr/investor-visa"
                 className="btn-secondary btn-secondary-lg border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10"
               >
-                Start with Investor Visa
+                Visa de inversionista
               </Link>
             </div>
           </div>

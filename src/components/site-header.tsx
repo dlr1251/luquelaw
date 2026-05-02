@@ -1,44 +1,41 @@
 import Link from "next/link";
 
 import { createClient } from "@/lib/supabase/server";
+import { Container } from "@/components/container";
+import { HeaderNav } from "@/components/header-nav";
+import { isAppAdmin } from "@/lib/auth/is-admin";
 
 export async function SiteHeader() {
   let signedIn = false;
+  let isAdmin = false;
   try {
     const supabase = await createClient();
     const { data } = await supabase.auth.getClaims();
     signedIn = Boolean(data?.claims);
+    isAdmin = isAppAdmin(data?.claims);
   } catch {
     signedIn = false;
+    isAdmin = false;
   }
 
   return (
-    <header className="border-b border-zinc-200 bg-white/80 backdrop-blur dark:border-zinc-800 dark:bg-zinc-950/80">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+    <header className="sticky top-0 z-50 border-b-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)]">
+      <Container className="flex min-h-16 items-center justify-between gap-3 py-3 sm:py-2">
         <Link
           href="/"
-          className="text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
+          className="group inline-block max-w-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]"
+          aria-label="Luque Law — home"
         >
-          Luquelaw
+          <div className="font-display text-xl leading-[1.1] tracking-tight text-[color:var(--cream)] sm:text-2xl">
+            Luque Law
+          </div>
+          <p className="mt-1.5 font-sans text-[10px] font-bold uppercase leading-none tracking-[0.22em] text-[color:var(--caramel)]">
+            Abogado
+          </p>
         </Link>
-        <nav className="flex items-center gap-4 text-sm">
-          {signedIn ? (
-            <Link
-              href="/account"
-              className="text-zinc-700 transition hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white"
-            >
-              Account
-            </Link>
-          ) : (
-            <Link
-              href="/login"
-              className="rounded-lg bg-zinc-900 px-3 py-1.5 font-medium text-white dark:bg-zinc-100 dark:text-zinc-900"
-            >
-              Sign in
-            </Link>
-          )}
-        </nav>
-      </div>
+
+        <HeaderNav signedIn={signedIn} isAdmin={isAdmin} />
+      </Container>
     </header>
   );
 }

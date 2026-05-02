@@ -1,4 +1,9 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
+
+import { Container } from "@/components/container";
+import { createClient } from "@/lib/supabase/server";
+
 import { login, signup } from "./actions";
 
 type Props = {
@@ -6,81 +11,96 @@ type Props = {
 };
 
 export default async function LoginPage({ searchParams }: Props) {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getClaims();
+  if (data?.claims) {
+    redirect("/account");
+  }
+
   const { error, message } = await searchParams;
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center px-4 py-16">
-      <div className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
-        <h1 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-          Sign in
-        </h1>
-        <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-          Use the email and password for your Supabase project account.
+    <div className="flex-1 bg-[color:var(--background)]">
+      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)]">
+        <Container className="py-10 sm:py-12">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+            Client portal
+          </p>
+          <h1 className="mt-2 font-display text-[1.65rem] font-normal leading-tight tracking-tight sm:text-[1.9rem]">
+            Sign in
+          </h1>
+          <p className="mt-2 max-w-xl text-sm font-medium text-[color:var(--hero-muted)]">
+            Access your client portal with the email and password for your account.
+          </p>
+        </Container>
+      </section>
+
+      <Container className="py-12">
+        <div className="mx-auto max-w-md border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-8">
+          {error ? (
+            <p
+              className="mb-4 border border-red-300/50 bg-red-50 px-3 py-2 text-sm text-red-900 dark:bg-red-950/30 dark:text-red-100"
+              role="alert"
+            >
+              {error}
+            </p>
+          ) : null}
+
+          {message ? (
+            <p
+              className="mb-4 border border-[color:var(--caramel)]/40 bg-[color:var(--surface)] px-3 py-2 text-sm text-[color:var(--ink)]"
+              role="status"
+            >
+              {message}
+            </p>
+          ) : null}
+
+          <form className="flex flex-col gap-4">
+            <label className="flex flex-col gap-1.5 text-sm font-bold text-[color:var(--ink)]">
+              Email
+              <input
+                className="h-11 border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+                type="email"
+                name="email"
+                autoComplete="email"
+                required
+              />
+            </label>
+            <label className="flex flex-col gap-1.5 text-sm font-bold text-[color:var(--ink)]">
+              Password
+              <input
+                className="h-11 border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+                type="password"
+                name="password"
+                autoComplete="current-password"
+                minLength={6}
+                required
+              />
+            </label>
+            <div className="mt-2 flex flex-col gap-2 sm:flex-row">
+              <button
+                className="btn-primary btn-primary-sm flex-1 justify-center"
+                formAction={login}
+                type="submit"
+              >
+                Log in
+              </button>
+              <button
+                className="btn-secondary btn-secondary-sm flex-1 justify-center"
+                formAction={signup}
+                type="submit"
+              >
+                Sign up
+              </button>
+            </div>
+          </form>
+        </div>
+        <p className="mt-8 text-center text-sm text-[color:var(--muted)]">
+          <Link href="/" className="font-bold text-[color:var(--caramel)] hover:underline">
+            Back to home
+          </Link>
         </p>
-
-        {error ? (
-          <p
-            className="mt-4 rounded-lg bg-red-50 px-3 py-2 text-sm text-red-800 dark:bg-red-950/40 dark:text-red-200"
-            role="alert"
-          >
-            {error}
-          </p>
-        ) : null}
-
-        {message ? (
-          <p
-            className="mt-4 rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-900 dark:bg-emerald-950/40 dark:text-emerald-100"
-            role="status"
-          >
-            {message}
-          </p>
-        ) : null}
-
-        <form className="mt-6 flex flex-col gap-4">
-          <label className="flex flex-col gap-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-            Email
-            <input
-              className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 outline-none ring-zinc-400 focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
-              type="email"
-              name="email"
-              autoComplete="email"
-              required
-            />
-          </label>
-          <label className="flex flex-col gap-1.5 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-            Password
-            <input
-              className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-zinc-900 outline-none ring-zinc-400 focus:ring-2 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
-              type="password"
-              name="password"
-              autoComplete="current-password"
-              minLength={6}
-              required
-            />
-          </label>
-          <div className="mt-2 flex flex-col gap-2 sm:flex-row">
-            <button
-              className="inline-flex h-10 flex-1 items-center justify-center rounded-lg bg-zinc-900 px-4 text-sm font-medium text-white transition hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-              formAction={login}
-              type="submit"
-            >
-              Log in
-            </button>
-            <button
-              className="inline-flex h-10 flex-1 items-center justify-center rounded-lg border border-zinc-300 bg-transparent px-4 text-sm font-medium text-zinc-900 transition hover:bg-zinc-50 dark:border-zinc-600 dark:text-zinc-100 dark:hover:bg-zinc-900"
-              formAction={signup}
-              type="submit"
-            >
-              Sign up
-            </button>
-          </div>
-        </form>
-      </div>
-      <p className="mt-6 text-center text-sm text-zinc-500">
-        <Link href="/" className="font-medium text-zinc-700 underline dark:text-zinc-300">
-          Back to home
-        </Link>
-      </p>
+      </Container>
     </div>
   );
 }
