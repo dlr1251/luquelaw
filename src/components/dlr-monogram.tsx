@@ -3,7 +3,6 @@ type Props = {
   className?: string;
 };
 
-/** Luque Law seal: Forest field, Caramel frame, Cream letters. */
 export function DlrMonogram({ size = 36, className }: Props) {
   return (
     <svg
@@ -14,21 +13,22 @@ export function DlrMonogram({ size = 36, className }: Props) {
       role="img"
       aria-label="Luque Law"
     >
-      <rect width="32" height="32" fill="#374f37" />
+      <rect width="32" height="32" fill="#1a3a1f" />
       <rect
-        x="1"
-        y="1"
-        width="30"
-        height="30"
+        x="1.5"
+        y="1.5"
+        width="29"
+        height="29"
         fill="none"
-        stroke="#af9060"
-        strokeWidth="2"
+        stroke="#f5f2ec"
+        strokeWidth="1"
+        strokeOpacity="0.3"
       />
       <text
         x="16"
         y="20.5"
         textAnchor="middle"
-        fill="#f7ecdb"
+        fill="#f5f2ec"
         fontSize="9.5"
         fontWeight="700"
         fontFamily="ui-sans-serif, system-ui, sans-serif"

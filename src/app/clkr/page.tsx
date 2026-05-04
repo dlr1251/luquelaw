@@ -9,12 +9,12 @@ export default async function ClkrHubPage() {
   const articles = await getHubArticles("en");
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
         <Container className="py-14 sm:py-16">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             CLKR
           </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
             Colombian Legal Knowledge Repository
           </h1>
           <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
@@ -27,7 +27,7 @@ export default async function ClkrHubPage() {
             </Link>
             <Link
               href="/contact"
-              className="btn-secondary btn-secondary-lg border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10"
+              className="btn-secondary btn-secondary-lg border-[color:var(--moss)] text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10"
             >
               Contact
             </Link>

@@ -5,18 +5,18 @@ import { Container } from "@/components/container";
 export default function ServicesPage() {
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
         <Container className="py-14 sm:py-16">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Services
           </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
             Counsel for international clients in Colombia.
           </h1>
           <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
             Focused coverage for the matters most common to expats and foreign investors. For a
             scoped plan after the first call, use{" "}
-            <Link className="font-bold text-[color:var(--cream)] underline" href="/contact#consultation">
+            <Link className="font-bold text-[color:var(--parchment)] underline" href="/contact#consultation">
               consultations & contact
             </Link>
             .
@@ -46,7 +46,7 @@ export default function ServicesPage() {
           ].map((c) => (
             <div
               key={c.title}
-              className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6"
+              className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6"
             >
               <div className="font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
                 {c.title}
@@ -56,16 +56,16 @@ export default function ServicesPage() {
           ))}
         </div>
 
-        <div className="mt-12 border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] p-6 text-center">
+        <div className="mt-12 border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-6 text-center">
           <p className="text-sm text-[color:var(--muted)]">
             Ready to move forward?{" "}
-            <Link href="/contact#contact" className="font-bold text-[color:var(--caramel)] hover:underline">
+            <Link href="/contact#contact" className="font-bold text-[color:var(--moss)] hover:underline">
               Send an inquiry
             </Link>{" "}
             or{" "}
             <Link
               href="/contact#consultation"
-              className="font-bold text-[color:var(--caramel)] hover:underline"
+              className="font-bold text-[color:var(--moss)] hover:underline"
             >
               review consultation details
             </Link>

@@ -76,12 +76,12 @@ export default async function AdminClkrPage({
         </p>
       ) : null}
       {sp.saved ? (
-        <p className="mt-6 border border-[color:var(--caramel)]/50 bg-[color:var(--surface)] px-4 py-3 text-sm text-[color:var(--ink)]">
+        <p className="mt-6 border border-[color:var(--moss)]/50 bg-[color:var(--surface)] px-4 py-3 text-sm text-[color:var(--ink)]">
           Saved. Public CLKR pages were updated.
         </p>
       ) : null}
       {sp.cleared ? (
-        <p className="mt-6 border border-[color:var(--caramel)]/50 bg-[color:var(--surface)] px-4 py-3 text-sm text-[color:var(--ink)]">
+        <p className="mt-6 border border-[color:var(--moss)]/50 bg-[color:var(--surface)] px-4 py-3 text-sm text-[color:var(--ink)]">
           Row removed; defaults from code apply again.
         </p>
       ) : null}
@@ -125,7 +125,7 @@ function AdminLocaleSection({
 }) {
   return (
     <section>
-      <h3 className="border-b border-[color:var(--caramel)]/35 pb-2 font-display text-lg font-normal text-[color:var(--forest)]">
+      <h3 className="border-b border-[color:var(--moss)]/35 pb-2 font-display text-lg font-normal text-[color:var(--forest)]">
         {title}
       </h3>
       <div className="mt-6 space-y-8">
@@ -135,11 +135,11 @@ function AdminLocaleSection({
           return (
             <div
               key={key}
-              className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-5 sm:p-6"
+              className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-5 sm:p-6"
             >
               <div className="flex flex-wrap items-start justify-between gap-4">
                 <div>
-                  <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                     {article.category} · {key}
                   </p>
                   <p className="mt-1 font-display text-base font-normal text-[color:var(--forest)]">
@@ -149,7 +149,7 @@ function AdminLocaleSection({
                 </div>
                 <Link
                   href={article.slug}
-                  className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
+                  className="text-sm font-bold text-[color:var(--moss)] hover:underline"
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -166,7 +166,7 @@ function AdminLocaleSection({
                     name="sort_order"
                     type="number"
                     defaultValue={row?.sort_order ?? 0}
-                    className="mt-1.5 h-10 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
+                    className="mt-1.5 h-10 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
                   />
                 </label>
                 <label className="block text-sm font-bold text-[color:var(--ink)]">
@@ -174,7 +174,7 @@ function AdminLocaleSection({
                   <select
                     name="visibility"
                     defaultValue={row?.is_hidden ? "hidden" : "visible"}
-                    className="mt-1.5 h-10 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
+                    className="mt-1.5 h-10 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
                   >
                     <option value="visible">Published on hub</option>
                     <option value="hidden">Hidden from hub</option>
@@ -187,7 +187,7 @@ function AdminLocaleSection({
                     type="text"
                     defaultValue={row?.title_override ?? ""}
                     placeholder={article.title}
-                    className="mt-1.5 h-10 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
+                    className="mt-1.5 h-10 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
                   />
                 </label>
                 <label className="block text-sm font-bold text-[color:var(--ink)] sm:col-span-2">
@@ -197,7 +197,7 @@ function AdminLocaleSection({
                     rows={3}
                     defaultValue={row?.description_override ?? ""}
                     placeholder={article.description}
-                    className="mt-1.5 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 py-2 text-sm text-[color:var(--ink)]"
+                    className="mt-1.5 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 py-2 text-sm text-[color:var(--ink)]"
                   />
                 </label>
                 <div className="flex flex-wrap gap-3 sm:col-span-2">
@@ -208,10 +208,10 @@ function AdminLocaleSection({
               </form>
 
               {row ? (
-                <form action={clearAction} className="mt-3 border-t border-[color:var(--caramel)]/25 pt-3">
+                <form action={clearAction} className="mt-3 border-t border-[color:var(--moss)]/25 pt-3">
                   <input type="hidden" name="slug_key" value={key} />
                   <input type="hidden" name="locale" value={locale} />
-                  <button type="submit" className="text-xs font-bold text-[color:var(--caramel)] hover:underline">
+                  <button type="submit" className="text-xs font-bold text-[color:var(--moss)] hover:underline">
                     Reset this post to code defaults
                   </button>
                 </form>

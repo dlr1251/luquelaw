@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Mail, Phone } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/container";
@@ -10,131 +11,114 @@ export function SiteFooter() {
   const pathname = usePathname();
   const isSpanish = pathname === "/es" || pathname.startsWith("/es/");
   const prefix = isSpanish ? "/es" : "";
-  const copy = isSpanish
-    ? {
-        strap:
-          "Derecho colombiano para clientes internacionales. Asesoría jurídica bilingüe (EN/ES) en Medellín, Colombia.",
-        contact: "Contacto",
-        explore: "Explorar",
-        next: "Siguiente paso",
-        book: "Agendar",
-        contactBtn: "Mensaje",
-        hub: "Repositorio CLKR",
-        services: "Servicios",
-        investor: "Visa de inversionista (M)",
-        realEstate: "Transacciones inmobiliarias",
-        note:
-          "La consulta inicial es de 1 hora. Recibirás un concepto jurídico escrito y una cotización dentro de 3 días hábiles.",
-        linkedin: "LinkedIn: próximamente",
-        rights: "Todos los derechos reservados.",
-        brand: "Luque Law",
-      }
-    : {
-        strap:
-          "Colombian law for international clients. Bilingual (EN/ES) legal counsel in Medellín, Colombia.",
-        contact: "Contact",
-        explore: "Explore",
-        next: "Next step",
-        book: "Book",
-        contactBtn: "Message",
-        hub: "CLKR hub",
-        services: "Services",
-        investor: "Investor Visa (M)",
-        realEstate: "Real estate transactions",
-        note:
-          "Initial consultations are 1 hour. You’ll receive a written legal concept and a quotation within 3 business days.",
-        linkedin: "LinkedIn: coming soon",
-        rights: "All rights reserved.",
-        brand: "Luque Law",
-      };
 
-  const labelClass =
-    "text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]";
+  const tagline = isSpanish
+    ? "Asesoría jurídica para extranjeros en Colombia."
+    : "Legal counsel for foreigners in Colombia.";
+
+  const disclaimer = isSpanish
+    ? "Este contenido es solo para fines informativos y no constituye asesoría jurídica. Cada caso es único."
+    : "This content is for informational purposes only and does not constitute legal advice. Every case is unique.";
+
+  const navLinks = isSpanish
+    ? [
+        { href: `${prefix}/services`, label: "Servicios" },
+        { href: `${prefix}/clkr`, label: "CLKR" },
+        { href: `${prefix}/contact`, label: "Contacto" },
+        { href: "/login", label: "Portal cliente" },
+      ]
+    : [
+        { href: `${prefix}/services`, label: "Services" },
+        { href: `${prefix}/clkr`, label: "CLKR" },
+        { href: `${prefix}/contact`, label: "Contact" },
+        { href: "/login", label: "Client portal" },
+      ];
+
+  const sectionLabel =
+    "font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.22em] text-[color:var(--parchment)]/45";
+
+  const navLinkClass =
+    "block font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40";
 
   return (
-    <footer className="mt-24 bg-[color:var(--ink)] text-[color:var(--cream)]">
-      <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-4">
-        <div className="space-y-3">
-          <div className="font-display text-lg leading-tight text-[color:var(--cream)]">
-            {copy.brand}
-          </div>
-          <p className="text-sm leading-6 text-[color:var(--footer-fg)]">{copy.strap}</p>
-        </div>
+    <footer className="border-t border-[color:var(--parchment)]/10 bg-[color:var(--forest)] text-[color:var(--parchment)]">
+      <Container className="py-16 sm:py-20">
+        <div className="grid gap-12 lg:grid-cols-[5fr_3fr_4fr]">
 
-        <div className="space-y-3 text-sm">
-          <div className={labelClass}>{copy.contact}</div>
-          <div className="space-y-2 text-[color:var(--footer-fg)]">
-            <a
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href="mailto:daniel@luquelaw.co"
+          {/* Col 1 — Brand + contact */}
+          <div className="space-y-6">
+            <Link
+              href="/"
+              className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/50"
             >
-              daniel@luquelaw.co
-            </a>
-            <a
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href="https://wa.me/573006791123"
-              target="_blank"
-              rel="noreferrer"
-            >
-              WhatsApp: +57 300 679 1123
-            </a>
-          </div>
-        </div>
+              <div className="flex items-center gap-[0.3em] font-display text-xl leading-[1.1] tracking-tight text-[color:var(--parchment)]">
+                <span>Luque</span>
+                <span
+                  aria-hidden="true"
+                  className="inline-block h-[0.5em] w-[0.5em] shrink-0 border border-[color:var(--parchment)]"
+                />
+                <span>Law</span>
+              </div>
+            </Link>
 
-        <div className="space-y-3 text-sm">
-          <div className={labelClass}>{copy.explore}</div>
-          <div className="space-y-2 text-[color:var(--footer-fg)]">
-            <Link
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href={`${prefix}/services`}
-            >
-              {copy.services}
-            </Link>
-            <Link
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href={`${prefix}/clkr`}
-            >
-              {copy.hub}
-            </Link>
-            <Link
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href={`${prefix}/clkr/investor-visa`}
-            >
-              {copy.investor}
-            </Link>
-            <Link
-              className="block font-medium text-[color:var(--cream)]/85 hover:underline"
-              href={`${prefix}/clkr/real-estate-transactions`}
-            >
-              {copy.realEstate}
-            </Link>
-          </div>
-        </div>
+            <p className="max-w-xs font-[family-name:var(--font-body)] text-sm italic leading-[1.75] text-[color:var(--parchment)]/60">
+              {tagline}
+            </p>
 
-        <div className="space-y-3 text-sm">
-          <div className={labelClass}>{copy.next}</div>
-          <p className="text-[color:var(--footer-fg)]">{copy.note}</p>
-          <div className="flex flex-wrap gap-3">
-            <Link href={`${prefix}/contact#consultation`} className="btn-primary btn-primary-sm">
-              {copy.book}
-            </Link>
-            <Link href={`${prefix}/contact#contact`} className="btn-secondary btn-secondary-sm">
-              {copy.contactBtn}
-            </Link>
+            <div className="space-y-3">
+              <a
+                href="mailto:daniel@luquelaw.co"
+                className="flex items-center gap-2.5 text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+              >
+                <Mail aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                daniel@luquelaw.co
+              </a>
+              <a
+                href="https://wa.me/573006791123"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2.5 text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+              >
+                <Phone aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                +57 300 679 1123
+              </a>
+            </div>
           </div>
-          <div className="text-xs text-[color:var(--footer-fg)]">{copy.linkedin}</div>
+
+          {/* Col 2 — Navigation */}
+          <div className="space-y-5">
+            <p className={sectionLabel}>{isSpanish ? "Explorar" : "Explore"}</p>
+            <nav aria-label="Footer navigation">
+              <ul className="space-y-3">
+                {navLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link href={link.href} className={navLinkClass}>
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
+
+          {/* Col 3 — Legal disclaimer */}
+          <div className="space-y-5">
+            <p className={sectionLabel}>{isSpanish ? "Aviso legal" : "Legal notice"}</p>
+            <p className="font-[family-name:var(--font-body)] text-[0.75rem] leading-[1.8] text-[color:var(--parchment)]/40">
+              {disclaimer}
+            </p>
+          </div>
+
         </div>
       </Container>
 
-      <div className="border-t border-[color:var(--caramel)]/35">
-        <Container className="flex flex-col gap-4 py-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-[min(100%,52rem)] text-[9px] font-bold uppercase leading-relaxed tracking-[0.12em] text-[color:var(--footer-fg)]">
-            © {new Date().getFullYear()} Luque Law · Abogado · Medellín ·{" "}
-            {copy.rights}
+      {/* Copyright bar */}
+      <div className="border-t border-[color:var(--parchment)]/10">
+        <Container className="flex items-center justify-between gap-4 py-5">
+          <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] text-[color:var(--parchment)]/30">
+            © {new Date().getFullYear()} Luque Law · Daniel Luque Restrepo · Medellín, Colombia
           </p>
-          <div className="flex shrink-0 items-center gap-3 sm:justify-end">
-            <DlrMonogram size={40} />
-          </div>
+          <DlrMonogram size={32} />
         </Container>
       </div>
     </footer>

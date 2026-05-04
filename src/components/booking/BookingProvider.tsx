@@ -77,8 +77,8 @@ export function BookingProvider({ children, locale = "en" }: Props) {
             onClick={close}
           />
 
-          <div className="relative w-full max-w-4xl border-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)] shadow-2xl">
-            <div className="flex items-start justify-between gap-4 border-b border-[color:var(--caramel)]/35 p-4 sm:p-5">
+          <div className="relative w-full max-w-4xl border-2 border-[color:var(--moss)] bg-[color:var(--forest)] text-[color:var(--parchment)] shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-[color:var(--moss)]/35 p-4 sm:p-5">
               <div>
                 <div className="font-display text-xl leading-tight tracking-tight">{title}</div>
                 <div className="mt-1 max-w-2xl text-sm leading-6 text-[color:var(--header-fg-muted)]">
@@ -88,7 +88,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
               <button
                 type="button"
                 onClick={close}
-                className="inline-flex h-10 w-10 items-center justify-center border border-[color:var(--caramel)] bg-transparent text-[color:var(--cream)] transition hover:bg-[color:var(--cream)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]"
+                className="inline-flex h-10 w-10 items-center justify-center border border-[color:var(--moss)] bg-transparent text-[color:var(--parchment)] transition hover:bg-[color:var(--parchment)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--moss)]"
                 aria-label={locale === "es" ? "Cerrar" : "Close"}
               >
                 <svg
@@ -109,7 +109,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
 
             <div className="p-4 sm:p-5">
               {bookingUrl ? (
-                <div className="relative w-full overflow-hidden border border-[color:var(--caramel)]/35 bg-black/10">
+                <div className="relative w-full overflow-hidden border border-[color:var(--moss)]/35 bg-black/10">
                   <iframe
                     title={title}
                     src={bookingUrl}
@@ -119,17 +119,17 @@ export function BookingProvider({ children, locale = "en" }: Props) {
                   />
                 </div>
               ) : (
-                <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--cream)]/5 p-4 text-sm leading-6 text-[color:var(--header-fg-muted)]">
+                <div className="border border-[color:var(--moss)]/35 bg-[color:var(--parchment)]/5 p-4 text-sm leading-6 text-[color:var(--header-fg-muted)]">
                   {locale === "es" ? (
                     <>
                       Falta configurar el enlace del calendario. Define{" "}
-                      <span className="font-bold text-[color:var(--cream)]">NEXT_PUBLIC_BOOKING_URL</span> en tu entorno
+                      <span className="font-bold text-[color:var(--parchment)]">NEXT_PUBLIC_BOOKING_URL</span> en tu entorno
                       para mostrar el calendario aquí.
                     </>
                   ) : (
                     <>
                       The scheduler link isn’t configured yet. Set{" "}
-                      <span className="font-bold text-[color:var(--cream)]">NEXT_PUBLIC_BOOKING_URL</span> in your
+                      <span className="font-bold text-[color:var(--parchment)]">NEXT_PUBLIC_BOOKING_URL</span> in your
                       environment to show the calendar here.
                     </>
                   )}
@@ -139,7 +139,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <a
                   href={locale === "es" ? "/es/contact#consultation" : "/contact#consultation"}
-                  className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
+                  className="text-sm font-bold text-[color:var(--moss)] hover:underline"
                 >
                   {locale === "es" ? "Ver detalles de la consulta →" : "View consultation details →"}
                 </a>
@@ -149,7 +149,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
                       ? "mailto:daniel@luquelaw.co?subject=Solicitud%20de%20consulta%20(Luque%20Law)"
                       : "mailto:daniel@luquelaw.co?subject=Consultation%20request%20(Luque%20Law)"
                   }
-                  className="btn-secondary btn-secondary-sm border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10"
+                  className="btn-secondary btn-secondary-sm border-[color:var(--moss)] text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10"
                 >
                   {locale === "es" ? "Solicitar por correo" : "Request by email"}
                 </a>

@@ -5,18 +5,18 @@ import { Container } from "@/components/container";
 export default function ServicesEsPage() {
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
         <Container className="py-14 sm:py-16">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Servicios
           </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
             Asesoría para clientes internacionales en Colombia.
           </h1>
           <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
             Cobertura enfocada en lo más frecuente para expatriados e inversionistas. Para un plan
             acotado después de la primera llamada, ve{" "}
-            <Link className="font-bold text-[color:var(--cream)] underline" href="/es/contact#consultation">
+            <Link className="font-bold text-[color:var(--parchment)] underline" href="/es/contact#consultation">
               consultas y contacto
             </Link>
             .
@@ -46,7 +46,7 @@ export default function ServicesEsPage() {
           ].map((c) => (
             <div
               key={c.title}
-              className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6"
+              className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6"
             >
               <div className="font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
                 {c.title}
@@ -56,16 +56,16 @@ export default function ServicesEsPage() {
           ))}
         </div>
 
-        <div className="mt-12 border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] p-6 text-center">
+        <div className="mt-12 border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-6 text-center">
           <p className="text-sm text-[color:var(--muted)]">
             ¿Siguiente paso?{" "}
-            <Link href="/es/contact#contact" className="font-bold text-[color:var(--caramel)] hover:underline">
+            <Link href="/es/contact#contact" className="font-bold text-[color:var(--moss)] hover:underline">
               Enviar consulta
             </Link>{" "}
             o{" "}
             <Link
               href="/es/contact#consultation"
-              className="font-bold text-[color:var(--caramel)] hover:underline"
+              className="font-bold text-[color:var(--moss)] hover:underline"
             >
               ver detalle de consultas
             </Link>

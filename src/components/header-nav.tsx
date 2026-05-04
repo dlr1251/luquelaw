@@ -29,7 +29,6 @@ export function HeaderNav({
         portal: "Portal cliente",
         admin: "Admin",
         cta: "Agendar consulta",
-        menu: "Menú",
         close: "Cerrar",
       }
     : {
@@ -39,7 +38,6 @@ export function HeaderNav({
         portal: "Client portal",
         admin: "Admin",
         cta: "Book consultation",
-        menu: "Menu",
         close: "Close",
       };
 
@@ -56,7 +54,6 @@ export function HeaderNav({
   const primaryLinks = items.slice(0, 3);
   const portalLink = items[3];
 
-  const ctaHref = `${prefix}/contact#consultation`;
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
@@ -79,14 +76,15 @@ export function HeaderNav({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "inline-flex items-center whitespace-nowrap px-2 py-2 text-sm font-bold text-[color:var(--header-fg-muted)] underline-offset-4 decoration-2 decoration-[color:var(--caramel)] transition hover:text-[color:var(--cream)] hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]";
-  const utilityButtonClass =
-    "inline-flex h-10 items-center justify-center border border-[color:var(--caramel)] bg-transparent px-3 text-sm font-bold text-[color:var(--cream)] transition hover:bg-[color:var(--cream)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]";
+    "inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition duration-150 hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40";
+
+  const iconButtonClass =
+    "inline-flex h-10 w-10 items-center justify-center text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]";
 
   return (
     <>
       <nav className="hidden items-center justify-end gap-1 sm:flex" aria-label="Primary">
-        <div className="flex items-center gap-1">
+        <div className="flex items-center">
           {primaryLinks.map((item) => (
             <Link key={item.href} href={item.href} className={navLinkClass}>
               {item.label}
@@ -102,9 +100,9 @@ export function HeaderNav({
           ) : null}
         </div>
 
-        <div className="mx-2 h-5 w-px bg-[color:var(--caramel)]/50" />
+        <div className="mx-2 h-4 w-px bg-[color:var(--parchment)]/15" />
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1">
           <LanguageSwitch variant="forest" />
           <ThemeToggle variant="forest" />
         </div>
@@ -112,20 +110,20 @@ export function HeaderNav({
         <button
           type="button"
           onClick={booking.open}
-          className="btn-primary btn-primary-sm ml-2 whitespace-nowrap"
+          className="btn-primary-inverted btn-primary-sm ml-3 whitespace-nowrap"
         >
           {copy.cta}
         </button>
       </nav>
 
       <div className="sm:hidden">
-        <div className="flex items-center justify-end gap-2">
+        <div className="flex items-center justify-end gap-1">
           <LanguageSwitch variant="forest" />
           <ThemeToggle variant="forest" />
           <button
             type="button"
-            className={utilityButtonClass}
-            aria-label={copy.menu}
+            className={iconButtonClass}
+            aria-label="Open menu"
             aria-controls={mobilePanelId}
             aria-expanded={mobileOpen}
             onClick={() => setMobileOpen(true)}
@@ -148,22 +146,34 @@ export function HeaderNav({
         </div>
 
         {mobileOpen ? (
-          <div className="fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-label={copy.menu}>
+          <div
+            className="fixed inset-0 z-[60]"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Navigation menu"
+          >
             <button
               type="button"
-              className="absolute inset-0 bg-black/40"
+              className="absolute inset-0 bg-black/50"
               aria-label={copy.close}
               onClick={() => setMobileOpen(false)}
             />
             <div
               id={mobilePanelId}
-              className="absolute right-0 top-0 h-full w-[86vw] max-w-sm border-l-2 border-[color:var(--caramel)] bg-[color:var(--forest)] shadow-2xl"
+              className="absolute right-0 top-0 h-full w-[86vw] max-w-sm bg-[color:var(--forest)] shadow-2xl"
             >
-              <div className="flex items-center justify-between border-b border-[color:var(--caramel)]/35 p-4">
-                <div className="text-sm font-bold tracking-wide text-[color:var(--cream)]">{copy.menu}</div>
+              <div className="flex items-center justify-between border-b border-[color:var(--parchment)]/10 p-4">
+                <div className="flex items-center gap-[0.3em] font-display text-base text-[color:var(--parchment)]">
+                  <span>Luque</span>
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-[0.5em] w-[0.5em] shrink-0 border border-[color:var(--parchment)]"
+                  />
+                  <span>Law</span>
+                </div>
                 <button
                   type="button"
-                  className={utilityButtonClass}
+                  className={iconButtonClass}
                   aria-label={copy.close}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -183,13 +193,13 @@ export function HeaderNav({
                 </button>
               </div>
 
-              <div className="p-2">
+              <nav className="p-3" aria-label="Mobile navigation">
                 {[...primaryLinks, portalLink].map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    className="block rounded-none px-4 py-3 text-base font-bold text-[color:var(--cream)] hover:bg-[color:var(--cream)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]"
+                    className="block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40"
                   >
                     {item.label}
                   </Link>
@@ -198,25 +208,25 @@ export function HeaderNav({
                   <Link
                     href="/admin/clkr"
                     onClick={() => setMobileOpen(false)}
-                    className="block rounded-none px-4 py-3 text-base font-bold text-[color:var(--cream)] hover:bg-[color:var(--cream)]/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]"
+                    className="block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40"
                   >
                     {copy.admin}
                   </Link>
                 ) : null}
 
-                <div className="mt-2 border-t border-[color:var(--caramel)]/35 pt-3">
+                <div className="mt-3 border-t border-[color:var(--parchment)]/10 px-1 pt-4">
                   <button
                     type="button"
                     onClick={() => {
                       setMobileOpen(false);
                       booking.open();
                     }}
-                    className="btn-primary btn-primary-lg flex w-full justify-center"
+                    className="btn-primary-inverted btn-primary-lg flex w-full justify-center"
                   >
                     {copy.cta}
                   </button>
                 </div>
-              </div>
+              </nav>
             </div>
           </div>
         ) : null}

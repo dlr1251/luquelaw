@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function AccountPage() {
   return (
     <div className="space-y-8">
-      <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6 sm:p-8">
+      <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6 sm:p-8">
         <h2 className="font-display text-[1.5rem] font-normal leading-tight text-[color:var(--forest)]">
           Your matters
         </h2>
@@ -11,12 +11,12 @@ export default function AccountPage() {
           After your initial consultation, a written legal concept and quotation are delivered
           within three business days. Active engagements and deliverables will be listed here as
           the portal grows—until then, use{" "}
-          <Link className="font-bold text-[color:var(--caramel)] underline" href="/contact">
+          <Link className="font-bold text-[color:var(--moss)] underline" href="/contact">
             Contact
           </Link>{" "}
           for updates on your file.
         </p>
-        <div className="mt-6 border border-[color:var(--caramel)]/30 bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)]">
+        <div className="mt-6 border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-4 text-sm text-[color:var(--muted)]">
           <span className="font-bold text-[color:var(--ink)]">No active matter summary yet.</span>{" "}
           This space will show the matter reference, stage, and next milestone once an engagement
           is opened.
@@ -24,8 +24,8 @@ export default function AccountPage() {
       </div>
 
       <div className="grid gap-6 sm:grid-cols-2">
-        <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
-          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+        <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Next steps
           </h3>
           <ol className="mt-4 list-decimal space-y-3 pl-5 text-sm leading-6 text-[color:var(--muted)]">
@@ -35,14 +35,14 @@ export default function AccountPage() {
             </li>
             <li>
               Gather documents and a short timeline for the first call (
-              <Link href="/contact#consultation" className="font-bold text-[color:var(--caramel)] underline">
+              <Link href="/contact#consultation" className="font-bold text-[color:var(--moss)] underline">
                 preparation guide
               </Link>
               ).
             </li>
             <li>
               Read relevant{" "}
-              <Link href="/clkr" className="font-bold text-[color:var(--caramel)] underline">
+              <Link href="/clkr" className="font-bold text-[color:var(--moss)] underline">
                 CLKR
               </Link>{" "}
               articles before the meeting when possible.
@@ -50,23 +50,23 @@ export default function AccountPage() {
           </ol>
         </div>
 
-        <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
-          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+        <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6">
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Resources
           </h3>
           <ul className="mt-4 space-y-3 text-sm font-bold">
             <li>
-              <Link className="text-[color:var(--caramel)] hover:underline" href="/contact#consultation">
+              <Link className="text-[color:var(--moss)] hover:underline" href="/contact#consultation">
                 Book a consultation →
               </Link>
             </li>
             <li>
-              <Link className="text-[color:var(--caramel)] hover:underline" href="/contact">
+              <Link className="text-[color:var(--moss)] hover:underline" href="/contact">
                 Send an inquiry →
               </Link>
             </li>
             <li>
-              <Link className="text-[color:var(--caramel)] hover:underline" href="/clkr">
+              <Link className="text-[color:var(--moss)] hover:underline" href="/clkr">
                 CLKR legal library →
               </Link>
             </li>
@@ -78,11 +78,11 @@ export default function AccountPage() {
         </div>
       </div>
 
-      <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--ink)] p-6 text-[color:var(--cream)]">
-        <h3 className="font-display text-lg font-normal text-[color:var(--cream)]">Need help?</h3>
+      <div className="border border-[color:var(--moss)]/40 bg-[color:var(--ink)] p-6 text-[color:var(--parchment)]">
+        <h3 className="font-display text-lg font-normal text-[color:var(--parchment)]">Need help?</h3>
         <p className="mt-2 text-sm text-[color:var(--footer-fg)]">
           For scheduling and case questions, email{" "}
-          <a className="font-bold text-[color:var(--caramel)] hover:underline" href="mailto:daniel@luquelaw.co">
+          <a className="font-bold text-[color:var(--moss)] hover:underline" href="mailto:daniel@luquelaw.co">
             daniel@luquelaw.co
           </a>{" "}
           or use the contact form. Include your matter type and timeline.

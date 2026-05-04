@@ -54,22 +54,22 @@ export function ClkrArticleLayout({
 
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
         <Container className="py-12 sm:py-14">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
-            <span className="border border-[color:var(--caramel)]/50 bg-[color:var(--hero-button)] px-2 py-1 text-[color:var(--hero-muted)]">
+          <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
+            <span className="border border-[color:var(--moss)]/50 bg-[color:var(--hero-button)] px-2 py-1 text-[color:var(--hero-muted)]">
               {category}
             </span>
             {readingTime ? <span className="font-normal normal-case">{readingTime}</span> : null}
             <span className="hidden font-normal text-[color:var(--hero-muted)] sm:inline">·</span>
             <Link
               href={`${prefix}/clkr`}
-              className="font-normal normal-case text-[color:var(--hero-muted)] hover:text-[color:var(--cream)] hover:underline"
+              className="font-normal normal-case text-[color:var(--hero-muted)] hover:text-[color:var(--parchment)] hover:underline"
             >
               {copy.hub}
             </Link>
           </div>
-          <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+          <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
             {title}
           </h1>
           {description ? (
@@ -85,7 +85,7 @@ export function ClkrArticleLayout({
           <aside className="lg:col-span-3">
             <div className="lg:sticky lg:top-24">
               <div className="hidden lg:block">
-                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                   {copy.contents}
                 </div>
                 <nav className="mt-4 space-y-2 text-sm">
@@ -93,7 +93,7 @@ export function ClkrArticleLayout({
                     <a
                       key={s.id}
                       href={`#${s.id}`}
-                      className="block border-l-2 border-transparent px-2 py-1.5 text-[color:var(--muted)] transition hover:border-[color:var(--caramel)] hover:text-[color:var(--ink)]"
+                      className="block border-l-2 border-transparent px-2 py-1.5 text-[color:var(--muted)] transition hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]"
                     >
                       {s.title}
                     </a>
@@ -101,7 +101,7 @@ export function ClkrArticleLayout({
                 </nav>
               </div>
 
-              <details className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-5 lg:hidden">
+              <details className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-5 lg:hidden">
                 <summary className="cursor-pointer list-none text-sm font-bold text-[color:var(--ink)]">
                   {copy.mobileContents}
                 </summary>
@@ -121,10 +121,10 @@ export function ClkrArticleLayout({
           </aside>
 
           <div className="lg:col-span-9">
-            <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 sm:p-10">
+            <div className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 sm:p-10">
               <Prose>{children}</Prose>
 
-              <div className="mt-12 border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] p-6">
+              <div className="mt-12 border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-6">
                 <div className="font-display text-xl font-normal tracking-tight text-[color:var(--forest)]">
                   {copy.ctaTitle}
                 </div>

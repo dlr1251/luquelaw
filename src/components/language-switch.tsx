@@ -43,7 +43,7 @@ export function LanguageSwitch({ variant = "surface" }: Props) {
       className={cn(
         "inline-flex h-10 items-center justify-center border px-3 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
         forest
-          ? "border-[color:var(--caramel)] bg-transparent text-[color:var(--cream)] hover:bg-[color:var(--cream)]/10 focus-visible:outline-[color:var(--caramel)]"
+          ? "border-transparent bg-transparent text-[color:var(--parchment)]/70 hover:text-[color:var(--parchment)] focus-visible:outline-[color:var(--parchment)]/40"
           : "rounded-lg border-[color:var(--border)] bg-[color:var(--card)] text-[color:var(--foreground)] hover:bg-[color:var(--surface)] focus-visible:outline-[color:var(--accent)]",
       )}
       aria-label={isSpanish ? "Switch language to English" : "Switch language to Spanish"}

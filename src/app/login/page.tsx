@@ -21,9 +21,9 @@ export default async function LoginPage({ searchParams }: Props) {
 
   return (
     <div className="flex-1 bg-[color:var(--background)]">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-10 sm:py-12">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Client portal
           </p>
           <h1 className="mt-2 font-display text-[1.65rem] font-normal leading-tight tracking-tight sm:text-[1.9rem]">
@@ -36,7 +36,7 @@ export default async function LoginPage({ searchParams }: Props) {
       </section>
 
       <Container className="py-12">
-        <div className="mx-auto max-w-md border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-8">
+        <div className="mx-auto max-w-md border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-8">
           {error ? (
             <p
               className="mb-4 border border-red-300/50 bg-red-50 px-3 py-2 text-sm text-red-900 dark:bg-red-950/30 dark:text-red-100"
@@ -48,7 +48,7 @@ export default async function LoginPage({ searchParams }: Props) {
 
           {message ? (
             <p
-              className="mb-4 border border-[color:var(--caramel)]/40 bg-[color:var(--surface)] px-3 py-2 text-sm text-[color:var(--ink)]"
+              className="mb-4 border border-[color:var(--moss)]/40 bg-[color:var(--surface)] px-3 py-2 text-sm text-[color:var(--ink)]"
               role="status"
             >
               {message}
@@ -59,7 +59,7 @@ export default async function LoginPage({ searchParams }: Props) {
             <label className="flex flex-col gap-1.5 text-sm font-bold text-[color:var(--ink)]">
               Email
               <input
-                className="h-11 border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+                className="h-11 border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--moss)]/35 focus:ring-2"
                 type="email"
                 name="email"
                 autoComplete="email"
@@ -69,7 +69,7 @@ export default async function LoginPage({ searchParams }: Props) {
             <label className="flex flex-col gap-1.5 text-sm font-bold text-[color:var(--ink)]">
               Password
               <input
-                className="h-11 border border-[color:var(--caramel)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+                className="h-11 border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--moss)]/35 focus:ring-2"
                 type="password"
                 name="password"
                 autoComplete="current-password"
@@ -96,7 +96,7 @@ export default async function LoginPage({ searchParams }: Props) {
           </form>
         </div>
         <p className="mt-8 text-center text-sm text-[color:var(--muted)]">
-          <Link href="/" className="font-bold text-[color:var(--caramel)] hover:underline">
+          <Link href="/" className="font-bold text-[color:var(--moss)] hover:underline">
             Back to home
           </Link>
         </p>

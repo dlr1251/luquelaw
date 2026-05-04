@@ -55,7 +55,7 @@ export function ThemeToggle({ variant = "surface" }: Props) {
       className={cn(
         "inline-flex h-10 w-10 items-center justify-center transition",
         forest
-          ? "border border-[color:var(--caramel)] bg-transparent text-[color:var(--cream)] hover:bg-[color:var(--cream)]/10"
+          ? "border-transparent bg-transparent text-[color:var(--parchment)]/70 hover:text-[color:var(--parchment)]"
           : "rounded-lg border border-[color:var(--border)] bg-[color:var(--card)] text-[color:var(--foreground)] hover:bg-[color:var(--surface)]",
       )}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}

@@ -7,25 +7,25 @@ import { ContactForm } from "./ContactForm";
 export default function ContactPage() {
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
         <Container className="py-14 sm:py-16">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Contact & consultations
           </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
             Book a consultation or send a message.
           </h1>
           <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
-            Initial consultations are <strong className="text-[color:var(--cream)]">1 hour</strong>. You’ll
+            Initial consultations are <strong className="text-[color:var(--parchment)]">1 hour</strong>. You’ll
             receive a written legal concept and a quotation within{" "}
-            <strong className="text-[color:var(--cream)]">3 business days</strong>. Use the form below for
+            <strong className="text-[color:var(--parchment)]">3 business days</strong>. Use the form below for
             inquiries, or request a time slot by email.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#consultation" className="btn-primary btn-primary-lg">
               Consultation details
             </a>
-            <a href="#contact" className="btn-secondary btn-secondary-lg border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10">
+            <a href="#contact" className="btn-secondary btn-secondary-lg border-[color:var(--moss)] text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10">
               Send an inquiry
             </a>
           </div>
@@ -35,7 +35,7 @@ export default function ContactPage() {
       <Container className="py-14 sm:py-16">
         <section
           id="consultation"
-          className="scroll-mt-28 border-b border-[color:var(--caramel)]/25 pb-14"
+          className="scroll-mt-28 border-b border-[color:var(--moss)]/25 pb-14"
         >
           <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
             Consultations
@@ -64,7 +64,7 @@ export default function ContactPage() {
                 ].map((s) => (
                   <div
                     key={s.title}
-                    className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6"
+                    className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6"
                   >
                     <div className="font-display text-lg font-normal text-[color:var(--forest)]">
                       {s.title}
@@ -76,7 +76,7 @@ export default function ContactPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6">
+              <div className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6">
                 <h3 className="font-display text-[1.5rem] font-normal leading-tight tracking-tight text-[color:var(--forest)]">
                   Pricing
                 </h3>
@@ -111,7 +111,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-6 border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] p-6 text-sm text-[color:var(--muted)]">
+              <div className="mt-6 border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-6 text-sm text-[color:var(--muted)]">
                 <div className="font-bold text-[color:var(--ink)]">What to prepare</div>
                 <ul className="mt-3 list-disc space-y-2 pl-5">
                   <li>A short factual timeline (dates matter).</li>
@@ -134,7 +134,7 @@ export default function ContactPage() {
 
           <div className="mt-10 grid gap-10 lg:grid-cols-12 lg:items-start">
             <div className="space-y-6 lg:col-span-7">
-              <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 sm:p-10">
+              <div className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 sm:p-10">
                 <div className="font-display text-[1.5rem] font-normal leading-tight tracking-tight text-[color:var(--forest)]">
                   Send an inquiry
                 </div>
@@ -148,17 +148,17 @@ export default function ContactPage() {
             </div>
 
             <aside className="lg:col-span-5">
-              <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] p-6 text-sm">
+              <div className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-6 text-sm">
                 <div className="font-bold text-[color:var(--ink)]">Direct contact</div>
                 <div className="mt-3 space-y-2 text-[color:var(--muted)]">
                   <a
-                    className="block font-medium text-[color:var(--caramel)] hover:underline"
+                    className="block font-medium text-[color:var(--moss)] hover:underline"
                     href="mailto:daniel@luquelaw.co"
                   >
                     daniel@luquelaw.co
                   </a>
                   <a
-                    className="block font-medium text-[color:var(--caramel)] hover:underline"
+                    className="block font-medium text-[color:var(--moss)] hover:underline"
                     href="https://wa.me/573006791123"
                     target="_blank"
                     rel="noreferrer"
@@ -168,7 +168,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="mt-6 border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 text-sm">
+              <div className="mt-6 border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 text-sm">
                 <div className="font-bold text-[color:var(--ink)]">What helps on the first message</div>
                 <ul className="mt-3 list-disc space-y-2 pl-5 text-[color:var(--muted)]">
                   <li>Your nationality and where you’re currently located.</li>
@@ -178,14 +178,14 @@ export default function ContactPage() {
                 </ul>
               </div>
 
-              <div className="mt-6 border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 text-sm text-[color:var(--muted)]">
+              <div className="mt-6 border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 text-sm text-[color:var(--muted)]">
                 <div className="font-bold text-[color:var(--ink)]">Prefer CLKR first?</div>
                 <p className="mt-2 leading-6">
                   Browse explainers before you write—especially for immigration and real estate.
                 </p>
                 <Link
                   href="/clkr"
-                  className="mt-3 inline-block text-sm font-bold text-[color:var(--caramel)] hover:underline"
+                  className="mt-3 inline-block text-sm font-bold text-[color:var(--moss)] hover:underline"
                 >
                   Open CLKR →
                 </Link>

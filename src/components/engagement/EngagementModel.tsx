@@ -27,12 +27,12 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
   return (
     <div
       className={cn(
-        "space-y-4 border border-[color:var(--caramel)]/50 bg-[color:var(--cream)] p-6 text-[color:var(--ink)]",
+        "space-y-4 border border-[color:var(--moss)]/50 bg-[color:var(--parchment)] p-6 text-[color:var(--ink)]",
         className,
       )}
     >
       <div className="flex items-start justify-between gap-6">
-        <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">{label}</div>
+        <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">{label}</div>
         <div className="engagement-flow hidden sm:block" aria-hidden="true">
           <div className="engagement-flow__rail" />
           <div className="engagement-flow__node engagement-flow__node--1" />
@@ -47,7 +47,7 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
       <ol className="space-y-3">
         {steps.map((s, idx) => (
           <li key={s.title} className="flex gap-3">
-            <div className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[color:var(--caramel)]/35 bg-white/40 text-[color:var(--forest)]">
+            <div className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[color:var(--moss)]/35 bg-white/40 text-[color:var(--forest)]">
               <Icon name={s.icon} />
             </div>
             <div>

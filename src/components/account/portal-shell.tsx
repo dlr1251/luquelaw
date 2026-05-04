@@ -34,9 +34,9 @@ export function AccountPortalShell({ email, isAdmin, children }: Props) {
 
   return (
     <div className="flex-1 bg-[color:var(--background)]">
-      <section className="border-b-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)]">
+      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-8 sm:py-10">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
             Client portal
           </p>
           <h1 className="mt-2 font-display text-[1.65rem] font-normal leading-tight tracking-tight sm:text-[1.9rem]">
@@ -51,17 +51,17 @@ export function AccountPortalShell({ email, isAdmin, children }: Props) {
 
       <Container className="flex flex-col gap-10 py-10 lg:flex-row lg:items-start">
         <aside className="w-full shrink-0 lg:max-w-xs">
-          <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-5">
-            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+          <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-5">
+            <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
               Signed in as
             </div>
             <p className="mt-2 break-all text-sm font-bold text-[color:var(--ink)]">{email ?? "—"}</p>
-            <nav className="mt-6 space-y-1 border-t border-[color:var(--caramel)]/25 pt-5">
+            <nav className="mt-6 space-y-1 border-t border-[color:var(--moss)]/25 pt-5">
               {nav.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="block border-l-2 border-transparent py-2 pl-3 text-sm font-bold text-[color:var(--muted)] transition hover:border-[color:var(--caramel)] hover:text-[color:var(--ink)]"
+                  className="block border-l-2 border-transparent py-2 pl-3 text-sm font-bold text-[color:var(--muted)] transition hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]"
                 >
                   <span className="block text-[color:var(--ink)]">{item.label}</span>
                   {item.description ? (
@@ -72,7 +72,7 @@ export function AccountPortalShell({ email, isAdmin, children }: Props) {
                 </Link>
               ))}
             </nav>
-            <form className="mt-6 border-t border-[color:var(--caramel)]/25 pt-5" action={signOut}>
+            <form className="mt-6 border-t border-[color:var(--moss)]/25 pt-5" action={signOut}>
               <button type="submit" className="btn-secondary btn-secondary-sm w-full justify-center">
                 Sign out
               </button>

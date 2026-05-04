@@ -12,14 +12,14 @@ export default function HomeEs() {
 
   return (
     <main className="flex-1">
-      <section className="bg-[color:var(--forest)] text-[color:var(--cream)]">
+      <section className="bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
             <div className="space-y-6 lg:col-span-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                 Asesoría legal bilingüe en Colombia
               </p>
-              <h1 className="max-w-3xl font-display text-[2.25rem] font-normal leading-[1.08] tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
+              <h1 className="max-w-3xl font-display text-[2.25rem] font-normal leading-[1.08] tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
                 Daniel Luque Restrepo
               </h1>
               <p className="max-w-2xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
@@ -31,7 +31,7 @@ export default function HomeEs() {
               <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
                 <div className="order-1 w-full max-w-[240px] sm:order-2 sm:w-[240px]">
                   <div className="mx-auto flex w-full flex-col items-center gap-3 sm:mx-0 sm:items-end">
-                    <div className="relative h-[210px] w-[210px] overflow-hidden rounded-full border border-[color:var(--caramel)]/35 bg-[color:var(--cream)]/5 sm:h-[220px] sm:w-[220px]">
+                    <div className="relative h-[210px] w-[210px] overflow-hidden rounded-full border border-[color:var(--moss)]/35 bg-[color:var(--parchment)]/5 sm:h-[220px] sm:w-[220px]">
                       <Image
                         src="/images/profile.png"
                         alt="Daniel Luque Restrepo"
@@ -42,12 +42,12 @@ export default function HomeEs() {
                       />
                     </div>
                     <div className="w-full text-center text-sm leading-6 text-[color:var(--header-fg-muted)] sm:text-right">
-                      <a className="font-bold text-[color:var(--cream)] hover:underline" href="mailto:daniel@luquelaw.co">
+                      <a className="font-bold text-[color:var(--parchment)] hover:underline" href="mailto:daniel@luquelaw.co">
                         daniel@luquelaw.co
                       </a>
                       <div className="mt-1">
                         <a
-                          className="font-bold text-[color:var(--cream)] hover:underline"
+                          className="font-bold text-[color:var(--parchment)] hover:underline"
                           href="https://wa.me/573006791123?text=Hola%20Daniel%2C%20acabo%20de%20visitar%20tu%20sitio%20web%20y%20quiero%20preguntarte%20algo..."
                           target="_blank"
                           rel="noreferrer"
@@ -65,7 +65,7 @@ export default function HomeEs() {
                 </button>
                 <Link
                   href="/es/clkr"
-                  className="btn-secondary border-[color:var(--caramel)] bg-transparent text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10 btn-secondary-lg"
+                  className="btn-secondary border-[color:var(--moss)] bg-transparent text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10 btn-secondary-lg"
                 >
                   Explorar temas legales
                 </Link>
@@ -113,11 +113,11 @@ export default function HomeEs() {
               </p>
               <p className="text-[15px] leading-7 text-[color:var(--muted)] sm:text-base">
                 <span className="font-bold text-[color:var(--ink)]">Credenciales:</span> JD de{" "}
-                <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
+                <span className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Universidad Pontificia Bolivariana
                 </span>
                 . Experiencia previa en{" "}
-                <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
+                <span className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Capital M Law
                 </span>
                 .
@@ -125,8 +125,8 @@ export default function HomeEs() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
-                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+              <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6">
+                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                   Tarifas transparentes
                 </div>
                 <dl className="mt-4 space-y-4 text-sm">
@@ -158,14 +158,14 @@ export default function HomeEs() {
         </Container>
       </section>
 
-      <section className="border-y border-[color:var(--caramel)]/25 bg-[color:var(--forest)] text-[color:var(--cream)]">
+      <section className="border-y border-[color:var(--moss)]/25 bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <div className="space-y-4 lg:col-span-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                 CLKR
               </p>
-              <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[1.8rem]">
+              <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[1.8rem]">
                 Repositorio de conocimiento jurídico colombiano
               </h2>
               <p className="max-w-2xl text-sm leading-6 text-[color:var(--hero-muted)] sm:text-base">
@@ -179,7 +179,7 @@ export default function HomeEs() {
               </Link>
               <Link
                 href="/es/clkr/investor-visa"
-                className="btn-secondary btn-secondary-lg border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10"
+                className="btn-secondary btn-secondary-lg border-[color:var(--moss)] text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10"
               >
                 Visa de inversionista
               </Link>

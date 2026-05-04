@@ -1,80 +1,137 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 
 import { Container } from "@/components/container";
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { EngagementModel } from "@/components/engagement/EngagementModel";
+
+const practiceAreas = [
+  {
+    title: "Immigration law",
+    detail: "Investor · Digital nomad · Residency · Naturalization",
+  },
+  {
+    title: "Real estate",
+    detail: "Purchases for foreigners · Due diligence · Title · Notarial",
+  },
+  {
+    title: "Corporate",
+    detail: "Company formation · Contracts · Compliance",
+  },
+  {
+    title: "Legal advisory",
+    detail: "Written concepts · Opinions · Strategy",
+  },
+];
 
 export default function Home() {
   const booking = useBookingModal();
 
   return (
     <main className="flex-1">
-      <section className="bg-[color:var(--forest)] text-[color:var(--cream)]">
-        <Container className="py-16 sm:py-20">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end">
-            <div className="space-y-6 lg:col-span-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
-                Bilingual Legal Counsel in Colombia
-              </p>
-              <h1 className="max-w-3xl font-display text-[2.25rem] font-normal leading-[1.08] tracking-tight text-[color:var(--cream)] sm:text-[2.6rem]">
-                Daniel Luque Restrepo
-              </h1>
-              <p className="max-w-2xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
-                Attorney from UPB and Specialist in International Tax Management, Daniel has successfully advised and
-                represented hundreds of foreign clients on real estate transactions, estate planning, immigration
-                matters, businesses, among others. Through his strong network, Daniel is continuously looking to provide
-                high-value legal counsel in an easy way to understand.
-              </p>
-              <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:items-center sm:justify-between">
-                <div className="order-1 w-full max-w-[240px] sm:order-2 sm:w-[240px]">
-                  <div className="mx-auto flex w-full flex-col items-center gap-3 sm:mx-0 sm:items-end">
-                    <div className="relative h-[210px] w-[210px] overflow-hidden rounded-full border border-[color:var(--caramel)]/35 bg-[color:var(--cream)]/5 sm:h-[220px] sm:w-[220px]">
-                      <Image
-                        src="/images/profile.png"
-                        alt="Daniel Luque Restrepo"
-                        fill
-                        sizes="220px"
-                        className="object-contain grayscale"
-                        priority
-                      />
-                    </div>
-                    <div className="w-full text-center text-sm leading-6 text-[color:var(--header-fg-muted)] sm:text-right">
-                      <a className="font-bold text-[color:var(--cream)] hover:underline" href="mailto:daniel@luquelaw.co">
-                        daniel@luquelaw.co
-                      </a>
-                      <div className="mt-1">
-                        <a
-                          className="font-bold text-[color:var(--cream)] hover:underline"
-                          href="https://wa.me/573006791123?text=Hi%20Daniel%2C%20I%20was%20just%20visiting%20your%20website%20and%20want%20to%20ask%20you%20something..."
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          WhatsApp: +57 300 6791123
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
 
-                <div className="order-2 flex flex-wrap gap-3 sm:order-1">
-                <button type="button" onClick={booking.open} className="btn-primary btn-primary-lg">
+      {/* ── Hero ───────────────────────────────────────────────── */}
+      <section className="bg-[color:var(--forest)] text-[color:var(--parchment)]">
+        <Container className="py-24 md:py-32">
+          <div className="grid gap-16 lg:grid-cols-12 lg:items-center">
+
+            {/* Copy */}
+            <div className="space-y-8 lg:col-span-7">
+              <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[color:var(--moss)]">
+                Immigration · Real Estate · Corporate
+              </p>
+
+              <h1 className="font-display text-[clamp(2.5rem,6vw,4rem)] font-normal leading-[1.05] tracking-tight text-[color:var(--parchment)]">
+                Legal counsel for foreigners in Colombia.
+              </h1>
+
+              <p className="max-w-xl font-[family-name:var(--font-body)] text-[1.125rem] italic leading-[1.75] text-[color:var(--parchment)]/75">
+                Clear, bilingual guidance on visas, property, and business in Colombia.
+              </p>
+
+              <div className="flex flex-wrap gap-3 pt-2">
+                <button
+                  type="button"
+                  onClick={booking.open}
+                  className="btn-primary-inverted btn-primary-lg"
+                >
                   Book a consultation
                 </button>
                 <Link
                   href="/clkr"
-                  className="btn-secondary border-[color:var(--caramel)] bg-transparent text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10 btn-secondary-lg"
+                  className="btn-secondary btn-secondary-lg border-[color:var(--parchment)]/40 text-[color:var(--parchment)] hover:bg-[color:var(--parchment)]/10"
                 >
-                  Explore Legal Topics
+                  Explore CLKR
                 </Link>
+              </div>
+            </div>
+
+            {/* Practice areas panel */}
+            <div className="lg:col-span-5">
+              <div className="border border-[color:var(--parchment)]/10 bg-[color:var(--parchment)]/[0.04] p-8">
+                <div className="mb-6 flex items-center gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="inline-block h-4 w-4 shrink-0 border border-[color:var(--parchment)]/30"
+                  />
+                  <span className="font-[family-name:var(--font-ui)] text-[0.625rem] uppercase tracking-[0.22em] text-[color:var(--parchment)]/45">
+                    Practice areas
+                  </span>
+                </div>
+
+                <ul className="divide-y divide-[color:var(--parchment)]/10">
+                  {practiceAreas.map((area) => (
+                    <li
+                      key={area.title}
+                      className="flex items-start gap-4 py-4 first:pt-0 last:pb-0"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="mt-[0.45em] inline-block h-[0.4em] w-[0.4em] shrink-0 border border-[color:var(--parchment)]/40"
+                      />
+                      <div>
+                        <p className="font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium uppercase tracking-[0.07em] text-[color:var(--parchment)]/90">
+                          {area.title}
+                        </p>
+                        <p className="mt-0.5 text-[0.75rem] leading-5 text-[color:var(--parchment)]/45">
+                          {area.detail}
+                        </p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-4 border-t border-[color:var(--parchment)]/10 pt-5">
+                  <p className="font-[family-name:var(--font-ui)] text-[0.5625rem] uppercase tracking-[0.18em] text-[color:var(--parchment)]/35">
+                    Daniel Luque Restrepo · JD, UPB · Medellín, Colombia
+                  </p>
                 </div>
               </div>
             </div>
 
+          </div>
+        </Container>
+      </section>
+
+      {/* ── How it works ───────────────────────────────────────── */}
+      <section className="bg-[color:var(--background)]">
+        <Container className="py-16 sm:py-20">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            <div className="space-y-5">
+              <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[color:var(--moss)]">
+                Process
+              </p>
+              <h2 className="text-[1.65rem] leading-tight tracking-tight sm:text-[1.8rem]">
+                How it works
+              </h2>
+              <p className="text-[15px] leading-7 text-[color:var(--muted)] sm:text-base">
+                Every engagement starts with a structured consultation, followed by a
+                written legal concept and a clear workplan — so you know exactly what
+                you need before committing.
+              </p>
+            </div>
             <EngagementModel
-              className="lg:col-span-4"
               label="Engagement model"
               steps={[
                 {
@@ -99,6 +156,7 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* ── About + Pricing ────────────────────────────────────── */}
       <section className="bg-[color:var(--background)]">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12">
@@ -113,11 +171,11 @@ export default function Home() {
               </p>
               <p className="text-[15px] leading-7 text-[color:var(--muted)] sm:text-base">
                 <span className="font-bold text-[color:var(--ink)]">Credentials:</span> JD from{" "}
-                <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
+                <span className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Universidad Pontificia Bolivariana
                 </span>
                 . Former{" "}
-                <span className="border border-[color:var(--caramel)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
+                <span className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] px-2 py-0.5 text-sm text-[color:var(--ink)]">
                   Capital M Law
                 </span>
                 .
@@ -125,8 +183,8 @@ export default function Home() {
             </div>
 
             <div className="lg:col-span-5">
-              <div className="border border-[color:var(--caramel)]/40 bg-[color:var(--card)] p-6">
-                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+              <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6">
+                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                   Transparent pricing
                 </div>
                 <dl className="mt-4 space-y-4 text-sm">
@@ -161,6 +219,7 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* ── Services ───────────────────────────────────────────── */}
       <section className="bg-[color:var(--background)]">
         <Container className="py-16 sm:py-20">
           <div className="flex items-end justify-between gap-6">
@@ -176,13 +235,13 @@ export default function Home() {
             <div className="hidden flex-col items-end gap-2 sm:flex">
               <Link
                 href="/services"
-                className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
+                className="text-sm font-bold text-[color:var(--moss)] hover:underline"
               >
                 All services →
               </Link>
               <Link
                 href="/contact#contact"
-                className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
+                className="text-sm font-bold text-[color:var(--moss)] hover:underline"
               >
                 Ask a question →
               </Link>
@@ -210,7 +269,7 @@ export default function Home() {
             ].map((c) => (
               <div
                 key={c.title}
-                className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6"
+                className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6"
               >
                 <div className="font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
                   {c.title}
@@ -222,14 +281,15 @@ export default function Home() {
         </Container>
       </section>
 
-      <section className="border-y border-[color:var(--caramel)]/25 bg-[color:var(--forest)] text-[color:var(--cream)]">
+      {/* ── CLKR CTA ───────────────────────────────────────────── */}
+      <section className="border-y border-[color:var(--moss)]/25 bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-16 sm:py-20">
           <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
             <div className="space-y-4 lg:col-span-8">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
                 CLKR
               </p>
-              <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--cream)] sm:text-[1.8rem]">
+              <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[1.8rem]">
                 Colombian Legal Knowledge Repository
               </h2>
               <p className="max-w-2xl text-sm leading-6 text-[color:var(--hero-muted)] sm:text-base">
@@ -238,12 +298,12 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3 lg:col-span-4 lg:justify-end">
-              <Link href="/clkr" className="btn-primary btn-primary-lg">
+              <Link href="/clkr" className="btn-primary-inverted btn-primary-lg">
                 Browse articles
               </Link>
               <Link
                 href="/clkr/investor-visa"
-                className="btn-secondary btn-secondary-lg border-[color:var(--caramel)] text-[color:var(--caramel)] hover:bg-[color:var(--cream)]/10"
+                className="btn-secondary btn-secondary-lg border-[color:var(--parchment)]/40 text-[color:var(--parchment)] hover:bg-[color:var(--parchment)]/10"
               >
                 Start with Investor Visa
               </Link>
@@ -251,6 +311,7 @@ export default function Home() {
           </div>
         </Container>
       </section>
+
     </main>
   );
 }

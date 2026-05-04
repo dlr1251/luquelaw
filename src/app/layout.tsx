@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Arbutus_Slab, Lato, Playfair_Display } from "next/font/google";
+import { Arbutus_Slab, Libre_Baskerville, Literata, Jost } from "next/font/google";
 
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
@@ -14,17 +14,24 @@ const display = Arbutus_Slab({
   weight: "400",
 });
 
-const sans = Lato({
-  variable: "--font-sans",
+const heading = Libre_Baskerville({
+  variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "700"],
+  style: ["normal", "italic"],
 });
 
-const refinement = Playfair_Display({
-  variable: "--font-refinement",
+const body = Literata({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500"],
   style: ["normal", "italic"],
-  weight: ["400", "600"],
+});
+
+const ui = Jost({
+  variable: "--font-ui",
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -44,12 +51,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} ${refinement.variable} h-full antialiased`}
+      className={`${display.variable} ${heading.variable} ${body.variable} ${ui.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-[color:var(--background)] text-[color:var(--foreground)]">
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:border focus:border-[color:var(--caramel)] focus:bg-[color:var(--cream)] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-[color:var(--ink)] focus:shadow-sm"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:border focus:border-[color:var(--moss)] focus:bg-[color:var(--parchment)] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-[color:var(--ink)] focus:shadow-sm"
         >
           Skip to content
         </a>

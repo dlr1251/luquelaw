@@ -81,7 +81,7 @@ export function ClkrBrowser({
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder={copy.searchPlaceholder}
-              className="mt-2 h-11 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--card)] px-4 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+              className="mt-2 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-4 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--moss)]/35 focus:ring-2"
             />
           </label>
         </div>
@@ -99,8 +99,8 @@ export function ClkrBrowser({
                   className={[
                     "h-9 border px-4 text-sm font-bold transition",
                     active
-                      ? "border-[color:var(--caramel)] bg-[color:var(--caramel)] text-[color:var(--ink)]"
-                      : "border-[color:var(--caramel)]/40 bg-[color:var(--card)] text-[color:var(--ink)] hover:border-[color:var(--caramel)]",
+                      ? "border-[color:var(--moss)] bg-[color:var(--moss)] text-[color:var(--ink)]"
+                      : "border-[color:var(--moss)]/40 bg-[color:var(--card)] text-[color:var(--ink)] hover:border-[color:var(--moss)]",
                   ].join(" ")}
                 >
                   {categoryLabels[c]}
@@ -116,10 +116,10 @@ export function ClkrBrowser({
           <Link
             key={a.slug}
             href={a.slug}
-            className="group border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 transition hover:border-[color:var(--caramel)]/60 hover:shadow-sm"
+            className="group border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 transition hover:border-[color:var(--moss)]/60 hover:shadow-sm"
           >
-            <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--caramel)]">
-              <span className="border border-[color:var(--caramel)]/40 bg-[color:var(--surface)] px-2 py-1 text-[color:var(--muted)]">
+            <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
+              <span className="border border-[color:var(--moss)]/40 bg-[color:var(--surface)] px-2 py-1 text-[color:var(--muted)]">
                 {a.category}
               </span>
               <span className="font-normal normal-case tracking-normal text-[color:var(--muted)]">
@@ -130,7 +130,7 @@ export function ClkrBrowser({
               {a.title}
             </div>
             <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{a.description}</p>
-            <div className="mt-5 text-sm font-bold text-[color:var(--caramel)]">
+            <div className="mt-5 text-sm font-bold text-[color:var(--moss)]">
               {copy.read} →
             </div>
           </Link>
@@ -138,7 +138,7 @@ export function ClkrBrowser({
       </div>
 
       {filtered.length === 0 ? (
-        <div className="border border-[color:var(--caramel)]/35 bg-[color:var(--card)] p-6 text-sm text-[color:var(--muted)]">
+        <div className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-6 text-sm text-[color:var(--muted)]">
           {copy.empty}
         </div>
       ) : null}

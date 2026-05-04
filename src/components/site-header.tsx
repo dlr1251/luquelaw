@@ -19,18 +19,23 @@ export async function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b-2 border-[color:var(--caramel)] bg-[color:var(--forest)] text-[color:var(--cream)]">
+    <header className="sticky top-0 z-50 bg-[color:var(--forest)]">
       <Container className="flex min-h-16 items-center justify-between gap-3 py-3 sm:py-2">
         <Link
           href="/"
-          className="group inline-block max-w-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--caramel)]"
+          className="group inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/50"
           aria-label="Luque Law — home"
         >
-          <div className="font-display text-xl leading-[1.1] tracking-tight text-[color:var(--cream)] sm:text-2xl">
-            Luque Law
+          <div className="flex items-center gap-[0.3em] font-display text-xl leading-[1.1] tracking-tight text-[color:var(--parchment)] sm:text-2xl">
+            <span>Luque</span>
+            <span
+              aria-hidden="true"
+              className="inline-block h-[0.5em] w-[0.5em] shrink-0 border border-[color:var(--parchment)]"
+            />
+            <span>Law</span>
           </div>
-          <p className="mt-1.5 font-sans text-[10px] font-bold uppercase leading-none tracking-[0.22em] text-[color:var(--caramel)]">
-            Abogado
+          <p className="mt-1 font-[family-name:var(--font-ui)] text-[9px] uppercase tracking-[0.28em] text-[color:var(--parchment)]/50">
+            Legal counsel · Medellín
           </p>
         </Link>
 

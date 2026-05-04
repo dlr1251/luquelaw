@@ -53,7 +53,7 @@ export function ContactForm({ locale = "en" }: { locale?: "en" | "es" }) {
         };
 
   const fieldClass =
-    "mt-2 h-11 w-full border border-[color:var(--caramel)]/40 bg-[color:var(--card)] px-4 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2";
+    "mt-2 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-4 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--moss)]/35 focus:ring-2";
 
   return (
     <form
@@ -109,7 +109,7 @@ export function ContactForm({ locale = "en" }: { locale?: "en" | "es" }) {
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="mt-2 min-h-40 w-full resize-y border border-[color:var(--caramel)]/40 bg-[color:var(--card)] px-4 py-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--caramel)]/35 focus:ring-2"
+          className="mt-2 min-h-40 w-full resize-y border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-4 py-3 text-sm text-[color:var(--ink)] outline-none ring-[color:var(--moss)]/35 focus:ring-2"
           placeholder={copy.placeholder}
           required
         />
@@ -120,7 +120,7 @@ export function ContactForm({ locale = "en" }: { locale?: "en" | "es" }) {
           {copy.submit}
         </button>
         <a
-          className="text-sm font-bold text-[color:var(--caramel)] hover:underline"
+          className="text-sm font-bold text-[color:var(--moss)] hover:underline"
           href="https://wa.me/573006791123"
           target="_blank"
           rel="noreferrer"
