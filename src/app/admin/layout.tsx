@@ -3,13 +3,17 @@ import { redirect } from "next/navigation";
 
 import { isAppAdmin } from "@/lib/auth/is-admin";
 import { Container } from "@/components/container";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  if (!isSupabaseConfigured()) {
+    redirect("/login");
+  }
+
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
 

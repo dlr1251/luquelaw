@@ -1,4 +1,4 @@
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 import { clkrArticles, clkrArticlesEs, type ClkrArticle } from "./articles";
 import { slugKeyFromArticle } from "./slug-key";
@@ -14,6 +14,10 @@ type SettingsRow = {
 
 export async function getHubArticles(locale: "en" | "es"): Promise<ClkrArticle[]> {
   const base = locale === "es" ? [...clkrArticlesEs] : [...clkrArticles];
+
+  if (!isSupabaseConfigured()) {
+    return base;
+  }
 
   try {
     const supabase = await createClient();

@@ -1,5 +1,20 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Environment variables
+
+Copy [`.env.example`](.env.example) to `.env.local` and fill in values.
+
+**Supabase** (login, client portal, CLKR admin):
+
+1. Open [Supabase Dashboard](https://supabase.com/dashboard) → your project → **Project Settings** → **API**.
+2. Set in `.env.local`:
+   - `NEXT_PUBLIC_SUPABASE_URL` — Project URL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — `anon` `public` key (or `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` if shown)
+3. Run migrations in `supabase/migrations/` (SQL editor or `supabase db push`).
+4. On **Vercel**, add the same `NEXT_PUBLIC_*` variables for Production and redeploy.
+
+The marketing site (home, CLKR articles) works without Supabase; auth and admin need these keys.
+
 ## Getting Started
 
 First, run the development server:

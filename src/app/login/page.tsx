@@ -2,7 +2,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 import { Container } from "@/components/container";
-import { createClient } from "@/lib/supabase/server";
+import { SupabaseSetupNotice } from "@/components/supabase-setup-notice";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 import { login, signup } from "./actions";
 
@@ -11,13 +12,15 @@ type Props = {
 };
 
 export default async function LoginPage({ searchParams }: Props) {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  if (data?.claims) {
-    redirect("/account");
-  }
-
   const { error, message } = await searchParams;
+
+  if (isSupabaseConfigured()) {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getClaims();
+    if (data?.claims) {
+      redirect("/account");
+    }
+  }
 
   return (
     <div className="flex-1 bg-[color:var(--background)]">
@@ -36,6 +39,12 @@ export default async function LoginPage({ searchParams }: Props) {
       </section>
 
       <Container className="py-12">
+        {!isSupabaseConfigured() ? (
+          <SupabaseSetupNotice
+            title="Client portal not configured"
+            body="Authentication requires a Supabase project. The public site works without it; add your keys to enable sign-in."
+          />
+        ) : (
         <div className="mx-auto max-w-md border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6 sm:p-8">
           {error ? (
             <p
@@ -95,6 +104,7 @@ export default async function LoginPage({ searchParams }: Props) {
             </div>
           </form>
         </div>
+        )}
         <p className="mt-8 text-center text-sm text-[color:var(--muted)]">
           <Link href="/" className="font-bold text-[color:var(--moss)] hover:underline">
             Back to home

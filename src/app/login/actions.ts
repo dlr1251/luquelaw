@@ -3,7 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 function loginPath(error?: string) {
   if (!error) return "/login";
@@ -11,6 +11,9 @@ function loginPath(error?: string) {
 }
 
 export async function login(formData: FormData) {
+  if (!isSupabaseConfigured()) {
+    redirect(loginPath("Authentication is not configured on this environment."));
+  }
   const supabase = await createClient();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");
@@ -26,6 +29,9 @@ export async function login(formData: FormData) {
 }
 
 export async function signup(formData: FormData) {
+  if (!isSupabaseConfigured()) {
+    redirect(loginPath("Authentication is not configured on this environment."));
+  }
   const supabase = await createClient();
   const email = String(formData.get("email") ?? "").trim();
   const password = String(formData.get("password") ?? "");

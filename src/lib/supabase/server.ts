@@ -1,25 +1,23 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
-function getSupabaseKey(): string {
-  return (
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-    ""
-  );
-}
+import {
+  SUPABASE_CONFIG_ERROR,
+  getSupabaseKey,
+  getSupabaseUrl,
+  isSupabaseConfigured,
+} from "@/lib/supabase/config";
+
+export { isSupabaseConfigured } from "@/lib/supabase/config";
 
 export async function createClient() {
-  const cookieStore = await cookies();
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = getSupabaseKey();
-  if (!url || !key) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL and a publishable or anon key.",
-    );
+  if (!isSupabaseConfigured()) {
+    throw new Error(SUPABASE_CONFIG_ERROR);
   }
 
-  return createServerClient(url, key, {
+  const cookieStore = await cookies();
+
+  return createServerClient(getSupabaseUrl(), getSupabaseKey(), {
     cookies: {
       getAll() {
         return cookieStore.getAll();

@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { Container } from "@/components/container";
 import { HeaderNav } from "@/components/header-nav";
 import { isAppAdmin } from "@/lib/auth/is-admin";
@@ -8,14 +8,16 @@ import { isAppAdmin } from "@/lib/auth/is-admin";
 export async function SiteHeader() {
   let signedIn = false;
   let isAdmin = false;
-  try {
-    const supabase = await createClient();
-    const { data } = await supabase.auth.getClaims();
-    signedIn = Boolean(data?.claims);
-    isAdmin = isAppAdmin(data?.claims);
-  } catch {
-    signedIn = false;
-    isAdmin = false;
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = await createClient();
+      const { data } = await supabase.auth.getClaims();
+      signedIn = Boolean(data?.claims);
+      isAdmin = isAppAdmin(data?.claims);
+    } catch {
+      signedIn = false;
+      isAdmin = false;
+    }
   }
 
   return (

@@ -4,7 +4,7 @@ import { Container } from "@/components/container";
 import { clearClkrArticleSettings, saveClkrArticleSettings } from "./actions";
 import type { ClkrArticle } from "@/lib/clkr/articles";
 import { clkrArticles, clkrArticlesEs } from "@/lib/clkr/articles";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { slugKeyFromArticle } from "@/lib/clkr/slug-key";
 
 type SettingsRow = {
@@ -17,6 +17,9 @@ type SettingsRow = {
 };
 
 async function loadSettings(): Promise<SettingsRow[]> {
+  if (!isSupabaseConfigured()) {
+    return [];
+  }
   try {
     const supabase = await createClient();
     const { data, error } = await supabase

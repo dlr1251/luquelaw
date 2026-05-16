@@ -1,20 +1,17 @@
 import { createBrowserClient } from "@supabase/ssr";
 
-function getSupabaseKey(): string {
-  return (
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ??
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
-    ""
-  );
-}
+import {
+  SUPABASE_CONFIG_ERROR,
+  getSupabaseKey,
+  getSupabaseUrl,
+  isSupabaseConfigured,
+} from "@/lib/supabase/config";
+
+export { isSupabaseConfigured } from "@/lib/supabase/config";
 
 export function createClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = getSupabaseKey();
-  if (!url || !key) {
-    throw new Error(
-      "Missing NEXT_PUBLIC_SUPABASE_URL and a publishable or anon key.",
-    );
+  if (!isSupabaseConfigured()) {
+    throw new Error(SUPABASE_CONFIG_ERROR);
   }
-  return createBrowserClient(url, key);
+  return createBrowserClient(getSupabaseUrl(), getSupabaseKey());
 }

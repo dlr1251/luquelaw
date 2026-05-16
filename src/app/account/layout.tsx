@@ -2,13 +2,17 @@ import { redirect } from "next/navigation";
 
 import { AccountPortalShell } from "@/components/account/portal-shell";
 import { isAppAdmin } from "@/lib/auth/is-admin";
-import { createClient } from "@/lib/supabase/server";
+import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export default async function AccountLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  if (!isSupabaseConfigured()) {
+    redirect("/login");
+  }
+
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
 
