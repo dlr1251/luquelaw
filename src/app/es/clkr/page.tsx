@@ -6,44 +6,40 @@ import { getHubArticles } from "@/lib/clkr/get-hub-articles";
 
 export default async function ClkrHubEsPage() {
   const articles = await getHubArticles("es");
+
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-14 sm:py-16">
-          <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
+          <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[color:var(--moss)]">
             CLKR
           </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
+          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
             Repositorio Colombiano de Conocimiento Jurídico
           </h1>
-          <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
-            Derecho colombiano explicado con claridad, en inglés y español, para
-            expatriados e inversionistas extranjeros que operan en Colombia.
+          <p className="mt-4 max-w-3xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
+            Derecho colombiano explicado con claridad para expatriados e inversionistas extranjeros
+            que operan en Colombia.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link href="/es/contact#consultation" className="btn-primary btn-primary-lg">
-              Agendar consulta
-            </Link>
+          <p className="mt-6">
             <Link
-              href="/es/contact"
-              className="btn-secondary btn-secondary-lg border-[color:var(--moss)] text-[color:var(--moss)] hover:bg-[color:var(--parchment)]/10"
+              href="/es#contact"
+              className="text-sm font-bold text-[color:var(--forest)] underline-offset-2 hover:text-[color:var(--moss)] hover:underline"
             >
-              Contacto
+              ¿Preguntas sobre tu caso? Escríbenos →
             </Link>
-          </div>
+          </p>
         </Container>
       </section>
 
       <Container className="py-14 sm:py-16">
-        <div className="mb-10 flex items-end justify-between gap-6">
-          <div className="space-y-2">
-            <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
-              Explorar artículos
-            </h2>
-            <p className="text-sm leading-6 text-[color:var(--muted)]">
-              Comienza con inmigración y bienes raíces. Se sumarán más módulos con el tiempo.
-            </p>
-          </div>
+        <div className="mb-10 space-y-2">
+          <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
+            Explorar artículos
+          </h2>
+          <p className="text-sm leading-6 text-[color:var(--muted)]">
+            Comienza con inmigración y bienes raíces. Se sumarán más módulos con el tiempo.
+          </p>
         </div>
 
         <ClkrBrowser articles={articles} locale="es" />
@@ -51,4 +47,3 @@ export default async function ClkrHubEsPage() {
     </main>
   );
 }
-

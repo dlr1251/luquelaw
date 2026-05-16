@@ -21,9 +21,11 @@ export function HeaderNav({
   const isSpanish = pathname === "/es" || pathname.startsWith("/es/");
   const prefix = isSpanish ? "/es" : "";
   const booking = useBookingModal();
+  const homeHref = prefix || "/";
+  const contactHref = `${homeHref}#contact`;
+
   const copy = isSpanish
     ? {
-        services: "Servicios",
         clkr: "CLKR",
         contact: "Contacto",
         portal: "Portal cliente",
@@ -32,7 +34,6 @@ export function HeaderNav({
         close: "Cerrar",
       }
     : {
-        services: "Services",
         clkr: "CLKR",
         contact: "Contact",
         portal: "Client portal",
@@ -43,16 +44,15 @@ export function HeaderNav({
 
   const items = useMemo(
     () => [
-      { href: `${prefix}/services`, label: copy.services },
       { href: `${prefix}/clkr`, label: copy.clkr },
-      { href: `${prefix}/contact`, label: copy.contact },
+      { href: contactHref, label: copy.contact },
       { href: signedIn ? "/account" : "/login", label: copy.portal },
     ],
-    [copy.clkr, copy.contact, copy.portal, copy.services, prefix, signedIn],
+    [contactHref, copy.clkr, copy.contact, copy.portal, prefix, signedIn],
   );
 
-  const primaryLinks = items.slice(0, 3);
-  const portalLink = items[3];
+  const primaryLinks = items.slice(0, 2);
+  const portalLink = items[2];
 
   const [mobileOpen, setMobileOpen] = useState(false);
 

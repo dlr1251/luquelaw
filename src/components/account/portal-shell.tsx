@@ -14,13 +14,8 @@ type Props = {
 export function AccountPortalShell({ email, isAdmin, children }: Props) {
   const nav: NavItem[] = [
     { href: "/account", label: "Overview", description: "Status and quick actions" },
-    { href: "/services", label: "Services", description: "What we cover in Colombia" },
-    {
-      href: "/contact#consultation",
-      label: "Consultations",
-      description: "Book and pricing on one page",
-    },
-    { href: "/contact#contact", label: "Send a message", description: "Inquiry form" },
+    { href: "/#practice-areas", label: "Practice areas", description: "What we cover in Colombia" },
+    { href: "/#contact", label: "Contact", description: "Message form and booking" },
     { href: "/clkr", label: "CLKR library", description: "Legal explainers (English)" },
   ];
 

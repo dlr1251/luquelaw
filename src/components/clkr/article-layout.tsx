@@ -29,6 +29,8 @@ export function ClkrArticleLayout({
   locale = "en",
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
+  const contactHref = locale === "es" ? "/es#contact" : "/#contact";
+
   const copy =
     locale === "es"
       ? {
@@ -37,9 +39,8 @@ export function ClkrArticleLayout({
           mobileContents: "Tabla de contenido",
           ctaTitle: "¿Tienes una consulta puntual?",
           ctaBody:
-            "Agenda una consulta y recibe un concepto jurídico escrito y una cotización dentro de 3 días hábiles.",
-          book: "Agendar",
-          contact: "Contacto",
+            "Escríbeme con los hechos de tu caso. Recibirás un concepto jurídico escrito y una cotización dentro de 3 días hábiles tras la consulta inicial.",
+          contact: "Contactar →",
         }
       : {
           hub: "CLKR hub",
@@ -47,33 +48,34 @@ export function ClkrArticleLayout({
           mobileContents: "Table of contents",
           ctaTitle: "Have a fact-specific question?",
           ctaBody:
-            "Book a consultation and receive a written legal concept and a quotation within 3 business days.",
-          book: "Book",
-          contact: "Contact",
+            "Send me the facts of your case. After an initial consultation, you'll receive a written legal concept and a quotation within 3 business days.",
+          contact: "Get in touch →",
         };
 
   return (
     <main className="flex-1">
-      <section className="border-b-2 border-[color:var(--moss)] bg-[color:var(--hero)] text-[color:var(--hero-foreground)]">
+      <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-12 sm:py-14">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
-            <span className="border border-[color:var(--moss)]/50 bg-[color:var(--hero-button)] px-2 py-1 text-[color:var(--hero-muted)]">
+          <div className="flex flex-wrap items-center gap-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
+            <span className="border border-[color:var(--moss)]/40 bg-[color:var(--surface)] px-2 py-1 text-[color:var(--forest)]">
               {category}
             </span>
-            {readingTime ? <span className="font-normal normal-case">{readingTime}</span> : null}
-            <span className="hidden font-normal text-[color:var(--hero-muted)] sm:inline">·</span>
+            {readingTime ? (
+              <span className="font-normal normal-case text-[color:var(--muted)]">{readingTime}</span>
+            ) : null}
+            <span className="hidden font-normal text-[color:var(--muted)] sm:inline">·</span>
             <Link
               href={`${prefix}/clkr`}
-              className="font-normal normal-case text-[color:var(--hero-muted)] hover:text-[color:var(--parchment)] hover:underline"
+              className="font-normal normal-case text-[color:var(--muted)] hover:text-[color:var(--forest)] hover:underline"
             >
               {copy.hub}
             </Link>
           </div>
-          <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--parchment)] sm:text-[2.6rem]">
+          <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
             {title}
           </h1>
           {description ? (
-            <p className="mt-4 max-w-3xl text-base font-medium leading-7 text-[color:var(--hero-muted)] sm:text-lg">
+            <p className="mt-4 max-w-3xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
               {description}
             </p>
           ) : null}
@@ -129,11 +131,8 @@ export function ClkrArticleLayout({
                   {copy.ctaTitle}
                 </div>
                 <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{copy.ctaBody}</p>
-                <div className="mt-5 flex flex-wrap gap-3">
-                  <Link href={`${prefix}/contact#consultation`} className="btn-primary btn-primary-sm">
-                    {copy.book}
-                  </Link>
-                  <Link href={`${prefix}/contact`} className="btn-secondary btn-secondary-sm">
+                <div className="mt-5">
+                  <Link href={contactHref} className="btn-primary btn-primary-sm">
                     {copy.contact}
                   </Link>
                 </div>

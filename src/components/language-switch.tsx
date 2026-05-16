@@ -7,7 +7,6 @@ import { cn } from "@/lib/cn";
 
 const supportedPaths = new Set([
   "/",
-  "/services",
   "/contact",
   "/clkr",
   "/clkr/investor-visa",

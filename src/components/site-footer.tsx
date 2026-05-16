@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, Phone } from "lucide-react";
+import { Mail } from "lucide-react";
+
+import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
 import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/container";
@@ -20,17 +22,16 @@ export function SiteFooter() {
     ? "Este contenido es solo para fines informativos y no constituye asesoría jurídica. Cada caso es único."
     : "This content is for informational purposes only and does not constitute legal advice. Every case is unique.";
 
+  const homeHref = prefix || "/";
   const navLinks = isSpanish
     ? [
-        { href: `${prefix}/services`, label: "Servicios" },
         { href: `${prefix}/clkr`, label: "CLKR" },
-        { href: `${prefix}/contact`, label: "Contacto" },
+        { href: `${homeHref}#contact`, label: "Contacto" },
         { href: "/login", label: "Portal cliente" },
       ]
     : [
-        { href: `${prefix}/services`, label: "Services" },
         { href: `${prefix}/clkr`, label: "CLKR" },
-        { href: `${prefix}/contact`, label: "Contact" },
+        { href: `${homeHref}#contact`, label: "Contact" },
         { href: "/login", label: "Client portal" },
       ];
 
@@ -74,12 +75,16 @@ export function SiteFooter() {
                 daniel@luquelaw.co
               </a>
               <a
-                href="https://wa.me/573006791123"
+                href={
+                  isSpanish
+                    ? "https://wa.me/573006791123?text=Hola%20Daniel%2C%20acabo%20de%20visitar%20tu%20sitio%20web%20y%20quiero%20preguntarte%20algo..."
+                    : "https://wa.me/573006791123?text=Hi%20Daniel%2C%20I%20was%20just%20visiting%20your%20website%20and%20want%20to%20ask%20you%20something..."
+                }
                 target="_blank"
                 rel="noreferrer"
                 className="flex items-center gap-2.5 text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
               >
-                <Phone aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
+                <WhatsappIcon className="h-3.5 w-3.5 shrink-0" />
                 +57 300 679 1123
               </a>
             </div>

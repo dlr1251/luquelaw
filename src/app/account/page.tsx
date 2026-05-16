@@ -11,7 +11,7 @@ export default function AccountPage() {
           After your initial consultation, a written legal concept and quotation are delivered
           within three business days. Active engagements and deliverables will be listed here as
           the portal grows—until then, use{" "}
-          <Link className="font-bold text-[color:var(--moss)] underline" href="/contact">
+          <Link className="font-bold text-[color:var(--moss)] underline" href="/#contact">
             Contact
           </Link>{" "}
           for updates on your file.
@@ -35,8 +35,8 @@ export default function AccountPage() {
             </li>
             <li>
               Gather documents and a short timeline for the first call (
-              <Link href="/contact#consultation" className="font-bold text-[color:var(--moss)] underline">
-                preparation guide
+              <Link href="/#contact" className="font-bold text-[color:var(--moss)] underline">
+                contact form
               </Link>
               ).
             </li>
@@ -56,13 +56,13 @@ export default function AccountPage() {
           </h3>
           <ul className="mt-4 space-y-3 text-sm font-bold">
             <li>
-              <Link className="text-[color:var(--moss)] hover:underline" href="/contact#consultation">
-                Book a consultation →
+              <Link className="text-[color:var(--moss)] hover:underline" href="/#contact">
+                Book / send a message →
               </Link>
             </li>
             <li>
-              <Link className="text-[color:var(--moss)] hover:underline" href="/contact">
-                Send an inquiry →
+              <Link className="text-[color:var(--moss)] hover:underline" href="/#practice-areas">
+                Practice areas →
               </Link>
             </li>
             <li>
