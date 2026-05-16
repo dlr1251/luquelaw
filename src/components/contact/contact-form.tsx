@@ -97,7 +97,7 @@ export function ContactForm({
   );
 
   const fieldClass = cn(
-    "mt-1.5 w-full border text-sm outline-none ring-[color:var(--moss)]/35 focus:ring-2",
+    "mt-1.5 w-full border text-base outline-none ring-[color:var(--moss)]/35 focus:ring-2 sm:text-sm",
     isHero
       ? "h-10 border-[color:var(--moss)]/35 bg-white px-3 text-[color:var(--ink)]"
       : "h-11 border-[color:var(--moss)]/40 bg-[color:var(--card)] px-4 text-[color:var(--ink)]",

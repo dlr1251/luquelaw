@@ -55,14 +55,15 @@ export default async function AdminClkrPage({
         </p>
         <p className="mt-3 text-xs leading-5 text-[color:var(--muted)]">
           Database access: run the migration in{" "}
-          <code className="bg-[color:var(--surface)] px-1 text-[color:var(--ink)]">
+          <code className="break-all bg-[color:var(--surface)] px-1 text-[color:var(--ink)]">
             supabase/migrations/
           </code>{" "}
           and add your account email to{" "}
-          <code className="bg-[color:var(--surface)] px-1 text-[color:var(--ink)]">
+          <code className="break-all bg-[color:var(--surface)] px-1 text-[color:var(--ink)]">
             admin_allowlist
           </code>{" "}
-          or set App metadata <code className="bg-[color:var(--surface)] px-1">role: admin</code>{" "}
+          or set App metadata{" "}
+          <code className="break-all bg-[color:var(--surface)] px-1">role: admin</code>{" "}
           on your user in Supabase.
         </p>
       </div>

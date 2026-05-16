@@ -12,6 +12,7 @@ const sections = [
 export default function RealEstateTransactionsArticlePage() {
   return (
     <ClkrArticleLayout
+      currentSlug="/clkr/real-estate-transactions"
       title="Real Estate Transactions for Foreigners"
       category="Real Estate"
       readingTime="14 min"

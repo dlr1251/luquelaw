@@ -12,6 +12,7 @@ const sections = [
 export default function InvestorVisaArticlePage() {
   return (
     <ClkrArticleLayout
+      currentSlug="/clkr/investor-visa"
       title="Investor Visa (Visa de Inversionista — Tipo M)"
       category="Immigration"
       readingTime="12 min"

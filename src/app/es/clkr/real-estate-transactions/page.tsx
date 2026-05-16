@@ -13,6 +13,7 @@ export default function RealEstateEsPage() {
   return (
     <ClkrArticleLayout
       locale="es"
+      currentSlug="/es/clkr/real-estate-transactions"
       title="Transacciones Inmobiliarias para Extranjeros"
       category="Inmobiliario"
       readingTime="14 min"

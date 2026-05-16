@@ -119,11 +119,11 @@ export function SiteFooter() {
 
       {/* Copyright bar */}
       <div className="border-t border-[color:var(--parchment)]/10">
-        <Container className="flex items-center justify-between gap-4 py-5">
-          <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] text-[color:var(--parchment)]/30">
+        <Container className="flex flex-col items-center gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
+          <p className="min-w-0 text-center font-[family-name:var(--font-ui)] text-[0.6875rem] leading-relaxed text-[color:var(--parchment)]/30 sm:text-left">
             © {new Date().getFullYear()} Luque Law · Daniel Luque Restrepo · Medellín, Colombia
           </p>
-          <DlrMonogram size={32} />
+          <DlrMonogram size={32} className="shrink-0" />
         </Container>
       </div>
     </footer>

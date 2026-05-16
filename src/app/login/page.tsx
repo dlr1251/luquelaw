@@ -36,7 +36,7 @@ export default async function LoginPage({ searchParams }: Props) {
       </section>
 
       <Container className="py-12">
-        <div className="mx-auto max-w-md border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-8">
+        <div className="mx-auto max-w-md border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-6 sm:p-8">
           {error ? (
             <p
               className="mb-4 border border-red-300/50 bg-red-50 px-3 py-2 text-sm text-red-900 dark:bg-red-950/30 dark:text-red-100"

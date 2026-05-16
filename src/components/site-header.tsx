@@ -34,7 +34,7 @@ export async function SiteHeader() {
             />
             <span>Law</span>
           </div>
-          <p className="mt-1 font-[family-name:var(--font-ui)] text-[9px] uppercase tracking-[0.28em] text-[color:var(--parchment)]/50">
+          <p className="mt-1 hidden font-[family-name:var(--font-ui)] text-[10px] uppercase tracking-[0.28em] text-[color:var(--parchment)]/50 min-[381px]:block sm:text-[9px]">
             Legal counsel · Medellín
           </p>
         </Link>

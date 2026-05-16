@@ -133,13 +133,13 @@ export function HomePage({ locale }: Props) {
                   {c.pricing.label}
                 </div>
                 <dl className="mt-4 space-y-4 text-sm">
-                  <div className="flex items-start justify-between gap-6">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <dt className="text-[color:var(--muted)]">{c.pricing.consultation}</dt>
-                    <dd className="text-right font-bold text-[color:var(--ink)]">{c.pricing.consultationPrice}</dd>
+                    <dd className="font-bold text-[color:var(--ink)] sm:text-right">{c.pricing.consultationPrice}</dd>
                   </div>
-                  <div className="flex items-start justify-between gap-6">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
                     <dt className="text-[color:var(--muted)]">{c.pricing.retainer}</dt>
-                    <dd className="text-right font-bold text-[color:var(--ink)]">
+                    <dd className="font-bold text-[color:var(--ink)] sm:text-right">
                       {c.pricing.retainerPrice}{" "}
                       <span className="block text-xs font-normal text-[color:var(--muted)]">
                         {c.pricing.retainerNote}

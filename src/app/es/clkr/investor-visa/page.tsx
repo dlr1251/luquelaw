@@ -13,6 +13,7 @@ export default function InvestorVisaEsPage() {
   return (
     <ClkrArticleLayout
       locale="es"
+      currentSlug="/es/clkr/investor-visa"
       title="Visa de Inversionista (Tipo M)"
       category="Inmigración"
       readingTime="12 min"

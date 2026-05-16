@@ -46,7 +46,7 @@ export function AccountPortalShell({ email, isAdmin, children }: Props) {
 
       <Container className="flex flex-col gap-10 py-10 lg:flex-row lg:items-start">
         <aside className="w-full shrink-0 lg:max-w-xs">
-          <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-5">
+          <div className="border border-[color:var(--moss)]/40 bg-[color:var(--card)] p-4 sm:p-5">
             <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
               Signed in as
             </div>

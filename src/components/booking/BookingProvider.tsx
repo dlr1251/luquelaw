@@ -65,7 +65,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
 
       {open ? (
         <div
-          className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-6"
+          className="fixed inset-0 z-[70] flex items-end justify-center p-4 sm:items-center sm:p-6"
           role="dialog"
           aria-modal="true"
           aria-label={title}
@@ -77,7 +77,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
             onClick={close}
           />
 
-          <div className="relative w-full max-w-4xl border-2 border-[color:var(--moss)] bg-[color:var(--parchment)] text-[color:var(--ink)] shadow-2xl">
+          <div className="relative flex max-h-[min(100dvh-2rem,900px)] w-full max-w-4xl flex-col overflow-y-auto border-2 border-[color:var(--moss)] bg-[color:var(--parchment)] text-[color:var(--ink)] shadow-2xl">
             <div className="flex items-start justify-between gap-4 border-b border-[color:var(--moss)]/25 bg-[color:var(--surface)] p-4 sm:p-5">
               <div>
                 <div className="font-display text-xl leading-tight tracking-tight text-[color:var(--forest)]">
@@ -113,7 +113,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
                   <iframe
                     title={title}
                     src={bookingUrl}
-                    className="h-[70vh] w-full"
+                    className="h-[min(70dvh,520px)] w-full sm:h-[70vh]"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />

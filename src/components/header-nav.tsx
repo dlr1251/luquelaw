@@ -83,7 +83,7 @@ export function HeaderNav({
 
   return (
     <>
-      <nav className="hidden items-center justify-end gap-1 sm:flex" aria-label="Primary">
+      <nav className="hidden items-center justify-end gap-1 md:flex" aria-label="Primary">
         <div className="flex items-center">
           {primaryLinks.map((item) => (
             <Link key={item.href} href={item.href} className={navLinkClass}>
@@ -116,7 +116,7 @@ export function HeaderNav({
         </button>
       </nav>
 
-      <div className="sm:hidden">
+      <div className="md:hidden">
         <div className="flex items-center justify-end gap-1">
           <LanguageSwitch variant="forest" />
           <ThemeToggle variant="forest" />
