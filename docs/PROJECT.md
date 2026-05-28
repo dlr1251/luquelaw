@@ -178,7 +178,7 @@ Unique: `(slug_key, locale)`.
 
 ## 7. Operational notes
 
-1. **New migration:** add SQL under `supabase/migrations/`; apply in Supabase SQL editor or CLI.
+1. **New migration:** add SQL under `supabase/migrations/`; apply in Supabase SQL editor, Supabase MCP, or CLI. See [docs/SUPABASE_SETUP.md](./SUPABASE_SETUP.md).
 2. **Admin access:** insert email into `admin_allowlist` OR set `app_metadata.role = "admin"` on user in Supabase Dashboard.
 3. **Align allowlists:** `ADMIN_EMAILS` (app UI gate) should match who can pass RLS (`admin_allowlist` or `app_metadata`).
 4. **Deploy:** push to `main` → Vercel auto-deploy; set env vars on Vercel.

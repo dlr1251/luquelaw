@@ -1,6 +1,7 @@
 # Agent guide — Luque Law
 
-**Read first:** [docs/PROJECT.md](./docs/PROJECT.md)
+**Read first:** [docs/PROJECT.md](./docs/PROJECT.md)  
+**Supabase setup:** [docs/SUPABASE_SETUP.md](./docs/SUPABASE_SETUP.md)
 
 That file is the master project document: product vision, ontology, phased roadmap (no dates), current status, and checklists for agents. Update it when completing a phase or changing scope.
 
