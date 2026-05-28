@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 import { cn } from "@/lib/cn";
 import {
@@ -16,41 +16,56 @@ type Props = {
   variant?: "surface" | "forest";
 };
 
+const THEME_CHANGE_EVENT = "luquelaw-theme-change";
+
+function subscribeToTheme(onStoreChange: () => void) {
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  const onChange = () => onStoreChange();
+
+  media.addEventListener("change", onChange);
+  window.addEventListener(THEME_CHANGE_EVENT, onChange);
+  window.addEventListener("storage", onChange);
+
+  return () => {
+    media.removeEventListener("change", onChange);
+    window.removeEventListener(THEME_CHANGE_EVENT, onChange);
+    window.removeEventListener("storage", onChange);
+  };
+}
+
+function getClientTheme(): Theme {
+  const stored = getStoredTheme();
+  return resolveTheme(stored, getSystemTheme());
+}
+
+function getServerTheme(): Theme {
+  return "light";
+}
+
 export function ThemeToggle({ variant = "surface" }: Props) {
-  const [theme, setTheme] = useState<Theme>("light");
+  const theme = useSyncExternalStore(
+    subscribeToTheme,
+    getClientTheme,
+    getServerTheme,
+  );
   const forest = variant === "forest";
 
   useEffect(() => {
-    const stored = getStoredTheme();
-    const resolved = resolveTheme(stored, getSystemTheme());
-    setTheme(resolved);
-    applyTheme(resolved);
-
-    if (stored) return;
-
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onChange = () => {
-      const next = resolveTheme(getStoredTheme(), getSystemTheme());
-      setTheme(next);
-      applyTheme(next);
-    };
-
-    media.addEventListener("change", onChange);
-    return () => media.removeEventListener("change", onChange);
-  }, []);
+    applyTheme(theme);
+  }, [theme]);
 
   return (
     <button
       type="button"
       onClick={() => {
         const next: Theme = theme === "dark" ? "light" : "dark";
-        setTheme(next);
         applyTheme(next);
         try {
           window.localStorage.setItem(THEME_STORAGE_KEY, next);
         } catch {
           // ignore
         }
+        window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
       }}
       className={cn(
         "inline-flex h-10 w-10 items-center justify-center transition",

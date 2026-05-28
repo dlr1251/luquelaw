@@ -7,7 +7,7 @@
  *   npm run seed:norms -- constitucion-colombia resolucion-5477-2022
  */
 
-import { readFileSync, existsSync } from "fs";
+import { readFileSync, existsSync, writeFileSync } from "fs";
 import { resolve, dirname } from "path";
 import { fileURLToPath } from "url";
 import { createClient } from "@supabase/supabase-js";
@@ -338,6 +338,7 @@ const CONSTITUCION_EN = {
         number_label: "Title I",
       },
       "art-1": {
+        title: "Article 1",
         html: articleHtml(
           "Colombia is a social state under the rule of law, organized as a unitary, decentralized republic, with autonomy of its territorial entities, democratic, participatory, and pluralistic, founded on respect for human dignity, on work and solidarity of the people who compose it, and on the prevalence of the general interest.",
         ),
@@ -462,8 +463,14 @@ const CONSTITUCION_EN = {
     };
 
     const en = enMap[section.section_key];
-    if (!en) return section;
-    return { ...section, ...en };
+    const merged = en ? { ...section, ...en } : { ...section };
+    if (
+      section.section_key.startsWith("art-") &&
+      merged.title.startsWith("Artículo")
+    ) {
+      merged.title = `Article ${section.section_key.slice(4)}`;
+    }
+    return merged;
   }),
 };
 
@@ -886,6 +893,8 @@ async function main() {
 
   const slugs = process.argv.slice(2).filter((a) => !a.startsWith("--"));
   const emitSql = process.argv.includes("--sql");
+  const outIdx = process.argv.indexOf("--out");
+  const outPath = outIdx >= 0 ? process.argv[outIdx + 1] : null;
   const targets = slugs.length ? slugs : Object.keys(CATALOG);
 
   if (emitSql) {
@@ -895,7 +904,13 @@ async function main() {
         statements.push(buildSqlForEntry(entry));
       }
     }
-    process.stdout.write(statements.join("\n\n"));
+    const sql = statements.join("\n\n");
+    if (outPath) {
+      writeFileSync(outPath, sql, "utf8");
+      console.error(`Wrote ${outPath}`);
+      return;
+    }
+    process.stdout.write(sql);
     return;
   }
 
