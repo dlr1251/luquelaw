@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { LanguageSwitch } from "@/components/language-switch";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { useBookingModal } from "@/components/booking/BookingProvider";
+import { localeFromPathname } from "@/lib/locale/paths";
 
 export function HeaderNav({
   signedIn,
@@ -18,7 +19,7 @@ export function HeaderNav({
 }) {
   const pathname = usePathname();
   const mobilePanelId = useId();
-  const isSpanish = pathname === "/es" || pathname.startsWith("/es/");
+  const isSpanish = localeFromPathname(pathname) === "es";
   const prefix = isSpanish ? "/es" : "";
   const booking = useBookingModal();
   const homeHref = prefix || "/";
@@ -26,7 +27,9 @@ export function HeaderNav({
 
   const copy = isSpanish
     ? {
-        clkr: "CLKR",
+        legalArticles: "Artículos legales",
+        norms: "Normas",
+        blog: "Blog",
         contact: "Contacto",
         portal: "Portal cliente",
         admin: "Admin",
@@ -34,7 +37,9 @@ export function HeaderNav({
         close: "Cerrar",
       }
     : {
-        clkr: "CLKR",
+        legalArticles: "Legal Articles",
+        norms: "Norms",
+        blog: "Blog",
         contact: "Contact",
         portal: "Client portal",
         admin: "Admin",
@@ -44,15 +49,17 @@ export function HeaderNav({
 
   const items = useMemo(
     () => [
-      { href: `${prefix}/clkr`, label: copy.clkr },
+      { href: `${prefix}/clkr`, label: copy.legalArticles },
+      { href: `${prefix}/norms`, label: copy.norms },
+      { href: `${prefix}/posts`, label: copy.blog },
       { href: contactHref, label: copy.contact },
       { href: signedIn ? "/account" : "/login", label: copy.portal },
     ],
-    [contactHref, copy.clkr, copy.contact, copy.portal, prefix, signedIn],
+    [contactHref, copy.blog, copy.contact, copy.legalArticles, copy.norms, copy.portal, prefix, signedIn],
   );
 
-  const primaryLinks = items.slice(0, 2);
-  const portalLink = items[2];
+  const primaryLinks = items.slice(0, 4);
+  const portalLink = items[4];
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -76,14 +83,14 @@ export function HeaderNav({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition duration-150 hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40";
+    "inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-hero-foreground/75 transition duration-150 hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
 
   const iconButtonClass =
-    "inline-flex h-10 w-10 items-center justify-center text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]";
+    "inline-flex h-10 w-10 items-center justify-center text-hero-foreground/70 transition hover:text-hero-foreground";
 
   return (
     <>
-      <nav className="hidden items-center justify-end gap-1 md:flex" aria-label="Primary">
+      <nav className="hidden items-center justify-end gap-1 lg:flex" aria-label="Primary">
         <div className="flex items-center">
           {primaryLinks.map((item) => (
             <Link key={item.href} href={item.href} className={navLinkClass}>
@@ -116,7 +123,7 @@ export function HeaderNav({
         </button>
       </nav>
 
-      <div className="md:hidden">
+      <div className="lg:hidden">
         <div className="flex items-center justify-end gap-1">
           <LanguageSwitch variant="forest" />
           <ThemeToggle variant="forest" />
@@ -163,12 +170,9 @@ export function HeaderNav({
               className="absolute right-0 top-0 h-full w-[86vw] max-w-sm bg-[color:var(--forest)] shadow-2xl"
             >
               <div className="flex items-center justify-between border-b border-[color:var(--parchment)]/10 p-4">
-                <div className="flex items-center gap-[0.3em] font-display text-base text-[color:var(--parchment)]">
+                <div className="flex items-center gap-[0.3em] font-display text-base font-normal text-[color:var(--parchment)]">
                   <span>Luque</span>
-                  <span
-                    aria-hidden="true"
-                    className="inline-block h-[0.5em] w-[0.5em] shrink-0 border border-[color:var(--parchment)]"
-                  />
+                  <span aria-hidden="true" className="brand-mark-dot text-[color:var(--parchment)]" />
                   <span>Law</span>
                 </div>
                 <button

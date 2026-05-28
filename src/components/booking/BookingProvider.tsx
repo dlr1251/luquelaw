@@ -2,6 +2,8 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
+import { getBookingUrl } from "@/lib/booking/url";
+
 type BookingContextValue = {
   open: () => void;
   close: () => void;
@@ -53,11 +55,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
       ? "Selecciona un horario en el calendario. Si prefieres, puedes ver los detalles en la página de contacto."
       : "Pick a time on the calendar. If you prefer, you can view consultation details on the contact page.";
 
-  // Configurable via env; you can set this without code changes.
-  const bookingUrl =
-    process.env.NEXT_PUBLIC_BOOKING_URL ||
-    process.env.NEXT_PUBLIC_GOOGLE_CALENDAR_BOOKING_URL ||
-    "https://calendar.app.google/6nqwkQTmHX1UohVb7";
+  const bookingUrl = getBookingUrl();
 
   return (
     <BookingContext.Provider value={value}>
@@ -80,7 +78,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
           <div className="relative flex max-h-[min(100dvh-2rem,900px)] w-full max-w-4xl flex-col overflow-y-auto border-2 border-[color:var(--moss)] bg-[color:var(--parchment)] text-[color:var(--ink)] shadow-2xl">
             <div className="flex items-start justify-between gap-4 border-b border-[color:var(--moss)]/25 bg-[color:var(--surface)] p-4 sm:p-5">
               <div>
-                <div className="font-display text-xl leading-tight tracking-tight text-[color:var(--forest)]">
+                <div className="font-display text-xl font-normal leading-tight tracking-tight text-[color:var(--forest)]">
                   {title}
                 </div>
                 <p className="mt-1 max-w-2xl text-sm leading-6 text-[color:var(--muted)]">{description}</p>

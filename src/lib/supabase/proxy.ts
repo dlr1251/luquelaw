@@ -1,15 +1,25 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+import { handleLocaleRedirect, applyLocaleCookie } from "@/lib/locale/redirect";
 import { getSupabaseKey, getSupabaseUrl, isSupabaseConfigured } from "@/lib/supabase/config";
 
 export async function updateSession(request: NextRequest) {
+  const localeRedirect = handleLocaleRedirect(request);
+  if (localeRedirect) {
+    return localeRedirect;
+  }
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-pathname", request.nextUrl.pathname);
+
   let supabaseResponse = NextResponse.next({
-    request,
+    request: {
+      headers: requestHeaders,
+    },
   });
 
   if (!isSupabaseConfigured()) {
-    return supabaseResponse;
+    return applyLocaleCookie(request, supabaseResponse);
   }
 
   const supabase = createServerClient(getSupabaseUrl(), getSupabaseKey(), {
@@ -22,7 +32,9 @@ export async function updateSession(request: NextRequest) {
           request.cookies.set(name, value),
         );
         supabaseResponse = NextResponse.next({
-          request,
+          request: {
+            headers: requestHeaders,
+          },
         });
         cookiesToSet.forEach(({ name, value, options }) =>
           supabaseResponse.cookies.set(name, value, options),
@@ -36,5 +48,5 @@ export async function updateSession(request: NextRequest) {
 
   await supabase.auth.getClaims();
 
-  return supabaseResponse;
+  return applyLocaleCookie(request, supabaseResponse);
 }

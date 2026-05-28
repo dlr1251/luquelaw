@@ -1,9 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
-import type { ClkrArticleRecord, ClkrSection } from "@/lib/clkr/types";
+import { ClkrSectionBody } from "@/components/clkr/section-body";
+import { Prose } from "@/components/prose";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  defaultArticleMarkdown,
+  markdownToSections,
+  sectionsToMarkdown,
+} from "@/lib/clkr/markdown";
+import type { ClkrArticleRecord } from "@/lib/clkr/types";
 import { CLKR_CATEGORIES } from "@/lib/clkr/types";
+import { cn } from "@/lib/utils";
 
 type Props = {
   article?: ClkrArticleRecord | null;
@@ -12,81 +24,88 @@ type Props = {
   deleteAction?: (formData: FormData) => Promise<void>;
 };
 
-const emptySection = (): ClkrSection => ({
-  id: "",
-  title: "",
-  html: "",
-});
+type EditorMode = "write" | "preview";
 
 export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }: Props) {
-  const [sections, setSections] = useState<ClkrSection[]>(
-    article?.sections?.length ? article.sections : [emptySection()],
+  const [markdown, setMarkdown] = useState(() =>
+    article?.sections?.length ? sectionsToMarkdown(article.sections) : defaultArticleMarkdown(),
   );
+  const [mode, setMode] = useState<EditorMode>("write");
 
-  function updateSection(index: number, patch: Partial<ClkrSection>) {
-    setSections((prev) => prev.map((s, i) => (i === index ? { ...s, ...patch } : s)));
-  }
-
-  function addSection() {
-    setSections((prev) => [...prev, emptySection()]);
-  }
-
-  function removeSection(index: number) {
-    setSections((prev) => prev.filter((_, i) => i !== index));
-  }
-
+  const previewSections = useMemo(() => markdownToSections(markdown), [markdown]);
   const isEs = locale === "es";
+
+  const copy = isEs
+    ? {
+        body: "Contenido del artículo",
+        bodyHint:
+          "Usa ## para títulos de sección (tabla de contenidos). Usa ### para subtítulos dentro de cada sección. Markdown: **negrita**, listas, enlaces.",
+        write: "Escribir",
+        preview: "Vista previa",
+        previewEmpty: "Añade al menos un título ## para generar secciones.",
+        save: "Guardar",
+        delete: "Eliminar artículo",
+        deleteConfirm: "¿Eliminar este artículo?",
+      }
+    : {
+        body: "Article content",
+        bodyHint:
+          "Use ## for section titles (table of contents). Use ### for subtitles within a section. Markdown: **bold**, lists, links.",
+        write: "Write",
+        preview: "Preview",
+        previewEmpty: "Add at least one ## heading to create sections.",
+        save: "Save article",
+        delete: "Delete article",
+        deleteConfirm: "Delete this article?",
+      };
 
   return (
     <form action={saveAction} className="space-y-8">
       {article ? <input type="hidden" name="id" value={article.id} /> : null}
       <input type="hidden" name="locale" value={locale} />
-      <input type="hidden" name="sections_json" value={JSON.stringify(sections)} />
+      <input type="hidden" name="body_markdown" value={markdown} />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <label className="block text-sm font-bold text-[color:var(--ink)] sm:col-span-2">
-          Slug (URL)
-          <input
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="slug_key">Slug (URL)</Label>
+          <Input
+            id="slug_key"
             name="slug_key"
             defaultValue={article?.slug_key ?? ""}
             placeholder="investor-visa"
             pattern="[a-z0-9-]+"
             required
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 font-mono text-sm text-[color:var(--ink)]"
+            className="font-mono"
           />
-          <span className="mt-1 block text-xs font-normal text-[color:var(--muted)]">
+          <p className="text-xs text-muted-foreground">
             {locale === "es" ? `/es/clkr/` : `/clkr/`}
             <span className="font-mono">slug-key</span>
-          </span>
-        </label>
+          </p>
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)] sm:col-span-2">
-          Title
-          <input
-            name="title"
-            defaultValue={article?.title ?? ""}
-            required
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
-          />
-        </label>
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="title">Title</Label>
+          <Input id="title" name="title" defaultValue={article?.title ?? ""} required />
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)] sm:col-span-2">
-          Description (hub card)
-          <textarea
+        <div className="space-y-2 sm:col-span-2">
+          <Label htmlFor="description">Description (hub card)</Label>
+          <Textarea
+            id="description"
             name="description"
             rows={3}
             defaultValue={article?.description ?? ""}
             required
-            className="mt-1.5 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 py-2 text-sm text-[color:var(--ink)]"
           />
-        </label>
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)]">
-          Category
+        <div className="space-y-2">
+          <Label htmlFor="category">Category</Label>
           <select
+            id="category"
             name="category"
             defaultValue={article?.category ?? "Immigration"}
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
             {CLKR_CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -94,130 +113,118 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
               </option>
             ))}
           </select>
-        </label>
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)]">
-          Reading time
-          <input
+        <div className="space-y-2">
+          <Label htmlFor="reading_time">Reading time</Label>
+          <Input
+            id="reading_time"
             name="reading_time"
             defaultValue={article?.reading_time ?? "10 min"}
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
           />
-        </label>
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)]">
-          Status
+        <div className="space-y-2">
+          <Label htmlFor="status">Status</Label>
           <select
+            id="status"
             name="status"
             defaultValue={article?.status ?? "draft"}
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
+            className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
             <option value="draft">Draft</option>
             <option value="published">Published</option>
             <option value="archived">Archived</option>
           </select>
-        </label>
+        </div>
 
-        <label className="block text-sm font-bold text-[color:var(--ink)]">
-          Sort order (hub)
-          <input
+        <div className="space-y-2">
+          <Label htmlFor="sort_order">Sort order (hub)</Label>
+          <Input
+            id="sort_order"
             name="sort_order"
             type="number"
             defaultValue={article?.sort_order ?? 0}
-            className="mt-1.5 h-11 w-full border border-[color:var(--moss)]/40 bg-[color:var(--background)] px-3 text-sm text-[color:var(--ink)]"
           />
-        </label>
+        </div>
       </div>
 
-      <div>
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <h3 className="font-display text-lg font-normal text-[color:var(--forest)]">
-            {isEs ? "Secciones" : "Sections"}
-          </h3>
-          <button type="button" onClick={addSection} className="btn-secondary btn-secondary-sm">
-            {isEs ? "+ Sección" : "+ Section"}
-          </button>
-        </div>
-        <p className="mt-1 text-xs text-[color:var(--muted)]">
-          {isEs
-            ? "Cada sección genera un encabezado en la tabla de contenidos. El cuerpo acepta HTML básico (p, strong, ul, ol, h3)."
-            : "Each section becomes a table-of-contents entry. Body accepts basic HTML (p, strong, ul, ol, h3)."}
-        </p>
-
-        <div className="mt-4 space-y-6">
-          {sections.map((section, index) => (
-            <div
-              key={index}
-              className="border border-[color:var(--moss)]/35 bg-[color:var(--surface)] p-4 sm:p-5"
+      <div className="space-y-3">
+        <div className="flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <h3 className="text-base font-semibold">{copy.body}</h3>
+            <p className="mt-1 max-w-2xl text-xs leading-relaxed text-muted-foreground">
+              {copy.bodyHint}
+            </p>
+          </div>
+          <div className="inline-flex rounded-md border border-input p-0.5">
+            <button
+              type="button"
+              onClick={() => setMode("write")}
+              className={cn(
+                "rounded px-3 py-1.5 text-xs font-medium transition",
+                mode === "write"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
             >
-              <div className="mb-3 flex items-center justify-between gap-2">
-                <span className="text-[11px] font-bold uppercase tracking-[0.18em] text-[color:var(--moss)]">
-                  {isEs ? "Sección" : "Section"} {index + 1}
-                </span>
-                {sections.length > 1 ? (
-                  <button
-                    type="button"
-                    onClick={() => removeSection(index)}
-                    className="text-xs font-bold text-red-700 hover:underline"
-                  >
-                    {isEs ? "Eliminar" : "Remove"}
-                  </button>
-                ) : null}
-              </div>
-              <div className="grid gap-3 sm:grid-cols-2">
-                <label className="block text-sm font-bold text-[color:var(--ink)]">
-                  ID (anchor)
-                  <input
-                    value={section.id}
-                    onChange={(e) => updateSection(index, { id: e.target.value })}
-                    placeholder="definition"
-                    className="mt-1.5 h-10 w-full border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-3 font-mono text-sm"
-                  />
-                </label>
-                <label className="block text-sm font-bold text-[color:var(--ink)]">
-                  {isEs ? "Título" : "Title"}
-                  <input
-                    value={section.title}
-                    onChange={(e) => updateSection(index, { title: e.target.value })}
-                    placeholder="Definition"
-                    className="mt-1.5 h-10 w-full border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-3 text-sm"
-                  />
-                </label>
-                <label className="block text-sm font-bold text-[color:var(--ink)] sm:col-span-2">
-                  HTML body
-                  <textarea
-                    value={section.html}
-                    onChange={(e) => updateSection(index, { html: e.target.value })}
-                    rows={6}
-                    className="mt-1.5 w-full border border-[color:var(--moss)]/40 bg-[color:var(--card)] px-3 py-2 font-mono text-xs leading-relaxed"
-                  />
-                </label>
-              </div>
-            </div>
-          ))}
+              {copy.write}
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("preview")}
+              className={cn(
+                "rounded px-3 py-1.5 text-xs font-medium transition",
+                mode === "preview"
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground",
+              )}
+            >
+              {copy.preview}
+            </button>
+          </div>
         </div>
+
+        {mode === "write" ? (
+          <Textarea
+            value={markdown}
+            onChange={(e) => setMarkdown(e.target.value)}
+            rows={24}
+            className="min-h-[28rem] font-mono text-sm leading-relaxed"
+            spellCheck
+          />
+        ) : (
+          <div className="min-h-[28rem] rounded-md border border-input bg-[color:var(--parchment,#f5f2ec)] p-6 sm:p-8">
+            {previewSections.length ? (
+              <Prose>
+                <ClkrSectionBody sections={previewSections} />
+              </Prose>
+            ) : (
+              <p className="text-sm text-muted-foreground">{copy.previewEmpty}</p>
+            )}
+          </div>
+        )}
       </div>
 
-      <div className="flex flex-wrap gap-3 border-t border-[color:var(--moss)]/25 pt-6">
-        <button type="submit" className="btn-primary btn-primary-sm">
-          {isEs ? "Guardar" : "Save article"}
-        </button>
+      <div className="flex flex-wrap gap-3 border-t pt-6">
+        <Button type="submit">{copy.save}</Button>
       </div>
 
       {article && deleteAction ? (
-        <div className="border-t border-[color:var(--moss)]/25 pt-4">
-          <button
+        <div className="border-t pt-4">
+          <Button
             type="submit"
+            variant="destructive"
+            size="sm"
             formAction={deleteAction}
-            className="text-xs font-bold text-red-700 hover:underline"
             onClick={(e) => {
-              if (!confirm(isEs ? "¿Eliminar este artículo?" : "Delete this article?")) {
+              if (!confirm(copy.deleteConfirm)) {
                 e.preventDefault();
               }
             }}
           >
-            {isEs ? "Eliminar artículo" : "Delete article"}
-          </button>
+            {copy.delete}
+          </Button>
         </div>
       ) : null}
     </form>

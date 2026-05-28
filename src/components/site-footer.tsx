@@ -8,10 +8,11 @@ import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/container";
 import { DlrMonogram } from "@/components/dlr-monogram";
+import { localeFromPathname } from "@/lib/locale/paths";
 
 export function SiteFooter() {
   const pathname = usePathname();
-  const isSpanish = pathname === "/es" || pathname.startsWith("/es/");
+  const isSpanish = localeFromPathname(pathname) === "es";
   const prefix = isSpanish ? "/es" : "";
 
   const tagline = isSpanish
@@ -25,51 +26,48 @@ export function SiteFooter() {
   const homeHref = prefix || "/";
   const navLinks = isSpanish
     ? [
-        { href: `${prefix}/clkr`, label: "CLKR" },
+        { href: `${prefix}/clkr`, label: "Artículos legales" },
+        { href: `${prefix}/norms`, label: "Normas" },
+        { href: `${prefix}/posts`, label: "Blog" },
         { href: `${homeHref}#contact`, label: "Contacto" },
         { href: "/login", label: "Portal cliente" },
       ]
     : [
-        { href: `${prefix}/clkr`, label: "CLKR" },
+        { href: `${prefix}/clkr`, label: "Legal Articles" },
+        { href: `${prefix}/norms`, label: "Norms" },
+        { href: `${prefix}/posts`, label: "Blog" },
         { href: `${homeHref}#contact`, label: "Contact" },
         { href: "/login", label: "Client portal" },
       ];
 
   const sectionLabel =
-    "font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.22em] text-[color:var(--parchment)]/45";
+    "font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.22em] text-hero-foreground/50";
 
   const navLinkClass =
-    "block font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40";
+    "block font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium text-hero-foreground/72 transition hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
 
   return (
-    <footer className="border-t border-[color:var(--parchment)]/10 bg-[color:var(--forest)] text-[color:var(--parchment)]">
+    <footer className="border-t border-hero-foreground/12 bg-hero text-hero-foreground">
       <Container className="py-16 sm:py-20">
-        <div className="grid gap-12 lg:grid-cols-[5fr_3fr_4fr]">
-
-          {/* Col 1 — Brand + contact */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,4fr)] lg:gap-12">
           <div className="space-y-6">
             <Link
-              href="/"
-              className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/50"
+              href={homeHref}
+              className="inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/50"
             >
-              <div className="flex items-center gap-[0.3em] font-display text-xl leading-[1.1] tracking-tight text-[color:var(--parchment)]">
+              <div className="flex items-center gap-[0.3em] font-display text-lg font-normal leading-none tracking-tight">
                 <span>Luque</span>
-                <span
-                  aria-hidden="true"
-                  className="inline-block h-[0.5em] w-[0.5em] shrink-0 border border-[color:var(--parchment)]"
-                />
+                <span aria-hidden="true" className="brand-mark-dot" />
                 <span>Law</span>
               </div>
             </Link>
 
-            <p className="max-w-xs font-[family-name:var(--font-body)] text-sm italic leading-[1.75] text-[color:var(--parchment)]/60">
-              {tagline}
-            </p>
+            <p className="max-w-xs text-sm leading-relaxed text-hero-muted">{tagline}</p>
 
             <div className="space-y-3">
               <a
                 href="mailto:daniel@luquelaw.co"
-                className="flex items-center gap-2.5 text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                className="flex items-center gap-2.5 text-sm text-hero-foreground/72 transition hover:text-hero-foreground"
               >
                 <Mail aria-hidden="true" className="h-3.5 w-3.5 shrink-0" strokeWidth={1.8} />
                 daniel@luquelaw.co
@@ -82,15 +80,14 @@ export function SiteFooter() {
                 }
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2.5 text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                className="flex items-center gap-2.5 text-sm text-hero-foreground/72 transition hover:text-hero-foreground"
               >
-                <WhatsappIcon className="h-3.5 w-3.5 shrink-0" />
+                <WhatsappIcon className="h-4 w-4 shrink-0" />
                 +57 300 679 1123
               </a>
             </div>
           </div>
 
-          {/* Col 2 — Navigation */}
           <div className="space-y-5">
             <p className={sectionLabel}>{isSpanish ? "Explorar" : "Explore"}</p>
             <nav aria-label="Footer navigation">
@@ -106,21 +103,16 @@ export function SiteFooter() {
             </nav>
           </div>
 
-          {/* Col 3 — Legal disclaimer */}
           <div className="space-y-5">
             <p className={sectionLabel}>{isSpanish ? "Aviso legal" : "Legal notice"}</p>
-            <p className="font-[family-name:var(--font-body)] text-[0.75rem] leading-[1.8] text-[color:var(--parchment)]/40">
-              {disclaimer}
-            </p>
+            <p className="text-sm leading-relaxed text-hero-foreground/52">{disclaimer}</p>
           </div>
-
         </div>
       </Container>
 
-      {/* Copyright bar */}
-      <div className="border-t border-[color:var(--parchment)]/10">
+      <div className="border-t border-hero-foreground/12">
         <Container className="flex flex-col items-center gap-3 py-5 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
-          <p className="min-w-0 text-center font-[family-name:var(--font-ui)] text-[0.6875rem] leading-relaxed text-[color:var(--parchment)]/30 sm:text-left">
+          <p className="min-w-0 text-center font-[family-name:var(--font-ui)] text-[0.6875rem] leading-relaxed text-hero-foreground/38 sm:text-left">
             © {new Date().getFullYear()} Luque Law · Daniel Luque Restrepo · Medellín, Colombia
           </p>
           <DlrMonogram size={32} className="shrink-0" />

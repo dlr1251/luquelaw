@@ -21,15 +21,11 @@ export function ClkrHub({ articles, locale = "en" }: Props) {
     <main className="flex-1">
       <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-14 sm:py-16 lg:py-20">
-          <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.18em] text-[color:var(--moss)]">
-            {copy.eyebrow}
-          </p>
-          <h1 className="mt-3 max-w-3xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.75rem]">
+          <p className="marketing-eyebrow">{copy.eyebrow}</p>
+          <h1 className="marketing-display mt-3 max-w-3xl text-[color:var(--forest)] sm:text-[clamp(2.25rem,4vw,2.75rem)]">
             {copy.title}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
-            {copy.subtitle}
-          </p>
+          <p className="marketing-body mt-4 max-w-3xl text-base sm:text-lg">{copy.subtitle}</p>
           <p className="mt-6">
             <Link
               href={contactHref}
@@ -96,10 +92,8 @@ export function ClkrHub({ articles, locale = "en" }: Props) {
 
       <Container className="py-14 sm:py-16">
         <div className="mb-10 max-w-2xl space-y-2">
-          <h2 className="font-display text-[1.65rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[1.8rem]">
-            {copy.browseTitle}
-          </h2>
-          <p className="text-sm leading-6 text-[color:var(--muted)]">{copy.browseSubtitle}</p>
+          <h2 className="marketing-title text-[color:var(--forest)]">{copy.browseTitle}</h2>
+          <p className="marketing-body text-sm">{copy.browseSubtitle}</p>
         </div>
 
         <ClkrBrowser articles={articles} locale={locale} />

@@ -10,9 +10,8 @@ type Props = {
 
 export function Container({ as: As = "div", children, className }: Props) {
   return (
-    <As className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6", className)}>
+    <As className={cn("mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8", className)}>
       {children}
     </As>
   );
 }
-

@@ -25,9 +25,9 @@ export function WhatsAppFloatingButton() {
       rel="noreferrer"
       aria-label={label}
       title="WhatsApp"
-      className="fixed right-4 z-[65] inline-flex h-12 w-12 items-center justify-center rounded-full border border-[color:var(--moss)] bg-[#25D366] text-white shadow-lg transition hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--moss)] sm:right-5 sm:h-14 sm:w-14 bottom-[max(1.25rem,env(safe-area-inset-bottom))]"
+      className="fixed right-4 z-[65] inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#128C7E] text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition hover:bg-[#0f7a6e] hover:shadow-[0_10px_28px_rgba(0,0,0,0.26)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)] sm:right-5 sm:h-14 sm:w-14 bottom-[max(1.25rem,env(safe-area-inset-bottom))]"
     >
-      <WhatsappIcon className="h-6 w-6" />
+      <WhatsappIcon className="h-[1.35rem] w-[1.35rem] sm:h-6 sm:w-6" />
     </a>
   );
 }

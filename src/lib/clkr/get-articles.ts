@@ -126,3 +126,56 @@ export async function getRelatedPublishedArticles(
     return [];
   }
 }
+
+export async function getAllPublishedArticles(): Promise<ClkrArticleRecord[]> {
+  if (!isSupabaseConfigured()) return [];
+
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("clkr_articles")
+      .select("*")
+      .eq("status", "published")
+      .order("locale")
+      .order("sort_order", { ascending: true });
+
+    if (error || !data) return [];
+    return data.map((row) => mapRow(row));
+  } catch {
+    return [];
+  }
+}
+
+export async function getTranslationSlugKey(
+  slugKey: string,
+  locale: "en" | "es",
+): Promise<string | null> {
+  if (!isSupabaseConfigured()) return null;
+
+  try {
+    const supabase = await createClient();
+    const { data: source, error: sourceError } = await supabase
+      .from("clkr_articles")
+      .select("translation_group_id")
+      .eq("slug_key", slugKey)
+      .eq("locale", locale)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (sourceError || !source?.translation_group_id) return null;
+
+    const otherLocale = locale === "en" ? "es" : "en";
+    const { data: translation, error: translationError } = await supabase
+      .from("clkr_articles")
+      .select("slug_key")
+      .eq("translation_group_id", source.translation_group_id)
+      .eq("locale", otherLocale)
+      .eq("status", "published")
+      .maybeSingle();
+
+    if (translationError || !translation?.slug_key) return null;
+    return String(translation.slug_key);
+  } catch {
+    return null;
+  }
+}

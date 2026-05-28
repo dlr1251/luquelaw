@@ -7,12 +7,14 @@ type Props = {
   whatsappHref: string;
   className?: string;
   align?: "center" | "end";
+  variant?: "dark" | "light";
 };
 
-const linkClass =
-  "inline-flex items-center gap-2.5 font-[family-name:var(--font-ui)] text-sm font-medium text-[color:var(--parchment)]/85 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--moss)]";
-
-export function ContactLinks({ whatsappHref, className, align = "end" }: Props) {
+export function ContactLinks({ whatsappHref, className, align = "end", variant = "dark" }: Props) {
+  const linkClass =
+    variant === "light"
+      ? "inline-flex items-center gap-2.5 font-[family-name:var(--font-ui)] text-sm font-medium text-foreground transition hover:text-muted-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+      : "inline-flex items-center gap-2.5 font-[family-name:var(--font-ui)] text-sm font-medium text-hero-foreground/85 transition hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
   return (
     <ul
       className={cn(
@@ -29,9 +31,7 @@ export function ContactLinks({ whatsappHref, className, align = "end" }: Props) 
       </li>
       <li>
         <a href={whatsappHref} target="_blank" rel="noreferrer" className={linkClass}>
-          <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#25D366]/15 text-[#5dde7a]">
-            <WhatsappIcon className="h-3.5 w-3.5" />
-          </span>
+          <WhatsappIcon className="h-4 w-4 shrink-0" />
           +57 300 679 1123
         </a>
       </li>

@@ -61,6 +61,12 @@ export type HomeContent = {
   };
 };
 
+const heroIntroEn =
+  "Clear, bilingual guidance on visas, property, and business in Colombia.";
+
+const heroIntroEs =
+  "Orientación clara y bilingüe sobre visas, propiedad y negocios en Colombia.";
+
 const bioEn =
   "UPB graduate and specialist in International Tax Management. Daniel has advised and represented hundreds of foreign clients in real estate transactions, estate planning, immigration matters, business, and more. Through his network of allies, he delivers high-value legal counsel that is clear and easy to understand.";
 
@@ -85,7 +91,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     eyebrow: "Immigration · Real Estate · Corporate",
     title: "Legal Counsel for international clients in Colombia.",
-    intro: bioEn,
+    intro: heroIntroEn,
     bookCta: "Book a consultation",
     clkrCta: "Explore CLKR",
     clkrHref: "/clkr",
@@ -120,7 +126,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     about: {
       title: "Counsel built for international clients operating in Colombia.",
-      body: "Daniel Luque Restrepo advises on immigration, real estate transactions, commercial matters, civil disputes, and labor issues. Bilingual (English/Spanish).",
+      body: bioEn,
       credentialsPrefix: "Credentials:",
       university: "Universidad Pontificia Bolivariana",
       formerPrefix: "Former",
@@ -171,7 +177,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   es: {
     eyebrow: "Inmigración · Inmobiliario · Corporativo",
     title: "Asesoría legal para clientes internacionales en Colombia.",
-    intro: bioEs,
+    intro: heroIntroEs,
     bookCta: "Agendar consulta",
     clkrCta: "Explorar CLKR",
     clkrHref: "/es/clkr",
@@ -206,7 +212,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     about: {
       title: "Asesoría pensada para clientes internacionales en Colombia.",
-      body: "Daniel Luque Restrepo es un abogado colombiano con base en Medellín, enfocado en inmigración, transacciones inmobiliarias, asuntos comerciales, controversias civiles y temas laborales.",
+      body: bioEs,
       credentialsPrefix: "Credenciales:",
       university: "Universidad Pontificia Bolivariana",
       formerPrefix: "Experiencia previa en",

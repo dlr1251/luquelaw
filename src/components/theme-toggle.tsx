@@ -3,22 +3,14 @@
 import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/cn";
-
-type Theme = "light" | "dark";
-
-function getStoredTheme(): Theme | null {
-  try {
-    const t = window.localStorage.getItem("theme");
-    return t === "dark" || t === "light" ? t : null;
-  } catch {
-    return null;
-  }
-}
-
-function applyTheme(theme: Theme) {
-  const root = document.documentElement;
-  root.classList.toggle("dark", theme === "dark");
-}
+import {
+  THEME_STORAGE_KEY,
+  applyTheme,
+  getStoredTheme,
+  getSystemTheme,
+  resolveTheme,
+  type Theme,
+} from "@/lib/theme/preferences";
 
 type Props = {
   variant?: "surface" | "forest";
@@ -30,13 +22,21 @@ export function ThemeToggle({ variant = "surface" }: Props) {
 
   useEffect(() => {
     const stored = getStoredTheme();
-    if (stored) {
-      setTheme(stored);
-      applyTheme(stored);
-      return;
-    }
-    setTheme("light");
-    applyTheme("light");
+    const resolved = resolveTheme(stored, getSystemTheme());
+    setTheme(resolved);
+    applyTheme(resolved);
+
+    if (stored) return;
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const onChange = () => {
+      const next = resolveTheme(getStoredTheme(), getSystemTheme());
+      setTheme(next);
+      applyTheme(next);
+    };
+
+    media.addEventListener("change", onChange);
+    return () => media.removeEventListener("change", onChange);
   }, []);
 
   return (
@@ -47,7 +47,7 @@ export function ThemeToggle({ variant = "surface" }: Props) {
         setTheme(next);
         applyTheme(next);
         try {
-          window.localStorage.setItem("theme", next);
+          window.localStorage.setItem(THEME_STORAGE_KEY, next);
         } catch {
           // ignore
         }
@@ -55,8 +55,8 @@ export function ThemeToggle({ variant = "surface" }: Props) {
       className={cn(
         "inline-flex h-10 w-10 items-center justify-center transition",
         forest
-          ? "border-transparent bg-transparent text-[color:var(--parchment)]/70 hover:text-[color:var(--parchment)]"
-          : "rounded-lg border border-[color:var(--border)] bg-[color:var(--card)] text-[color:var(--foreground)] hover:bg-[color:var(--surface)]",
+          ? "border-transparent bg-transparent text-[color:var(--header-fg)]/70 hover:text-[color:var(--header-fg)]"
+          : "rounded-lg border border-border bg-card text-foreground hover:bg-muted",
       )}
       aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
       title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}

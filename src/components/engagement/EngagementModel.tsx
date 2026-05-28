@@ -17,7 +17,7 @@ type Props = {
 };
 
 function Icon({ name }: { name: Step["icon"] }) {
-  const props = { "aria-hidden": true, className: "h-6 w-6", strokeWidth: 1.8 } as const;
+  const props = { "aria-hidden": true, className: "h-5 w-5", strokeWidth: 1.8 } as const;
   if (name === "chat") return <MessageSquareText {...props} />;
   if (name === "doc") return <FileText {...props} />;
   return <ClipboardList {...props} />;
@@ -27,13 +27,13 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
   return (
     <div
       className={cn(
-        "space-y-4 border border-[color:var(--moss)]/50 bg-[color:var(--parchment)] p-6 text-[color:var(--ink)]",
+        "space-y-5 border border-[color:var(--moss)]/35 bg-[color:var(--parchment)] p-5 sm:p-6 text-[color:var(--ink)]",
         className,
       )}
     >
-      <div className="flex items-start justify-between gap-6">
-        <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">{label}</div>
-        <div className="engagement-flow hidden sm:block" aria-hidden="true">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div className="marketing-eyebrow text-[0.625rem] tracking-[0.2em]">{label}</div>
+        <div className="engagement-flow shrink-0 self-end sm:self-auto" aria-hidden="true">
           <div className="engagement-flow__rail" />
           <div className="engagement-flow__node engagement-flow__node--1" />
           <div className="engagement-flow__node engagement-flow__node--2" />
@@ -44,24 +44,23 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
         </div>
       </div>
 
-      <ol className="space-y-3">
+      <ol className="space-y-4">
         {steps.map((s, idx) => (
-          <li key={s.title} className="flex gap-3">
-            <div className="mt-0.5 inline-flex h-11 w-11 shrink-0 items-center justify-center border border-[color:var(--moss)]/35 bg-white/40 text-[color:var(--forest)]">
+          <li key={s.title} className="flex gap-3.5">
+            <div className="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[color:var(--moss)]/30 bg-white/50 text-[color:var(--forest)]">
               <Icon name={s.icon} />
             </div>
-            <div>
-              <div className="text-sm font-bold text-[color:var(--ink)]">
+            <div className="min-w-0">
+              <div className="text-sm font-semibold text-[color:var(--ink)]">
                 <span className="text-[color:var(--forest)]">{idx + 1}.</span> {s.title}
               </div>
-              <div className="mt-0.5 text-sm leading-6 text-[color:var(--muted)]">{s.body}</div>
+              <div className="mt-1 text-sm leading-relaxed text-[color:var(--muted)]">{s.body}</div>
             </div>
           </li>
         ))}
       </ol>
 
-      <div className="text-xs leading-5 text-[color:var(--muted)]">{footer}</div>
+      <div className="text-sm leading-relaxed text-[color:var(--muted)]">{footer}</div>
     </div>
   );
 }
-

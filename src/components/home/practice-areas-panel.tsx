@@ -25,106 +25,45 @@ type Props = {
   credentialsLine: string;
   className?: string;
   id?: string;
-  theme?: "light" | "dark";
 };
 
-export function PracticeAreasPanel({
-  label,
-  areas,
-  credentialsLine,
-  className,
-  id,
-  theme = "light",
-}: Props) {
-  const isLight = theme === "light";
-
+export function PracticeAreasPanel({ label, areas, credentialsLine, className, id }: Props) {
   return (
     <section
       id={id}
-      className={cn(
-        "scroll-mt-28 p-6 sm:p-8",
-        isLight
-          ? "border border-[color:var(--moss)]/30 bg-[color:var(--card)]"
-          : "border border-[color:var(--parchment)]/10 bg-[color:var(--parchment)]/[0.04]",
-        className,
-      )}
+      className={cn("scroll-mt-28 border border-border bg-card p-5 sm:p-7 lg:p-8", className)}
     >
-      <div className="mb-6 flex items-center gap-3">
-        <span
-          className={cn(
-            "inline-flex h-9 w-9 shrink-0 items-center justify-center border",
-            isLight
-              ? "border-[color:var(--moss)]/40 bg-[color:var(--surface)] text-[color:var(--moss)]"
-              : "border-[color:var(--moss)]/40 bg-[color:var(--parchment)]/5 text-[color:var(--moss)]",
-          )}
-        >
+      <div className="mb-6 flex items-center gap-3 sm:mb-8">
+        <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-surface text-muted-foreground">
           <LayoutGrid className="h-4 w-4" strokeWidth={1.8} aria-hidden="true" />
         </span>
-        <span
-          className={cn(
-            "font-[family-name:var(--font-ui)] text-[0.625rem] uppercase tracking-[0.22em]",
-            isLight ? "text-[color:var(--moss)]" : "text-[color:var(--parchment)]/70",
-          )}
-        >
-          {label}
-        </span>
+        <span className="marketing-eyebrow text-[0.625rem]">{label}</span>
       </div>
 
-      <ul
-        className={cn(
-          "grid sm:grid-cols-2 lg:grid-cols-4",
-          isLight ? "divide-y divide-[color:var(--moss)]/15 sm:divide-y-0" : "divide-y divide-[color:var(--parchment)]/10 sm:divide-y-0",
-        )}
-      >
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {areas.map((area) => {
           const Icon = iconMap[area.icon];
           return (
-            <li key={area.title} className="flex items-start gap-3.5 py-4 sm:px-3 lg:px-4">
-              <span
-                className={cn(
-                  "mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center border",
-                  isLight
-                    ? "border-[color:var(--moss)]/35 bg-[color:var(--surface)] text-[color:var(--moss)]"
-                    : "border-[color:var(--moss)]/35 bg-[color:var(--parchment)]/8 text-[color:var(--moss)]",
-                )}
-              >
+            <li
+              key={area.title}
+              className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 sm:p-5"
+            >
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-card text-foreground">
                 <Icon className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.75} aria-hidden="true" />
               </span>
-              <div className="min-w-0">
-                <p
-                  className={cn(
-                    "font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium uppercase tracking-[0.07em]",
-                    isLight ? "text-[color:var(--forest)]" : "text-[color:var(--parchment)]/95",
-                  )}
-                >
+              <div className="min-w-0 flex-1">
+                <p className="font-[family-name:var(--font-ui)] text-[0.8125rem] font-semibold uppercase tracking-[0.06em] text-foreground">
                   {area.title}
                 </p>
-                <p
-                  className={cn(
-                    "mt-1 text-[0.8125rem] leading-5",
-                    isLight ? "text-[color:var(--muted)]" : "text-[color:var(--parchment)]/55",
-                  )}
-                >
-                  {area.detail}
-                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{area.detail}</p>
               </div>
             </li>
           );
         })}
       </ul>
 
-      <div
-        className={cn(
-          "mt-4 border-t pt-5",
-          isLight ? "border-[color:var(--moss)]/20" : "border-[color:var(--parchment)]/10",
-        )}
-      >
-        <p
-          className={cn(
-            "font-[family-name:var(--font-ui)] text-[0.5625rem] uppercase tracking-[0.18em]",
-            isLight ? "text-[color:var(--muted)]" : "text-[color:var(--parchment)]/40",
-          )}
-        >
+      <div className="mt-6 border-t border-border pt-5 sm:mt-8">
+        <p className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.16em] text-muted-foreground">
           {credentialsLine}
         </p>
       </div>

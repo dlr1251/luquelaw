@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import { Arbutus_Slab, Libre_Baskerville, Literata, Jost } from "next/font/google";
+import { headers } from "next/headers";
+import { Arbutus_Slab, Figtree, Geist, Libre_Baskerville } from "next/font/google";
 
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
-import { BookingProvider } from "@/components/booking/BookingProvider";
-import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { ThemeScript } from "@/components/theme-script";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { localeFromPathname } from "@/lib/locale/paths";
+import { getRootMetadata } from "@/lib/seo/metadata";
+import { cn } from "@/lib/utils";
 
 import "./globals.css";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const display = Arbutus_Slab({
   variable: "--font-display",
@@ -21,53 +26,49 @@ const heading = Libre_Baskerville({
   style: ["normal", "italic"],
 });
 
-const body = Literata({
+const sans = Figtree({
   variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  style: ["normal", "italic"],
-});
-
-const ui = Jost({
-  variable: "--font-ui",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
 });
 
-export const metadata: Metadata = {
-  title: {
-    default: "Luque Law — Abogado · Legal Counsel",
-    template: "%s · Luque Law",
-  },
-  description:
-    "Colombian law for international clients — bilingual legal counsel in Medellín, Colombia.",
-};
+export const metadata: Metadata = getRootMetadata();
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const headersList = await headers();
+  const pathname = headersList.get("x-pathname") ?? "";
+  const lang = localeFromPathname(pathname);
+
   return (
     <html
-      lang="en"
-      className={`${display.variable} ${heading.variable} ${body.variable} ${ui.variable} h-full antialiased`}
+      lang={lang}
+      suppressHydrationWarning
+      className={cn(
+        "h-full antialiased",
+        display.variable,
+        heading.variable,
+        sans.variable,
+        geist.variable,
+      )}
     >
-      <body className="flex min-h-full flex-col bg-[color:var(--background)] text-[color:var(--foreground)]">
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:border focus:border-[color:var(--moss)] focus:bg-[color:var(--parchment)] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-[color:var(--ink)] focus:shadow-sm"
-        >
-          Skip to content
-        </a>
-        <BookingProvider locale="en">
-          <SiteHeader />
-          <div id="main" className="flex flex-1 flex-col">
-            {children}
-          </div>
-          <SiteFooter />
-          <WhatsAppFloatingButton />
-        </BookingProvider>
+      <head>
+        <ThemeScript />
+      </head>
+      <body className="min-h-full bg-background text-foreground">
+        <GoogleAnalytics />
+        <TooltipProvider>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:border focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-sm"
+          >
+            Skip to content
+          </a>
+          {children}
+        </TooltipProvider>
       </body>
     </html>
   );
