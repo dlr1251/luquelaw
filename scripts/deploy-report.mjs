@@ -47,8 +47,12 @@ const CHECKS = [
     url: "https://www.luquelaw.co/norms/constitucion-colombia/preambulo",
   },
   {
-    name: "Visa resolution section",
+    name: "Visa resolution section (short path redirect)",
     url: "https://www.luquelaw.co/norms/resolucion-5477-2022/visa-m-inversionista",
+  },
+  {
+    name: "Visa resolution section (canonical path)",
+    url: "https://www.luquelaw.co/norms/resolucion-5477-2022/titulo-ii/visa-m/visa-m-inversionista",
   },
   { name: "Spanish norms hub", url: "https://www.luquelaw.co/es/norms" },
 ];

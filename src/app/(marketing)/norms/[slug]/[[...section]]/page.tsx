@@ -9,7 +9,7 @@ import {
 import {
   buildTocEntries,
   defaultSectionPath,
-  findSectionByPath,
+  resolveSectionRequest,
 } from "@/lib/norms/tree";
 import { normPublicPath } from "@/lib/norms/types";
 import { JsonLd } from "@/lib/seo/json-ld";
@@ -32,12 +32,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const sectionPath = section?.length ? section : defaultSectionPath(data.tree);
-  const active = findSectionByPath(data.tree, sectionPath);
+  const resolved = resolveSectionRequest(data.tree, sectionPath);
+  const active = resolved?.node;
   const translationSlugKey = await getTranslationSlugKey(slug, locale);
 
   return buildNormMetadata(
     data.norm,
-    sectionPath,
+    resolved?.canonicalPath ?? sectionPath,
     active?.title,
     translationSlugKey,
   );
@@ -59,21 +60,27 @@ export default async function NormPage({ params }: Props) {
   }
 
   const sectionPath = section ?? [];
-  const active = findSectionByPath(tree, sectionPath);
+  const resolved = resolveSectionRequest(tree, sectionPath);
 
-  if (!active) {
+  if (!resolved) {
     notFound();
   }
 
-  const toc = buildTocEntries(tree, slug, locale, sectionPath);
+  const { node: active, canonicalPath } = resolved;
+
+  if (canonicalPath.join("/") !== sectionPath.join("/")) {
+    redirect(normPublicPath(slug, locale, canonicalPath));
+  }
+
+  const toc = buildTocEntries(tree, slug, locale, canonicalPath);
 
   return (
     <>
-      <JsonLd data={normJsonLd(norm, sectionPath, active.title)} />
+      <JsonLd data={normJsonLd(norm, canonicalPath, active.title)} />
       <NormLayout
         locale={locale}
         normSlug={slug}
-        sectionPath={sectionPath}
+        sectionPath={canonicalPath}
         title={norm.title}
         description={norm.description}
         category={norm.category}

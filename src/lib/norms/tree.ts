@@ -66,6 +66,51 @@ export function findSectionByPath(
   return found;
 }
 
+export function findPathToSectionKey(
+  tree: NormSectionNode[],
+  sectionKey: string,
+  ancestors: string[] = [],
+): string[] | null {
+  for (const node of tree) {
+    const path = [...ancestors, node.section_key];
+    if (node.section_key === sectionKey) return path;
+    const childPath = findPathToSectionKey(node.children, sectionKey, path);
+    if (childPath) return childPath;
+  }
+  return null;
+}
+
+export function resolveSectionRequest(
+  tree: NormSectionNode[],
+  pathKeys: string[],
+): { node: NormSectionNode; canonicalPath: string[] } | null {
+  if (!pathKeys.length) return null;
+
+  const direct = findSectionByPath(tree, pathKeys);
+  if (direct) {
+    return { node: direct, canonicalPath: pathKeys };
+  }
+
+  if (pathKeys.length === 1) {
+    const canonicalPath = findPathToSectionKey(tree, pathKeys[0]!);
+    if (canonicalPath) {
+      const node = findSectionByPath(tree, canonicalPath);
+      if (node) return { node, canonicalPath };
+    }
+  }
+
+  const flat = flattenSectionTree(tree);
+  for (const { node, path } of flat) {
+    if (path.length < pathKeys.length) continue;
+    const suffix = path.slice(-pathKeys.length);
+    if (suffix.every((key, index) => key === pathKeys[index])) {
+      return { node, canonicalPath: path };
+    }
+  }
+
+  return null;
+}
+
 export function sectionHref(
   slugKey: string,
   locale: "en" | "es",
