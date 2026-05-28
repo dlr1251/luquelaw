@@ -1,5 +1,10 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project documentation
+
+See **[docs/PROJECT.md](./docs/PROJECT.md)** for product vision, phased roadmap, and agent checklist.  
+Agents: read **[AGENTS.md](./AGENTS.md)** first.
+
 ## Environment variables
 
 Copy [`.env.example`](.env.example) to `.env.local` and fill in values.

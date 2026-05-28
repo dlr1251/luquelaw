@@ -5,7 +5,7 @@ import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
-import { clkrArticles, clkrArticlesEs } from "@/lib/clkr/articles";
+import type { ClkrArticle } from "@/lib/clkr/types";
 
 export type ArticleSection = {
   id: string;
@@ -21,6 +21,7 @@ type Props = {
   children: ReactNode;
   locale?: "en" | "es";
   currentSlug?: string;
+  relatedArticles?: ClkrArticle[];
 };
 
 export function ClkrArticleLayout({
@@ -32,6 +33,7 @@ export function ClkrArticleLayout({
   children,
   locale = "en",
   currentSlug,
+  relatedArticles = [],
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
@@ -69,10 +71,7 @@ export function ClkrArticleLayout({
             "For informational purposes only. Colombian law changes; always confirm current rules for your case.",
         };
 
-  const catalog = locale === "es" ? clkrArticlesEs : clkrArticles;
-  const related = currentSlug
-    ? catalog.filter((a) => a.slug !== currentSlug).slice(0, 2)
-    : [];
+  const related = relatedArticles;
 
   return (
     <main className="flex-1">
