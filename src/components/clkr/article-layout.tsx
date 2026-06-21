@@ -78,7 +78,7 @@ export function ClkrArticleLayout({
       <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-12 sm:py-14">
           <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-[family-name:var(--font-ui)] text-[0.75rem] text-[color:var(--muted)]">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-[family-name:var(--font-ui)] text-[0.75rem] text-muted-foreground">
               <li>
                 <Link href={homeHref} className="hover:text-[color:var(--forest)] hover:underline">
                   {copy.home}
@@ -107,14 +107,14 @@ export function ClkrArticleLayout({
               {category}
             </span>
             {readingTime ? (
-              <span className="font-normal normal-case text-[color:var(--muted)]">{readingTime}</span>
+              <span className="font-normal normal-case text-muted-foreground">{readingTime}</span>
             ) : null}
           </div>
           <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
             {title}
           </h1>
           {description ? (
-            <p className="mt-4 max-w-3xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
+            <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
               {description}
             </p>
           ) : null}
@@ -134,7 +134,7 @@ export function ClkrArticleLayout({
                     <a
                       key={s.id}
                       href={`#${s.id}`}
-                      className="block border-l-2 border-transparent px-2 py-1.5 text-[color:var(--muted)] transition hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]"
+                      className="block border-l-2 border-transparent px-2 py-1.5 text-muted-foreground transition hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]"
                     >
                       {s.title}
                     </a>
@@ -151,7 +151,7 @@ export function ClkrArticleLayout({
                     <a
                       key={s.id}
                       href={`#${s.id}`}
-                      className="block px-2 py-1.5 text-[color:var(--muted)] hover:text-[color:var(--ink)]"
+                      className="block px-2 py-1.5 text-muted-foreground hover:text-[color:var(--ink)]"
                     >
                       {s.title}
                     </a>
@@ -171,7 +171,7 @@ export function ClkrArticleLayout({
                 <div className="font-display text-xl font-normal tracking-tight text-[color:var(--forest)]">
                   {copy.ctaTitle}
                 </div>
-                <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{copy.ctaBody}</p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{copy.ctaBody}</p>
                 <div className="mt-5">
                   <Link href={contactHref} className="btn-primary btn-primary-sm">
                     {copy.contact}

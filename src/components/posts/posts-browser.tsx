@@ -81,7 +81,7 @@ export function PostsBrowser({ posts, locale = "en" }: Props) {
             </label>
             <div className="relative mt-2">
               <Search
-                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[color:var(--muted)]"
+                className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
                 strokeWidth={1.75}
                 aria-hidden="true"
               />
@@ -159,7 +159,7 @@ export function PostsBrowser({ posts, locale = "en" }: Props) {
 
       {filtered.length === 0 ? (
         <div className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-8 text-center">
-          <p className="text-sm text-[color:var(--muted)]">{copy.empty}</p>
+          <p className="text-sm text-muted-foreground">{copy.empty}</p>
         </div>
       ) : null}
     </div>

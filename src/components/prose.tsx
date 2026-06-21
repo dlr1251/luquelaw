@@ -21,7 +21,7 @@ export function Prose({ children, className }: Props) {
         "[&_ul]:mt-4 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2",
         "[&_ol]:mt-4 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2",
         "[&_li]:max-w-none",
-        "[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:border-[color:var(--moss)] [&_blockquote]:pl-4 [&_blockquote]:text-[color:var(--muted)]",
+        "[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:border-[color:var(--moss)] [&_blockquote]:pl-4 [&_blockquote]:text-muted-foreground",
         "[&_code]:bg-[color:var(--surface)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[13px]",
         "[&_hr]:my-10 [&_hr]:border-[color:var(--moss)]/35",
         className,

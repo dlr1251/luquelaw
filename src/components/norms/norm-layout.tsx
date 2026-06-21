@@ -77,7 +77,7 @@ export function NormLayout({
       <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-12 sm:py-14">
           <nav aria-label="Breadcrumb" className="mb-4">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-[family-name:var(--font-ui)] text-[0.75rem] text-[color:var(--muted)]">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-[family-name:var(--font-ui)] text-[0.75rem] text-muted-foreground">
               <li>
                 <Link href={homeHref} className="hover:text-[color:var(--forest)] hover:underline">
                   {copy.home}
@@ -115,7 +115,7 @@ export function NormLayout({
             <span className="border border-[color:var(--moss)]/40 bg-[color:var(--surface)] px-2 py-1 text-[color:var(--forest)]">
               {normCategoryLabel(category, locale)}
             </span>
-            <span className="font-normal normal-case text-[color:var(--muted)]">
+            <span className="font-normal normal-case text-muted-foreground">
               {normTypeLabel(normType, locale)}
             </span>
           </div>
@@ -123,10 +123,10 @@ export function NormLayout({
           <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
             {title}
           </h1>
-          <p className="mt-4 max-w-3xl text-base leading-7 text-[color:var(--muted)] sm:text-lg">
+          <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
             {description}
           </p>
-          <p className="mt-3 font-[family-name:var(--font-ui)] text-[0.8125rem] text-[color:var(--muted)]">
+          <p className="mt-3 font-[family-name:var(--font-ui)] text-[0.8125rem] text-muted-foreground">
             <span className="font-medium uppercase tracking-[0.08em] text-[color:var(--moss)]">
               {copy.officialSource}:
             </span>{" "}
@@ -214,7 +214,7 @@ function TocTree({ entries }: { entries: TocEntry[] }) {
               "group flex items-start gap-1 border-l-2 py-1.5 pl-2 transition",
               entry.isActive
                 ? "border-[color:var(--forest)] bg-[color:var(--surface)] font-medium text-[color:var(--ink)]"
-                : "border-transparent text-[color:var(--muted)] hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]",
+                : "border-transparent text-muted-foreground hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]",
             )}
             style={{ marginLeft: `${entry.depth * 0.75}rem` }}
           >

@@ -27,7 +27,7 @@ export function HeaderNav({
 
   const copy = isSpanish
     ? {
-        legalArticles: "Artículos legales",
+        legalArticles: "CLKR",
         norms: "Normas",
         blog: "Blog",
         contact: "Contacto",
@@ -37,7 +37,7 @@ export function HeaderNav({
         close: "Cerrar",
       }
     : {
-        legalArticles: "Legal Articles",
+        legalArticles: "CLKR",
         norms: "Norms",
         blog: "Blog",
         contact: "Contact",

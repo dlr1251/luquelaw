@@ -50,7 +50,7 @@ export function HomePage({ locale }: Props) {
                 <div className="sm:col-start-2">
                   <Link
                     href={c.clkrPreview.browseHref}
-                    className="btn-secondary btn-secondary-lg w-full border-hero-foreground/35 text-hero-foreground hover:bg-hero-foreground/10 sm:w-auto"
+                    className="btn-secondary btn-secondary-lg w-full border-hero-foreground/35 !text-white hover:bg-hero-foreground/10 sm:w-auto"
                   >
                     {c.clkrCta}
                   </Link>
@@ -107,22 +107,22 @@ export function HomePage({ locale }: Props) {
                 <div className="marketing-eyebrow text-[0.625rem] tracking-[0.2em]">{c.pricing.label}</div>
                 <dl className="mt-5 space-y-5">
                   <div className="flex flex-col gap-1 border-b border-[color:var(--moss)]/15 pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                    <dt className="text-sm text-[color:var(--muted)]">{c.pricing.consultation}</dt>
+                    <dt className="text-sm text-muted-foreground">{c.pricing.consultation}</dt>
                     <dd className="font-semibold text-foreground sm:text-right">
                       {c.pricing.consultationPrice}
                     </dd>
                   </div>
                   <div className="flex flex-col gap-1">
-                    <dt className="text-sm text-[color:var(--muted)]">{c.pricing.retainer}</dt>
+                    <dt className="text-sm text-muted-foreground">{c.pricing.retainer}</dt>
                     <dd className="font-semibold text-foreground sm:text-right">
                       {c.pricing.retainerPrice}
-                      <span className="mt-1 block text-sm font-normal text-[color:var(--muted)]">
+                      <span className="mt-1 block text-sm font-normal text-muted-foreground">
                         {c.pricing.retainerNote}
                       </span>
                     </dd>
                   </div>
                 </dl>
-                <p className="mt-5 text-sm leading-relaxed text-[color:var(--muted)]">{c.pricing.footnote}</p>
+                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{c.pricing.footnote}</p>
                 <button type="button" onClick={openBookingTab} className="btn-primary btn-primary-sm mt-6 w-full sm:w-auto">
                   {c.pricing.book}
                 </button>

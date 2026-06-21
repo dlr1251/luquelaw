@@ -77,7 +77,7 @@ export function ClkrHub({ articles, locale = "en" }: Props) {
               </h2>
               <ol className="mt-4 space-y-3">
                 {copy.howItWorks.map((step, i) => (
-                  <li key={step} className="flex gap-3 text-sm leading-6 text-[color:var(--muted)]">
+                  <li key={step} className="flex gap-3 text-sm leading-6 text-muted-foreground">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-[color:var(--moss)]/40 bg-[color:var(--card)] font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium text-[color:var(--moss)]">
                       {i + 1}
                     </span>

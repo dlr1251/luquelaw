@@ -272,7 +272,7 @@ export function ContactForm({
 
       <div>
         <span className={labelClass}>{copy.attachments}</span>
-        <p className="mt-0.5 text-xs text-[color:var(--muted)]">{copy.attachmentsHint}</p>
+        <p className="mt-0.5 text-xs text-muted-foreground">{copy.attachmentsHint}</p>
         <div className="mt-2 flex flex-wrap items-center gap-2">
           <input
             ref={fileInputRef}

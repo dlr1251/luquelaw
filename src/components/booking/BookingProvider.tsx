@@ -81,7 +81,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
                 <div className="font-display text-xl font-normal leading-tight tracking-tight text-[color:var(--forest)]">
                   {title}
                 </div>
-                <p className="mt-1 max-w-2xl text-sm leading-6 text-[color:var(--muted)]">{description}</p>
+                <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">{description}</p>
               </div>
               <button
                 type="button"
@@ -117,7 +117,7 @@ export function BookingProvider({ children, locale = "en" }: Props) {
                   />
                 </div>
               ) : (
-                <div className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-4 text-sm leading-6 text-[color:var(--muted)]">
+                <div className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-4 text-sm leading-6 text-muted-foreground">
                   {locale === "es" ? (
                     <>
                       Falta configurar el enlace del calendario. Define{" "}

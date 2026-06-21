@@ -54,13 +54,13 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
               <div className="text-sm font-semibold text-[color:var(--ink)]">
                 <span className="text-[color:var(--forest)]">{idx + 1}.</span> {s.title}
               </div>
-              <div className="mt-1 text-sm leading-relaxed text-[color:var(--muted)]">{s.body}</div>
+              <div className="mt-1 text-sm leading-relaxed text-muted-foreground">{s.body}</div>
             </div>
           </li>
         ))}
       </ol>
 
-      <div className="text-sm leading-relaxed text-[color:var(--muted)]">{footer}</div>
+      <div className="text-sm leading-relaxed text-muted-foreground">{footer}</div>
     </div>
   );
 }

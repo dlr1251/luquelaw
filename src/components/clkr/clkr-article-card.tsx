@@ -28,7 +28,7 @@ export function ClkrArticleCard({ article, readLabel, featured = false, classNam
           </span>
           {article.category}
         </span>
-        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-[color:var(--muted)]">
+        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground">
           {article.readingTime}
         </span>
       </div>
@@ -43,7 +43,7 @@ export function ClkrArticleCard({ article, readLabel, featured = false, classNam
       </h3>
       <p
         className={cn(
-          "mt-3 leading-6 text-[color:var(--muted)]",
+          "mt-3 leading-6 text-muted-foreground",
           featured ? "text-base max-w-2xl" : "text-sm",
         )}
       >

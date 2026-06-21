@@ -30,7 +30,7 @@ export function NormCard({ norm, locale, readLabel, featured = false, className 
           </span>
           {normCategoryLabel(norm.category, locale)}
         </span>
-        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-[color:var(--muted)]">
+        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground">
           {normTypeLabel(norm.normType, locale)}
         </span>
       </div>
@@ -45,13 +45,13 @@ export function NormCard({ norm, locale, readLabel, featured = false, className 
       </h3>
       <p
         className={cn(
-          "mt-3 leading-6 text-[color:var(--muted)]",
+          "mt-3 leading-6 text-muted-foreground",
           featured ? "max-w-2xl text-base" : "text-sm",
         )}
       >
         {norm.description}
       </p>
-      <p className="mt-2 font-[family-name:var(--font-ui)] text-[0.6875rem] text-[color:var(--muted)]">
+      <p className="mt-2 font-[family-name:var(--font-ui)] text-[0.6875rem] text-muted-foreground">
         {norm.officialReference}
       </p>
       <span className="mt-auto pt-5 text-sm font-bold text-[color:var(--forest)] group-hover:underline">

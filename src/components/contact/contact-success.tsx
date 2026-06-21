@@ -66,7 +66,7 @@ export function ContactSuccess({ locale = "en", email, className, onSendAnother 
         </span>
       </p>
 
-      <p className="mt-3 max-w-sm text-xs leading-5 text-[color:var(--muted)]">{copy.hint}</p>
+      <p className="mt-3 max-w-sm text-xs leading-5 text-muted-foreground">{copy.hint}</p>
 
       {onSendAnother ? (
         <button

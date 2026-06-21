@@ -26,7 +26,7 @@ export function ClkrPreview({ preview }: Props) {
               <span className="mt-2 font-display text-lg font-normal leading-snug tracking-tight text-[color:var(--forest)] group-hover:text-[color:var(--moss)]">
                 {article.title}
               </span>
-              <span className="mt-2 text-sm leading-relaxed text-[color:var(--muted)]">{article.description}</span>
+              <span className="mt-2 text-sm leading-relaxed text-muted-foreground">{article.description}</span>
               <span className="mt-4 text-sm font-semibold text-[color:var(--moss)]">{preview.readLabel}</span>
             </Link>
           </li>

@@ -103,7 +103,7 @@ export default async function NormPage({ params }: Props) {
           {active.html ? (
             <div dangerouslySetInnerHTML={{ __html: active.html }} />
           ) : (
-            <p className="text-sm text-[color:var(--muted)]">
+            <p className="text-sm text-muted-foreground">
               This section is a structural heading. Select a child section in the table of contents.
             </p>
           )}

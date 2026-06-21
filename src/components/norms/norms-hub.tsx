@@ -63,7 +63,7 @@ export function NormsHub({ norms, locale = "en" }: Props) {
               </h2>
               <ol className="mt-4 space-y-3">
                 {copy.howItWorks.map((step, i) => (
-                  <li key={step} className="flex gap-3 text-sm leading-6 text-[color:var(--muted)]">
+                  <li key={step} className="flex gap-3 text-sm leading-6 text-muted-foreground">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center border border-[color:var(--moss)]/40 bg-[color:var(--card)] font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium text-[color:var(--moss)]">
                       {i + 1}
                     </span>
@@ -89,7 +89,7 @@ export function NormsHub({ norms, locale = "en" }: Props) {
             {Array.from(new Set(norms.map((n) => n.category))).map((category) => (
               <span
                 key={category}
-                className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] px-3 py-1 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.08em] text-[color:var(--muted)]"
+                className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] px-3 py-1 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.08em] text-muted-foreground"
               >
                 {normCategoryLabel(category, locale)}
               </span>

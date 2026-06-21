@@ -44,7 +44,7 @@ export function PostCard({ post, readLabel, featured = false, className }: Props
           </span>
           {post.category}
         </span>
-        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-[color:var(--muted)]">
+        <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground">
           {dateLabel ?? post.readingTime}
         </span>
       </div>
@@ -59,7 +59,7 @@ export function PostCard({ post, readLabel, featured = false, className }: Props
       </h3>
       <p
         className={cn(
-          "mt-3 leading-6 text-[color:var(--muted)]",
+          "mt-3 leading-6 text-muted-foreground",
           featured ? "max-w-2xl text-base" : "text-sm",
         )}
       >

@@ -18,7 +18,7 @@ export function SupabaseSetupNotice({
       <h2 className="font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
         {title}
       </h2>
-      <p className="mt-2 text-sm leading-6 text-[color:var(--muted)]">{body}</p>
+      <p className="mt-2 text-sm leading-6 text-muted-foreground">{body}</p>
       <p className="mt-4 font-mono text-xs leading-relaxed text-[color:var(--ink)]/80">
         Copy <span className="font-sans font-bold">.env.example</span> to{" "}
         <span className="font-sans font-bold">.env.local</span> and set:
@@ -27,7 +27,7 @@ export function SupabaseSetupNotice({
         <li>NEXT_PUBLIC_SUPABASE_URL</li>
         <li>NEXT_PUBLIC_SUPABASE_ANON_KEY</li>
       </ul>
-      <p className="mt-4 text-xs leading-5 text-[color:var(--muted)]">
+      <p className="mt-4 text-xs leading-5 text-muted-foreground">
         In production (Vercel), add the same variables under Project → Settings → Environment
         Variables, then redeploy.
       </p>

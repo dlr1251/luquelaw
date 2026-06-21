@@ -77,7 +77,7 @@ export function NotFoundView({ locale }: { locale: NotFoundLocale }) {
       </section>
 
       <Container className="py-14 sm:py-16">
-        <p className="marketing-eyebrow text-[color:var(--muted)]">{t.linksLabel}</p>
+        <p className="marketing-eyebrow text-muted-foreground">{t.linksLabel}</p>
         <ul className="mt-6 flex flex-wrap gap-x-8 gap-y-3">
           {t.links.map((link) => (
             <li key={link.href}>

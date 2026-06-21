@@ -103,7 +103,7 @@ export default async function EsNormPage({ params }: Props) {
           {active.html ? (
             <div dangerouslySetInnerHTML={{ __html: active.html }} />
           ) : (
-            <p className="text-sm text-[color:var(--muted)]">
+            <p className="text-sm text-muted-foreground">
               Esta sección es un encabezado estructural. Seleccione una subsección en la tabla de contenidos.
             </p>
           )}
