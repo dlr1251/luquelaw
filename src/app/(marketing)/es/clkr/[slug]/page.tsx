@@ -3,11 +3,13 @@ import { notFound } from "next/navigation";
 
 import { ClkrArticleLayout } from "@/components/clkr/article-layout";
 import { ClkrSectionBody } from "@/components/clkr/section-body";
+import { ArticleNavigation } from "@/components/clkr/article-navigation";
 import {
   getPublishedArticle,
   getRelatedPublishedArticles,
   getTranslationSlugKey,
 } from "@/lib/clkr/get-articles";
+import { getArticleRelations, getArticleStudyPaths } from "@/lib/clkr/get-study-paths";
 import { clkrPublicPath, recordToHubArticle } from "@/lib/clkr/types";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildClkrArticleMetadata } from "@/lib/seo/metadata";
@@ -44,6 +46,11 @@ export default async function ClkrArticleEsPage({ params }: Props) {
   const related = await getRelatedPublishedArticles(slug, locale);
   const sections = article.sections.map((s) => ({ id: s.id, title: s.title }));
 
+  // Get article relationships
+  const prerequisites = await getArticleRelations(article.id, "prerequisite");
+  const nextSteps = await getArticleRelations(article.id, "next_step");
+  const studyPaths = await getArticleStudyPaths(article.id, locale);
+
   return (
     <>
       <JsonLd data={clkrArticleJsonLd(article)} />
@@ -58,6 +65,12 @@ export default async function ClkrArticleEsPage({ params }: Props) {
         relatedArticles={related.map(recordToHubArticle)}
       >
         <ClkrSectionBody sections={article.sections} />
+        <ArticleNavigation
+          prerequisites={prerequisites.map((r) => r.to_article)}
+          nextSteps={nextSteps.map((r) => r.to_article)}
+          studyPaths={studyPaths}
+          locale={locale}
+        />
       </ClkrArticleLayout>
     </>
   );

@@ -3,16 +3,19 @@ import { BookOpen, Layers } from "lucide-react";
 
 import { ClkrBrowser } from "@/components/clkr/clkr-browser";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
+import { StudyPathsSection } from "@/components/clkr/study-paths-section";
 import { Container } from "@/components/container";
 import type { ClkrArticle } from "@/lib/clkr/articles";
+import type { StudyPath } from "@/lib/clkr/types";
 import { clkrHubContent, type ClkrHubLocale } from "@/lib/clkr/hub-content";
 
 type Props = {
   articles: ClkrArticle[];
+  studyPaths?: StudyPath[];
   locale?: ClkrHubLocale;
 };
 
-export function ClkrHub({ articles, locale = "en" }: Props) {
+export function ClkrHub({ articles, studyPaths = [], locale = "en" }: Props) {
   const copy = clkrHubContent[locale];
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
   const topicCount = new Set(articles.map((a) => a.category)).size;
@@ -89,6 +92,8 @@ export function ClkrHub({ articles, locale = "en" }: Props) {
           </div>
         </Container>
       </section>
+
+      <StudyPathsSection paths={studyPaths} locale={locale} />
 
       <Container className="py-14 sm:py-16">
         <div className="mb-10 max-w-2xl space-y-2">

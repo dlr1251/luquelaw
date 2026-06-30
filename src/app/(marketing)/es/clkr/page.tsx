@@ -1,5 +1,6 @@
 import { ClkrHub } from "@/components/clkr/clkr-hub";
 import { getHubArticles } from "@/lib/clkr/get-hub-articles";
+import { getStudyPaths } from "@/lib/clkr/get-study-paths";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { PAGE_SEO } from "@/lib/seo/config";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -14,10 +15,11 @@ export const metadata = buildPageMetadata({
 
 export default async function ClkrHubEsPage() {
   const articles = await getHubArticles("es");
+  const studyPaths = await getStudyPaths("es");
   return (
     <>
       <JsonLd data={clkrHubJsonLd("es")} />
-      <ClkrHub articles={articles} locale="es" />
+      <ClkrHub articles={articles} studyPaths={studyPaths} locale="es" />
     </>
   );
 }
