@@ -73,7 +73,7 @@ Next.js App Router
 
 ## 4. Phased roadmap
 
-### Phase 1 — CLKR CMS (current focus)
+### Phase 1 — CLKR CMS (completed)
 
 Goal: Articles in Supabase; admin can create, edit, publish; public dynamic routes.
 
@@ -83,6 +83,8 @@ Goal: Articles in Supabase; admin can create, edit, publish; public dynamic rout
 - [x] Admin: list, create, edit (title, meta, sections, status, sort)
 - [x] Hub reads from DB (`getHubArticles`)
 - [x] Run migration on production Supabase (LuqueLaw's Project — via MCP)
+- [x] Study paths and enhanced navigation
+- [x] Article relationships (prerequisites, next steps)
 - [ ] Admin fills/edits full article bodies in production
 - [x] Remove legacy static article pages (done in repo)
 - [ ] Deprecate `clkr_article_settings` (optional cleanup migration)
