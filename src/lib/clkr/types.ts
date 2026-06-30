@@ -83,3 +83,96 @@ export function slugKeyFromInput(input: string): string {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "");
 }
+
+// Study path types
+export type StudyPathDifficulty = "beginner" | "intermediate" | "advanced";
+
+export type StudyPathRecord = {
+  id: string;
+  slug_key: string;
+  locale: "en" | "es";
+  title: string;
+  description: string;
+  category: ClkrCategory;
+  difficulty: StudyPathDifficulty;
+  estimated_time: string | null;
+  icon: string | null;
+  sort_order: number;
+  status: ClkrArticleStatus;
+  created_at: string;
+  updated_at: string;
+};
+
+export type StudyPathStep = {
+  id: string;
+  study_path_id: string;
+  article_id: string;
+  step_order: number;
+  description: string | null;
+  article?: ClkrArticleRecord;
+};
+
+export type StudyPath = {
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  category: ClkrCategory;
+  difficulty: StudyPathDifficulty;
+  estimatedTime: string | null;
+  icon: string | null;
+  articleCount: number;
+};
+
+export type StudyPathWithSteps = StudyPath & {
+  steps: Array<{
+    stepOrder: number;
+    description: string | null;
+    article: ClkrArticle & { id: string };
+  }>;
+};
+
+// Article relation types
+export type ArticleRelationType = "prerequisite" | "next_step" | "related";
+
+export type ArticleRelation = {
+  id: string;
+  from_article_id: string;
+  to_article_id: string;
+  relation_type: ArticleRelationType;
+  to_article?: ClkrArticleRecord;
+};
+
+// User progress types
+export type UserProgressStatus = "started" | "completed" | "bookmarked";
+
+export type UserProgress = {
+  id: string;
+  user_id: string;
+  article_id: string;
+  status: UserProgressStatus;
+  last_position: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export function studyPathPublicPath(slugKey: string, locale: "en" | "es"): string {
+  return locale === "es" ? `/es/clkr/study/${slugKey}` : `/clkr/study/${slugKey}`;
+}
+
+export function recordToStudyPath(
+  row: StudyPathRecord,
+  articleCount: number = 0
+): StudyPath {
+  return {
+    id: row.id,
+    slug: studyPathPublicPath(row.slug_key, row.locale),
+    title: row.title,
+    description: row.description,
+    category: row.category,
+    difficulty: row.difficulty,
+    estimatedTime: row.estimated_time,
+    icon: row.icon,
+    articleCount,
+  };
+}

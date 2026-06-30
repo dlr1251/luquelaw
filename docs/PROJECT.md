@@ -56,13 +56,17 @@ Orientation on immigration, real estate, etc., grounded in CLKR + subscriber con
 
 ```
 Next.js App Router
-├── Public pages (home, CLKR hub + articles)
+├── Public pages (home, CLKR hub + articles + study paths)
 ├── /login, /account (placeholder portal)
 ├── /admin/clkr (CMS)
 └── Supabase
     ├── Auth (email/password)
-    ├── clkr_articles (full article CMS)     ← Phase 1
-    └── clkr_article_settings (legacy)       ← deprecated after Phase 1
+    ├── clkr_articles (full article CMS)               ← Phase 1
+    ├── clkr_study_paths (curated learning tracks)     ← Phase 1
+    ├── clkr_study_path_steps (path→article links)     ← Phase 1
+    ├── clkr_article_relations (prerequisites, next)   ← Phase 1
+    ├── clkr_user_progress (bookmarks, completion)     ← Phase 1
+    └── clkr_article_settings (legacy)                 ← deprecated after Phase 1
 ```
 
 **Auth admin:** `ADMIN_EMAILS` env and/or Supabase `app_metadata.role = "admin"` and/or `admin_allowlist` table (RLS uses the latter two).
@@ -73,7 +77,7 @@ Next.js App Router
 
 ## 4. Phased roadmap
 
-### Phase 1 — CLKR CMS (current focus)
+### Phase 1 — CLKR CMS (completed)
 
 Goal: Articles in Supabase; admin can create, edit, publish; public dynamic routes.
 
@@ -83,6 +87,8 @@ Goal: Articles in Supabase; admin can create, edit, publish; public dynamic rout
 - [x] Admin: list, create, edit (title, meta, sections, status, sort)
 - [x] Hub reads from DB (`getHubArticles`)
 - [x] Run migration on production Supabase (LuqueLaw's Project — via MCP)
+- [x] Study paths and enhanced navigation
+- [x] Article relationships (prerequisites, next steps)
 - [ ] Admin fills/edits full article bodies in production
 - [x] Remove legacy static article pages (done in repo)
 - [ ] Deprecate `clkr_article_settings` (optional cleanup migration)
@@ -167,9 +173,9 @@ Unique: `(slug_key, locale)`.
 |------|-------|
 | Project doc | `docs/PROJECT.md`, `AGENTS.md` |
 | CLKR types | `src/lib/clkr/types.ts`, `articles.ts` (fallback) |
-| CLKR data access | `src/lib/clkr/get-hub-articles.ts`, `get-article.ts` |
-| CLKR UI | `src/components/clkr/*` |
-| CLKR public routes | `src/app/clkr/`, `src/app/es/clkr/` |
+| CLKR data access | `src/lib/clkr/get-hub-articles.ts`, `get-article.ts`, `get-study-paths.ts` |
+| CLKR UI | `src/components/clkr/*` (hub, articles, study paths, navigation) |
+| CLKR public routes | `src/app/clkr/`, `src/app/clkr/study/`, `src/app/es/clkr/`, `src/app/es/clkr/study/` |
 | Admin CMS | `src/app/admin/clkr/` |
 | Migrations | `supabase/migrations/` |
 | Auth admin | `src/lib/auth/is-admin.ts` |
