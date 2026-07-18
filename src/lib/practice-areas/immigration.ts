@@ -1,6 +1,8 @@
 import { clkrPublicPath } from "@/lib/clkr/types";
 
-export type ImmigrationLocale = "en" | "es";
+import { immigrationPath, type ImmigrationLocale } from "./paths";
+
+export type { ImmigrationLocale };
 
 export type ImmigrationService = {
   id: string;
@@ -17,10 +19,18 @@ export type ImmigrationFeaturedArticle = {
   href: string;
 };
 
-export type ImmigrationDeferredPillar = {
+export type ImmigrationHubCard = {
   id: string;
   title: string;
-  teaser: string;
+  body: string;
+  href: string;
+  cta: string;
+};
+
+export type ImmigrationProcessStep = {
+  title: string;
+  body: string;
+  icon: "chat" | "doc" | "plan";
 };
 
 export type ImmigrationContent = {
@@ -29,26 +39,32 @@ export type ImmigrationContent = {
   intro: string;
   bookCta: string;
   bookHref: string;
-  guidesCta: string;
-  guidesHref: string;
+  lucyCta: string;
+  lucyHref: string;
+  visasCta: string;
+  visasHref: string;
   servicesLabel: string;
   servicesTitle: string;
   servicesBody: string;
   serviceCta: string;
   services: ImmigrationService[];
+  processLabel: string;
+  processTitle: string;
+  processBody: string;
+  processFooter: string;
+  processSteps: [ImmigrationProcessStep, ImmigrationProcessStep, ImmigrationProcessStep];
   guidesLabel: string;
   guidesTitle: string;
   guidesBody: string;
   featuredArticles: ImmigrationFeaturedArticle[];
-  toolsLabel: string;
-  calculatorPlaceholder: {
-    title: string;
-    body: string;
-  };
-  comingSoonLabel: string;
-  comingSoonTitle: string;
-  comingSoonBody: string;
-  deferredPillars: ImmigrationDeferredPillar[];
+  hubLabel: string;
+  hubTitle: string;
+  hubBody: string;
+  hubCards: ImmigrationHubCard[];
+  bookingLabel: string;
+  bookingTitle: string;
+  bookingBody: string;
+  disclaimer: string;
 };
 
 const contentEn: ImmigrationContent = {
@@ -57,13 +73,15 @@ const contentEn: ImmigrationContent = {
   intro:
     "Visas, stay rules, and migratory regularization for foreigners in Colombia — clear counsel, bilingual delivery.",
   bookCta: "Book a consultation",
-  bookHref: "/#book",
-  guidesCta: "Read the guides",
-  guidesHref: "#guides",
+  bookHref: "#book",
+  lucyCta: "Ask Lucy",
+  lucyHref: "/portal/lucy",
+  visasCta: "Explore visa types",
+  visasHref: immigrationPath("/visas", "en"),
   servicesLabel: "Services",
   servicesTitle: "How we can help",
   servicesBody:
-    "Two service lines with clear tiers. Book a consultation to confirm fit and receive a written concept and quotation.",
+    "Two service lines with clear tiers. Book a consultation to confirm fit and receive a written concept and quotation. No public prices on visa or regularization files — scope drives the fee.",
   serviceCta: "Book consultation",
   services: [
     {
@@ -99,10 +117,32 @@ const contentEn: ImmigrationContent = {
         "Expedited handling when a permit or visa window is closing — prioritized filings and same-week coordination where feasible.",
     },
   ],
+  processLabel: "Process",
+  processTitle: "How we work",
+  processBody:
+    "Every engagement starts with a structured consultation, followed by a written legal concept and a clear workplan.",
+  processFooter: "You know the path and the fee before committing to a full filing.",
+  processSteps: [
+    {
+      icon: "chat",
+      title: "Consultation",
+      body: "We map your nationality, stamps, goals, and risk — tourism quota, visa category, or regularization.",
+    },
+    {
+      icon: "doc",
+      title: "Written concept",
+      body: "You receive a clear memo: options, documents, timelines, and what Cancillería or Migración typically expects.",
+    },
+    {
+      icon: "plan",
+      title: "Workplan & filing",
+      body: "If we proceed, we execute the agreed tier — checklist only, or full preparation through issuance.",
+    },
+  ],
   guidesLabel: "Guides",
   guidesTitle: "Start with the ground rules",
   guidesBody:
-    "Two CLKR guides cover how tourism days work and the rules that apply to every Colombian visa application.",
+    "CLKR guides on tourism days, visa process under Resolución 5477, and the investor (M) pathway.",
   featuredArticles: [
     {
       slugKey: "last-legal-day",
@@ -118,36 +158,52 @@ const contentEn: ImmigrationContent = {
         "Process, timelines, consular jurisdiction, general documents, beneficiaries, and minors under Resolución 5477.",
       href: clkrPublicPath("visas-ground-rules", "en"),
     },
-  ],
-  toolsLabel: "Tools",
-  calculatorPlaceholder: {
-    title: "Last Legal Day calculator",
-    body: "Coming soon — a tool to read entries and exits and estimate your last legal day under tourism rules.",
-  },
-  comingSoonLabel: "Coming soon",
-  comingSoonTitle: "More immigration knowledge",
-  comingSoonBody:
-    "These sections are planned next. The landing will grow into a full practice hub.",
-  deferredPillars: [
     {
-      id: "visas-catalog",
+      slugKey: "investor-visa",
+      title: "Investor Visa (Tipo M)",
+      description:
+        "Eligibility, investment thresholds, FIEM registration, timelines, and common pitfalls.",
+      href: clkrPublicPath("investor-visa", "en"),
+    },
+  ],
+  hubLabel: "Explore",
+  hubTitle: "Immigration hub",
+  hubBody: "Tools and reference pages for planning — always informational, never a substitute for a case review.",
+  hubCards: [
+    {
+      id: "visas",
       title: "Visa types & categories",
-      teaser:
-        "A browsable catalog of V, M, and R visas with requirements, benefits, and restrictions.",
+      body: "Browse Visitante (V), Migrante (M), and Residente (R) categories under Resolución 5477.",
+      href: immigrationPath("/visas", "en"),
+      cta: "Open catalog",
     },
     {
       id: "nationality",
       title: "Nationality & Civil Registry",
-      teaser:
-        "Colombian nationality by birth and adoption, Registro Civil, and the norms that govern them.",
+      body: "Birth, adoption, Registro Civil, and how nationality intersects with immigration strategy.",
+      href: immigrationPath("/nationality", "en"),
+      cta: "Read more",
     },
     {
       id: "extranjeria",
       title: "Extranjería procedures",
-      teaser:
-        "Stay extensions, cédula de extranjería, minors registration, sanctions, appointments, and migratory movements.",
+      body: "Extensions, cédula de extranjería, minors, sanctions, appointments, and movements.",
+      href: immigrationPath("/extranjeria", "en"),
+      cta: "View procedures",
+    },
+    {
+      id: "calculator",
+      title: "Last Legal Day calculator",
+      body: "Log entries and exits to estimate tourism quota use and your last lawful day.",
+      href: immigrationPath("/calculator", "en"),
+      cta: "Open calculator",
     },
   ],
+  bookingLabel: "Book",
+  bookingTitle: "Schedule a consultation",
+  bookingBody: "Pick a slot. We will confirm by email and send preparation notes.",
+  disclaimer:
+    "Informational only — not legal advice. Cancillería and Migración Colombia retain discretionary authority on every application and admission.",
 };
 
 const contentEs: ImmigrationContent = {
@@ -156,13 +212,15 @@ const contentEs: ImmigrationContent = {
   intro:
     "Visas, reglas de permanencia y regulación migratoria para extranjeros en Colombia — asesoría clara y bilingüe.",
   bookCta: "Agendar consulta",
-  bookHref: "/es#book",
-  guidesCta: "Leer las guías",
-  guidesHref: "#guides",
+  bookHref: "#book",
+  lucyCta: "Preguntar a Lucy",
+  lucyHref: "/portal/lucy",
+  visasCta: "Explorar tipos de visa",
+  visasHref: immigrationPath("/visas", "es"),
   servicesLabel: "Servicios",
   servicesTitle: "Cómo podemos ayudarte",
   servicesBody:
-    "Dos líneas de servicio con niveles claros. Agenda una consulta para confirmar el encaje y recibir concepto jurídico y cotización.",
+    "Dos líneas de servicio con niveles claros. Agenda una consulta para confirmar el encaje y recibir concepto jurídico y cotización. Sin precios públicos en expedientes de visa o regulación — el alcance define el honorario.",
   serviceCta: "Agendar consulta",
   services: [
     {
@@ -198,10 +256,32 @@ const contentEs: ImmigrationContent = {
         "Gestión prioritaria cuando el permiso o la visa está por vencer — radicaciones aceleradas y coordinación en la misma semana cuando sea viable.",
     },
   ],
+  processLabel: "Proceso",
+  processTitle: "Cómo trabajamos",
+  processBody:
+    "Todo encargo empieza con una consulta estructurada, seguida de un concepto jurídico escrito y un plan de trabajo claro.",
+  processFooter: "Conoces el camino y el honorario antes de comprometerte con el expediente completo.",
+  processSteps: [
+    {
+      icon: "chat",
+      title: "Consulta",
+      body: "Mapeamos nacionalidad, sellos, objetivos y riesgo — cuota de turismo, categoría de visa o regulación.",
+    },
+    {
+      icon: "doc",
+      title: "Concepto escrito",
+      body: "Recibes un memo claro: opciones, documentos, plazos y lo que Cancillería o Migración suelen esperar.",
+    },
+    {
+      icon: "plan",
+      title: "Plan y radicación",
+      body: "Si avanzamos, ejecutamos el nivel acordado — solo checklist, o preparación completa hasta la expedición.",
+    },
+  ],
   guidesLabel: "Guías",
   guidesTitle: "Empieza por las reglas base",
   guidesBody:
-    "Dos guías CLKR explican cómo funcionan los días de turismo y las normas comunes a toda solicitud de visa colombiana.",
+    "Guías CLKR sobre días de turismo, proceso de visa bajo la Resolución 5477 y la vía de inversionista (M).",
   featuredArticles: [
     {
       slugKey: "last-legal-day",
@@ -217,36 +297,53 @@ const contentEs: ImmigrationContent = {
         "Proceso, plazos, jurisdicción consular, documentos generales, beneficiarios y menores bajo la Resolución 5477.",
       href: clkrPublicPath("visas-ground-rules", "es"),
     },
-  ],
-  toolsLabel: "Herramientas",
-  calculatorPlaceholder: {
-    title: "Calculadora de último día legal",
-    body: "Próximamente — una herramienta para leer entradas y salidas y estimar tu último día legal bajo reglas de turismo.",
-  },
-  comingSoonLabel: "Próximamente",
-  comingSoonTitle: "Más conocimiento migratorio",
-  comingSoonBody:
-    "Estas secciones vienen después. La landing crecerá hasta ser un hub completo del área.",
-  deferredPillars: [
     {
-      id: "visas-catalog",
+      slugKey: "investor-visa",
+      title: "Visa de Inversionista (Tipo M)",
+      description:
+        "Requisitos, umbral de inversión, registro FIEM, tiempos y errores frecuentes.",
+      href: clkrPublicPath("investor-visa", "es"),
+    },
+  ],
+  hubLabel: "Explorar",
+  hubTitle: "Hub migratorio",
+  hubBody:
+    "Herramientas y páginas de referencia para planear — siempre informativas, nunca un sustituto de la revisión de tu caso.",
+  hubCards: [
+    {
+      id: "visas",
       title: "Tipos y categorías de visa",
-      teaser:
-        "Catálogo navegable de visas V, M y R con requisitos, beneficios y restricciones.",
+      body: "Explora Visitante (V), Migrante (M) y Residente (R) bajo la Resolución 5477.",
+      href: immigrationPath("/visas", "es"),
+      cta: "Abrir catálogo",
     },
     {
       id: "nationality",
       title: "Nacionalidad y Registro Civil",
-      teaser:
-        "Nacionalidad colombiana por nacimiento y adopción, Registro Civil y las normas aplicables.",
+      body: "Nacimiento, adopción, Registro Civil y cómo la nacionalidad se cruza con la estrategia migratoria.",
+      href: immigrationPath("/nationality", "es"),
+      cta: "Leer más",
     },
     {
       id: "extranjeria",
       title: "Trámites de extranjería",
-      teaser:
-        "Prórroga de permanencia, cédula de extranjería, registro de menores, sanciones, citas y movimientos migratorios.",
+      body: "Prórrogas, cédula de extranjería, menores, sanciones, citas y movimientos.",
+      href: immigrationPath("/extranjeria", "es"),
+      cta: "Ver trámites",
+    },
+    {
+      id: "calculator",
+      title: "Calculadora de último día legal",
+      body: "Registra entradas y salidas para estimar el uso de la cuota de turismo y tu último día legal.",
+      href: immigrationPath("/calculator", "es"),
+      cta: "Abrir calculadora",
     },
   ],
+  bookingLabel: "Agenda",
+  bookingTitle: "Agenda una consulta",
+  bookingBody: "Elige un horario. Confirmamos por correo y enviamos notas de preparación.",
+  disclaimer:
+    "Contenido informativo — no constituye asesoría jurídica. Cancillería y Migración Colombia conservan facultad discrecional en cada solicitud e ingreso.",
 };
 
 export const immigrationContent: Record<ImmigrationLocale, ImmigrationContent> = {

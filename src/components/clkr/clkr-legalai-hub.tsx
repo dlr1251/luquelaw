@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Bot, GraduationCap, Scale, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Bot, Scale, Sparkles } from "lucide-react";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
@@ -34,12 +34,6 @@ const moduleMeta = [
     href: (prefix: string) => `${prefix}/clkr/agents`,
     icon: Bot,
     tone: "from-[color:var(--forest)]/8 to-transparent",
-  },
-  {
-    key: "quizzes" as const,
-    href: (prefix: string) => `${prefix}/clkr/quizzes`,
-    icon: GraduationCap,
-    tone: "from-[color:var(--moss)]/10 to-transparent",
   },
 ];
 

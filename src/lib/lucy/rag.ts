@@ -1,4 +1,6 @@
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
+import { embedLucyQuery } from "@/lib/lucy/embeddings";
+import { IMMIGRATION_GUIDE_SLUGS } from "@/lib/lucy/knowledge-sources";
 
 export type LucySearchHit = {
   kind: "norm" | "guide";
@@ -6,14 +8,8 @@ export type LucySearchHit = {
   slug_key: string;
   excerpt: string;
   locale: string;
+  similarity?: number;
 };
-
-const IMMIGRATION_GUIDE_SLUGS = [
-  "investor-visa",
-  "visas-ground-rules",
-  "last-legal-day",
-  "real-estate-transactions",
-];
 
 function tokenize(query: string): string[] {
   return query
@@ -24,13 +20,82 @@ function tokenize(query: string): string[] {
     .slice(0, 8);
 }
 
-/** Keyword / ILIKE retrieval over immigration norms + Immigration-related CLKR guides. */
+type MatchRow = {
+  source_kind: "norm" | "guide";
+  slug_key: string;
+  locale: string;
+  title: string;
+  content: string;
+  similarity: number;
+};
+
+/** Semantic retrieval (pgvector) with keyword ILIKE fallback. */
 export async function searchLucyKnowledge(
   query: string,
   locale: "en" | "es" = "en",
   limit = 6,
+  kind?: "norm" | "guide",
 ): Promise<LucySearchHit[]> {
   if (!isSupabaseConfigured() || !query.trim()) return [];
+
+  try {
+    const semantic = await searchLucyKnowledgeSemantic(query, locale, limit, kind);
+    if (semantic.length) return semantic;
+  } catch (err) {
+    console.warn("[lucy/rag] semantic search failed, falling back to keyword", err);
+  }
+
+  const keyword = await searchLucyKnowledgeKeyword(query, locale, limit);
+  return kind ? keyword.filter((h) => h.kind === kind) : keyword;
+}
+
+async function searchLucyKnowledgeSemantic(
+  query: string,
+  locale: "en" | "es",
+  limit: number,
+  kind?: "norm" | "guide",
+): Promise<LucySearchHit[]> {
+  const embedding = await embedLucyQuery(query);
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.rpc("match_lucy_knowledge", {
+    query_embedding: embedding,
+    match_count: Math.max(limit * 2, 8),
+    filter_locale: locale,
+    filter_kind: kind ?? null,
+  });
+
+  if (error) throw error;
+
+  const rows = (data ?? []) as MatchRow[];
+  const hits: LucySearchHit[] = [];
+  const seen = new Set<string>();
+
+  for (const row of rows) {
+    if ((row.similarity ?? 0) < 0.2) continue;
+    const key = `${row.source_kind}:${row.slug_key}:${row.title}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    hits.push({
+      kind: row.source_kind,
+      title: row.title,
+      slug_key: row.slug_key,
+      excerpt: String(row.content ?? "").slice(0, 400),
+      locale: row.locale,
+      similarity: row.similarity,
+    });
+    if (hits.length >= limit) break;
+  }
+
+  return hits;
+}
+
+/** Keyword / ILIKE retrieval over immigration norms + Immigration-related CLKR guides. */
+async function searchLucyKnowledgeKeyword(
+  query: string,
+  locale: "en" | "es" = "en",
+  limit = 6,
+): Promise<LucySearchHit[]> {
   const supabase = await createClient();
   const tokens = tokenize(query);
   const primary = tokens[0] ?? query.trim().slice(0, 40);
@@ -64,7 +129,6 @@ export async function searchLucyKnowledge(
     });
   }
 
-  // Also search published immigration norms by title if section hits are thin
   if (hits.length < 3) {
     const { data: norms } = await supabase
       .from("norms")
@@ -91,7 +155,7 @@ export async function searchLucyKnowledge(
     .select("slug_key, title, description, locale, status")
     .eq("status", "published")
     .eq("locale", locale)
-    .in("slug_key", IMMIGRATION_GUIDE_SLUGS)
+    .in("slug_key", [...IMMIGRATION_GUIDE_SLUGS])
     .or(`title.ilike.${pattern},description.ilike.${pattern}`)
     .limit(limit);
 
@@ -111,7 +175,7 @@ export async function searchLucyKnowledge(
       .select("slug_key, title, description, locale, status")
       .eq("status", "published")
       .eq("locale", locale)
-      .in("slug_key", IMMIGRATION_GUIDE_SLUGS)
+      .in("slug_key", [...IMMIGRATION_GUIDE_SLUGS])
       .limit(3);
     for (const g of fallback ?? []) {
       hits.push({
@@ -124,7 +188,6 @@ export async function searchLucyKnowledge(
     }
   }
 
-  // Dedupe by kind+slug_key
   const seen = new Set<string>();
   const unique: LucySearchHit[] = [];
   for (const h of hits) {

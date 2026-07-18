@@ -1,6 +1,7 @@
 import { clkrPublicPath } from "@/lib/clkr/types";
 import { normPublicPath } from "@/lib/norms/types";
 import { postPublicPath } from "@/lib/posts/types";
+import { alternateImmigrationPath } from "@/lib/practice-areas/paths";
 
 import { SITE_URL } from "./config";
 
@@ -12,14 +13,17 @@ export const STATIC_ROUTE_PAIRS = [
   { en: "/clkr/guides", es: "/es/clkr/guides" },
   { en: "/clkr/norms", es: "/es/clkr/norms" },
   { en: "/clkr/agents", es: "/es/clkr/agents" },
-  { en: "/clkr/quizzes", es: "/es/clkr/quizzes" },
   { en: "/posts", es: "/es/posts" },
   { en: "/pricing", es: "/es/pricing" },
   { en: "/privacy", es: "/es/privacidad" },
   { en: "/immigration", es: "/es/migracion" },
+  { en: "/immigration/visas", es: "/es/migracion/visas" },
+  { en: "/immigration/nationality", es: "/es/migracion/nacionalidad" },
+  { en: "/immigration/extranjeria", es: "/es/migracion/extranjeria" },
+  { en: "/immigration/calculator", es: "/es/migracion/calculadora" },
 ] as const;
 
-const LOCALIZED_PREFIXES = ["/clkr/", "/posts/"] as const;
+const LOCALIZED_PREFIXES = ["/clkr/", "/posts/", "/immigration/"] as const;
 
 export function isLocalizedContentPath(path: string): boolean {
   if (STATIC_ROUTE_PAIRS.some((pair) => pair.en === path || pair.es === path)) {
@@ -38,6 +42,11 @@ export function getAlternatePath(path: string, locale: SeoLocale): string | unde
     if (pair[locale] === path) {
       return pair[locale === "en" ? "es" : "en"];
     }
+  }
+
+  // Immigration hub nested routes (including /visas/[slug])
+  if (path.startsWith("/immigration/") || path.startsWith("/es/migracion/")) {
+    return alternateImmigrationPath(path);
   }
 
   const stripped = path.startsWith("/es/") ? path.slice(3) : path;
@@ -130,6 +139,14 @@ export const SITEMAP_STATIC_PATHS = [
   { path: "/es", priority: 1.0 },
   { path: "/immigration", priority: 0.85 },
   { path: "/es/migracion", priority: 0.85 },
+  { path: "/immigration/visas", priority: 0.8 },
+  { path: "/es/migracion/visas", priority: 0.8 },
+  { path: "/immigration/nationality", priority: 0.75 },
+  { path: "/es/migracion/nacionalidad", priority: 0.75 },
+  { path: "/immigration/extranjeria", priority: 0.75 },
+  { path: "/es/migracion/extranjeria", priority: 0.75 },
+  { path: "/immigration/calculator", priority: 0.8 },
+  { path: "/es/migracion/calculadora", priority: 0.8 },
   { path: "/clkr", priority: 0.8 },
   { path: "/es/clkr", priority: 0.8 },
   { path: "/clkr/guides", priority: 0.75 },

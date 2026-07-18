@@ -4,7 +4,6 @@ export type DashboardNavIcon =
   | "home"
   | "file-text"
   | "bot"
-  | "graduation-cap"
   | "message-square"
   | "ticket"
   | "sparkles"
@@ -44,7 +43,6 @@ export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
         { href: "/clkr/guides", label: "Guides", icon: "file-text", external: true },
         { href: "/clkr/norms", label: "Norms", icon: "scale", external: true },
         { href: "/clkr/agents", label: "Agents", icon: "bot", external: true },
-        { href: "/clkr/quizzes", label: "Quizzes", icon: "graduation-cap", external: true },
       ],
     },
   ];
@@ -81,10 +79,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
   },
   {
     label: "LegalAI",
-    items: [
-      { href: "/admin/agents", label: "Agents", icon: "bot" },
-      { href: "/admin/quizzes", label: "Quizzes", icon: "graduation-cap" },
-    ],
+    items: [{ href: "/admin/agents", label: "Agents", icon: "bot" }],
   },
   {
     label: "Operations",
@@ -142,9 +137,6 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   }
   if (pathname.startsWith("/admin/agents")) {
     return { title: "Agents", description: "LegalAI agents CMS" };
-  }
-  if (pathname.startsWith("/admin/quizzes")) {
-    return { title: "Quizzes", description: "Student quiz CMS" };
   }
   if (pathname.startsWith("/admin/posts")) {
     return { title: "Blog", description: "Posts CMS" };

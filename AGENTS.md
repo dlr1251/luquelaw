@@ -9,8 +9,8 @@ That file is the master project document: product vision, ontology, phased roadm
 
 - **Stack:** Next.js 16 App Router, Tailwind 4, Supabase Auth + Postgres, Stripe (subscriptions), Vercel.
 - **Public site:** Marketing home, CLKR LegalAI hub (`/clkr`), blog (`/posts`), pricing, contact/booking.
-- **CLKR modules:** Normas (`/clkr/norms`), Guides (`/clkr/guides`), Agents (`/clkr/agents`), Quizzes (`/clkr/quizzes`).
-- **Admin:** `/admin/clkr`, `/admin/norms`, `/admin/posts`, `/admin/agents`, `/admin/quizzes` (requires admin role).
+- **CLKR modules:** Normas (`/clkr/norms`), Guides (`/clkr/guides`), Agents (`/clkr/agents`).
+- **Admin:** `/admin/clkr`, `/admin/norms`, `/admin/posts`, `/admin/agents` (requires admin role).
 - **Portal:** `/portal` — subscriber shell (tickets, account); `/account` redirects here. Not case management.
 - **Properties (future):** `/properties` — rental and sale listings.
 
@@ -24,7 +24,7 @@ That file is the master project document: product vision, ontology, phased roadm
 
 ## Immediate priority
 
-Lucy consultas legales MVP: apply `20260718120000_lucy_consultations` migration, configure AI Gateway + Stripe packs, seed Immigration content for RAG. Keep docs/checklists in PROJECT.md in sync.
+Lucy RAG v2: apply `20260718180139_lucy_knowledge_rag` migration, then `npm run index:lucy-rag` (needs `AI_GATEWAY_API_KEY` + service role). Keep docs/checklists in PROJECT.md in sync.
 
 ## Working sessions (Notion project hub)
 

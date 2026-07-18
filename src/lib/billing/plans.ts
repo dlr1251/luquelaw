@@ -20,7 +20,6 @@ export function resolveStripePriceId(
 ): string | null {
   if (dbPriceId) return dbPriceId;
   const fromEnv: Record<string, string | undefined> = {
-    student: process.env.STRIPE_PRICE_STUDENT,
     professional: process.env.STRIPE_PRICE_PROFESSIONAL,
     client: process.env.STRIPE_PRICE_CLIENT,
   };
@@ -28,17 +27,6 @@ export function resolveStripePriceId(
 }
 
 const FALLBACK_PLANS: PlanRow[] = [
-  {
-    id: "fallback-student",
-    slug: "student",
-    name_en: "Student",
-    name_es: "Estudiante",
-    description_en: "Quizzes, norm annotations, and a subset of LegalAI agents.",
-    description_es: "Quizzes, anotaciones normativas y un subconjunto de agentes LegalAI.",
-    stripe_price_id: null,
-    features: ["quizzes", "norm_annotations", "agents"],
-    sort_order: 1,
-  },
   {
     id: "fallback-professional",
     slug: "professional",
@@ -48,7 +36,7 @@ const FALLBACK_PLANS: PlanRow[] = [
     description_es: "Agentes, skills, prompts y herramientas avanzadas de estudio normativo.",
     stripe_price_id: null,
     features: ["agents", "norm_annotations"],
-    sort_order: 2,
+    sort_order: 1,
   },
   {
     id: "fallback-client",
@@ -59,7 +47,7 @@ const FALLBACK_PLANS: PlanRow[] = [
     description_es: "Tickets del portal y recursos de la firma para clientes de Luque Law.",
     stripe_price_id: null,
     features: ["portal_tickets"],
-    sort_order: 3,
+    sort_order: 2,
   },
 ];
 
@@ -81,5 +69,9 @@ export async function getActivePlans(): Promise<PlanRow[]> {
     .order("sort_order");
 
   if (error || !data?.length) return withEnvPrices(FALLBACK_PLANS);
-  return withEnvPrices(data as PlanRow[]);
+
+  const rows = (data as PlanRow[]).filter(
+    (plan) => plan.slug === "professional" || plan.slug === "client",
+  );
+  return withEnvPrices(rows.length ? rows : FALLBACK_PLANS);
 }

@@ -11,19 +11,18 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 | Layer | Purpose | Audience |
 |-------|---------|----------|
 | **Marketing site** | Trust, contact, practice areas, booking | Everyone |
-| **CLKR** | LegalAI hub — norms, guides, agents/skills, quizzes | Public modules + subscriber modules |
+| **CLKR** | LegalAI hub — norms, guides, agents/skills | Public modules + subscriber modules |
 | **Subscriber portal** | Overview, tickets, **Lucy** consultations, CLKR links | Authenticated (wallet / entitlements via Stripe) |
 | **Properties** *(future)* | Promote rental and sale listings | Everyone |
 | **Blog** | Shorter posts (`/posts`) | Public |
 
-**CLKR** is the **LegalAI hub** for learning and practicing Colombian law, with four modules:
+**CLKR** is the **LegalAI hub** for learning and practicing Colombian law, with three modules:
 
 | Module | Route | Access |
 |--------|-------|--------|
-| **Normas** | `/clkr/norms` | Public read; annotations → subscriber |
+| **Normas** | `/clkr/norms` | Public read; annotations → Professional |
 | **Repositorio (guides)** | `/clkr/guides` | Public (SEO + trust) |
-| **Agentes** | `/clkr/agents` | Subscriber (Professional / Student subset) |
-| **Quizzes** | `/clkr/quizzes` | Subscriber (Student+) |
+| **Agentes** | `/clkr/agents` | Subscriber (Professional) |
 
 **Not in scope:** case/matter management, client file storage, legal deliverables workflow in the portal.
 
@@ -37,12 +36,11 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 
 | Kind | Route / location | Access | Notes |
 |------|------------------|--------|-------|
-| **CLKR hub** | `/clkr`, `/es/clkr` | Public | Four-module landing |
+| **CLKR hub** | `/clkr`, `/es/clkr` | Public | Three-module landing |
 | **CLKR Guide** | `/clkr/guides/[slug]` | Public when `published` | Long guides, JSON sections + TOC |
 | **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser |
 | **Agent / skill / prompt** | `/clkr/agents/...` | Entitlement `agents` | Curated LegalAI toolkit |
-| **Quiz** | `/clkr/quizzes/...` | Entitlement `quizzes` | Student evaluation |
-| **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Subscriber study notes |
+| **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Professional study notes |
 | **Ticket** | `/portal/tickets` | General: entitlement `portal_tickets`; Lucy consultations: any auth user | Lightweight firm requests + Lucy review unlock |
 | **Lucy consultation** | `/portal/lucy` | Authenticated + prepaid wallet | Projects, chats, files, escalate → pay-to-unlock |
 | **Blog post** | `/posts/[slug]` | Public when `published` | Shorter articles |
@@ -56,9 +54,8 @@ Legacy URLs redirect: `/norms` → `/clkr/norms`, `/clkr/[slug]` → `/clkr/guid
 |------|--------|
 | Visitor | Public site + CLKR guides/norms (read) |
 | Registered | Same + `/portal` shell + Lucy (with wallet credits) |
-| **Student** | Entitlements via Student plan (quizzes, subset agents, annotations) |
 | **Client** | Client plan (portal tickets + firm resources) |
-| **Professional** | Agents/skills/prompts + advanced norms |
+| **Professional** | Agents/skills/prompts + norm annotations |
 | **Admin** | CMS, subscribers, tickets / Lucy review queue |
 
 Roles are expressed via `profiles` flags (beta) and/or active Stripe `subscriptions`. A user may hold more than one plan.
@@ -67,7 +64,6 @@ Roles are expressed via `profiles` flags (beta) and/or active Stripe `subscripti
 
 | Plan slug | Features |
 |-----------|----------|
-| `student` | `quizzes`, `norm_annotations`, subset `agents` |
 | `professional` | `agents`, `norm_annotations` |
 | `client` | `portal_tickets` |
 
@@ -79,7 +75,7 @@ eve-inspired agent inside the portal (`agent/lucy/` + AI SDK / AI Gateway):
 - **Wallet:** prepaid USD credits (Stripe Checkout packs); usage debited per turn.
 - **Escalate:** creates consultation ticket + email to firm (free to submit).
 - **Pay-to-unlock:** after lawyer marks ready, client pays review fee to see verified answer.
-- **Scope v1:** Immigration RAG (keyword over norms + guides).
+- **Scope v1:** Immigration RAG — pgvector embeddings (with keyword fallback) over norms + guides.
 
 ### Tickets *(not cases)*
 
@@ -92,19 +88,19 @@ Lightweight requests to the firm: subject, category, description, thread with ad
 ```
 Next.js App Router
 ├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /clkr/study, /posts, /pricing
-├── Gated: /clkr/agents, /clkr/quizzes (auth + entitlement)
+├── Gated: /clkr/agents (auth + entitlement)
 ├── /login, /portal (Lucy, tickets; /account → /portal)
-├── /admin/clkr, /admin/norms, /admin/posts, /admin/agents, /admin/quizzes, /admin/tickets
+├── /admin/clkr, /admin/norms, /admin/posts, /admin/agents, /admin/tickets
 └── Supabase
     ├── Auth + profiles
     ├── clkr_articles, clkr_study_paths, clkr_study_path_steps, clkr_article_relations, clkr_user_progress
     ├── norms, norm_sections, norm_annotations, posts
     ├── plans, subscriptions
     ├── clkr_agents, clkr_skills, clkr_prompts
-    ├── quizzes, quiz_questions, quiz_attempts, quiz_answers
     ├── tickets, ticket_messages
     ├── lucy_projects, lucy_chats, lucy_messages, lucy_files
     ├── lucy_wallets, lucy_wallet_ledger
+    ├── lucy_knowledge_chunks (pgvector RAG)
     └── chat_conversations, chat_messages (legacy shell)
 ```
 
@@ -134,13 +130,13 @@ Next.js App Router
 - [x] Guides at `/clkr/guides`, norms at `/clkr/norms`
 - [x] Redirects from `/norms` and legacy `/clkr/[slug]`
 - [x] Nav: single CLKR link
-- [x] Agents/quizzes placeholder routes
+- [x] Agents/quizzes placeholder routes → agents shipped; quizzes retired 2026-07
 
 ### Phase B — Profiles + portal shell
 
 - [x] `profiles` table + signup trigger
 - [x] `/portal` (redirect `/account`)
-- [x] Auth gate for agents/quizzes routes
+- [x] Auth gate for agents routes
 - [x] Login `?next=` return URL, password reset, auth-code-error page
 - [x] Header/footer Pricing + footer Portal respects session
 
@@ -161,10 +157,10 @@ Next.js App Router
 - [x] Tables + admin CMS
 - [x] Gated public UI
 
-### Phase E — Quizzes
+### Phase E — Quizzes *(retired 2026-07)*
 
-- [x] Tables + attempts
-- [x] Admin CRUD + student UI
+- [x] Tables + attempts (historical; not exposed in app)
+- [x] Product surface removed (routes, CMS, Student plan deactivated)
 
 ### Phase F — Annotations, tickets, chatbot
 
@@ -179,7 +175,7 @@ Next.js App Router
 - [x] Immigration keyword RAG (norms + guides)
 - [x] Escalate → email → admin draft → pay-to-unlock
 - [x] Discovery CTA on CLKR hub + portal access/wallet status
-- [ ] pgvector embeddings RAG upgrade
+- [x] pgvector embeddings RAG (`lucy_knowledge_chunks` + `npm run index:lucy-rag`; keyword fallback)
 - [ ] Expand beyond Immigration
 - [ ] Exact review fee + email to client when review is ready
 
@@ -205,7 +201,6 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | CLKR hub / guides | `src/components/clkr/*`, `src/lib/clkr/*` (includes study paths, navigation) |
 | Normas | `src/components/norms/*`, `src/lib/norms/*` |
 | Agents | `src/lib/agents/*`, `src/components/agents/*`, `src/app/.../clkr/agents` |
-| Quizzes | `src/lib/quizzes/*`, `src/components/quizzes/*` |
 | Entitlements | `src/lib/billing/entitlements.ts` |
 | Lucy | `agent/lucy/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*` |
 | Portal | `src/app/(dashboard)/portal/` |
@@ -232,12 +227,13 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Profile entitlement flags | Admin/service-role only; users cannot self-grant | Authz audit 2026-07 |
 | `is_subscriber` | Display only (has any active sub); not an entitlement | Align with PLAN_FEATURES |
 | Auth admin check | `app_metadata.role` + `ADMIN_EMAILS` only (never `user_metadata`) | Prevent privilege escalation |
-| CLKR identity | LegalAI hub (4 modules), not guides-only | Product direction 2026-07 |
+| CLKR identity | LegalAI hub (3 modules), not guides-only | Product direction 2026-07; quizzes retired |
 | Normas placement | Under `/clkr/norms`, not sibling nav | Part of CLKR |
 | Guides path | `/clkr/guides/[slug]` | Hub owns `/clkr` |
-| Monetization | Stripe plans Student / Professional / Client | Students + clients |
+| Monetization | Stripe plans Professional / Client | Dropped Student + quizzes 2026-07 |
 | Guides access | Public | Marketing + SEO |
-| Agents / quizzes | Entitlement-gated | Monetization |
+| Agents | Entitlement-gated (Professional) | Monetization |
+| Quizzes / Student plan | Retired from product | Scope cut 2026-07 |
 | Article body storage | `sections` JSON with HTML | TOC + admin simplicity |
 | Properties route | `/properties` | User direction |
 | Dates in roadmap | None | Project rhythm TBD |
@@ -245,6 +241,7 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Lucy review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
 | Lucy wallet | Prepaid Stripe packs; per-turn debit | Transparent usage |
 | Lucy RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
+| Lucy RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
 
 ---
 
@@ -257,7 +254,10 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | 2026-05 | Phase 1 CLKR CMS (DB articles, admin editor, dynamic routes) |
 | 2026-07 | CLKR LegalAI hub roadmap: norms under CLKR, profiles, Stripe, agents, quizzes, tickets/chat shells |
 | 2026-07 | Lucy: projects/wallet/streaming chat, Immigration RAG, escalate + pay-to-unlock |
+| 2026-07 | Lucy RAG v2: pgvector chunks + AI Gateway embeddings; index script + semantic tools |
+| 2026-07 | Immigration norms: Resoluciones 2061 y 2357 de 2020 (Migración Colombia) + reindex Lucy |
 | 2026-07 | Authz hardening (profiles trigger, admin metadata), auth UX (next/reset), billing webhook reliability, portal access status + Lucy CTA on CLKR hub |
+| 2026-07 | Retired Quizzes module + Student plan from product surface |
 
 ---
 

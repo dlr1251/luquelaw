@@ -3,12 +3,11 @@
 Checkout resolves prices in this order:
 
 1. `plans.stripe_price_id` in Supabase
-2. Env fallback: `STRIPE_PRICE_STUDENT`, `STRIPE_PRICE_PROFESSIONAL`, `STRIPE_PRICE_CLIENT`
+2. Env fallback: `STRIPE_PRICE_PROFESSIONAL`, `STRIPE_PRICE_CLIENT`
 
 ## Seed DB (optional)
 
 ```sql
-update public.plans set stripe_price_id = 'price_xxx' where slug = 'student';
 update public.plans set stripe_price_id = 'price_xxx' where slug = 'professional';
 update public.plans set stripe_price_id = 'price_xxx' where slug = 'client';
 

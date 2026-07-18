@@ -50,7 +50,6 @@ export default async function AdminAgentsPage({
               <option value="es">es</option>
             </select>
             <select name="access_tier" className="rounded border px-3 py-2 text-sm" defaultValue="professional">
-              <option value="student">student</option>
               <option value="professional">professional</option>
             </select>
             <input name="title" required placeholder="title" className="rounded border px-3 py-2 text-sm sm:col-span-2" />

@@ -9,7 +9,7 @@ export type AgentRecord = {
   category: string;
   system_prompt: string;
   instructions: string;
-  access_tier: "student" | "professional";
+  access_tier: "professional";
   status: string;
   sort_order: number;
 };
@@ -22,7 +22,7 @@ export type PromptRecord = {
   description: string;
   prompt_text: string;
   category: string;
-  access_tier: "student" | "professional";
+  access_tier: "professional";
   status: string;
   sort_order: number;
 };
@@ -34,7 +34,7 @@ export type SkillRecord = {
   title: string;
   description: string;
   body: string;
-  access_tier: "student" | "professional";
+  access_tier: "professional";
   status: string;
   sort_order: number;
 };

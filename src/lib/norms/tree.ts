@@ -127,29 +127,53 @@ export type TocEntry = {
   depth: number;
   isActive: boolean;
   hasChildren: boolean;
+  /** Slash-joined section_key path from root */
+  pathKey: string;
 };
 
+export type TocNode = TocEntry & {
+  children: TocNode[];
+};
+
+export function buildTocTree(
+  tree: NormSectionNode[],
+  slugKey: string,
+  locale: "en" | "es",
+  activePath: string[],
+): TocNode[] {
+  const activeKey = activePath.join("/");
+
+  const walk = (nodes: NormSectionNode[], ancestors: string[]): TocNode[] =>
+    nodes.map((node) => {
+      const path = [...ancestors, node.section_key];
+      const pathKey = path.join("/");
+      return {
+        id: node.id,
+        title: node.title,
+        numberLabel: node.number_label,
+        href: sectionHref(slugKey, locale, path),
+        depth: node.depth,
+        isActive: pathKey === activeKey,
+        hasChildren: node.children.length > 0,
+        pathKey,
+        children: walk(node.children, path),
+      };
+    });
+
+  return walk(tree, []);
+}
+
+/** Flat list — kept for breadcrumbs / simple lookups. */
 export function buildTocEntries(
   tree: NormSectionNode[],
   slugKey: string,
   locale: "en" | "es",
   activePath: string[],
 ): TocEntry[] {
-  const flat = flattenSectionTree(tree);
-  const activeKey = activePath.join("/");
+  const flatten = (nodes: TocNode[]): TocEntry[] =>
+    nodes.flatMap(({ children, ...entry }) => [entry, ...flatten(children)]);
 
-  return flat.map(({ node, path }) => {
-    const pathKey = path.join("/");
-    return {
-      id: node.id,
-      title: node.title,
-      numberLabel: node.number_label,
-      href: sectionHref(slugKey, locale, path),
-      depth: node.depth,
-      isActive: pathKey === activeKey,
-      hasChildren: node.children.length > 0,
-    };
-  });
+  return flatten(buildTocTree(tree, slugKey, locale, activePath));
 }
 
 export function defaultSectionPath(tree: NormSectionNode[]): string[] {

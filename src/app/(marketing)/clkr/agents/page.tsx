@@ -1,8 +1,8 @@
-import Link from "next/link";
-
 import { AgentsLibrary } from "@/components/agents/agents-library";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleGate } from "@/components/clkr/clkr-module-gate";
+import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
+import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import {
   getPublishedAgents,
@@ -22,7 +22,7 @@ export const metadata = buildPageMetadata({
 export default async function ClkrAgentsPage() {
   const access = await requireEntitlement("agents");
   if (!access.ok) {
-    return <ClkrModuleGate kind="agents" locale="en" lockedReason={access.reason} />;
+    return <ClkrModuleGate locale="en" lockedReason={access.reason} />;
   }
 
   const [agents, prompts, skills] = await Promise.all([
@@ -33,22 +33,18 @@ export default async function ClkrAgentsPage() {
 
   return (
     <main className="flex-1">
-      <Container className="py-14 sm:py-16">
-        <p className="marketing-eyebrow">CLKR · Agents</p>
-        <h1 className="marketing-display mt-3 text-[color:var(--forest)]">
-          Agents, skills & prompts
-        </h1>
-        <p className="marketing-body mt-4 max-w-2xl">
-          Copy prompts into your AI tools. Always verify outputs against primary sources.
-        </p>
-        <p className="mt-4">
-          <Link href="/clkr" className="text-sm font-bold text-[color:var(--forest)] hover:underline">
-            ← Back to CLKR
-          </Link>
-        </p>
-        <div className="mt-10">
-          <AgentsLibrary agents={agents} prompts={prompts} skills={skills} locale="en" />
-        </div>
+      <ClkrProductNav locale="en" signedIn />
+      <ClkrModuleHero
+        locale="en"
+        eyebrow="CLKR · Agents"
+        title="Agents, skills & prompts"
+        subtitle="Copy prompts into your AI tools. Always verify outputs against primary sources."
+        contactCta="Need a guided consultation?"
+        contactLink="Meet Lucy"
+        contactHref="/portal/lucy"
+      />
+      <Container className="py-12 sm:py-14">
+        <AgentsLibrary agents={agents} prompts={prompts} skills={skills} locale="en" />
         <ClkrDisclaimer
           className="mt-12"
           text="Informational tools only. Not legal advice. You remain responsible for professional judgment."

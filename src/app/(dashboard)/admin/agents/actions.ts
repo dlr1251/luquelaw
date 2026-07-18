@@ -32,7 +32,7 @@ export async function saveAgent(formData: FormData) {
     category: String(formData.get("category") ?? "general").trim() || "general",
     system_prompt: String(formData.get("system_prompt") ?? ""),
     instructions: String(formData.get("instructions") ?? ""),
-    access_tier: String(formData.get("access_tier") ?? "professional"),
+    access_tier: "professional",
     status: String(formData.get("status") ?? "draft"),
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
   };

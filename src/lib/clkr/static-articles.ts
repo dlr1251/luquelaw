@@ -234,7 +234,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "next-steps",
         title: "Next steps",
-        html: "<p>Keep a personal log of entries and exits. A Last Legal Day calculator is planned on our immigration practice page. For a case-specific count or if you are near overstay, <a href=\"/#book\">book a consultation</a>.</p>",
+        html: "<p>Keep a personal log of entries and exits. Use our <a href=\"/immigration/calculator\">Last Legal Day calculator</a> for a first estimate. For a case-specific count or if you are near overstay, <a href=\"/immigration#book\">book a consultation</a>.</p>",
       },
     ],
     status: "published",
@@ -330,7 +330,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "next-steps",
         title: "Siguientes pasos",
-        html: "<p>Lleva un registro personal de entradas y salidas. En la página del área migratoria planeamos una calculadora de último día legal. Para un conteo caso a caso o si estás cerca de sobreestadía, <a href=\"/es#book\">agenda una consulta</a>.</p>",
+        html: "<p>Lleva un registro personal de entradas y salidas. Usa nuestra <a href=\"/es/migracion/calculadora\">calculadora de último día legal</a> para una primera estimación. Para un conteo caso a caso o si estás cerca de sobreestadía, <a href=\"/es/migracion#book\">agenda una consulta</a>.</p>",
       },
     ],
     status: "published",

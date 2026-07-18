@@ -1,0 +1,13 @@
+---
+description: When user says cerrar sesión, log session, or /log — write Notion Session Log and wrap up
+alwaysApply: true
+---
+
+# Cerrar sesión → Notion Session Log
+
+If the user says **`cerrar sesión`**, **`log session`**, or **`/log`**:
+
+1. Create a page in Notion Session Logs data source `collection://3d5e3935-46b9-4f62-be85-c9abde7f3214` (hub: Luque Law Website).
+2. Set properties: `Entry` (short title), `Date` (today), `Duration` (`~N min (HH:MM → HH:MM UTC-5)`), `Summary` (1–3 sentences).
+3. Page body: qué se hizo / decisiones / pendiente.
+4. Reply with the Notion URL and stop — no new work unless they ask.

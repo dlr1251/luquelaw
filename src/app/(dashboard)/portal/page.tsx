@@ -19,9 +19,8 @@ export default async function PortalPage({ searchParams }: Props) {
   const { checkout, password } = await searchParams;
   const userId = await getSessionUserId();
 
-  const [agents, quizzes, tickets, balanceCents, subscriptions] = await Promise.all([
+  const [agents, tickets, balanceCents, subscriptions] = await Promise.all([
     hasEntitlement("agents"),
-    hasEntitlement("quizzes"),
     hasEntitlement("portal_tickets"),
     userId ? getLucyBalance(userId) : Promise.resolve(0),
     (async () => {
@@ -86,7 +85,6 @@ export default async function PortalPage({ searchParams }: Props) {
             </p>
             <ul className="mt-2 space-y-1 text-muted-foreground">
               <li>Agents: {agents ? "unlocked" : "locked"}</li>
-              <li>Quizzes: {quizzes ? "unlocked" : "locked"}</li>
               <li>Client tickets: {tickets ? "unlocked" : "locked"}</li>
             </ul>
             <ButtonLink href="/pricing" variant="outline" className="mt-3 justify-start">
@@ -107,7 +105,7 @@ export default async function PortalPage({ searchParams }: Props) {
         <CardHeader>
           <CardTitle>Welcome</CardTitle>
           <CardDescription>
-            Use CLKR modules for study and practice. Client tickets stay separate from case files.
+            Use CLKR for norms, guides, and agents. Client tickets stay separate from case files.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2">
@@ -126,13 +124,6 @@ export default async function PortalPage({ searchParams }: Props) {
             className="justify-start"
           >
             Agents {agents ? "" : "(upgrade)"}
-          </ButtonLink>
-          <ButtonLink
-            href={quizzes ? "/clkr/quizzes" : "/pricing"}
-            variant="outline"
-            className="justify-start"
-          >
-            Quizzes {quizzes ? "" : "(upgrade)"}
           </ButtonLink>
           <ButtonLink href="/portal/lucy" variant="outline" className="justify-start">
             Lucy consultations

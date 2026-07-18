@@ -1,4 +1,5 @@
 import { ImmigrationPage } from "@/components/practice-areas/immigration-page";
+import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { PAGE_SEO } from "@/lib/seo/config";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
@@ -9,6 +10,7 @@ export const metadata = buildPageMetadata({
   locale: "en",
 });
 
-export default function ImmigrationRoutePage() {
-  return <ImmigrationPage locale="en" />;
+export default async function ImmigrationRoutePage() {
+  const signedIn = await getSignedInFlag();
+  return <ImmigrationPage locale="en" signedIn={signedIn} />;
 }

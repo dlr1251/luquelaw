@@ -8,10 +8,11 @@ import {
   getTranslationSlugKey,
 } from "@/lib/norms/get-norms";
 import {
-  buildTocEntries,
+  buildTocTree,
   defaultSectionPath,
   resolveSectionRequest,
 } from "@/lib/norms/tree";
+import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { normPublicPath } from "@/lib/norms/types";
 import { hasEntitlement } from "@/lib/billing/entitlements";
 import { JsonLd } from "@/lib/seo/json-ld";
@@ -74,15 +75,18 @@ export default async function NormPage({ params }: Props) {
     redirect(normPublicPath(slug, locale, canonicalPath));
   }
 
-  const toc = buildTocEntries(tree, slug, locale, canonicalPath);
-  const canAnnotate = await hasEntitlement("norm_annotations");
+  const toc = buildTocTree(tree, slug, locale, canonicalPath);
+  const [canAnnotate, signedIn] = await Promise.all([
+    hasEntitlement("norm_annotations"),
+    getSignedInFlag(),
+  ]);
 
   return (
     <>
       <JsonLd data={normJsonLd(norm, canonicalPath, active.title)} />
       <NormLayout
         locale={locale}
-        normSlug={slug}
+        signedIn={signedIn}
         sectionPath={canonicalPath}
         title={norm.title}
         description={norm.description}

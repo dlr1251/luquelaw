@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { BookOpen, Bot, GraduationCap, Scale, Sparkles } from "lucide-react";
+import { BookOpen, Bot, Scale, Sparkles } from "lucide-react";
 
 import { Container } from "@/components/container";
 import { loginHref } from "@/lib/auth/safe-next";
@@ -38,12 +38,6 @@ const links = (prefix: string, signedIn: boolean) =>
       icon: Bot,
     },
     {
-      href: `${prefix}/clkr/quizzes`,
-      match: (p: string) => p.includes("/clkr/quizzes"),
-      label: { en: "Quizzes", es: "Quizzes" },
-      icon: GraduationCap,
-    },
-    {
       href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy"),
       match: () => false,
       label: { en: "Lucy", es: "Lucy" },
@@ -64,7 +58,7 @@ export function ClkrProductNav({
   const items = links(prefix, signedIn);
 
   return (
-    <div className="sticky top-0 z-30 border-b border-[color:var(--moss)]/20 bg-[color:var(--background)]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[color:var(--background)]/75">
+    <div className="sticky top-16 z-40 border-b border-[color:var(--moss)]/20 bg-[color:var(--background)]/90 backdrop-blur-md supports-[backdrop-filter]:bg-[color:var(--background)]/75">
       <Container className="flex items-center gap-1 overflow-x-auto py-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <Link
           href={`${prefix}/clkr`}

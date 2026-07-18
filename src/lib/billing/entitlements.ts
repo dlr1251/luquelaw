@@ -17,8 +17,7 @@ export async function getSessionUserId(): Promise<string | null> {
 
 /**
  * Feature access via admin bypass, admin-granted beta flags, or active Stripe plans.
- * Beta flags align with PLAN_FEATURES (is_student ≈ student plan; is_client ≈ client plan).
- * is_subscriber is display-only and does not grant features.
+ * Beta: is_client ≈ client plan (portal tickets). is_subscriber is display-only.
  */
 export async function hasEntitlement(
   feature: EntitlementFeature,
@@ -37,19 +36,11 @@ export async function hasEntitlement(
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("is_student, is_client")
+    .select("is_client")
     .eq("id", uid)
     .maybeSingle();
 
-  // Admin-granted beta flags (users cannot self-set after profiles trigger)
-  if (feature === "quizzes" && profile?.is_student) return true;
   if (feature === "portal_tickets" && profile?.is_client) return true;
-  if (
-    (feature === "agents" || feature === "norm_annotations") &&
-    profile?.is_student
-  ) {
-    return true;
-  }
 
   const { data: subs } = await supabase
     .from("subscriptions")
@@ -69,7 +60,7 @@ export async function hasEntitlement(
 
     const features =
       planRow.features?.length
-        ? planRow.features
+        ? planRow.features.filter((f) => f !== "quizzes")
         : PLAN_FEATURES[planRow.slug as PlanSlug] ?? [];
 
     if (features.includes(feature)) return true;

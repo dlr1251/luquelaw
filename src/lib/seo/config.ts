@@ -43,12 +43,12 @@ export const PAGE_SEO = {
     en: {
       title: "CLKR — LegalAI hub for Colombian law",
       description:
-        "Norms, practical guides, LegalAI agents, and quizzes for studying and practicing Colombian law.",
+        "Norms, practical guides, and LegalAI agents for studying and practicing Colombian law.",
     },
     es: {
       title: "CLKR — Hub LegalAI de derecho colombiano",
       description:
-        "Normas, guías prácticas, agentes LegalAI y quizzes para estudiar y practicar el derecho colombiano.",
+        "Normas, guías prácticas y agentes LegalAI para estudiar y practicar el derecho colombiano.",
     },
   },
   clkrGuides: {
@@ -79,12 +79,12 @@ export const PAGE_SEO = {
     en: {
       title: "Pricing — CLKR & portal plans",
       description:
-        "Student, Professional, and Client plans for CLKR LegalAI modules and the Luque Law portal.",
+        "Professional and Client plans for CLKR LegalAI modules and the Luque Law portal.",
     },
     es: {
       title: "Precios — Planes CLKR y portal",
       description:
-        "Planes Estudiante, Profesional y Cliente para módulos LegalAI de CLKR y el portal Luque Law.",
+        "Planes Profesional y Cliente para módulos LegalAI de CLKR y el portal Luque Law.",
     },
   },
   postsHub: {
@@ -115,12 +115,60 @@ export const PAGE_SEO = {
     en: {
       title: "Immigration Law — Visas & Stay Rules in Colombia",
       description:
-        "Visa assistance, migratory regularization, and guides on tourism days and Colombian visa ground rules for international clients.",
+        "Visa assistance, migratory regularization, V/M/R catalog, nationality, extranjería, and a Last Legal Day calculator for international clients.",
     },
     es: {
       title: "Derecho migratorio — Visas y permanencia en Colombia",
       description:
-        "Asistencia en visas, regulación migratoria y guías sobre días de turismo y reglas generales de visas colombianas.",
+        "Asistencia en visas, regulación migratoria, catálogo V/M/R, nacionalidad, extranjería y calculadora de último día legal para clientes internacionales.",
+    },
+  },
+  immigrationVisas: {
+    en: {
+      title: "Colombian Visa Types — V, M & R Catalog",
+      description:
+        "Browse Visitante (V), Migrante (M), and Residente (R) visa categories under Resolución 5477 de 2022.",
+    },
+    es: {
+      title: "Tipos de visa colombiana — Catálogo V, M y R",
+      description:
+        "Explora las categorías Visitante (V), Migrante (M) y Residente (R) bajo la Resolución 5477 de 2022.",
+    },
+  },
+  immigrationNationality: {
+    en: {
+      title: "Colombian Nationality & Civil Registry",
+      description:
+        "Nationality by birth and adoption, Registro Civil basics, and how they intersect with immigration strategy.",
+    },
+    es: {
+      title: "Nacionalidad colombiana y Registro Civil",
+      description:
+        "Nacionalidad por nacimiento y adopción, bases del Registro Civil y su relación con la estrategia migratoria.",
+    },
+  },
+  immigrationExtranjeria: {
+    en: {
+      title: "Extranjería Procedures in Colombia",
+      description:
+        "Stay extensions, cédula de extranjería, minors registration, sanctions, appointments, and migratory movements.",
+    },
+    es: {
+      title: "Trámites de extranjería en Colombia",
+      description:
+        "Prórroga de permanencia, cédula de extranjería, registro de menores, sanciones, citas y movimientos migratorios.",
+    },
+  },
+  immigrationCalculator: {
+    en: {
+      title: "Last Legal Day Calculator — Tourism Stay in Colombia",
+      description:
+        "Estimate tourism quota days used and your last lawful day under Colombia’s 180-day calendar-year rules.",
+    },
+    es: {
+      title: "Calculadora de último día legal — Permanencia de turismo",
+      description:
+        "Estima los días de cuota de turismo usados y tu último día de permanencia regular bajo la regla de 180 días por año calendario.",
     },
   },
 } as const;

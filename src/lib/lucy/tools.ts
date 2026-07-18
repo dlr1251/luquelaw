@@ -18,8 +18,7 @@ export function createLucyTools(locale: "en" | "es"): ToolSet {
         query: z.string().min(2).describe("Search query in English or Spanish"),
       }),
       execute: async ({ query }) => {
-        const hits = await searchLucyKnowledge(query, locale, 6);
-        return hits.filter((h) => h.kind === "norm");
+        return searchLucyKnowledge(query, locale, 6, "norm");
       },
     }),
     search_guides: tool({
@@ -29,8 +28,7 @@ export function createLucyTools(locale: "en" | "es"): ToolSet {
         query: z.string().min(2).describe("Search query in English or Spanish"),
       }),
       execute: async ({ query }) => {
-        const hits = await searchLucyKnowledge(query, locale, 6);
-        return hits.filter((h) => h.kind === "guide");
+        return searchLucyKnowledge(query, locale, 6, "guide");
       },
     }),
   };

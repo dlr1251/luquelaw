@@ -27,7 +27,7 @@ export function NormAnnotationForm({
           title: "Tu anotación (suscriptor)",
           placeholder: "Notas de estudio sobre esta sección…",
           save: "Guardar",
-          locked: "Las anotaciones requieren plan Estudiante o Profesional.",
+          locked: "Las anotaciones requieren plan Profesional.",
           pricing: "Ver planes",
           saved: "Guardado.",
         }
@@ -35,7 +35,7 @@ export function NormAnnotationForm({
           title: "Your annotation (subscriber)",
           placeholder: "Study notes for this section…",
           save: "Save",
-          locked: "Annotations require a Student or Professional plan.",
+          locked: "Annotations require a Professional plan.",
           pricing: "View plans",
           saved: "Saved.",
         };

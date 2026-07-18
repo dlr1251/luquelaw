@@ -9,6 +9,8 @@ type Props = {
   subtitle: string;
   contactCta: string;
   contactLink: string;
+  /** Override default #contact link (e.g. Lucy). */
+  contactHref?: string;
 };
 
 export function ClkrModuleHero({
@@ -18,9 +20,11 @@ export function ClkrModuleHero({
   subtitle,
   contactCta,
   contactLink,
+  contactHref: contactHrefProp,
 }: Props) {
   const hubHref = locale === "es" ? "/es/clkr" : "/clkr";
-  const contactHref = locale === "es" ? "/es#contact" : "/#contact";
+  const contactHref =
+    contactHrefProp ?? (locale === "es" ? "/es#contact" : "/#contact");
 
   return (
     <section className="relative overflow-hidden border-b border-[color:var(--moss)]/20 bg-[color:var(--forest)] text-[color:var(--parchment)]">

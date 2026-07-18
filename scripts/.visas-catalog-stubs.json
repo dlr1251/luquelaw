@@ -1,0 +1,317 @@
+[
+  {
+    "slug": "transito-aeroportuario",
+    "category": "V",
+    "articleNum": 33,
+    "nameEs": "Visa V Tránsito Aeroportuario",
+    "bodySnippet": "Visa V Tránsito Aeroportuario Alcance: Para extranjeros de nacionalidades establecidas mediante Resolución que aspiren a realizar tránsito directo en alguno de los aeropuertos del territorio nacional y con destino a un tercer Estado. La permanencia autorizada en el aeropuerto será de máximo veinticuatro (24) horas, restringida estrictamente a zonas estériles o de tránsito directo en un solo aeropuerto con operación internacional. La llegada y la permanencia en las zonas de tránsito internacional"
+  },
+  {
+    "slug": "turismo",
+    "category": "V",
+    "articleNum": 34,
+    "nameEs": "Visa V Turismo",
+    "bodySnippet": "Visa V Turismo Alcance: Exclusivamente para actividades de ocio, turismo o interés cultural. Requisitos específicos: 1. Los establecidos en el artículo 31 de la presente resolución; 2."
+  },
+  {
+    "slug": "negocios",
+    "category": "V",
+    "articleNum": 35,
+    "nameEs": "Visa V Negocios",
+    "bodySnippet": "Visa V Negocios Alcance: Para realizar gestiones de negocios, estudios de mercado, planes o trámites de inversión directa y constitución de sociedad comercial, negociación, celebración de contratos o representación comercial. Está destinada a extranjeros de nacionalidades que no se encuentran exentos de visa para visitas cortas. establecidas mediante Resolución o aquellos que, estando eximidos de visa de corta duración, precisen de una mayor permanencia en el país."
+  },
+  {
+    "slug": "estudiante",
+    "category": "V",
+    "articleNum": 36,
+    "nameEs": "Visa V Estudiante",
+    "bodySnippet": "Visa V Estudiante Alcance: Para realizar estudios presenciales. virtuales o a distancia de educación en arte u oficio, preescolar, primaria, secundaria, media, educación para el trabajo y desarrollo humano. y educación superior; o para efectuar prácticas estudiantiles, e intercambio académico por convenio entre entidades de educación superior."
+  },
+  {
+    "slug": "tratamiento-medico",
+    "category": "V",
+    "articleNum": 37,
+    "nameEs": "Visa V Tratamiento médico",
+    "bodySnippet": "Visa V Tratamiento médico Alcance: Para asistir en calidad de paciente o de acompañante de este a consulta, intervención o tratamiento médico y odontológico. Esta visa será otorgada para tratamientos específicos, priorizando aquellos de duración concreta, que hagan parte de la oferta exportable de servicios médicos para extranjeros. Requisitos específicos: 1."
+  },
+  {
+    "slug": "tramites-administrativos-y-o-judiciales",
+    "category": "V",
+    "articleNum": 38,
+    "nameEs": "Visa V Trámites administrativos y/o judiciales",
+    "bodySnippet": "Visa V Trámites administrativos y/o judiciales Alcance: Para adelantar trámites de carácter administrativo o judicial ante entidades o autoridades en Colombia. Requisitos específicos: 1. Los requisitos establecidos en el artículo 31 de la presente resolución; 2."
+  },
+  {
+    "slug": "tripulante",
+    "category": "V",
+    "articleNum": 39,
+    "nameEs": "Visa V Tripulante",
+    "bodySnippet": "Visa V Tripulante Alcance: Para trabajar en aguas jurisdiccionales colombianas como tripulante de embarcación, draga o en plataforma costa afuera. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución; 2."
+  },
+  {
+    "slug": "trabajador-agricola-de-temporada",
+    "category": "V",
+    "articleNum": 40,
+    "nameEs": "Visa V Trabajador agrícola de temporada",
+    "bodySnippet": "Visa V Trabajador agrícola de temporada. Alcance: Para desarrollar labores agrícolas de temporada bajo programas establecidos por el Ministerio de Agricultura y Desarrollo Rural, o las Gobernaciones en concertación con el sector agrícola, el Ministerio del Trabajo y el Ministerio de Salud y Protección Social, en los que se señalarán los cupos estimados disponibles y las labores en las que se requiere apoyo de mano de obra. Requisitos específicos: 1."
+  },
+  {
+    "slug": "eventos",
+    "category": "V",
+    "articleNum": 41,
+    "nameEs": "Visa V Eventos",
+    "bodySnippet": "Visa V Eventos Alcance: Para asistir a convenciones y actividades empresariales, culturales o académicas como conferencista, expositor, participante, artista, deportista, jurado, concursante, organizador o personal logístico. No permite trabajar en el territorio colombiano. Los portadores de pasaporte de países o territorios exentos de visa, determinados mediante Resolución, estarán exentos del trámite de este tipo de visa siempre que su permanencia en Colombia no exceda 180 días calendario y no"
+  },
+  {
+    "slug": "religioso",
+    "category": "V",
+    "articleNum": 42,
+    "nameEs": "Visa V Religioso",
+    "bodySnippet": "Visa V Religioso Alcance: Para trabajar en el ejercicio del ministerio religioso o para ejercer como misionero de una entidad religiosa, debidamente reconocida por el Estado colombiano. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución; 2."
+  },
+  {
+    "slug": "para-estudiantes-voluntarios-entidades-religiosas",
+    "category": "V",
+    "articleNum": 43,
+    "nameEs": "Visa V para estudiantes/voluntarios entidades religiosas",
+    "bodySnippet": "Visa V para estudiantes/voluntarios entidades religiosas. Alcance: Para ingresar y permanecer en el país como voluntario o estudiante en formación religiosa o para llevar a cabo estudios teológicos en instituto u organización de una iglesia o confesión religiosa, debidamente reconocida por el Estado colombiano. Requisitos específicos: 1."
+  },
+  {
+    "slug": "voluntario-o-cooperante",
+    "category": "V",
+    "articleNum": 44,
+    "nameEs": "Visa V Voluntario o Cooperante",
+    "bodySnippet": "Visa V Voluntario o Cooperante Alcance: Para realizar voluntariado de carácter social o de cooperación para el desarrollo. Requisitos específicos: 1. Carta suscrita por el representante legal de la entidad u organización indicando la actividad, el programa de actividades, lugares donde el voluntario desarrollará los proyectos y su duración, asumiendo la responsabilidad económica de sufragar todos los gastos del extranjero durante su permanencia en Colombia."
+  },
+  {
+    "slug": "produccion-cinematografica-o-audiovisual",
+    "category": "V",
+    "articleNum": 45,
+    "nameEs": "Visa V Producción cinematográfica o audiovisual",
+    "bodySnippet": "Visa V Producción cinematográfica o audiovisual Alcance: Para participar en producciones cinematográficas o documentales de gran formato. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución: 2."
+  },
+  {
+    "slug": "nomadas-digitales",
+    "category": "V",
+    "articleNum": 46,
+    "nameEs": "Visa V Nómadas digitales",
+    "bodySnippet": "Visa V Nómadas digitales Alcance: Para prestar servicios de trabajo remoto o teletrabajo, desde Colombia, a través de medios digitales e internet, exclusivamente para empresas extranjeras, como independiente o vinculado laboralmente, o para iniciar un emprendimiento de contenido digital o tecnologías de la in formación de interés para el país. Requisitos específicos: 1. Ser titular de pasaporte expedido por alguno de los países o territorios exentos de visa de corta estancia, según resolución."
+  },
+  {
+    "slug": "cubrimiento-periodistico",
+    "category": "V",
+    "articleNum": 47,
+    "nameEs": "Visa V Cubrimiento periodístico",
+    "bodySnippet": "Visa V Cubrimiento periodístico Alcance: Para efectuar cubrimiento periodístico de corta duración en el país. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución; 2."
+  },
+  {
+    "slug": "corresponsal-permanente",
+    "category": "V",
+    "articleNum": 48,
+    "nameEs": "Visa V Corresponsal permanente",
+    "bodySnippet": "Visa V Corresponsal permanente Alcance: Para desempeñarse en Colombia como corresponsal de prensa permanente de un medio extranjero. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución; 2."
+  },
+  {
+    "slug": "asistencia-tecnica",
+    "category": "V",
+    "articleNum": 49,
+    "nameEs": "Visa V Asistencia Técnica",
+    "bodySnippet": "Visa V Asistencia Técnica Alcance: Para prestar asistencia técnica a persona jurídica en Colombia. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente resolución; 2."
+  },
+  {
+    "slug": "empresarios-tlc",
+    "category": "V",
+    "articleNum": 50,
+    "nameEs": "Visa V Empresarios TLC",
+    "bodySnippet": "Visa V Empresarios TLC Alcance: Para facilitar la movilidad de empresarios o personas de negocios, en aplicación de compromisos adquiridos por Colombia en el marco de Tratados de Libre Comercio suscritos y en vigor con otros Estados. Requisitos específicos: 1. Los señalados en el artículo 32 de la presente resolución, de conformidad con las disposiciones específicas del Tratado de Libre Comercio de que se trate."
+  },
+  {
+    "slug": "oficiales-no-acreditados",
+    "category": "V",
+    "articleNum": 51,
+    "nameEs": "Visa V Oficiales no acreditados",
+    "bodySnippet": "Visa V Oficiales no acreditados Alcance: Para desempeñarse como oficial representante comercial de gobierno de Estado o territorio extranjero, o de agencia gubernamental especializada, en misión que no implique acreditación ante el Ministerio de Relaciones Exteriores. Requisitos específicos: 1. Comunicación oficial suscrita por el funcionario o representante legal de rango superior de la entidad del país representado."
+  },
+  {
+    "slug": "vacaciones-y-trabajo",
+    "category": "V",
+    "articleNum": 52,
+    "nameEs": "Visa V Vacaciones y Trabajo",
+    "bodySnippet": "Visa V Vacaciones y Trabajo Alcance: Para visitar el territorio nacional bajo Acuerdos de Vacaciones y Trabajo suscritos por Colombia que se encuentren vigentes. Requisitos específicos: 1. Presentar la solicitud a través de representación diplomática o consular de Colombia con sede o circunscripción en el país de nacionalidad del interesado; 2."
+  },
+  {
+    "slug": "practica-laboral",
+    "category": "V",
+    "articleNum": 53,
+    "nameEs": "Visa V Práctica laboral",
+    "bodySnippet": "Visa V Práctica laboral Alcance: Para actividades de práctica laboral en empresas establecidas en Colombia. Destinatarios: Titulares de nacionalidades exentas de visa para corta estancia, establecidas mediante Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "prestador-de-servicios-obra-o-labor",
+    "category": "V",
+    "articleNum": 54,
+    "nameEs": "Visa V Prestador de Servicios, Obra o labor",
+    "bodySnippet": "Visa V Prestador de Servicios, Obra o labor. Alcance: Para desempeñar labores temporalmente en Colombia bajo contrato de Prestación de servicios, obra o labor. Requisitos específicos: 1."
+  },
+  {
+    "slug": "fomento-a-la-internacionalizacion",
+    "category": "V",
+    "articleNum": 55,
+    "nameEs": "Visa V Fomento a la Internacionalización",
+    "bodySnippet": "Visa V Fomento a la Internacionalización Alcance: Para actividades productivas, de innovación o investigación orientadas a la adopción o adaptación de tecnologías que complementen o desarrollen productos. procesos o servicios que contribuyan a fortalecer la competitividad del país; para actividades que contribuyan a incorporar el conocimiento a las prioridades de los planes de desarrollo nacional, regional y territorial; o para actividades o profesiones preestablecidas por la Dirección de Asunto"
+  },
+  {
+    "slug": "rentista",
+    "category": "V",
+    "articleNum": 56,
+    "nameEs": "Visa V Rentista",
+    "bodySnippet": "Visa V Rentista Alcance: Para extranjeros que reciben una renta periódica y variable de fuente lícita acreditable. Requisitos específicos: 1. Carta de solicitud de la visa en la cual se declare el origen de ingresos de la renta; 2."
+  },
+  {
+    "slug": "casos-no-previstos",
+    "category": "V",
+    "articleNum": 57,
+    "nameEs": "Visa V Casos no previstos",
+    "bodySnippet": "Visa V Casos no previstos. Alcance: Esta visa se otorgará para casos y circunstancias no previstas en la presente resolución, de manera excepcional y previa valoración de la Autoridad de Visas e Inmigración. Requisitos específicos: A determinar por parte de la Autoridad de Visas e Inmigración."
+  },
+  {
+    "slug": "cortesia-diplomaticos-visitantes",
+    "category": "V",
+    "articleNum": 58,
+    "nameEs": "Visa V Cortesía Diplomáticos Visitantes",
+    "bodySnippet": "Visa V Cortesía Diplomáticos Visitantes Alcance: En aplicación del principio de reciprocidad diplomática, para el titular de pasaporte diplomático u oficial de un Estado reconocido por Colombia, que ingresa al país de manera temporal a desarrollar actividades diferentes a las diplomáticas y que no impliquen remuneración económica en el país; o para cónyuge o compañero(a) permanente de funcionario activo de Carrera Diplomática y Consular de Colombia. Requisitos específicos: 1. Aportar copia de pa"
+  },
+  {
+    "slug": "programa-icetex",
+    "category": "V",
+    "articleNum": 59,
+    "nameEs": "Visa V Programa ICETEX",
+    "bodySnippet": "Visa V Programa ICETEX Alcance: Para participar en programas académicos o eventos del Instituto Colombiano de Crédito Educativo y Estudios Técnicos en el Exterior “Mariano Ospina Pérez” ICETEX. Requisitos específicos: 1. Los establecidos en el Artículo 31 de la presente Resolución; 2."
+  },
+  {
+    "slug": "cortesia-compromisos-internacionales",
+    "category": "V",
+    "articleNum": 60,
+    "nameEs": "Visa V Cortesía Compromisos internacionales",
+    "bodySnippet": "Visa V Cortesía Compromisos internacionales Alcance: para casos contemplados por la Ley, o en cumplimiento de convenios o tratados internacionales de cooperación en vigor, que contemplen la expedición de esta clase de visa. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente Resolución; 2.Carta del solicitante, motivada, en la que se especifique el instrumento internacional o norma que sustenta la solicitud; Vigencia: Hasta dos (2) años."
+  },
+  {
+    "slug": "cortesia-ley-de-cine",
+    "category": "V",
+    "articleNum": 61,
+    "nameEs": "Visa V Cortesía Ley de Cine",
+    "bodySnippet": "Visa V Cortesía Ley de Cine Alcance: Para personal artístico, técnico y de producción extranjera que ingrese al país con el objeto de realizar o participar en proyectos de producción audiovisual o rodaje de obras cinematográficas extranjeras al amparo de la Ley de Cine. Requisitos específicos: 1. Los establecidos en el artículo 32 de la presente Resolución; 2."
+  },
+  {
+    "slug": "medida-complementaria-al-refugio",
+    "category": "V",
+    "articleNum": 62,
+    "nameEs": "Visa V Medida Complementaria al Refugio",
+    "bodySnippet": "Visa V Medida Complementaria al Refugio Alcance: Para extranjeros a quienes la Comisión Asesora para la Determinación de la Condición de Refugiado (CONARE) solicite medida complementaria al Refugio. Requisitos específicos: 1. Comunicación interna del Grupo Interno de Trabajo para la Determinación de la Condición de Refugiado del Ministerio de Relaciones Exteriores o quien haga sus veces, que deberá remitir a la Autoridad de Visas e Inmigración, informando la adopción de dicha medida complementar"
+  },
+  {
+    "slug": "conyuge",
+    "category": "M",
+    "articleNum": 67,
+    "nameEs": "Visa M Cónyuge",
+    "bodySnippet": "Visa M Cónyuge Alcance: Para extranjeros que tengan vínculo matrimonial con ciudadano colombiano y aspiren a convivir efectivamente con su cónyuge colombiano(a) en el país. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "companero-a-permanente-de-nacional-colombiano",
+    "category": "M",
+    "articleNum": 68,
+    "nameEs": "Visa M Compañero(a) permanente de nacional colombiano",
+    "bodySnippet": "Visa M Compañero(a) permanente de nacional colombiano Alcance: Para extranjeros que tengan unión de hecho con ciudadanos colombianos. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "madre-o-padre-o-hijo-a-de-nacional-colombiano-por-adopcion",
+    "category": "M",
+    "articleNum": 69,
+    "nameEs": "Visa M Madre o Padre o hijo(a) de nacional colombiano por adopción",
+    "bodySnippet": "Visa M Madre o Padre o hijo(a) de nacional colombiano por adopción Alcance: Para los extranjeros que sean padres o hijos de un ciudadano que sea colombiano por adopción. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "padre-o-madre-de-nacional-colombiano-por-nacimiento",
+    "category": "M",
+    "articleNum": 70,
+    "nameEs": "Visa M padre o madre de nacional colombiano por nacimiento",
+    "bodySnippet": "Visa M padre o madre de nacional colombiano por nacimiento Alcance: Para los extranjeros que sean padres de un ciudadano que sea colombiano por nacimiento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "migrante-mercosur",
+    "category": "M",
+    "articleNum": 71,
+    "nameEs": "Visa M Migrante Mercosur",
+    "bodySnippet": "Visa M Migrante Mercosur Alcance: Para nacionales de los Estados partes del “Acuerdo sobre Residencia para nacionales de los Estados Partes del Mercosur, Bolivia y Chile”, en aplicación del principio de la reciprocidad. Esta visa equivale a la visa de Residente Temporal establecida en dicho instrumento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
+  },
+  {
+    "slug": "migrante-andino",
+    "category": "M",
+    "articleNum": 72,
+    "nameEs": "Visa M Migrante Andino",
+    "bodySnippet": "Visa M Migrante Andino Alcance: Para nacionales de alguno de los Estados partes del “Estatuto Migratorio Andino”, en aplicación del principio de la reciprocidad. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "refugiado",
+    "category": "M",
+    "articleNum": 73,
+    "nameEs": "Visa M refugiado",
+    "bodySnippet": "Visa M refugiado Alcance: Para extranjeros a quienes el Estado colombiano les haya reconocido la condición de Refugiado. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "trabajador",
+    "category": "M",
+    "articleNum": 74,
+    "nameEs": "Visa M trabajador",
+    "bodySnippet": "Visa M trabajador Alcance: Para extranjeros que aspiran a trabajar en Colombia con persona jurídica mediante contrato de trabajo. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "socio-o-propietario",
+    "category": "M",
+    "articleNum": 75,
+    "nameEs": "Visa M Socio o Propietario",
+    "bodySnippet": "Visa M Socio o Propietario Alcance: Para extranjeros que hayan constituido empresa o hayan adquirido participación en el capital social de sociedad comercial en funcionamiento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "profesional-independiente",
+    "category": "M",
+    "articleNum": 76,
+    "nameEs": "Visa M Profesional independiente",
+    "bodySnippet": "Visa M Profesional independiente Alcance: Para el extranjero que aspira a ejercer una profesión regulada o, de manera excepcional, una actividad no regulada, siempre que la actividad sea de interés para el país. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "pensionado",
+    "category": "M",
+    "articleNum": 77,
+    "nameEs": "Visa M Pensionado",
+    "bodySnippet": "Visa M Pensionado Alcance: Para el extranjero que disponga de ingresos mensuales constantes derivados de pensión otorgada por un Estado o por un fondo privado de pensiones. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "fomento-a-la-internacionalizacion",
+    "category": "M",
+    "articleNum": 78,
+    "nameEs": "Visa M Fomento a la internacionalización",
+    "bodySnippet": "Visa M Fomento a la internacionalización. Alcance: Para extranjeros con formación a nivel de maestría, doctorado o postdoctorado en ciencias básicas o aplicadas, ingeniería, matemáticas y afines, cuyos perfiles se ajusten a las prioridades requeridas por el país en sus planes de internacionalización públicos y privados; o para profesionales de áreas preestablecidas por la Dirección de Asuntos Migratorios, Consulares y Atención al Ciudadano, cuyo ejercicio aporte a la adopción y/o adaptación de t"
+  },
+  {
+    "slug": "inversionista",
+    "category": "M",
+    "articleNum": 79,
+    "nameEs": "Visa M Inversionista",
+    "bodySnippet": "Visa M Inversionista Alcance: Al extranjero que haya efectuado Inversión Extranjera Directa o haya adquirido inmueble a nombre propio y mantenga dicha inversión o adquisición durante la vigencia de su visa. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución. Requisitos específicos: 1."
+  },
+  {
+    "slug": "renuncia-a-nacionalidad-colombiana",
+    "category": "R",
+    "articleNum": 89,
+    "nameEs": "Visa R Renuncia a nacionalidad colombiana",
+    "bodySnippet": "Visa R Renuncia a nacionalidad colombiana. Alcance: Para extranjeros que, habiendo sido colombianos por nacimiento o por adopción, renunciaron a la nacionalidad colombiana. Requisitos específicos: 1."
+  },
+  {
+    "slug": "por-tiempo-acumulado",
+    "category": "R",
+    "articleNum": 90,
+    "nameEs": "Visa R Por tiempo acumulado",
+    "bodySnippet": "Visa R Por tiempo acumulado Alcance: Para el extranjero que ha permanecido en el territorio nacional como titular de las visas Migrante (M) vigentes, acumulando los tiempos que se señalan a continuación: Tipo y Categoría de Visa Tiempo mínimo exigido de permanencia como titular de visa M Cónyuge de nacional colombiano(a) 3 años M Madre o padre de nacional colombiano por adopción 2 años M Padre o madre de nacional colombiano por nacimiento. 2 años M Migrante Mercosur 2 años M Migrante Andino 2 añ"
+  }
+]

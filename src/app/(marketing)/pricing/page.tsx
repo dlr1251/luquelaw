@@ -26,11 +26,10 @@ export default async function PricingPage() {
       <Container className="py-14 sm:py-16">
         <p className="marketing-eyebrow">CLKR · Plans</p>
         <h1 className="marketing-display mt-3 max-w-3xl text-[color:var(--forest)]">
-          Student, Professional & Client
+          Professional & Client
         </h1>
         <p className="marketing-body mt-4 max-w-2xl">
-          Unlock quizzes, LegalAI agents, and portal tickets. Informational tools only—not legal
-          advice.
+          Unlock LegalAI agents and portal tickets. Informational tools only—not legal advice.
         </p>
         <div className="mt-12">
           <PricingCards plans={plans} locale="en" signedIn={signedIn} />

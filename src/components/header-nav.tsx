@@ -27,6 +27,7 @@ export function HeaderNav({
 
   const copy = isSpanish
     ? {
+        immigration: "Migración",
         legalArticles: "CLKR",
         blog: "Blog",
         pricing: "Planes",
@@ -37,6 +38,7 @@ export function HeaderNav({
         close: "Cerrar",
       }
     : {
+        immigration: "Immigration",
         legalArticles: "CLKR",
         blog: "Blog",
         pricing: "Pricing",
@@ -47,11 +49,35 @@ export function HeaderNav({
         close: "Close",
       };
 
+  const immigrationHref = isSpanish ? `${prefix}/migracion` : "/immigration";
+
   const items = useMemo(
     () => [
-      { href: `${prefix}/clkr`, label: copy.legalArticles },
-      { href: `${prefix}/posts`, label: copy.blog },
-      { href: `${prefix}/pricing`, label: copy.pricing },
+      {
+        href: immigrationHref,
+        label: copy.immigration,
+        match: (p: string) =>
+          p === immigrationHref ||
+          p.startsWith(`${immigrationHref}/`) ||
+          (isSpanish
+            ? p.startsWith("/es/migracion")
+            : p === "/immigration" || p.startsWith("/immigration/")),
+      },
+      {
+        href: `${prefix}/clkr`,
+        label: copy.legalArticles,
+        match: (p: string) => p === `${prefix}/clkr` || p.startsWith(`${prefix}/clkr/`),
+      },
+      {
+        href: `${prefix}/posts`,
+        label: copy.blog,
+        match: (p: string) => p === `${prefix}/posts` || p.startsWith(`${prefix}/posts/`),
+      },
+      {
+        href: `${prefix}/pricing`,
+        label: copy.pricing,
+        match: (p: string) => p === `${prefix}/pricing`,
+      },
       { href: contactHref, label: copy.contact },
       { href: signedIn ? "/portal" : "/login", label: copy.portal },
     ],
@@ -59,16 +85,22 @@ export function HeaderNav({
       contactHref,
       copy.blog,
       copy.contact,
+      copy.immigration,
       copy.legalArticles,
       copy.portal,
       copy.pricing,
+      immigrationHref,
+      isSpanish,
       prefix,
       signedIn,
     ],
   );
 
-  const primaryLinks = items.slice(0, 4);
-  const portalLink = items[4];
+  const activeNavClass =
+    "text-hero-foreground after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:bg-hero-foreground/50";
+
+  const portalLink = items[items.length - 1];
+  const primaryLinks = items.slice(0, -1);
 
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -92,7 +124,7 @@ export function HeaderNav({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-hero-foreground/75 transition duration-150 hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
+    "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-hero-foreground/75 transition duration-150 hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
 
   const iconButtonClass =
     "inline-flex h-10 w-10 items-center justify-center text-hero-foreground/70 transition hover:text-hero-foreground";
@@ -101,11 +133,19 @@ export function HeaderNav({
     <>
       <nav className="hidden items-center justify-end gap-1 lg:flex" aria-label="Primary">
         <div className="flex items-center">
-          {primaryLinks.map((item) => (
-            <Link key={item.href} href={item.href} className={navLinkClass}>
-              {item.label}
-            </Link>
-          ))}
+          {primaryLinks.map((item) => {
+            const active = "match" in item && item.match?.(pathname);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`${navLinkClass}${active ? ` ${activeNavClass}` : ""}`}
+                aria-current={active ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
           <Link href={portalLink.href} className={navLinkClass}>
             {portalLink.label}
           </Link>
@@ -205,16 +245,24 @@ export function HeaderNav({
               </div>
 
               <nav className="p-3" aria-label="Mobile navigation">
-                {[...primaryLinks, portalLink].map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40"
-                  >
-                    {item.label}
-                  </Link>
-                ))}
+                {[...primaryLinks, portalLink].map((item) => {
+                  const active = "match" in item && item.match?.(pathname);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={`block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40 ${
+                        active
+                          ? "text-[color:var(--parchment)]"
+                          : "text-[color:var(--parchment)]/75 hover:text-[color:var(--parchment)]"
+                      }`}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
                 {signedIn && isAdmin ? (
                   <Link
                     href="/admin/clkr"

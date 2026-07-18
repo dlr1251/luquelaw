@@ -9,7 +9,9 @@
     "lint": "eslint",
     "resend:test": "node scripts/test-resend.mjs",
     "seed:norms": "node scripts/seed-norms-content.mjs",
-    "import:suin-5477": "node scripts/import-suin-5477.mjs"
+    "index:lucy-rag": "node scripts/index-lucy-rag.mjs",
+    "import:suin-5477": "node scripts/import-suin-5477.mjs",
+    "import:suin-norm": "node scripts/import-suin-norm.mjs"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.23",
