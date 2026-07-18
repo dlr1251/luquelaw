@@ -63,6 +63,52 @@
   font-family: var(--font-body), system-ui, sans-serif;
 }
 
+/* ── Switchable brand palettes (light mode only) ──────────────── */
+/* Default (no class) = Forest. Each palette remaps the four brand
+   tokens; --hero-accent is overridden at the .marketing-theme level
+   because that class declares it as a literal. Dark mode stays
+   monochrome, so palettes are scoped with :not(.dark). */
+
+html.palette-navy:not(.dark) {
+  --forest: #14233b;
+  --moss: #9a7b3f;
+  --parchment: #f8f6f1;
+  --ink: #1b1a17;
+}
+html.palette-navy:not(.dark) .marketing-theme {
+  --hero-accent: #d8b877;
+}
+
+html.palette-burgundy:not(.dark) {
+  --forest: #3a1620;
+  --moss: #9c5563;
+  --parchment: #f6f3ee;
+  --ink: #211a1a;
+}
+html.palette-burgundy:not(.dark) .marketing-theme {
+  --hero-accent: #e0a3ac;
+}
+
+html.palette-slate:not(.dark) {
+  --forest: #1c1f24;
+  --moss: #45617d;
+  --parchment: #f5f6f7;
+  --ink: #191b1e;
+}
+html.palette-slate:not(.dark) .marketing-theme {
+  --hero-accent: #8fb2d4;
+}
+
+html.palette-terracotta:not(.dark) {
+  --forest: #2a1f18;
+  --moss: #b0613f;
+  --parchment: #f7f2ea;
+  --ink: #241b14;
+}
+html.palette-terracotta:not(.dark) .marketing-theme {
+  --hero-accent: #e0a06f;
+}
+
 /* Admin + portal — shadcn neutral theme */
 .dashboard-theme {
   --background: oklch(0.985 0 0);
@@ -403,6 +449,25 @@ html.dark .marketing-eyebrow {
 
 .marketing-section {
   padding-block: clamp(3.5rem, 8vw, 5rem);
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[fade-up_0\.7s_ease-out_both\],
+  .animate-\[fade-up_0\.65s_ease-out_both\],
+  [class*="animate-[fade-up"] {
+    animation: none !important;
+  }
 }
 
 .brand-mark-dot {

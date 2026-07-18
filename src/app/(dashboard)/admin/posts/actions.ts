@@ -15,7 +15,7 @@ async function requireAdminSupabase() {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data?.claims || !isAppAdmin(data.claims)) {
-    redirect("/account");
+    redirect("/portal");
   }
   return supabase;
 }

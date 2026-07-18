@@ -41,26 +41,50 @@ export const PAGE_SEO = {
   },
   clkrHub: {
     en: {
-      title: "Legal Articles — Colombian Legal Knowledge Repository",
+      title: "CLKR — LegalAI hub for Colombian law",
+      description:
+        "Norms, practical guides, LegalAI agents, and quizzes for studying and practicing Colombian law.",
+    },
+    es: {
+      title: "CLKR — Hub LegalAI de derecho colombiano",
+      description:
+        "Normas, guías prácticas, agentes LegalAI y quizzes para estudiar y practicar el derecho colombiano.",
+    },
+  },
+  clkrGuides: {
+    en: {
+      title: "Legal guides — CLKR",
       description:
         "Plain-language guides on Colombian immigration, real estate, corporate, labor, and civil law for international clients.",
     },
     es: {
-      title: "Artículos legales — Repositorio de conocimiento legal colombiano",
+      title: "Guías jurídicas — CLKR",
       description:
         "Guías en lenguaje claro sobre inmigración, bienes raíces, derecho corporativo, laboral y civil en Colombia.",
     },
   },
   normsHub: {
     en: {
-      title: "Norms — Colombian legal reference library",
+      title: "Norms — CLKR legal reference library",
       description:
         "Constitution, codes, laws, and resolutions in Spanish and English — for reference and navigation.",
     },
     es: {
-      title: "Normas — Biblioteca de referencia jurídica colombiana",
+      title: "Normas — Biblioteca de referencia CLKR",
       description:
         "Constitución, códigos, leyes y resoluciones en español e inglés — para consulta y navegación.",
+    },
+  },
+  pricing: {
+    en: {
+      title: "Pricing — CLKR & portal plans",
+      description:
+        "Student, Professional, and Client plans for CLKR LegalAI modules and the Luque Law portal.",
+    },
+    es: {
+      title: "Precios — Planes CLKR y portal",
+      description:
+        "Planes Estudiante, Profesional y Cliente para módulos LegalAI de CLKR y el portal Luque Law.",
     },
   },
   postsHub: {
@@ -85,6 +109,18 @@ export const PAGE_SEO = {
       title: "Política de datos personales",
       description:
         "Cómo Luque Law recopila, usa y protege los datos personales enviados a través de este sitio web.",
+    },
+  },
+  immigration: {
+    en: {
+      title: "Immigration Law — Visas & Stay Rules in Colombia",
+      description:
+        "Visa assistance, migratory regularization, and guides on tourism days and Colombian visa ground rules for international clients.",
+    },
+    es: {
+      title: "Derecho migratorio — Visas y permanencia en Colombia",
+      description:
+        "Asistencia en visas, regulación migratoria y guías sobre días de turismo y reglas generales de visas colombianas.",
     },
   },
 } as const;

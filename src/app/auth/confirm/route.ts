@@ -1,18 +1,18 @@
 import { type EmailOtpType } from "@supabase/supabase-js";
 import { type NextRequest, NextResponse } from "next/server";
 
+import { safeNextPath } from "@/lib/auth/safe-next";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token_hash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
-  const next = "/account";
+  const next = safeNextPath(searchParams.get("next"));
 
   const redirectTo = request.nextUrl.clone();
   redirectTo.pathname = next;
-  redirectTo.searchParams.delete("token_hash");
-  redirectTo.searchParams.delete("type");
+  redirectTo.search = "";
 
   if (token_hash && type && isSupabaseConfigured()) {
     const supabase = await createClient();
@@ -21,11 +21,11 @@ export async function GET(request: NextRequest) {
       token_hash,
     });
     if (!error) {
-      redirectTo.searchParams.delete("next");
       return NextResponse.redirect(redirectTo);
     }
   }
 
   redirectTo.pathname = "/auth/auth-code-error";
+  redirectTo.search = "";
   return NextResponse.redirect(redirectTo);
 }

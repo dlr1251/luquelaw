@@ -13,22 +13,24 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { safeNextPath } from "@/lib/auth/safe-next";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 import { login, signup } from "./actions";
 
 type Props = {
-  searchParams: Promise<{ error?: string; message?: string }>;
+  searchParams: Promise<{ error?: string; message?: string; next?: string }>;
 };
 
 export default async function LoginPage({ searchParams }: Props) {
-  const { error, message } = await searchParams;
+  const { error, message, next: nextRaw } = await searchParams;
+  const next = safeNextPath(nextRaw);
 
   if (isSupabaseConfigured()) {
     const supabase = await createClient();
     const { data } = await supabase.auth.getClaims();
     if (data?.claims) {
-      redirect("/account");
+      redirect(next);
     }
   }
 
@@ -70,6 +72,7 @@ export default async function LoginPage({ searchParams }: Props) {
               ) : null}
 
               <form className="space-y-4">
+                <input type="hidden" name="next" value={next} />
                 <div className="space-y-2">
                   <Label htmlFor="email">Email</Label>
                   <Input
@@ -100,6 +103,15 @@ export default async function LoginPage({ searchParams }: Props) {
                   </Button>
                 </div>
               </form>
+
+              <p className="mt-4 text-center text-sm text-muted-foreground">
+                <Link
+                  href="/login/forgot"
+                  className="font-medium text-foreground underline-offset-4 hover:underline"
+                >
+                  Forgot password?
+                </Link>
+              </p>
             </CardContent>
           </Card>
         )}

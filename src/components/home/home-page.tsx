@@ -1,12 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useCallback, useState } from "react";
 
+import { BookingCalendarEmbed } from "@/components/booking/booking-calendar-embed";
 import { Container } from "@/components/container";
 import { EngagementModel } from "@/components/engagement/EngagementModel";
-import { ClkrPreview } from "@/components/home/clkr-preview";
-import { HeroEngagementPanel, type HeroEngagementTab } from "@/components/home/hero-engagement-panel";
+import { HeroEngagementPanel } from "@/components/home/hero-engagement-panel";
 import { PracticeAreasPanel } from "@/components/home/practice-areas-panel";
 import { ProfilePortrait } from "@/components/home/profile-portrait";
 import { homeContent, type HomeLocale } from "@/lib/home/content";
@@ -17,12 +16,7 @@ type Props = {
 
 export function HomePage({ locale }: Props) {
   const c = homeContent[locale];
-  const [heroTab, setHeroTab] = useState<HeroEngagementTab>("book");
 
-  const openBookingTab = useCallback(() => {
-    setHeroTab("book");
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, []);
   const engagementSteps = c.process.steps as [
     (typeof c.process.steps)[0],
     (typeof c.process.steps)[1],
@@ -47,9 +41,12 @@ export function HomePage({ locale }: Props) {
                   <p className="marketing-lead max-w-2xl italic text-hero-muted">{c.intro}</p>
                 </div>
 
-                <div className="sm:col-start-2">
+                <div className="flex flex-wrap gap-3 sm:col-start-2">
+                  <Link href="#book" className="btn-primary-inverted btn-primary-lg w-full sm:w-auto">
+                    {c.bookCta}
+                  </Link>
                   <Link
-                    href={c.clkrPreview.browseHref}
+                    href={c.clkrHref}
                     className="btn-secondary btn-secondary-lg w-full border-hero-foreground/35 !text-white hover:bg-hero-foreground/10 sm:w-auto"
                   >
                     {c.clkrCta}
@@ -64,10 +61,20 @@ export function HomePage({ locale }: Props) {
                 whatsappHref={c.whatsappHref}
                 contactTitle={c.contactForm.title}
                 contactSubtitle={c.contactForm.subtitle}
-                activeTab={heroTab}
-                onTabChange={setHeroTab}
               />
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Booking */}
+      <section id="book" className="scroll-mt-28 border-b border-border bg-surface">
+        <Container className="py-10 sm:py-12 lg:py-14">
+          <div className="mx-auto max-w-4xl space-y-5">
+            <p className="marketing-eyebrow">{c.booking.eyebrow}</p>
+            <h2 className="marketing-title">{c.booking.title}</h2>
+            <p className="marketing-body max-w-2xl">{c.booking.subtitle}</p>
+            <BookingCalendarEmbed title={c.booking.title} locale={locale} />
           </div>
         </Container>
       </section>
@@ -87,50 +94,13 @@ export function HomePage({ locale }: Props) {
       {/* Work with me */}
       <section className="bg-surface">
         <Container className="marketing-section">
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-12">
-            <div className="space-y-5 lg:col-span-7">
-              <p className="marketing-eyebrow">{c.workWithMe.label}</p>
-              <h2 className="marketing-title">{c.workWithMe.title}</h2>
-              <p className="marketing-body max-w-2xl">{c.workWithMe.body}</p>
-
-              <div className="hidden pt-2 lg:block">
-                <EngagementModel
-                  label={c.process.engagementLabel}
-                  steps={engagementSteps}
-                  footer={c.process.footer}
-                />
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="h-full border border-border bg-card p-6 sm:p-7">
-                <div className="marketing-eyebrow text-[0.625rem] tracking-[0.2em]">{c.pricing.label}</div>
-                <dl className="mt-5 space-y-5">
-                  <div className="flex flex-col gap-1 border-b border-[color:var(--moss)]/15 pb-5 sm:flex-row sm:items-start sm:justify-between sm:gap-6">
-                    <dt className="text-sm text-muted-foreground">{c.pricing.consultation}</dt>
-                    <dd className="font-semibold text-foreground sm:text-right">
-                      {c.pricing.consultationPrice}
-                    </dd>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <dt className="text-sm text-muted-foreground">{c.pricing.retainer}</dt>
-                    <dd className="font-semibold text-foreground sm:text-right">
-                      {c.pricing.retainerPrice}
-                      <span className="mt-1 block text-sm font-normal text-muted-foreground">
-                        {c.pricing.retainerNote}
-                      </span>
-                    </dd>
-                  </div>
-                </dl>
-                <p className="mt-5 text-sm leading-relaxed text-muted-foreground">{c.pricing.footnote}</p>
-                <button type="button" onClick={openBookingTab} className="btn-primary btn-primary-sm mt-6 w-full sm:w-auto">
-                  {c.pricing.book}
-                </button>
-              </div>
-            </div>
+          <div className="space-y-5">
+            <p className="marketing-eyebrow">{c.workWithMe.label}</p>
+            <h2 className="marketing-title">{c.workWithMe.title}</h2>
+            <p className="marketing-body max-w-2xl">{c.workWithMe.body}</p>
           </div>
 
-          <div className="mt-10 lg:hidden">
+          <div className="mt-10">
             <EngagementModel
               label={c.process.engagementLabel}
               steps={engagementSteps}
@@ -146,25 +116,7 @@ export function HomePage({ locale }: Props) {
           <div className="max-w-3xl space-y-5">
             <h2 className="marketing-title">{c.about.title}</h2>
             <p className="marketing-body">{c.about.body}</p>
-            <p className="marketing-body">
-              <span className="font-semibold text-foreground">{c.about.credentialsPrefix}</span>{" "}
-              <span className="inline-block border border-border bg-surface px-2.5 py-1 text-sm font-medium text-foreground">
-                {c.about.university}
-              </span>
-              . {c.about.formerPrefix}{" "}
-              <span className="inline-block border border-border bg-surface px-2.5 py-1 text-sm font-medium text-foreground">
-                {c.about.formerFirm}
-              </span>
-              .
-            </p>
           </div>
-        </Container>
-      </section>
-
-      {/* CLKR preview */}
-      <section className="bg-background">
-        <Container className="pb-14 sm:pb-16 lg:pb-20">
-          <ClkrPreview preview={c.clkrPreview} />
         </Container>
       </section>
     </main>

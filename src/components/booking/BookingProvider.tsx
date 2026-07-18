@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 
-import { getBookingUrl } from "@/lib/booking/url";
+import { BookingCalendarEmbed } from "@/components/booking/booking-calendar-embed";
 
 type BookingContextValue = {
   open: () => void;
@@ -55,8 +55,6 @@ export function BookingProvider({ children, locale = "en" }: Props) {
       ? "Selecciona un horario en el calendario. Si prefieres, puedes ver los detalles en la página de contacto."
       : "Pick a time on the calendar. If you prefer, you can view consultation details on the contact page.";
 
-  const bookingUrl = getBookingUrl();
-
   return (
     <BookingContext.Provider value={value}>
       {children}
@@ -106,33 +104,11 @@ export function BookingProvider({ children, locale = "en" }: Props) {
             </div>
 
             <div className="p-4 sm:p-5">
-              {bookingUrl ? (
-                <div className="relative w-full overflow-hidden border border-[color:var(--moss)]/30 bg-white">
-                  <iframe
-                    title={title}
-                    src={bookingUrl}
-                    className="h-[min(70dvh,520px)] w-full sm:h-[70vh]"
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
-                </div>
-              ) : (
-                <div className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-4 text-sm leading-6 text-muted-foreground">
-                  {locale === "es" ? (
-                    <>
-                      Falta configurar el enlace del calendario. Define{" "}
-                      <span className="font-bold text-[color:var(--forest)]">NEXT_PUBLIC_BOOKING_URL</span> en tu entorno
-                      para mostrar el calendario aquí.
-                    </>
-                  ) : (
-                    <>
-                      The scheduler link isn’t configured yet. Set{" "}
-                      <span className="font-bold text-[color:var(--forest)]">NEXT_PUBLIC_BOOKING_URL</span> in your
-                      environment to show the calendar here.
-                    </>
-                  )}
-                </div>
-              )}
+              <BookingCalendarEmbed
+                title={title}
+                locale={locale}
+                heightClass="h-[min(70dvh,520px)] sm:h-[70vh]"
+              />
 
               <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                 <a
@@ -159,4 +135,3 @@ export function BookingProvider({ children, locale = "en" }: Props) {
     </BookingContext.Provider>
   );
 }
-

@@ -6,8 +6,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { LanguageSwitch } from "@/components/language-switch";
+import { PaletteSwitcher } from "@/components/palette-switcher";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { useBookingModal } from "@/components/booking/BookingProvider";
 import { localeFromPathname } from "@/lib/locale/paths";
 
 export function HeaderNav({
@@ -21,27 +21,27 @@ export function HeaderNav({
   const mobilePanelId = useId();
   const isSpanish = localeFromPathname(pathname) === "es";
   const prefix = isSpanish ? "/es" : "";
-  const booking = useBookingModal();
   const homeHref = prefix || "/";
   const contactHref = `${homeHref}#contact`;
+  const bookHref = `${homeHref}#book`;
 
   const copy = isSpanish
     ? {
         legalArticles: "CLKR",
-        norms: "Normas",
         blog: "Blog",
+        pricing: "Planes",
         contact: "Contacto",
-        portal: "Portal cliente",
+        portal: "Portal",
         admin: "Admin",
         cta: "Agendar consulta",
         close: "Cerrar",
       }
     : {
         legalArticles: "CLKR",
-        norms: "Norms",
         blog: "Blog",
+        pricing: "Pricing",
         contact: "Contact",
-        portal: "Client portal",
+        portal: "Portal",
         admin: "Admin",
         cta: "Book consultation",
         close: "Close",
@@ -50,12 +50,21 @@ export function HeaderNav({
   const items = useMemo(
     () => [
       { href: `${prefix}/clkr`, label: copy.legalArticles },
-      { href: `${prefix}/norms`, label: copy.norms },
       { href: `${prefix}/posts`, label: copy.blog },
+      { href: `${prefix}/pricing`, label: copy.pricing },
       { href: contactHref, label: copy.contact },
-      { href: signedIn ? "/account" : "/login", label: copy.portal },
+      { href: signedIn ? "/portal" : "/login", label: copy.portal },
     ],
-    [contactHref, copy.blog, copy.contact, copy.legalArticles, copy.norms, copy.portal, prefix, signedIn],
+    [
+      contactHref,
+      copy.blog,
+      copy.contact,
+      copy.legalArticles,
+      copy.portal,
+      copy.pricing,
+      prefix,
+      signedIn,
+    ],
   );
 
   const primaryLinks = items.slice(0, 4);
@@ -111,21 +120,19 @@ export function HeaderNav({
 
         <div className="flex items-center gap-1">
           <LanguageSwitch variant="forest" />
+          <PaletteSwitcher variant="forest" />
           <ThemeToggle variant="forest" />
         </div>
 
-        <button
-          type="button"
-          onClick={booking.open}
-          className="btn-primary-inverted btn-primary-sm ml-3 whitespace-nowrap"
-        >
+        <Link href={bookHref} className="btn-primary-inverted btn-primary-sm ml-3 whitespace-nowrap">
           {copy.cta}
-        </button>
+        </Link>
       </nav>
 
       <div className="lg:hidden">
         <div className="flex items-center justify-end gap-1">
           <LanguageSwitch variant="forest" />
+          <PaletteSwitcher variant="forest" />
           <ThemeToggle variant="forest" />
           <button
             type="button"
@@ -219,16 +226,13 @@ export function HeaderNav({
                 ) : null}
 
                 <div className="mt-3 border-t border-[color:var(--parchment)]/10 px-1 pt-4">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setMobileOpen(false);
-                      booking.open();
-                    }}
+                  <Link
+                    href={bookHref}
+                    onClick={() => setMobileOpen(false)}
                     className="btn-primary-inverted btn-primary-lg flex w-full justify-center"
                   >
                     {copy.cta}
-                  </button>
+                  </Link>
                 </div>
               </nav>
             </div>

@@ -98,13 +98,17 @@ export function normTypeLabel(type: NormType, locale: "en" | "es"): string {
   return labels[type][locale];
 }
 
+export function normsHubPath(locale: "en" | "es"): string {
+  return locale === "es" ? "/es/clkr/norms" : "/clkr/norms";
+}
+
 export function normPublicPath(
   slugKey: string,
   locale: "en" | "es",
   sectionPath?: string[],
 ): string {
   const prefix = locale === "es" ? "/es" : "";
-  const base = `${prefix}/norms/${slugKey}`;
+  const base = `${prefix}/clkr/norms/${slugKey}`;
   if (!sectionPath?.length) return base;
   return `${base}/${sectionPath.join("/")}`;
 }

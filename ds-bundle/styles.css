@@ -1,0 +1,10 @@
+/* Luque Law Design System — entry stylesheet */
+
+/* Brand fonts from Google Fonts (loaded at runtime) */
+@import url("https://fonts.googleapis.com/css2?family=Arbutus+Slab&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Figtree:wght@400;500;600&family=Geist:wght@300;400;500&display=swap");
+
+/* Brand tokens and marketing utilities */
+@import "./_ds_bundle.css";
+
+/* Shared base: box-sizing */
+*, *::before, *::after { box-sizing: border-box; }

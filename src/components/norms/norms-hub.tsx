@@ -1,7 +1,8 @@
-import Link from "next/link";
 import { BookMarked, Layers } from "lucide-react";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
+import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
+import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { NormsBrowser } from "@/components/norms/norms-browser";
 import type { NormCatalogItem } from "@/lib/norms/types";
@@ -11,33 +12,24 @@ import { normsHubContent, type NormsHubLocale } from "@/lib/norms/hub-content";
 type Props = {
   norms: NormCatalogItem[];
   locale?: NormsHubLocale;
+  signedIn?: boolean;
 };
 
-export function NormsHub({ norms, locale = "en" }: Props) {
+export function NormsHub({ norms, locale = "en", signedIn = false }: Props) {
   const copy = normsHubContent[locale];
-  const contactHref = locale === "es" ? "/es#contact" : "/#contact";
   const categoryCount = new Set(norms.map((n) => n.category)).size;
 
   return (
     <main className="flex-1">
-      <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
-        <Container className="py-14 sm:py-16 lg:py-20">
-          <p className="marketing-eyebrow">{copy.eyebrow}</p>
-          <h1 className="marketing-display mt-3 max-w-3xl text-[color:var(--forest)] sm:text-[clamp(2.25rem,4vw,2.75rem)]">
-            {copy.title}
-          </h1>
-          <p className="marketing-body mt-4 max-w-3xl text-base sm:text-lg">{copy.subtitle}</p>
-          <p className="mt-6">
-            <Link
-              href={contactHref}
-              className="text-sm font-bold text-[color:var(--forest)] underline-offset-2 hover:text-[color:var(--moss)] hover:underline"
-            >
-              {locale === "es" ? "¿Consulta sobre tu caso?" : "Questions about your situation?"}{" "}
-              {locale === "es" ? "Escríbenos" : "Get in touch"} →
-            </Link>
-          </p>
-        </Container>
-      </section>
+      <ClkrProductNav locale={locale} signedIn={signedIn} />
+      <ClkrModuleHero
+        locale={locale}
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        subtitle={copy.subtitle}
+        contactCta={locale === "es" ? "¿Consulta sobre tu caso?" : "Questions about your situation?"}
+        contactLink={locale === "es" ? "Escríbenos" : "Get in touch"}
+      />
 
       <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--surface)]">
         <Container className="py-10 sm:py-12">

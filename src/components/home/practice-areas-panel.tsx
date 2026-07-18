@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   BriefcaseBusiness,
   Building2,
@@ -43,11 +44,8 @@ export function PracticeAreasPanel({ label, areas, credentialsLine, className, i
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {areas.map((area) => {
           const Icon = iconMap[area.icon];
-          return (
-            <li
-              key={area.title}
-              className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 sm:p-5"
-            >
+          const body = (
+            <>
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-border bg-card text-foreground">
                 <Icon className="h-[1.125rem] w-[1.125rem]" strokeWidth={1.75} aria-hidden="true" />
               </span>
@@ -57,6 +55,23 @@ export function PracticeAreasPanel({ label, areas, credentialsLine, className, i
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{area.detail}</p>
               </div>
+            </>
+          );
+
+          return (
+            <li key={area.title} className="h-full">
+              {area.href ? (
+                <Link
+                  href={area.href}
+                  className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 transition-colors hover:border-foreground/25 sm:p-5"
+                >
+                  {body}
+                </Link>
+              ) : (
+                <div className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 sm:p-5">
+                  {body}
+                </div>
+              )}
             </li>
           );
         })}

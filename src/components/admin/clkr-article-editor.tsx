@@ -78,7 +78,7 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
             className="font-mono"
           />
           <p className="text-xs text-muted-foreground">
-            {locale === "es" ? `/es/clkr/` : `/clkr/`}
+            {locale === "es" ? `/es/clkr/guides/` : `/clkr/guides/`}
             <span className="font-mono">slug-key</span>
           </p>
         </div>

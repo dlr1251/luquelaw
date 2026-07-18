@@ -41,13 +41,15 @@ export function NormLayout({
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
-  const normsHref = `${prefix}/norms`;
+  const clkrHref = `${prefix}/clkr`;
+  const normsHref = `${prefix}/clkr/norms`;
   const normHref = `${normsHref}/${normSlug}`;
 
   const copy =
     locale === "es"
       ? {
           home: "Inicio",
+          clkr: "CLKR",
           hub: "Normas",
           contents: "Tabla de contenidos",
           mobileContents: "Contenido",
@@ -58,6 +60,7 @@ export function NormLayout({
         }
       : {
           home: "Home",
+          clkr: "CLKR",
           hub: "Norms",
           contents: "Table of contents",
           mobileContents: "Contents",
@@ -81,6 +84,12 @@ export function NormLayout({
               <li>
                 <Link href={homeHref} className="hover:text-[color:var(--forest)] hover:underline">
                   {copy.home}
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={clkrHref} className="hover:text-[color:var(--forest)] hover:underline">
+                  {copy.clkr}
                 </Link>
               </li>
               <li aria-hidden="true">/</li>

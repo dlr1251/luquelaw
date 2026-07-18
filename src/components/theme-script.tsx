@@ -1,5 +1,9 @@
-import { themeInitScript } from "@/lib/theme/preferences";
+import { paletteInitScript, themeInitScript } from "@/lib/theme/preferences";
 
 export function ThemeScript() {
-  return <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />;
+  return (
+    <script
+      dangerouslySetInnerHTML={{ __html: `${themeInitScript}${paletteInitScript}` }}
+    />
+  );
 }

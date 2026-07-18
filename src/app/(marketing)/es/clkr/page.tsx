@@ -1,6 +1,5 @@
-import { ClkrHub } from "@/components/clkr/clkr-hub";
-import { getHubArticles } from "@/lib/clkr/get-hub-articles";
-import { getStudyPaths } from "@/lib/clkr/get-study-paths";
+import { ClkrLegalAiHub } from "@/components/clkr/clkr-legalai-hub";
+import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { PAGE_SEO } from "@/lib/seo/config";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -14,12 +13,12 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function ClkrHubEsPage() {
-  const articles = await getHubArticles("es");
-  const studyPaths = await getStudyPaths("es");
+  const signedIn = await getSignedInFlag();
+
   return (
     <>
       <JsonLd data={clkrHubJsonLd("es")} />
-      <ClkrHub articles={articles} studyPaths={studyPaths} locale="es" />
+      <ClkrLegalAiHub locale="es" signedIn={signedIn} />
     </>
   );
 }

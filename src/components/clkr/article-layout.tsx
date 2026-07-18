@@ -38,6 +38,7 @@ export function ClkrArticleLayout({
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
   const clkrHref = `${prefix}/clkr`;
+  const guidesHref = `${prefix}/clkr/guides`;
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
 
   const copy =
@@ -45,6 +46,7 @@ export function ClkrArticleLayout({
       ? {
           home: "Inicio",
           hub: "CLKR",
+          guides: "Guías",
           contents: "Contenido",
           mobileContents: "Tabla de contenido",
           related: "Otras guías",
@@ -59,6 +61,7 @@ export function ClkrArticleLayout({
       : {
           home: "Home",
           hub: "CLKR",
+          guides: "Guides",
           contents: "Contents",
           mobileContents: "Table of contents",
           related: "More guides",
@@ -88,6 +91,12 @@ export function ClkrArticleLayout({
               <li>
                 <Link href={clkrHref} className="hover:text-[color:var(--forest)] hover:underline">
                   {copy.hub}
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <Link href={guidesHref} className="hover:text-[color:var(--forest)] hover:underline">
+                  {copy.guides}
                 </Link>
               </li>
               <li aria-hidden="true" className="max-sm:hidden">

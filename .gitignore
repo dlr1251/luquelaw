@@ -44,5 +44,9 @@ next-env.d.ts
 
 # generated norm seed SQL (regenerate with npm run seed:norms -- --sql)
 scripts/.norm-seed*.sql
+scripts/.suin-*-extract.json
+scripts/.suin-*-seed.sql
+scripts/.suin-*-sections.json
+scripts/.suin-*-chunks/
 scripts/.seed-chunks/
 scripts/.chunk-meta.json

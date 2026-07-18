@@ -134,8 +134,8 @@ export function buildClkrArticleMetadata(
 ): Metadata {
   const path =
     article.locale === "es"
-      ? `/es/clkr/${article.slug_key}`
-      : `/clkr/${article.slug_key}`;
+      ? `/es/clkr/guides/${article.slug_key}`
+      : `/clkr/guides/${article.slug_key}`;
 
   return buildPageMetadata({
     title: article.title,

@@ -47,12 +47,12 @@ export default async function AdminNormsPage({
           <h2 className="text-lg font-semibold">Norms</h2>
           <p className="mt-1 text-sm text-muted-foreground">
             Reference statutes, codes, and resolutions. Published norms appear on{" "}
-            <Link href="/norms" className="font-medium text-foreground underline-offset-4 hover:underline">
-              /norms
+            <Link href="/clkr/norms" className="font-medium text-foreground underline-offset-4 hover:underline">
+              /clkr/norms
             </Link>{" "}
             and{" "}
-            <Link href="/es/norms" className="font-medium text-foreground underline-offset-4 hover:underline">
-              /es/norms
+            <Link href="/es/clkr/norms" className="font-medium text-foreground underline-offset-4 hover:underline">
+              /es/clkr/norms
             </Link>
             .
           </p>
@@ -87,8 +87,8 @@ export default async function AdminNormsPage({
         </Alert>
       ) : null}
 
-      <AdminNormTable locale="en" title="English (/norms)" items={en} />
-      <AdminNormTable locale="es" title="Spanish (/es/norms)" items={es} />
+      <AdminNormTable locale="en" title="English (/clkr/norms)" items={en} />
+      <AdminNormTable locale="es" title="Spanish (/es/clkr/norms)" items={es} />
     </div>
   );
 }

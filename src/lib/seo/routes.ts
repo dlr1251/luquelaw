@@ -9,12 +9,17 @@ export type SeoLocale = "en" | "es";
 export const STATIC_ROUTE_PAIRS = [
   { en: "/", es: "/es" },
   { en: "/clkr", es: "/es/clkr" },
-  { en: "/norms", es: "/es/norms" },
+  { en: "/clkr/guides", es: "/es/clkr/guides" },
+  { en: "/clkr/norms", es: "/es/clkr/norms" },
+  { en: "/clkr/agents", es: "/es/clkr/agents" },
+  { en: "/clkr/quizzes", es: "/es/clkr/quizzes" },
   { en: "/posts", es: "/es/posts" },
+  { en: "/pricing", es: "/es/pricing" },
   { en: "/privacy", es: "/es/privacidad" },
+  { en: "/immigration", es: "/es/migracion" },
 ] as const;
 
-const LOCALIZED_PREFIXES = ["/clkr/", "/norms/", "/posts/"] as const;
+const LOCALIZED_PREFIXES = ["/clkr/", "/posts/"] as const;
 
 export function isLocalizedContentPath(path: string): boolean {
   if (STATIC_ROUTE_PAIRS.some((pair) => pair.en === path || pair.es === path)) {
@@ -123,12 +128,18 @@ export function buildNormLanguageAlternates(
 export const SITEMAP_STATIC_PATHS = [
   { path: "/", priority: 1.0 },
   { path: "/es", priority: 1.0 },
+  { path: "/immigration", priority: 0.85 },
+  { path: "/es/migracion", priority: 0.85 },
   { path: "/clkr", priority: 0.8 },
   { path: "/es/clkr", priority: 0.8 },
-  { path: "/norms", priority: 0.8 },
-  { path: "/es/norms", priority: 0.8 },
+  { path: "/clkr/guides", priority: 0.75 },
+  { path: "/es/clkr/guides", priority: 0.75 },
+  { path: "/clkr/norms", priority: 0.75 },
+  { path: "/es/clkr/norms", priority: 0.75 },
   { path: "/posts", priority: 0.75 },
   { path: "/es/posts", priority: 0.75 },
+  { path: "/pricing", priority: 0.7 },
+  { path: "/es/pricing", priority: 0.7 },
   { path: "/privacy", priority: 0.3 },
   { path: "/es/privacidad", priority: 0.3 },
 ] as const;

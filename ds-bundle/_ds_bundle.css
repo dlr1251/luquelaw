@@ -1,0 +1,263 @@
+/* Luque Law Design System — Brand tokens and utilities */
+
+/* ── Brand palette ──────────────────────────────────────────── */
+:root {
+  --forest: #152919;
+  --moss: #2a5c32;
+  --parchment: #faf9f6;
+  --ink: #1a1714;
+
+  --radius: 0.625rem;
+  --destructive: oklch(0.577 0.245 27.325);
+}
+
+/* ── Marketing theme (public site) ─────────────────────────── */
+.marketing-theme {
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --muted: #ebe6de;
+  --muted-foreground: #625541;
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --border: #d9d2c7;
+  --surface: #f2efe8;
+  --surface-strong: #e8e2d8;
+  --accent: var(--moss);
+  --accent-contrast: var(--parchment);
+  --accent-foreground: var(--parchment);
+  --hero: var(--forest);
+  --hero-foreground: #ffffff;
+  --hero-muted: rgb(255 255 255 / 0.76);
+  --hero-accent: #7ecf8a;
+  --hero-card: rgb(255 255 255 / 0.08);
+  --hero-border: rgb(255 255 255 / 0.18);
+  --hero-button: rgb(255 255 255 / 0.1);
+  --hero-button-hover: rgb(255 255 255 / 0.18);
+  --header-fg: #ffffff;
+  --header-fg-muted: rgb(255 255 255 / 0.72);
+  --footer-fg: rgb(255 255 255 / 0.68);
+  --heading: var(--forest);
+  --panel: #ffffff;
+  --panel-foreground: var(--ink);
+  --primary: var(--forest);
+  --primary-foreground: #ffffff;
+  --secondary: var(--surface);
+  --secondary-foreground: var(--ink);
+  --input: #d9d2c7;
+  --ring: var(--moss);
+
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Figtree", system-ui, sans-serif;
+}
+
+/* ── Dark mode — marketing ─────────────────────────────────── */
+.dark .marketing-theme {
+  --background: oklch(0.07 0 0);
+  --foreground: oklch(0.97 0 0);
+  --muted: oklch(0.18 0 0);
+  --muted-foreground: oklch(0.68 0 0);
+  --card: oklch(0.11 0 0);
+  --card-foreground: oklch(0.97 0 0);
+  --border: oklch(1 0 0 / 0.14);
+  --surface: oklch(0.1 0 0);
+  --surface-strong: oklch(0.15 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-contrast: oklch(0.07 0 0);
+  --accent-foreground: oklch(0.07 0 0);
+  --hero: oklch(0 0 0);
+  --hero-foreground: oklch(0.97 0 0);
+  --hero-muted: oklch(0.66 0 0);
+  --hero-accent: oklch(0.72 0 0);
+  --hero-card: oklch(1 0 0 / 0.06);
+  --hero-border: oklch(1 0 0 / 0.16);
+  --hero-button: oklch(1 0 0 / 0.08);
+  --hero-button-hover: oklch(1 0 0 / 0.14);
+  --header-fg: oklch(0.97 0 0);
+  --header-fg-muted: oklch(0.66 0 0);
+  --footer-fg: oklch(0.62 0 0);
+  --heading: oklch(0.97 0 0);
+  --panel: oklch(0.11 0 0);
+  --panel-foreground: oklch(0.97 0 0);
+  --primary: oklch(0.97 0 0);
+  --primary-foreground: oklch(0.07 0 0);
+  --secondary: oklch(0.15 0 0);
+  --secondary-foreground: oklch(0.97 0 0);
+  --input: oklch(1 0 0 / 0.14);
+  --ring: oklch(0.72 0 0);
+}
+
+/* ── Typography ─────────────────────────────────────────────── */
+
+.marketing-theme h1,
+.marketing-theme h2,
+.marketing-theme h3 {
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  color: var(--heading);
+}
+
+.marketing-theme h1 {
+  font-family: "Arbutus Slab", Georgia, "Times New Roman", serif;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.marketing-theme h2 {
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.marketing-theme h3 {
+  line-height: 1.2;
+}
+
+.marketing-theme p,
+.marketing-theme li,
+.marketing-theme dd,
+.marketing-theme dt {
+  font-family: "Figtree", system-ui, sans-serif;
+}
+
+.marketing-theme .accent-italic {
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  color: var(--moss);
+}
+
+/* ── Marketing typography utilities ───────────────────────────── */
+
+.marketing-eyebrow {
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+
+.marketing-eyebrow-on-hero {
+  color: var(--hero-accent);
+}
+
+.marketing-display {
+  font-family: "Arbutus Slab", Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
+}
+
+.marketing-title {
+  font-family: "Arbutus Slab", Georgia, "Times New Roman", serif;
+  font-size: clamp(1.5rem, 3vw, 1.875rem);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: var(--heading);
+}
+
+.marketing-lead {
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: clamp(1rem, 2vw, 1.0625rem);
+  line-height: 1.7;
+}
+
+.marketing-body {
+  font-family: "Figtree", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--muted-foreground);
+}
+
+.marketing-section {
+  padding-block: clamp(3.5rem, 8vw, 5rem);
+}
+
+.brand-mark-dot {
+  display: inline-block;
+  height: 0.5em;
+  width: 0.5em;
+  flex-shrink: 0;
+  border-radius: 9999px;
+  border: 1px solid currentColor;
+}
+
+/* ── Buttons ────────────────────────────────────────────────── */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  background-color: var(--forest);
+  color: var(--parchment);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.5rem;
+  transition: background-color 0.15s ease;
+}
+.btn-primary:hover {
+  background-color: var(--moss);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1.5px solid var(--forest);
+  background-color: transparent;
+  color: var(--forest);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.5rem;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--forest) 10%, transparent);
+}
+
+.btn-primary-inverted {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  background-color: var(--parchment);
+  color: var(--forest);
+  font-family: "Figtree", system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.25rem;
+  padding: 0.625rem 1.5rem;
+  transition: opacity 0.15s ease;
+}
+.btn-primary-inverted:hover {
+  opacity: 0.88;
+}
+
+.btn-primary-sm,
+.btn-secondary-sm {
+  min-height: 2.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.btn-primary-lg,
+.btn-secondary-lg {
+  min-height: 2.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}

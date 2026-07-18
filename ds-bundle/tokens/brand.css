@@ -1,0 +1,10 @@
+/* Luque Law — Brand palette */
+:root {
+  --forest: #152919;
+  --moss: #2a5c32;
+  --parchment: #faf9f6;
+  --ink: #1a1714;
+
+  --radius: 0.625rem;
+  --destructive: oklch(0.577 0.245 27.325);
+}

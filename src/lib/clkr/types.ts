@@ -47,8 +47,12 @@ export const CLKR_CATEGORIES: ClkrCategory[] = [
   "Civil",
 ];
 
+export function clkrGuidesHubPath(locale: "en" | "es"): string {
+  return locale === "es" ? "/es/clkr/guides" : "/clkr/guides";
+}
+
 export function clkrPublicPath(slugKey: string, locale: "en" | "es"): string {
-  return locale === "es" ? `/es/clkr/${slugKey}` : `/clkr/${slugKey}`;
+  return locale === "es" ? `/es/clkr/guides/${slugKey}` : `/clkr/guides/${slugKey}`;
 }
 
 export function recordToHubArticle(row: ClkrArticleRecord): ClkrArticle {

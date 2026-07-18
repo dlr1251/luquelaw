@@ -10,7 +10,7 @@ import { Container } from "@/components/container";
 import { DlrMonogram } from "@/components/dlr-monogram";
 import { localeFromPathname } from "@/lib/locale/paths";
 
-export function SiteFooter() {
+export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
   const pathname = usePathname();
   const isSpanish = localeFromPathname(pathname) === "es";
   const prefix = isSpanish ? "/es" : "";
@@ -24,20 +24,21 @@ export function SiteFooter() {
     : "This content is for informational purposes only and does not constitute legal advice. Every case is unique.";
 
   const homeHref = prefix || "/";
+  const portalHref = signedIn ? "/portal" : "/login";
   const navLinks = isSpanish
     ? [
-        { href: `${prefix}/clkr`, label: "Artículos legales" },
-        { href: `${prefix}/norms`, label: "Normas" },
+        { href: `${prefix}/clkr`, label: "CLKR" },
         { href: `${prefix}/posts`, label: "Blog" },
+        { href: `${prefix}/pricing`, label: "Planes" },
         { href: `${homeHref}#contact`, label: "Contacto" },
-        { href: "/login", label: "Portal cliente" },
+        { href: portalHref, label: "Portal" },
       ]
     : [
-        { href: `${prefix}/clkr`, label: "Legal Articles" },
-        { href: `${prefix}/norms`, label: "Norms" },
+        { href: `${prefix}/clkr`, label: "CLKR" },
         { href: `${prefix}/posts`, label: "Blog" },
+        { href: `${prefix}/pricing`, label: "Pricing" },
         { href: `${homeHref}#contact`, label: "Contact" },
-        { href: "/login", label: "Client portal" },
+        { href: portalHref, label: "Portal" },
       ];
 
   const sectionLabel =

@@ -1,8 +1,9 @@
-import Link from "next/link";
 import { BookOpen, Layers } from "lucide-react";
 
 import { ClkrBrowser } from "@/components/clkr/clkr-browser";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
+import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
+import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { StudyPathsSection } from "@/components/clkr/study-paths-section";
 import { Container } from "@/components/container";
 import type { ClkrArticle } from "@/lib/clkr/articles";
@@ -13,32 +14,29 @@ type Props = {
   articles: ClkrArticle[];
   studyPaths?: StudyPath[];
   locale?: ClkrHubLocale;
+  signedIn?: boolean;
 };
 
-export function ClkrHub({ articles, studyPaths = [], locale = "en" }: Props) {
+export function ClkrHub({
+  articles,
+  studyPaths = [],
+  locale = "en",
+  signedIn = false,
+}: Props) {
   const copy = clkrHubContent[locale];
-  const contactHref = locale === "es" ? "/es#contact" : "/#contact";
   const topicCount = new Set(articles.map((a) => a.category)).size;
 
   return (
     <main className="flex-1">
-      <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
-        <Container className="py-14 sm:py-16 lg:py-20">
-          <p className="marketing-eyebrow">{copy.eyebrow}</p>
-          <h1 className="marketing-display mt-3 max-w-3xl text-[color:var(--forest)] sm:text-[clamp(2.25rem,4vw,2.75rem)]">
-            {copy.title}
-          </h1>
-          <p className="marketing-body mt-4 max-w-3xl text-base sm:text-lg">{copy.subtitle}</p>
-          <p className="mt-6">
-            <Link
-              href={contactHref}
-              className="text-sm font-bold text-[color:var(--forest)] underline-offset-2 hover:text-[color:var(--moss)] hover:underline"
-            >
-              {copy.contactCta} {copy.contactLink} →
-            </Link>
-          </p>
-        </Container>
-      </section>
+      <ClkrProductNav locale={locale} signedIn={signedIn} />
+      <ClkrModuleHero
+        locale={locale}
+        eyebrow={copy.eyebrow}
+        title={copy.title}
+        subtitle={copy.subtitle}
+        contactCta={copy.contactCta}
+        contactLink={copy.contactLink}
+      />
 
       <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--surface)]">
         <Container className="py-10 sm:py-12">

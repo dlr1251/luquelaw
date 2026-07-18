@@ -15,7 +15,7 @@ async function requireAdminSupabase() {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data?.claims || !isAppAdmin(data.claims)) {
-    redirect("/account");
+    redirect("/portal");
   }
   return supabase;
 }
@@ -23,8 +23,10 @@ async function requireAdminSupabase() {
 function revalidateClkrPaths(slugKey: string) {
   revalidatePath("/clkr");
   revalidatePath("/es/clkr");
-  revalidatePath(`/clkr/${slugKey}`);
-  revalidatePath(`/es/clkr/${slugKey}`);
+  revalidatePath("/clkr/guides");
+  revalidatePath("/es/clkr/guides");
+  revalidatePath(`/clkr/guides/${slugKey}`);
+  revalidatePath(`/es/clkr/guides/${slugKey}`);
   revalidatePath("/admin/clkr");
 }
 

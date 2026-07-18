@@ -58,7 +58,25 @@ export function clkrHubJsonLd(locale: SeoLocale) {
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: isEs ? "Artículos legales" : "Legal Articles",
+    name: isEs ? "CLKR — Hub LegalAI" : "CLKR — LegalAI hub",
+    url: `${SITE_URL}${path}`,
+    inLanguage: isEs ? "es" : "en",
+    isPartOf: {
+      "@type": "WebSite",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+  };
+}
+
+export function clkrGuidesHubJsonLd(locale: SeoLocale) {
+  const isEs = locale === "es";
+  const path = isEs ? "/es/clkr/guides" : "/clkr/guides";
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: isEs ? "Guías jurídicas" : "Legal guides",
     url: `${SITE_URL}${path}`,
     inLanguage: isEs ? "es" : "en",
     isPartOf: {
@@ -71,7 +89,7 @@ export function clkrHubJsonLd(locale: SeoLocale) {
 
 export function normsHubJsonLd(locale: SeoLocale) {
   const isEs = locale === "es";
-  const path = isEs ? "/es/norms" : "/norms";
+  const path = isEs ? "/es/clkr/norms" : "/clkr/norms";
 
   return {
     "@context": "https://schema.org",
@@ -100,11 +118,11 @@ export function normJsonLd(
   sectionTitle: string,
 ) {
   const isEs = norm.locale === "es";
-  const basePath = isEs ? `/es/norms/${norm.slug_key}` : `/norms/${norm.slug_key}`;
+  const basePath = isEs ? `/es/clkr/norms/${norm.slug_key}` : `/clkr/norms/${norm.slug_key}`;
   const path = sectionPath.length ? `${basePath}/${sectionPath.join("/")}` : basePath;
   const url = `${SITE_URL}${path}`;
   const homePath = isEs ? "/es" : "/";
-  const hubPath = isEs ? "/es/norms" : "/norms";
+  const hubPath = isEs ? "/es/clkr/norms" : "/clkr/norms";
 
   return [
     {
@@ -257,7 +275,7 @@ export function clkrArticleJsonLd(
   },
 ) {
   const isEs = article.locale === "es";
-  const path = isEs ? `/es/clkr/${article.slug_key}` : `/clkr/${article.slug_key}`;
+  const path = isEs ? `/es/clkr/guides/${article.slug_key}` : `/clkr/guides/${article.slug_key}`;
   const url = `${SITE_URL}${path}`;
   const homePath = isEs ? "/es" : "/";
   const hubPath = isEs ? "/es/clkr" : "/clkr";

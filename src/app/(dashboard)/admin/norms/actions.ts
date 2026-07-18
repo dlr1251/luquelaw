@@ -29,16 +29,16 @@ async function requireAdminSupabase() {
   const supabase = await createClient();
   const { data, error } = await supabase.auth.getClaims();
   if (error || !data?.claims || !isAppAdmin(data.claims)) {
-    redirect("/account");
+    redirect("/portal");
   }
   return supabase;
 }
 
 function revalidateNormPaths(slugKey: string) {
-  revalidatePath("/norms");
-  revalidatePath("/es/norms");
-  revalidatePath(`/norms/${slugKey}`);
-  revalidatePath(`/es/norms/${slugKey}`);
+  revalidatePath("/clkr/norms");
+  revalidatePath("/es/clkr/norms");
+  revalidatePath(`/clkr/norms/${slugKey}`);
+  revalidatePath(`/es/clkr/norms/${slugKey}`);
   revalidatePath("/admin/norms");
 }
 
@@ -249,8 +249,8 @@ export async function deleteNorm(formData: FormData) {
   if (row?.slug_key) {
     revalidateNormPaths(String(row.slug_key));
   } else {
-    revalidatePath("/norms");
-    revalidatePath("/es/norms");
+    revalidatePath("/clkr/norms");
+    revalidatePath("/es/clkr/norms");
     revalidatePath("/admin/norms");
   }
 

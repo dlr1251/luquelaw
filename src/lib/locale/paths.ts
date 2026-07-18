@@ -4,19 +4,19 @@ const supportedEnglishPaths = new Set([
   "/",
   "/contact",
   "/privacy",
+  "/immigration",
   "/book",
   "/services",
+  "/pricing",
   "/clkr",
-  "/clkr/investor-visa",
-  "/clkr/real-estate-transactions",
-  "/norms",
+  "/clkr/guides",
+  "/clkr/norms",
+  "/clkr/agents",
+  "/clkr/quizzes",
   "/posts",
-  "/posts/digital-nomad-visa-colombia",
-  "/posts/property-due-diligence-medellin",
-  "/posts/sas-incorporation-foreigners",
 ]);
 
-const localizedPrefixes = ["/clkr/", "/norms/", "/posts/"];
+const localizedPrefixes = ["/clkr/", "/posts/"];
 
 function isSupportedLocalizedPath(path: string): boolean {
   return localizedPrefixes.some((prefix) => path.startsWith(prefix));
@@ -24,6 +24,12 @@ function isSupportedLocalizedPath(path: string): boolean {
 
 const pathEnMap: Record<string, string> = {
   "/privacidad": "/privacy",
+  "/migracion": "/immigration",
+};
+
+const pathEsMap: Record<string, string> = {
+  "/privacy": "/es/privacidad",
+  "/immigration": "/es/migracion",
 };
 
 function stripSpanishPrefix(pathname: string) {
@@ -35,7 +41,7 @@ function stripSpanishPrefix(pathname: string) {
 export function toSpanishPath(pathname: string): string {
   const englishPath = stripSpanishPrefix(pathname);
 
-  if (englishPath === "/privacy") return "/es/privacidad";
+  if (pathEsMap[englishPath]) return pathEsMap[englishPath];
   if (isSupportedLocalizedPath(englishPath)) {
     return `/es${englishPath}`;
   }
@@ -46,11 +52,17 @@ export function toSpanishPath(pathname: string): string {
 export function toEnglishPath(pathname: string): string {
   if (pathname === "/es") return "/";
   if (pathname === "/es/privacidad") return "/privacy";
+  if (pathname === "/es/migracion") return "/immigration";
 
   const stripped = stripSpanishPrefix(pathname);
   const mapped = pathEnMap[stripped] ?? stripped;
 
-  if (isSupportedLocalizedPath(mapped) || supportedEnglishPaths.has(mapped) || mapped === "/privacy") {
+  if (
+    isSupportedLocalizedPath(mapped) ||
+    supportedEnglishPaths.has(mapped) ||
+    mapped === "/privacy" ||
+    mapped === "/immigration"
+  ) {
     return mapped;
   }
 
@@ -72,6 +84,7 @@ export function shouldLocalizePath(pathname: string): boolean {
   if (pathname.startsWith("/auth")) return false;
   if (pathname.startsWith("/login")) return false;
   if (pathname.startsWith("/account")) return false;
+  if (pathname.startsWith("/portal")) return false;
   if (pathname.startsWith("/admin")) return false;
   if (pathname.startsWith("/_next")) return false;
   return true;
