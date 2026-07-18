@@ -8,7 +8,7 @@ import { debitLucyWallet, getLucyBalance } from "@/lib/lucy/wallet";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export const runtime = "nodejs";
-export const maxDuration = 120;
+export const maxDuration = 60;
 
 type Body = {
   chatId: string;
