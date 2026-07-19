@@ -275,14 +275,6 @@ export function HeaderNav({
           <LanguageSwitch variant="surface" />
           <PaletteSwitcher variant="surface" />
         </div>
-
-        <button
-          type="button"
-          onClick={openBooking}
-          className="btn-primary btn-primary-sm ml-3 whitespace-nowrap"
-        >
-          {copy.cta}
-        </button>
       </nav>
 
       <div className="lg:hidden">

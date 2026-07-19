@@ -3,6 +3,8 @@ import { headers } from "next/headers";
 import { Arbutus_Slab, Figtree, Geist, Libre_Baskerville } from "next/font/google";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { CookieBanner } from "@/components/cookies/cookie-banner";
+import { CookieConsentProvider } from "@/components/cookies/cookie-consent-provider";
 import { ThemeScript } from "@/components/theme-script";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { localeFromPathname } from "@/lib/locale/paths";
@@ -59,16 +61,19 @@ export default async function RootLayout({
         <ThemeScript />
       </head>
       <body className="min-h-full bg-background text-foreground">
-        <GoogleAnalytics />
-        <TooltipProvider>
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:border focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-sm"
-          >
-            Skip to content
-          </a>
-          {children}
-        </TooltipProvider>
+        <CookieConsentProvider>
+          <GoogleAnalytics />
+          <TooltipProvider>
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:border focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:shadow-sm"
+            >
+              Skip to content
+            </a>
+            {children}
+            <CookieBanner />
+          </TooltipProvider>
+        </CookieConsentProvider>
       </body>
     </html>
   );

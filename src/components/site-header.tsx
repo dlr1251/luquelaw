@@ -3,7 +3,9 @@ import Link from "next/link";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 import { Container } from "@/components/container";
 import { HeaderNav } from "@/components/header-nav";
+import { SiteTopBar } from "@/components/site-top-bar";
 import { isAppAdmin } from "@/lib/auth/is-admin";
+import { getFxRates } from "@/lib/markets/fx";
 
 export async function SiteHeader() {
   let signedIn = false;
@@ -20,8 +22,11 @@ export async function SiteHeader() {
     }
   }
 
+  const rates = await getFxRates();
+
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background text-foreground">
+      <SiteTopBar rates={rates} />
       <Container className="flex min-h-16 items-center justify-between gap-3 py-3 sm:py-2">
         <Link
           href="/"

@@ -34,14 +34,15 @@ export function BookingProvider({ children, locale: localeProp }: Props) {
   const openModal = useCallback(() => setOpen(true), []);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (window.location.hash === "#book") openModal();
-
     const onHash = () => {
       if (window.location.hash === "#book") openModal();
     };
     window.addEventListener("hashchange", onHash);
-    return () => window.removeEventListener("hashchange", onHash);
+    const timer = window.setTimeout(onHash, 0);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("hashchange", onHash);
+    };
   }, [openModal]);
 
   useEffect(() => {

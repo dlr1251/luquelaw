@@ -36,6 +36,15 @@ export function PrivacyPolicy({ locale }: Props) {
           </a>
           .
         </p>
+        <h2 className="mt-8 text-xl font-bold text-[color:var(--forest)]">Cookies</h2>
+        <p className="mt-2 text-[color:var(--ink)] leading-relaxed">
+          Usamos cookies esenciales para el funcionamiento del sitio (por ejemplo,
+          idioma y sesión). Con su autorización, también podemos usar cookies de
+          analítica (Google Analytics) para entender el uso del sitio de forma
+          agregada. Puede aceptar o limitar las cookies no esenciales en el aviso
+          de cookies; puede cambiar su preferencia en cualquier momento desde el
+          enlace &quot;Cookies&quot; del pie de página.
+        </p>
         <h2 className="mt-8 text-xl font-bold text-[color:var(--forest)]">Conservación</h2>
         <p className="mt-2 text-[color:var(--ink)] leading-relaxed">
           Conservaremos la información el tiempo necesario para atender su
@@ -77,6 +86,14 @@ export function PrivacyPolicy({ locale }: Props) {
           daniel@luquelaw.co
         </a>
         .
+      </p>
+      <h2 className="mt-8 text-xl font-bold text-[color:var(--forest)]">Cookies</h2>
+      <p className="mt-2 text-[color:var(--ink)] leading-relaxed">
+        We use essential cookies for site functionality (for example, language and
+        session). With your permission, we may also use analytics cookies (Google
+        Analytics) to understand aggregated site usage. You can accept or limit
+        non-essential cookies in the cookie notice; you can change your preference
+        anytime via the &quot;Cookies&quot; link in the footer.
       </p>
       <h2 className="mt-8 text-xl font-bold text-[color:var(--forest)]">Retention</h2>
       <p className="mt-2 text-[color:var(--ink)] leading-relaxed">

@@ -7,6 +7,7 @@ import { WhatsappIcon } from "@/components/icons/whatsapp-icon";
 import { usePathname } from "next/navigation";
 
 import { Container } from "@/components/container";
+import { CookieSettingsButton } from "@/components/cookies/cookie-settings-button";
 import { DlrMonogram } from "@/components/dlr-monogram";
 import { localeFromPathname } from "@/lib/locale/paths";
 
@@ -34,6 +35,7 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
         { href: `${prefix}/pricing`, label: "Planes" },
         { href: `${homeHref}#contact`, label: "Contacto" },
         { href: portalHref, label: "Portal" },
+        { href: "/es/privacidad", label: "Privacidad" },
       ]
     : [
         { href: "/about", label: "About" },
@@ -43,6 +45,7 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
         { href: `${prefix}/pricing`, label: "Pricing" },
         { href: `${homeHref}#contact`, label: "Contact" },
         { href: portalHref, label: "Portal" },
+        { href: "/privacy", label: "Privacy" },
       ];
 
   const sectionLabel =
@@ -120,7 +123,10 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
           <p className="min-w-0 text-center font-[family-name:var(--font-ui)] text-[0.6875rem] leading-relaxed text-hero-foreground/38 sm:text-left">
             © {new Date().getFullYear()} Luque Law · Daniel Luque Restrepo · Medellín, Colombia
           </p>
-          <DlrMonogram size={32} className="shrink-0" />
+          <div className="flex items-center gap-4">
+            <CookieSettingsButton className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-hero-foreground/45 transition hover:text-hero-foreground" />
+            <DlrMonogram size={32} className="shrink-0" />
+          </div>
         </Container>
       </div>
     </footer>
