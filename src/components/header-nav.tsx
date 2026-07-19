@@ -5,10 +5,32 @@ import { useEffect, useId, useMemo, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { useBookingModal } from "@/components/booking/BookingProvider";
+import { SiteSearchTrigger } from "@/components/search/site-search-trigger";
 import { LanguageSwitch } from "@/components/language-switch";
 import { PaletteSwitcher } from "@/components/palette-switcher";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { loginHref } from "@/lib/auth/safe-next";
+import { clkrGuidesHubPath } from "@/lib/clkr/types";
 import { localeFromPathname } from "@/lib/locale/paths";
+import { normsHubPath } from "@/lib/norms/types";
+import { getServiceAreas } from "@/lib/services/content";
+
+function Chevron({ className }: { className?: string }) {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 12 12"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2.5 4.5 6 8l3.5-3.5" />
+    </svg>
+  );
+}
 
 export function HeaderNav({
   signedIn,
@@ -19,90 +41,91 @@ export function HeaderNav({
 }) {
   const pathname = usePathname();
   const mobilePanelId = useId();
+  const servicesMenuId = useId();
+  const resourcesMenuId = useId();
+  const { open: openBooking } = useBookingModal();
   const isSpanish = localeFromPathname(pathname) === "es";
+  const locale = isSpanish ? "es" : "en";
   const prefix = isSpanish ? "/es" : "";
-  const homeHref = prefix || "/";
-  const contactHref = `${homeHref}#contact`;
-  const bookHref = `${homeHref}#book`;
 
   const copy = isSpanish
     ? {
-        immigration: "Migración",
-        legalArticles: "CLKR",
+        about: "Nosotros",
+        services: "Servicios",
+        allServices: "Todos los servicios",
+        resources: "Recursos",
+        norms: "Normas",
+        articles: "Artículos",
         blog: "Blog",
-        pricing: "Planes",
-        contact: "Contacto",
-        portal: "Portal",
+        torny: "Torny",
         admin: "Admin",
         cta: "Agendar consulta",
         close: "Cerrar",
+        search: "Buscar",
       }
     : {
-        immigration: "Immigration",
-        legalArticles: "CLKR",
+        about: "About",
+        services: "Services",
+        allServices: "All services",
+        resources: "Resources",
+        norms: "Norms",
+        articles: "Articles",
         blog: "Blog",
-        pricing: "Pricing",
-        contact: "Contact",
-        portal: "Portal",
+        torny: "Torny",
         admin: "Admin",
         cta: "Book consultation",
         close: "Close",
+        search: "Search",
       };
 
-  const immigrationHref = isSpanish ? `${prefix}/migracion` : "/immigration";
+  const aboutHref = isSpanish ? "/es/nosotros" : "/about";
+  const servicesHref = isSpanish ? "/es/servicios" : "/services";
+  const postsHref = `${prefix}/posts`;
+  const tornyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy");
+  const serviceAreas = useMemo(() => getServiceAreas(locale), [locale]);
 
-  const items = useMemo(
+  const resourceItems = useMemo(
     () => [
-      {
-        href: immigrationHref,
-        label: copy.immigration,
-        match: (p: string) =>
-          p === immigrationHref ||
-          p.startsWith(`${immigrationHref}/`) ||
-          (isSpanish
-            ? p.startsWith("/es/migracion")
-            : p === "/immigration" || p.startsWith("/immigration/")),
-      },
-      {
-        href: `${prefix}/clkr`,
-        label: copy.legalArticles,
-        match: (p: string) => p === `${prefix}/clkr` || p.startsWith(`${prefix}/clkr/`),
-      },
-      {
-        href: `${prefix}/posts`,
-        label: copy.blog,
-        match: (p: string) => p === `${prefix}/posts` || p.startsWith(`${prefix}/posts/`),
-      },
-      {
-        href: `${prefix}/pricing`,
-        label: copy.pricing,
-        match: (p: string) => p === `${prefix}/pricing`,
-      },
-      { href: contactHref, label: copy.contact },
-      { href: signedIn ? "/portal" : "/login", label: copy.portal },
+      { href: normsHubPath(locale), label: copy.norms },
+      { href: clkrGuidesHubPath(locale), label: copy.articles },
+      { href: postsHref, label: copy.blog },
+      { href: tornyHref, label: copy.torny },
     ],
-    [
-      contactHref,
-      copy.blog,
-      copy.contact,
-      copy.immigration,
-      copy.legalArticles,
-      copy.portal,
-      copy.pricing,
-      immigrationHref,
-      isSpanish,
-      prefix,
-      signedIn,
-    ],
+    [copy.articles, copy.blog, copy.norms, copy.torny, locale, postsHref, tornyHref],
   );
 
-  const activeNavClass =
-    "text-hero-foreground after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:bg-hero-foreground/50";
+  const servicesActive =
+    pathname === servicesHref ||
+    pathname.startsWith(`${servicesHref}/`) ||
+    (isSpanish
+      ? pathname.startsWith("/es/servicios")
+      : pathname === "/services" || pathname.startsWith("/services/"));
 
-  const portalLink = items[items.length - 1];
-  const primaryLinks = items.slice(0, -1);
+  const resourcesActive =
+    pathname === `${prefix}/clkr` ||
+    pathname.startsWith(`${prefix}/clkr/`) ||
+    pathname === postsHref ||
+    pathname.startsWith(`${postsHref}/`) ||
+    pathname.startsWith("/portal/lucy");
+
+  const activeNavClass =
+    "text-[color:var(--forest)] after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:bg-[color:var(--forest)]/50";
 
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const [menuPath, setMenuPath] = useState(pathname);
+
+  if (pathname !== menuPath) {
+    setMenuPath(pathname);
+    setServicesOpen(false);
+    setResourcesOpen(false);
+    setMobileServicesOpen(false);
+    setMobileResourcesOpen(false);
+    setMobileOpen(false);
+  }
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -124,31 +147,120 @@ export function HeaderNav({
   }, [mobileOpen]);
 
   const navLinkClass =
-    "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-hero-foreground/75 transition duration-150 hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
+    "relative inline-flex items-center whitespace-nowrap px-2.5 py-2 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-[color:var(--forest)]/70 transition duration-150 hover:text-[color:var(--forest)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--forest)]/40";
 
   const iconButtonClass =
-    "inline-flex h-10 w-10 items-center justify-center text-hero-foreground/70 transition hover:text-hero-foreground";
+    "inline-flex h-10 w-10 items-center justify-center text-[color:var(--forest)]/65 transition hover:text-[color:var(--forest)]";
+
+  const menuItemClass =
+    "block px-4 py-2.5 font-[family-name:var(--font-ui)] text-[0.75rem] text-foreground/80 transition hover:bg-muted hover:text-foreground";
+
+  const mobileLinkClass = (active: boolean) =>
+    `block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40 ${
+      active
+        ? "text-[color:var(--parchment)]"
+        : "text-[color:var(--parchment)]/75 hover:text-[color:var(--parchment)]"
+    }`;
 
   return (
     <>
       <nav className="hidden items-center justify-end gap-1 lg:flex" aria-label="Primary">
         <div className="flex items-center">
-          {primaryLinks.map((item) => {
-            const active = "match" in item && item.match?.(pathname);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`${navLinkClass}${active ? ` ${activeNavClass}` : ""}`}
-                aria-current={active ? "page" : undefined}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-          <Link href={portalLink.href} className={navLinkClass}>
-            {portalLink.label}
+          <Link
+            href={aboutHref}
+            className={`${navLinkClass}${pathname === aboutHref ? ` ${activeNavClass}` : ""}`}
+            aria-current={pathname === aboutHref ? "page" : undefined}
+          >
+            {copy.about}
           </Link>
+
+          <div
+            className="relative"
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+          >
+            <button
+              type="button"
+              className={`${navLinkClass}${servicesActive ? ` ${activeNavClass}` : ""}`}
+              aria-expanded={servicesOpen}
+              aria-controls={servicesMenuId}
+              aria-haspopup="true"
+              onClick={() => setServicesOpen((open) => !open)}
+              onFocus={() => setServicesOpen(true)}
+            >
+              {copy.services}
+              <Chevron className="ml-1 h-2.5 w-2.5" />
+            </button>
+
+            {servicesOpen ? (
+              <div
+                id={servicesMenuId}
+                className="absolute left-0 top-full z-50 min-w-[14rem] border border-border bg-card py-2 shadow-lg"
+                role="menu"
+              >
+                <Link
+                  href={servicesHref}
+                  role="menuitem"
+                  className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[color:var(--forest)]/80 transition hover:bg-muted hover:text-[color:var(--forest)]"
+                  onClick={() => setServicesOpen(false)}
+                >
+                  {copy.allServices}
+                </Link>
+                <div className="my-1 h-px bg-border" />
+                {serviceAreas.map((area) => (
+                  <Link
+                    key={area.id}
+                    href={area.href}
+                    role="menuitem"
+                    className={menuItemClass}
+                    onClick={() => setServicesOpen(false)}
+                  >
+                    {area.shortTitle}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
+          <div
+            className="relative"
+            onMouseEnter={() => setResourcesOpen(true)}
+            onMouseLeave={() => setResourcesOpen(false)}
+          >
+            <button
+              type="button"
+              className={`${navLinkClass}${resourcesActive ? ` ${activeNavClass}` : ""}`}
+              aria-expanded={resourcesOpen}
+              aria-controls={resourcesMenuId}
+              aria-haspopup="true"
+              onClick={() => setResourcesOpen((open) => !open)}
+              onFocus={() => setResourcesOpen(true)}
+            >
+              {copy.resources}
+              <Chevron className="ml-1 h-2.5 w-2.5" />
+            </button>
+
+            {resourcesOpen ? (
+              <div
+                id={resourcesMenuId}
+                className="absolute left-0 top-full z-50 min-w-[12rem] border border-border bg-card py-2 shadow-lg"
+                role="menu"
+              >
+                {resourceItems.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    role="menuitem"
+                    className={menuItemClass}
+                    onClick={() => setResourcesOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </div>
+
           {signedIn && isAdmin ? (
             <Link href="/admin/clkr" className={navLinkClass}>
               {copy.admin}
@@ -159,21 +271,25 @@ export function HeaderNav({
         <div className="mx-2 h-4 w-px bg-[color:var(--parchment)]/15" />
 
         <div className="flex items-center gap-1">
-          <LanguageSwitch variant="forest" />
-          <PaletteSwitcher variant="forest" />
-          <ThemeToggle variant="forest" />
+          <SiteSearchTrigger label={copy.search} />
+          <LanguageSwitch variant="surface" />
+          <PaletteSwitcher variant="surface" />
         </div>
 
-        <Link href={bookHref} className="btn-primary-inverted btn-primary-sm ml-3 whitespace-nowrap">
+        <button
+          type="button"
+          onClick={openBooking}
+          className="btn-primary btn-primary-sm ml-3 whitespace-nowrap"
+        >
           {copy.cta}
-        </Link>
+        </button>
       </nav>
 
       <div className="lg:hidden">
         <div className="flex items-center justify-end gap-1">
-          <LanguageSwitch variant="forest" />
-          <PaletteSwitcher variant="forest" />
-          <ThemeToggle variant="forest" />
+          <SiteSearchTrigger showShortcut={false} label={copy.search} />
+          <LanguageSwitch variant="surface" />
+          <PaletteSwitcher variant="surface" />
           <button
             type="button"
             className={iconButtonClass}
@@ -214,7 +330,7 @@ export function HeaderNav({
             />
             <div
               id={mobilePanelId}
-              className="absolute right-0 top-0 h-full w-[86vw] max-w-sm bg-[color:var(--forest)] shadow-2xl"
+              className="absolute right-0 top-0 h-full w-[86vw] max-w-sm overflow-y-auto bg-[color:var(--forest)] shadow-2xl"
             >
               <div className="flex items-center justify-between border-b border-[color:var(--parchment)]/10 p-4">
                 <div className="flex items-center gap-[0.3em] font-display text-base font-normal text-[color:var(--parchment)]">
@@ -224,7 +340,7 @@ export function HeaderNav({
                 </div>
                 <button
                   type="button"
-                  className={iconButtonClass}
+                  className={`${iconButtonClass} text-[color:var(--parchment)]/75 hover:text-[color:var(--parchment)]`}
                   aria-label={copy.close}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -245,42 +361,99 @@ export function HeaderNav({
               </div>
 
               <nav className="p-3" aria-label="Mobile navigation">
-                {[...primaryLinks, portalLink].map((item) => {
-                  const active = "match" in item && item.match?.(pathname);
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      aria-current={active ? "page" : undefined}
-                      className={`block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40 ${
-                        active
-                          ? "text-[color:var(--parchment)]"
-                          : "text-[color:var(--parchment)]/75 hover:text-[color:var(--parchment)]"
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  );
-                })}
+                <Link
+                  href={aboutHref}
+                  onClick={() => setMobileOpen(false)}
+                  aria-current={pathname === aboutHref ? "page" : undefined}
+                  className={mobileLinkClass(pathname === aboutHref)}
+                >
+                  {copy.about}
+                </Link>
+
+                <div>
+                  <button
+                    type="button"
+                    className={`${mobileLinkClass(servicesActive)} flex w-full items-center justify-between`}
+                    aria-expanded={mobileServicesOpen}
+                    onClick={() => setMobileServicesOpen((open) => !open)}
+                  >
+                    {copy.services}
+                    <Chevron
+                      className={`h-3 w-3 transition ${mobileServicesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {mobileServicesOpen ? (
+                    <div className="pb-2 pl-2">
+                      <Link
+                        href={servicesHref}
+                        onClick={() => setMobileOpen(false)}
+                        className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-xs font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                      >
+                        {copy.allServices}
+                      </Link>
+                      {serviceAreas.map((area) => (
+                        <Link
+                          key={area.id}
+                          href={area.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                        >
+                          {area.shortTitle}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+
+                <div>
+                  <button
+                    type="button"
+                    className={`${mobileLinkClass(resourcesActive)} flex w-full items-center justify-between`}
+                    aria-expanded={mobileResourcesOpen}
+                    onClick={() => setMobileResourcesOpen((open) => !open)}
+                  >
+                    {copy.resources}
+                    <Chevron
+                      className={`h-3 w-3 transition ${mobileResourcesOpen ? "rotate-180" : ""}`}
+                    />
+                  </button>
+                  {mobileResourcesOpen ? (
+                    <div className="pb-2 pl-2">
+                      {resourceItems.map((item) => (
+                        <Link
+                          key={item.label}
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
+                          className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+
                 {signedIn && isAdmin ? (
                   <Link
                     href="/admin/clkr"
                     onClick={() => setMobileOpen(false)}
-                    className="block px-4 py-3 font-[family-name:var(--font-ui)] text-sm font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/75 transition hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/40"
+                    className={mobileLinkClass(false)}
                   >
                     {copy.admin}
                   </Link>
                 ) : null}
 
                 <div className="mt-3 border-t border-[color:var(--parchment)]/10 px-1 pt-4">
-                  <Link
-                    href={bookHref}
-                    onClick={() => setMobileOpen(false)}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      openBooking();
+                    }}
                     className="btn-primary-inverted btn-primary-lg flex w-full justify-center"
                   >
                     {copy.cta}
-                  </Link>
+                  </button>
                 </div>
               </nav>
             </div>

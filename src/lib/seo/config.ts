@@ -171,6 +171,90 @@ export const PAGE_SEO = {
         "Estima los días de cuota de turismo usados y tu último día de permanencia regular bajo la regla de 180 días por año calendario.",
     },
   },
+  about: {
+    en: {
+      title: "About Luque Law — Team & Counsel in Medellín",
+      description:
+        "Meet Daniel Luque Restrepo and the Luque Law team — bilingual legal counsel for international clients in Colombia.",
+    },
+    es: {
+      title: "Nosotros — Equipo Luque Law en Medellín",
+      description:
+        "Conoce a Daniel Luque Restrepo y al equipo de Luque Law — asesoría jurídica bilingüe para clientes internacionales en Colombia.",
+    },
+  },
+  services: {
+    en: {
+      title: "Legal Services — Immigration, Real Estate, Corporate & More",
+      description:
+        "Explore Luque Law practice areas: immigration, labour, real estate, family, corporate, and taxes for international clients in Colombia.",
+    },
+    es: {
+      title: "Servicios legales — Migración, inmobiliario, corporativo y más",
+      description:
+        "Explora las áreas de práctica de Luque Law: migración, laboral, inmobiliario, familia, corporativo e impuestos para clientes internacionales en Colombia.",
+    },
+  },
+  labourLaw: {
+    en: {
+      title: "Labour Law in Colombia",
+      description:
+        "Employment contracts, HR compliance, terminations, and workplace counsel for international clients in Colombia.",
+    },
+    es: {
+      title: "Derecho laboral en Colombia",
+      description:
+        "Contratos laborales, cumplimiento de RR. HH., terminaciones y asesoría laboral para clientes internacionales en Colombia.",
+    },
+  },
+  realEstate: {
+    en: {
+      title: "Real Estate Law in Colombia",
+      description:
+        "Purchase, sale, leases, and HOA guidance for property transactions in Colombia.",
+    },
+    es: {
+      title: "Derecho inmobiliario en Colombia",
+      description:
+        "Compraventa, arrendamientos y orientación en propiedad horizontal para transacciones inmobiliarias en Colombia.",
+    },
+  },
+  familyLaw: {
+    en: {
+      title: "Family Law in Colombia",
+      description:
+        "Marriage, divorce, custody, and cross-border family matters for international clients.",
+    },
+    es: {
+      title: "Derecho de familia en Colombia",
+      description:
+        "Matrimonio, divorcio, custodia y asuntos familiares transfronterizos para clientes internacionales.",
+    },
+  },
+  corporateLaw: {
+    en: {
+      title: "Corporate Law in Colombia",
+      description:
+        "Company formation, contracts, and ongoing business counsel for international founders and investors.",
+    },
+    es: {
+      title: "Derecho corporativo en Colombia",
+      description:
+        "Constitución de sociedades, contratos y acompañamiento empresarial para fundadores e inversionistas internacionales.",
+    },
+  },
+  taxes: {
+    en: {
+      title: "Tax Orientation in Colombia",
+      description:
+        "International tax orientation for individuals and businesses operating in Colombia.",
+    },
+    es: {
+      title: "Orientación tributaria en Colombia",
+      description:
+        "Orientación tributaria internacional para personas y empresas que operan en Colombia.",
+    },
+  },
 } as const;
 
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID?.trim() ?? "";

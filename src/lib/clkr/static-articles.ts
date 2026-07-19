@@ -234,7 +234,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "next-steps",
         title: "Next steps",
-        html: "<p>Keep a personal log of entries and exits. Use our <a href=\"/immigration/calculator\">Last Legal Day calculator</a> for a first estimate. For a case-specific count or if you are near overstay, <a href=\"/immigration#book\">book a consultation</a>.</p>",
+        html: "<p>Keep a personal log of entries and exits. Use our <a href=\"/services/immigration/calculator\">Last Legal Day calculator</a> for a first estimate. For a case-specific count or if you are near overstay, <a href=\"/services/immigration#book\">book a consultation</a>.</p>",
       },
     ],
     status: "published",
@@ -282,7 +282,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "after-approval",
         title: "After approval",
-        html: "<p>Once the visa PDF is issued, Cancillería generally notifies that you have <strong>15 calendar days</strong> to register with Migración Colombia and obtain a <strong>cédula de extranjería</strong> when applicable. That ID is often required for banking and local contracts. Missed registration deadlines can create separate compliance issues.</p><p>For strategy on a specific category, see our <a href=\"/immigration\">immigration practice page</a> or <a href=\"/#book\">book a consultation</a>.</p>",
+        html: "<p>Once the visa PDF is issued, Cancillería generally notifies that you have <strong>15 calendar days</strong> to register with Migración Colombia and obtain a <strong>cédula de extranjería</strong> when applicable. That ID is often required for banking and local contracts. Missed registration deadlines can create separate compliance issues.</p><p>For strategy on a specific category, see our <a href=\"/services/immigration\">immigration practice page</a> or <a href=\"/#book\">book a consultation</a>.</p>",
       },
     ],
     status: "published",
@@ -330,7 +330,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "next-steps",
         title: "Siguientes pasos",
-        html: "<p>Lleva un registro personal de entradas y salidas. Usa nuestra <a href=\"/es/migracion/calculadora\">calculadora de último día legal</a> para una primera estimación. Para un conteo caso a caso o si estás cerca de sobreestadía, <a href=\"/es/migracion#book\">agenda una consulta</a>.</p>",
+        html: "<p>Lleva un registro personal de entradas y salidas. Usa nuestra <a href=\"/es/servicios/migracion/calculadora\">calculadora de último día legal</a> para una primera estimación. Para un conteo caso a caso o si estás cerca de sobreestadía, <a href=\"/es/servicios/migracion#book\">agenda una consulta</a>.</p>",
       },
     ],
     status: "published",
@@ -378,7 +378,7 @@ export const staticClkrArticleRecords: ClkrArticleRecord[] = [
       {
         id: "after-approval",
         title: "Después de la aprobación",
-        html: "<p>Una vez expedida la visa en PDF, Cancillería suele notificar que tienes <strong>15 días calendario</strong> para registrarte ante Migración Colombia y obtener la <strong>cédula de extranjería</strong> cuando aplique. Ese documento suele ser necesario para banca y contratos locales. Omitir el registro puede generar incumplimientos aparte.</p><p>Para estrategia por categoría, visita la <a href=\"/es/migracion\">página de derecho migratorio</a> o <a href=\"/es#book\">agenda una consulta</a>.</p>",
+        html: "<p>Una vez expedida la visa en PDF, Cancillería suele notificar que tienes <strong>15 días calendario</strong> para registrarte ante Migración Colombia y obtener la <strong>cédula de extranjería</strong> cuando aplique. Ese documento suele ser necesario para banca y contratos locales. Omitir el registro puede generar incumplimientos aparte.</p><p>Para estrategia por categoría, visita la <a href=\"/es/servicios/migracion\">página de derecho migratorio</a> o <a href=\"/es#book\">agenda una consulta</a>.</p>",
       },
     ],
     status: "published",

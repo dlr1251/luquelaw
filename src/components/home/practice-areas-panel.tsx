@@ -2,22 +2,32 @@ import Link from "next/link";
 import {
   BriefcaseBusiness,
   Building2,
+  HeartHandshake,
   LayoutGrid,
   Plane,
-  Scale,
+  Receipt,
+  Users,
   type LucideIcon,
 } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 import type { HomeContent } from "@/lib/home/content";
 
-type PracticeAreaIcon = "immigration" | "realEstate" | "corporate" | "advisory";
+type PracticeAreaIcon =
+  | "immigration"
+  | "labour"
+  | "realEstate"
+  | "family"
+  | "corporate"
+  | "taxes";
 
 const iconMap: Record<PracticeAreaIcon, LucideIcon> = {
   immigration: Plane,
+  labour: Users,
   realEstate: Building2,
+  family: HeartHandshake,
   corporate: BriefcaseBusiness,
-  advisory: Scale,
+  taxes: Receipt,
 };
 
 type Props = {
@@ -41,7 +51,7 @@ export function PracticeAreasPanel({ label, areas, credentialsLine, className, i
         <span className="marketing-eyebrow text-[0.625rem]">{label}</span>
       </div>
 
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
         {areas.map((area) => {
           const Icon = iconMap[area.icon];
           const body = (

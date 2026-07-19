@@ -11,11 +11,11 @@ export const clkrLegalAiHubContent = {
     contactCta: "Questions about your situation?",
     contactLink: "Get in touch",
     lucyEyebrow: "AI consultation",
-    lucyTitle: "Meet Lucy",
+    lucyTitle: "Meet Torny",
     lucyBody:
-      "Guided immigration consultations in the portal—prepaid wallet, cited norms and guides, escalate to a lawyer when you need a verified answer.",
-    lucyCta: "Open Lucy in the portal",
-    lucyCtaShort: "Open Lucy",
+      "Guided immigration consultations in the portal—prepaid wallet, cited norms and articles, escalate to a lawyer when you need a verified answer.",
+    lucyCta: "Open Torny in the portal",
+    lucyCtaShort: "Open Torny",
     lucySignIn: "Sign in to start",
     disclaimer:
       "For informational purposes only. Colombian law changes; always confirm current rules for your case.",
@@ -27,9 +27,9 @@ export const clkrLegalAiHubContent = {
         badge: "Public",
       },
       guides: {
-        title: "Guides",
+        title: "Articles",
         description: "In-depth didactic articles on immigration, property, corporate, and more.",
-        cta: "Browse guides",
+        cta: "Browse articles",
         badge: "Public",
       },
       agents: {
@@ -50,11 +50,11 @@ export const clkrLegalAiHubContent = {
     contactCta: "¿Preguntas sobre tu caso?",
     contactLink: "Escríbenos",
     lucyEyebrow: "Consulta con IA",
-    lucyTitle: "Conoce a Lucy",
+    lucyTitle: "Conoce a Torny",
     lucyBody:
-      "Consultas guiadas de migración en el portal—wallet prepago, normas y guías citadas, y escala a un abogado cuando necesites una respuesta verificada.",
-    lucyCta: "Abrir Lucy en el portal",
-    lucyCtaShort: "Abrir Lucy",
+      "Consultas guiadas de migración en el portal—wallet prepago, normas y artículos citados, y escala a un abogado cuando necesites una respuesta verificada.",
+    lucyCta: "Abrir Torny en el portal",
+    lucyCtaShort: "Abrir Torny",
     lucySignIn: "Inicia sesión para empezar",
     disclaimer:
       "Solo fines informativos. La ley colombiana cambia; confirma siempre las reglas vigentes para tu caso.",
@@ -66,9 +66,9 @@ export const clkrLegalAiHubContent = {
         badge: "Público",
       },
       guides: {
-        title: "Guías",
+        title: "Artículos",
         description: "Artículos didácticos sobre migración, inmuebles, societario y más.",
-        cta: "Ver guías",
+        cta: "Ver artículos",
         badge: "Público",
       },
       agents: {
@@ -84,19 +84,19 @@ export const clkrLegalAiHubContent = {
 /** @deprecated Use clkrLegalAiHubContent for the hub; guides hub uses clkrGuidesHubContent */
 export const clkrHubContent = {
   en: {
-    eyebrow: "CLKR · Guides",
-    title: "Legal guides",
+    eyebrow: "CLKR · Articles",
+    title: "Legal articles",
     subtitle:
-      "In-depth guides on Colombian law for international clients—written to be practical, cited, and easy to navigate. Not legal advice; every case is different.",
+      "In-depth articles on Colombian law for international clients—written to be practical, cited, and easy to navigate. Not legal advice; every case is different.",
     howItWorksTitle: "How to use this library",
     howItWorks: [
       "Start with the topic closest to your situation (immigration, property, etc.).",
       "Use the table of contents inside each article to jump to sections.",
       "When your facts are specific, book a consultation for a written legal concept tailored to you.",
     ],
-    articleCountLabel: "Guides",
+    articleCountLabel: "Articles",
     categoryLabel: "Topics covered",
-    browseTitle: "All guides",
+    browseTitle: "All articles",
     browseSubtitle: "Search and filter by topic. New articles are added over time.",
     contactCta: "Questions about your situation?",
     contactLink: "Get in touch",
@@ -104,19 +104,19 @@ export const clkrHubContent = {
       "For informational purposes only. Colombian law changes; always confirm current rules for your case.",
   },
   es: {
-    eyebrow: "CLKR · Guías",
-    title: "Guías jurídicas",
+    eyebrow: "CLKR · Artículos",
+    title: "Artículos jurídicos",
     subtitle:
-      "Guías sobre derecho colombiano para clientes internacionales—prácticas, con fuentes y fáciles de navegar. No constituye asesoría jurídica; cada caso es único.",
+      "Artículos sobre derecho colombiano para clientes internacionales—prácticos, con fuentes y fáciles de navegar. No constituye asesoría jurídica; cada caso es único.",
     howItWorksTitle: "Cómo usar esta biblioteca",
     howItWorks: [
       "Empieza por el tema más cercano a tu situación (migratorio, inmuebles, etc.).",
       "Usa la tabla de contenidos dentro de cada artículo para saltar a secciones.",
       "Si tus hechos son específicos, agenda una consulta para un concepto jurídico a tu medida.",
     ],
-    articleCountLabel: "Guías",
+    articleCountLabel: "Artículos",
     categoryLabel: "Temas disponibles",
-    browseTitle: "Todas las guías",
+    browseTitle: "Todos los artículos",
     browseSubtitle: "Busca y filtra por tema. Se irán sumando nuevos artículos.",
     contactCta: "¿Preguntas sobre tu caso?",
     contactLink: "Escríbenos",

@@ -1,7 +1,6 @@
 "use client";
 
 import { ContactForm } from "@/components/contact/contact-form";
-import { ContactLinks } from "@/components/home/contact-links";
 import { cn } from "@/lib/cn";
 import type { HomeLocale } from "@/lib/home/content";
 
@@ -37,13 +36,6 @@ export function HeroEngagementPanel({
         </div>
 
         <ContactForm locale={locale} variant="hero" whatsappHref={whatsappHref} />
-
-        <ContactLinks
-          whatsappHref={whatsappHref}
-          className="mt-5 border-t border-border pt-5"
-          align="center"
-          variant="light"
-        />
       </div>
     </div>
   );

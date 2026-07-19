@@ -46,11 +46,11 @@ export function ClkrArticleLayout({
       ? {
           home: "Inicio",
           hub: "CLKR",
-          guides: "Guías",
+          guides: "Artículos",
           contents: "Contenido",
           mobileContents: "Tabla de contenido",
-          related: "Otras guías",
-          read: "Leer guía",
+          related: "Otros artículos",
+          read: "Leer artículo",
           ctaTitle: "¿Tienes una consulta puntual?",
           ctaBody:
             "Escríbeme con los hechos de tu caso. Recibirás un concepto jurídico escrito y una cotización dentro de 3 días hábiles tras la consulta inicial.",
@@ -61,11 +61,11 @@ export function ClkrArticleLayout({
       : {
           home: "Home",
           hub: "CLKR",
-          guides: "Guides",
+          guides: "Articles",
           contents: "Contents",
           mobileContents: "Table of contents",
-          related: "More guides",
-          read: "Read guide",
+          related: "More articles",
+          read: "Read article",
           ctaTitle: "Have a fact-specific question?",
           ctaBody:
             "Send me the facts of your case. After an initial consultation, you'll receive a written legal concept and a quotation within 3 business days.",

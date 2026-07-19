@@ -1,3 +1,5 @@
+import { danielBioEn, danielBioEs } from "@/lib/about/content";
+
 export type HomeLocale = "en" | "es";
 
 export type HomeContent = {
@@ -10,7 +12,13 @@ export type HomeContent = {
   whatsappHref: string;
   practiceAreasLabel: string;
   practiceAreas: {
-    icon: "immigration" | "realEstate" | "corporate" | "advisory";
+    icon:
+      | "immigration"
+      | "labour"
+      | "realEstate"
+      | "family"
+      | "corporate"
+      | "taxes";
     title: string;
     detail: string;
     href?: string;
@@ -38,9 +46,7 @@ export type HomeContent = {
     subtitle: string;
   };
   booking: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
+    buttonLabel: string;
   };
 };
 
@@ -50,22 +56,43 @@ const heroIntroEn =
 const heroIntroEs =
   "Orientación clara y bilingüe sobre visas, propiedad y negocios en Colombia.";
 
-const bioEn =
-  "UPB graduate and specialist in International Tax Management. Daniel has advised and represented hundreds of foreign clients in real estate transactions, estate planning, immigration matters, business, and more. Through his network of allies, he delivers high-value legal counsel that is clear and easy to understand.";
-
-const bioEs =
-  "Abogado egresado de la UPB y especialista en Gestión Tributaria Internacional. Daniel ha asesorado y representado a cientos de clientes extranjeros en transacciones inmobiliarias, planeación patrimonial, asuntos migratorios, negocios, entre otros. A través de su red de aliados, busca brindar asesoría legal de alto valor, clara y fácil de entender.";
-
 const practiceAreasEn = [
   {
     icon: "immigration" as const,
     title: "Immigration Law",
     detail: "Permits, Visas, Citizenship.",
-    href: "/immigration",
+    href: "/services/immigration",
   },
-  { icon: "realEstate" as const, title: "Real Estate", detail: "Purchase and Sales, Rents, HOA" },
-  { icon: "corporate" as const, title: "Corporate", detail: "Incorporation, contracts, employee management." },
-  { icon: "advisory" as const, title: "Legal Advisory", detail: "Private & Public Law" },
+  {
+    icon: "labour" as const,
+    title: "Labour Law",
+    detail: "Contracts, HR compliance, workplace disputes.",
+    href: "/services/labour-law",
+  },
+  {
+    icon: "realEstate" as const,
+    title: "Real Estate",
+    detail: "Purchase and Sales, Rents, HOA",
+    href: "/services/real-estate",
+  },
+  {
+    icon: "family" as const,
+    title: "Family Law",
+    detail: "Marriage, divorce, custody.",
+    href: "/services/family-law",
+  },
+  {
+    icon: "corporate" as const,
+    title: "Corporate",
+    detail: "Incorporation, contracts, governance.",
+    href: "/services/corporate-law",
+  },
+  {
+    icon: "taxes" as const,
+    title: "Taxes",
+    detail: "International tax orientation.",
+    href: "/services/taxes",
+  },
 ];
 
 const practiceAreasEs = [
@@ -73,11 +100,38 @@ const practiceAreasEs = [
     icon: "immigration" as const,
     title: "Derecho migratorio",
     detail: "Permisos, visas, nacionalidad.",
-    href: "/es/migracion",
+    href: "/es/servicios/migracion",
   },
-  { icon: "realEstate" as const, title: "Inmobiliario", detail: "Compraventa, arrendamientos, propiedad horizontal." },
-  { icon: "corporate" as const, title: "Corporativo", detail: "Constitución de sociedades, contratos, gestión de empleados." },
-  { icon: "advisory" as const, title: "Asesoría legal", detail: "Derecho privado y público." },
+  {
+    icon: "labour" as const,
+    title: "Derecho laboral",
+    detail: "Contratos, RR. HH., conflictos laborales.",
+    href: "/es/servicios/laboral",
+  },
+  {
+    icon: "realEstate" as const,
+    title: "Inmobiliario",
+    detail: "Compraventa, arrendamientos, propiedad horizontal.",
+    href: "/es/servicios/inmobiliario",
+  },
+  {
+    icon: "family" as const,
+    title: "Familia",
+    detail: "Matrimonio, divorcio, custodia.",
+    href: "/es/servicios/familia",
+  },
+  {
+    icon: "corporate" as const,
+    title: "Corporativo",
+    detail: "Constitución, contratos, gobierno societario.",
+    href: "/es/servicios/corporativo",
+  },
+  {
+    icon: "taxes" as const,
+    title: "Impuestos",
+    detail: "Orientación tributaria internacional.",
+    href: "/es/servicios/impuestos",
+  },
 ];
 
 export const homeContent: Record<HomeLocale, HomeContent> = {
@@ -119,7 +173,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     about: {
       title: "Counsel built for international clients operating in Colombia.",
-      body: bioEn,
+      body: danielBioEn,
     },
     workWithMe: {
       label: "Work with me",
@@ -131,10 +185,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       subtitle: "I'll respond as soon as possible. For urgent matters, use WhatsApp below.",
     },
     booking: {
-      eyebrow: "Schedule",
-      title: "Book a consultation",
-      subtitle:
-        "Choose a time for a one-hour initial consultation. You'll receive a written legal concept and quotation within 3 business days.",
+      buttonLabel: "45-minute initial consultation",
     },
   },
   es: {
@@ -175,7 +226,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     about: {
       title: "Asesoría pensada para clientes internacionales en Colombia.",
-      body: bioEs,
+      body: danielBioEs,
     },
     workWithMe: {
       label: "Trabajar conmigo",
@@ -187,10 +238,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
       subtitle: "Responderé lo antes posible. Para asuntos urgentes, usa WhatsApp abajo.",
     },
     booking: {
-      eyebrow: "Agenda",
-      title: "Agendar consulta",
-      subtitle:
-        "Elige un horario para la consulta inicial de una hora. Recibirás un concepto jurídico escrito y una cotización dentro de 3 días hábiles.",
+      buttonLabel: "Consulta inicial de 45 minutos",
     },
   },
 };

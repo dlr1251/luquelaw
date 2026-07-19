@@ -1,8 +1,10 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import { BookingCalendarEmbed } from "@/components/booking/booking-calendar-embed";
+import { localeFromPathname } from "@/lib/locale/paths";
 
 type BookingContextValue = {
   open: () => void;
@@ -19,14 +21,28 @@ export function useBookingModal() {
 
 type Props = {
   children: React.ReactNode;
+  /** Optional override; defaults to locale from the current pathname. */
   locale?: "en" | "es";
 };
 
-export function BookingProvider({ children, locale = "en" }: Props) {
+export function BookingProvider({ children, locale: localeProp }: Props) {
+  const pathname = usePathname();
+  const locale = localeProp ?? localeFromPathname(pathname);
   const [open, setOpen] = useState(false);
 
   const close = useCallback(() => setOpen(false), []);
   const openModal = useCallback(() => setOpen(true), []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (window.location.hash === "#book") openModal();
+
+    const onHash = () => {
+      if (window.location.hash === "#book") openModal();
+    };
+    window.addEventListener("hashchange", onHash);
+    return () => window.removeEventListener("hashchange", onHash);
+  }, [openModal]);
 
   useEffect(() => {
     if (!open) return;
@@ -49,11 +65,18 @@ export function BookingProvider({ children, locale = "en" }: Props) {
 
   const value = useMemo(() => ({ open: openModal, close }), [close, openModal]);
 
-  const title = locale === "es" ? "Agendar consulta" : "Book a consultation";
-  const description =
+  const copy =
     locale === "es"
-      ? "Selecciona un horario en el calendario. Si prefieres, puedes ver los detalles en la página de contacto."
-      : "Pick a time on the calendar. If you prefer, you can view consultation details on the contact page.";
+      ? {
+          title: "Consulta inicial de 45 minutos",
+          description: "Elige un horario y paga en el mismo flujo (USD 55 · Google Meet).",
+          close: "Cerrar",
+        }
+      : {
+          title: "45-minute initial consultation",
+          description: "Pick a time and pay in the same flow (USD 55 · Google Meet).",
+          close: "Close",
+        };
 
   return (
     <BookingContext.Provider value={value}>
@@ -64,28 +87,30 @@ export function BookingProvider({ children, locale = "en" }: Props) {
           className="fixed inset-0 z-[70] flex items-end justify-center p-4 sm:items-center sm:p-6"
           role="dialog"
           aria-modal="true"
-          aria-label={title}
+          aria-label={copy.title}
         >
           <button
             type="button"
             className="absolute inset-0 bg-[color:var(--ink)]/60"
-            aria-label={locale === "es" ? "Cerrar" : "Close"}
+            aria-label={copy.close}
             onClick={close}
           />
 
-          <div className="relative flex max-h-[min(100dvh-2rem,900px)] w-full max-w-4xl flex-col overflow-y-auto border-2 border-[color:var(--moss)] bg-[color:var(--parchment)] text-[color:var(--ink)] shadow-2xl">
-            <div className="flex items-start justify-between gap-4 border-b border-[color:var(--moss)]/25 bg-[color:var(--surface)] p-4 sm:p-5">
+          <div className="relative flex max-h-[min(100dvh-2rem,900px)] w-full max-w-4xl flex-col overflow-hidden border border-border bg-card text-card-foreground shadow-2xl">
+            <div className="flex items-start justify-between gap-4 border-b border-border bg-surface p-4 sm:p-5">
               <div>
                 <div className="font-display text-xl font-normal leading-tight tracking-tight text-[color:var(--forest)]">
-                  {title}
+                  {copy.title}
                 </div>
-                <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">{description}</p>
+                <p className="mt-1 max-w-2xl text-sm leading-6 text-muted-foreground">
+                  {copy.description}
+                </p>
               </div>
               <button
                 type="button"
                 onClick={close}
-                className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[color:var(--forest)] bg-white/60 text-[color:var(--forest)] transition hover:bg-[color:var(--forest)] hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--moss)]"
-                aria-label={locale === "es" ? "Cerrar" : "Close"}
+                className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[color:var(--forest)] bg-background text-[color:var(--forest)] transition hover:bg-[color:var(--forest)] hover:text-[color:var(--parchment)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--moss)]"
+                aria-label={copy.close}
               >
                 <svg
                   aria-hidden="true"
@@ -103,31 +128,12 @@ export function BookingProvider({ children, locale = "en" }: Props) {
               </button>
             </div>
 
-            <div className="p-4 sm:p-5">
+            <div className="min-h-0 flex-1 overflow-y-auto p-3 sm:p-4">
               <BookingCalendarEmbed
-                title={title}
+                title={copy.title}
                 locale={locale}
-                heightClass="h-[min(70dvh,520px)] sm:h-[70vh]"
+                heightClass="h-[min(72dvh,640px)]"
               />
-
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                <a
-                  href={locale === "es" ? "/es#contact" : "/#contact"}
-                  className="text-sm font-bold text-[color:var(--forest)] underline-offset-2 hover:text-[color:var(--moss)] hover:underline"
-                >
-                  {locale === "es" ? "Ver detalles de la consulta →" : "View consultation details →"}
-                </a>
-                <a
-                  href={
-                    locale === "es"
-                      ? "mailto:daniel@luquelaw.co?subject=Solicitud%20de%20consulta%20(Luque%20Law)"
-                      : "mailto:daniel@luquelaw.co?subject=Consultation%20request%20(Luque%20Law)"
-                  }
-                  className="btn-secondary btn-secondary-sm"
-                >
-                  {locale === "es" ? "Solicitar por correo" : "Request by email"}
-                </a>
-              </div>
             </div>
           </div>
         </div>

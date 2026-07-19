@@ -21,21 +21,18 @@ export async function SiteHeader() {
   }
 
   return (
-    <header className="sticky top-0 z-50 bg-hero text-hero-foreground">
+    <header className="sticky top-0 z-50 border-b border-border bg-background text-foreground">
       <Container className="flex min-h-16 items-center justify-between gap-3 py-3 sm:py-2">
         <Link
           href="/"
-          className="group inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)]/50"
+          className="group inline-block focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--forest)]/40"
           aria-label="Luque Law — home"
         >
-          <div className="flex items-center gap-[0.3em] font-display text-lg font-normal leading-none tracking-tight text-hero-foreground sm:text-xl">
+          <div className="flex items-center gap-[0.3em] font-display text-lg font-normal leading-none tracking-tight text-[color:var(--forest)] sm:text-xl">
             <span>Luque</span>
-            <span aria-hidden="true" className="brand-mark-dot text-hero-foreground" />
+            <span aria-hidden="true" className="brand-mark-dot text-[color:var(--forest)]" />
             <span>Law</span>
           </div>
-          <p className="mt-1 hidden text-[10px] font-medium uppercase tracking-[0.22em] text-hero-foreground/55 sm:block">
-            Legal counsel · Medellín
-          </p>
         </Link>
 
         <HeaderNav signedIn={signedIn} isAdmin={isAdmin} />

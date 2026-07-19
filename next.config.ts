@@ -16,6 +16,24 @@ const nextConfig: NextConfig = {
       { source: "/es/norms/:slug*", destination: "/es/clkr/norms/:slug*", permanent: true },
       { source: "/account", destination: "/portal", permanent: true },
       { source: "/account/:path*", destination: "/portal/:path*", permanent: true },
+      { source: "/immigration", destination: "/services/immigration", permanent: true },
+      {
+        source: "/immigration/:path*",
+        destination: "/services/immigration/:path*",
+        permanent: true,
+      },
+      { source: "/es/migracion", destination: "/es/servicios/migracion", permanent: true },
+      {
+        source: "/es/migracion/:path*",
+        destination: "/es/servicios/migracion/:path*",
+        permanent: true,
+      },
+      { source: "/es/services", destination: "/es/servicios", permanent: true },
+      {
+        source: "/es/services/:path*",
+        destination: "/es/servicios/:path*",
+        permanent: true,
+      },
     ];
   },
 };

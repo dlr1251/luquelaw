@@ -3,11 +3,17 @@ import { alternateImmigrationPath } from "@/lib/practice-areas/paths";
 
 const supportedEnglishPaths = new Set([
   "/",
+  "/about",
   "/contact",
   "/privacy",
-  "/immigration",
   "/book",
   "/services",
+  "/services/immigration",
+  "/services/labour-law",
+  "/services/real-estate",
+  "/services/family-law",
+  "/services/corporate-law",
+  "/services/taxes",
   "/pricing",
   "/clkr",
   "/clkr/guides",
@@ -16,7 +22,7 @@ const supportedEnglishPaths = new Set([
   "/posts",
 ]);
 
-const localizedPrefixes = ["/clkr/", "/posts/", "/immigration/"];
+const localizedPrefixes = ["/clkr/", "/posts/", "/services/"];
 
 function isSupportedLocalizedPath(path: string): boolean {
   return localizedPrefixes.some((prefix) => path.startsWith(prefix));
@@ -24,12 +30,26 @@ function isSupportedLocalizedPath(path: string): boolean {
 
 const pathEnMap: Record<string, string> = {
   "/privacidad": "/privacy",
-  "/migracion": "/immigration",
+  "/nosotros": "/about",
+  "/servicios": "/services",
+  "/servicios/migracion": "/services/immigration",
+  "/servicios/laboral": "/services/labour-law",
+  "/servicios/inmobiliario": "/services/real-estate",
+  "/servicios/familia": "/services/family-law",
+  "/servicios/corporativo": "/services/corporate-law",
+  "/servicios/impuestos": "/services/taxes",
 };
 
 const pathEsMap: Record<string, string> = {
   "/privacy": "/es/privacidad",
-  "/immigration": "/es/migracion",
+  "/about": "/es/nosotros",
+  "/services": "/es/servicios",
+  "/services/immigration": "/es/servicios/migracion",
+  "/services/labour-law": "/es/servicios/laboral",
+  "/services/real-estate": "/es/servicios/inmobiliario",
+  "/services/family-law": "/es/servicios/familia",
+  "/services/corporate-law": "/es/servicios/corporativo",
+  "/services/taxes": "/es/servicios/impuestos",
 };
 
 function stripSpanishPrefix(pathname: string) {
@@ -38,11 +58,11 @@ function stripSpanishPrefix(pathname: string) {
   return pathname;
 }
 
-/** Map Spanish migracion subpaths to English immigration suffixes. */
+/** Map Spanish servicios/migracion subpaths to English services/immigration suffixes. */
 function spanishMigracionToEnglish(stripped: string): string | undefined {
-  if (stripped === "/migracion") return "/immigration";
-  if (!stripped.startsWith("/migracion/")) return undefined;
-  const rest = stripped.slice("/migracion".length);
+  if (stripped === "/servicios/migracion") return "/services/immigration";
+  if (!stripped.startsWith("/servicios/migracion/")) return undefined;
+  const rest = stripped.slice("/servicios/migracion".length);
   const parts = rest.replace(/^\//, "").split("/");
   const map: Record<string, string> = {
     visas: "visas",
@@ -51,14 +71,14 @@ function spanishMigracionToEnglish(stripped: string): string | undefined {
     calculadora: "calculator",
   };
   const mapped = parts.map((part, i) => (i === 0 && map[part] ? map[part] : part));
-  return `/immigration/${mapped.join("/")}`;
+  return `/services/immigration/${mapped.join("/")}`;
 }
 
-/** Map English immigration subpaths to Spanish migracion paths. */
+/** Map English services/immigration subpaths to Spanish servicios/migracion paths. */
 function englishImmigrationToSpanish(englishPath: string): string | undefined {
-  if (englishPath === "/immigration") return "/es/migracion";
-  if (!englishPath.startsWith("/immigration/")) return undefined;
-  const rest = englishPath.slice("/immigration".length);
+  if (englishPath === "/services/immigration") return "/es/servicios/migracion";
+  if (!englishPath.startsWith("/services/immigration/")) return undefined;
+  const rest = englishPath.slice("/services/immigration".length);
   const parts = rest.replace(/^\//, "").split("/");
   const map: Record<string, string> = {
     visas: "visas",
@@ -67,12 +87,12 @@ function englishImmigrationToSpanish(englishPath: string): string | undefined {
     calculator: "calculadora",
   };
   const mapped = parts.map((part, i) => (i === 0 && map[part] ? map[part] : part));
-  return `/es/migracion/${mapped.join("/")}`;
+  return `/es/servicios/migracion/${mapped.join("/")}`;
 }
 
 export function toSpanishPath(pathname: string): string {
   const immigrationAlt = alternateImmigrationPath(pathname);
-  if (pathname.startsWith("/immigration") && immigrationAlt) return immigrationAlt;
+  if (pathname.startsWith("/services/immigration") && immigrationAlt) return immigrationAlt;
 
   const englishPath = stripSpanishPrefix(pathname);
 
@@ -88,11 +108,13 @@ export function toSpanishPath(pathname: string): string {
 
 export function toEnglishPath(pathname: string): string {
   const immigrationAlt = alternateImmigrationPath(pathname);
-  if (pathname.startsWith("/es/migracion") && immigrationAlt) return immigrationAlt;
+  if (pathname.startsWith("/es/servicios/migracion") && immigrationAlt) return immigrationAlt;
 
   if (pathname === "/es") return "/";
   if (pathname === "/es/privacidad") return "/privacy";
-  if (pathname === "/es/migracion") return "/immigration";
+  if (pathname === "/es/nosotros") return "/about";
+  if (pathname === "/es/servicios") return "/services";
+  if (pathname === "/es/servicios/migracion") return "/services/immigration";
 
   const stripped = stripSpanishPrefix(pathname);
   const migracionEn = spanishMigracionToEnglish(stripped);
@@ -104,8 +126,9 @@ export function toEnglishPath(pathname: string): string {
     isSupportedLocalizedPath(mapped) ||
     supportedEnglishPaths.has(mapped) ||
     mapped === "/privacy" ||
-    mapped === "/immigration" ||
-    mapped.startsWith("/immigration/")
+    mapped === "/about" ||
+    mapped === "/services" ||
+    mapped.startsWith("/services/")
   ) {
     return mapped;
   }

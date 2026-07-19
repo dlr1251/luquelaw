@@ -1,10 +1,10 @@
 export type ImmigrationLocale = "en" | "es";
 
 /** English base path for the immigration hub. */
-export const IMMIGRATION_BASE_EN = "/immigration";
+export const IMMIGRATION_BASE_EN = "/services/immigration";
 
 /** Spanish base path for the immigration hub. */
-export const IMMIGRATION_BASE_ES = "/es/migracion";
+export const IMMIGRATION_BASE_ES = "/es/servicios/migracion";
 
 const SEGMENT_EN_TO_ES: Record<string, string> = {
   visas: "visas",

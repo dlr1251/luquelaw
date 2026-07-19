@@ -28,7 +28,7 @@ const links = (prefix: string, signedIn: boolean) =>
     {
       href: `${prefix}/clkr/guides`,
       match: (p: string) => p.includes("/clkr/guides"),
-      label: { en: "Guides", es: "Guías" },
+      label: { en: "Articles", es: "Artículos" },
       icon: BookOpen,
     },
     {
@@ -40,7 +40,7 @@ const links = (prefix: string, signedIn: boolean) =>
     {
       href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy"),
       match: () => false,
-      label: { en: "Lucy", es: "Lucy" },
+      label: { en: "Torny", es: "Torny" },
       icon: Sparkles,
       accent: true,
     },

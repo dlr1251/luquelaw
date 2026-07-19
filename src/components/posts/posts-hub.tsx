@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BookOpen, Layers } from "lucide-react";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { PostsBrowser } from "@/components/posts/posts-browser";
@@ -15,7 +14,6 @@ type Props = {
 export function PostsHub({ posts, locale = "en" }: Props) {
   const copy = postsHubContent[locale];
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
-  const topicCount = new Set(posts.map((p) => p.category)).size;
 
   return (
     <main className="flex-1">
@@ -34,39 +32,6 @@ export function PostsHub({ posts, locale = "en" }: Props) {
               {copy.contactCta} {copy.contactLink} →
             </Link>
           </p>
-        </Container>
-      </section>
-
-      <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--surface)]">
-        <Container className="py-10 sm:py-12">
-          <div className="flex flex-wrap gap-6 sm:gap-8">
-            <div className="flex items-start gap-3">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[color:var(--moss)]/35 bg-[color:var(--card)] text-[color:var(--moss)]">
-                <BookOpen className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
-              </span>
-              <div>
-                <p className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
-                  {copy.articleCountLabel}
-                </p>
-                <p className="mt-1 font-display text-3xl font-normal tracking-tight text-[color:var(--forest)]">
-                  {posts.length}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-start gap-3">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center border border-[color:var(--moss)]/35 bg-[color:var(--card)] text-[color:var(--moss)]">
-                <Layers className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
-              </span>
-              <div>
-                <p className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
-                  {copy.categoryLabel}
-                </p>
-                <p className="mt-1 font-display text-3xl font-normal tracking-tight text-[color:var(--forest)]">
-                  {topicCount}
-                </p>
-              </div>
-            </div>
-          </div>
         </Container>
       </section>
 

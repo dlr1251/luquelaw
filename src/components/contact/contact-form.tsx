@@ -123,7 +123,7 @@ export function ContactForm({
   const labelClass = "block text-sm font-bold text-foreground";
 
   const fieldClass = cn(
-    "mt-1.5 w-full border border-border bg-background text-foreground text-base outline-none ring-ring/35 focus:ring-2 sm:text-sm",
+    "w-full border border-border bg-background text-foreground text-base outline-none ring-ring/35 placeholder:text-muted-foreground focus:ring-2 sm:text-sm",
     isHero ? "h-10 px-3" : "h-11 px-4",
   );
 
@@ -217,35 +217,38 @@ export function ContactForm({
   return (
     <form className={cn("space-y-3.5", className)} onSubmit={handleSubmit}>
       <div className={cn("grid gap-3.5", isHero ? "sm:grid-cols-1" : "sm:grid-cols-2")}>
-        <label className={labelClass}>
-          {copy.name}
+        <label className="block">
+          <span className="sr-only">{copy.name}</span>
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
             className={fieldClass}
+            placeholder={copy.name}
             autoComplete="name"
             required
           />
         </label>
-        <label className={labelClass}>
-          {copy.email}
+        <label className="block">
+          <span className="sr-only">{copy.email}</span>
           <input
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             className={fieldClass}
             type="email"
+            placeholder={copy.email}
             autoComplete="email"
             required
           />
         </label>
       </div>
 
-      <label className={labelClass}>
-        {copy.matterType}
+      <label className="block">
+        <span className="sr-only">{copy.matterType}</span>
         <select
           value={matterType}
           onChange={(e) => setMatterType(e.target.value)}
           className={fieldClass}
+          aria-label={copy.matterType}
         >
           {matterTypes.map((t) => (
             <option key={t} value={t}>
@@ -255,14 +258,14 @@ export function ContactForm({
         </select>
       </label>
 
-      <label className={labelClass}>
-        {copy.message}
+      <label className="block">
+        <span className="sr-only">{copy.message}</span>
         <textarea
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           className={cn(
             fieldClass,
-            "mt-1.5 min-h-28 resize-y py-2.5",
+            "min-h-28 resize-y py-2.5",
             isHero && "min-h-24",
           )}
           placeholder={copy.placeholder}

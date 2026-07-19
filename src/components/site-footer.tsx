@@ -27,6 +27,8 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
   const portalHref = signedIn ? "/portal" : "/login";
   const navLinks = isSpanish
     ? [
+        { href: "/es/nosotros", label: "Nosotros" },
+        { href: "/es/servicios", label: "Servicios" },
         { href: `${prefix}/clkr`, label: "CLKR" },
         { href: `${prefix}/posts`, label: "Blog" },
         { href: `${prefix}/pricing`, label: "Planes" },
@@ -34,6 +36,8 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
         { href: portalHref, label: "Portal" },
       ]
     : [
+        { href: "/about", label: "About" },
+        { href: "/services", label: "Services" },
         { href: `${prefix}/clkr`, label: "CLKR" },
         { href: `${prefix}/posts`, label: "Blog" },
         { href: `${prefix}/pricing`, label: "Pricing" },
