@@ -3,6 +3,7 @@ type Props = {
   className?: string;
 };
 
+/** Slate LL mark — matches app favicon / apple-icon. */
 export function DlrMonogram({ size = 36, className }: Props) {
   return (
     <svg
@@ -13,29 +14,27 @@ export function DlrMonogram({ size = 36, className }: Props) {
       role="img"
       aria-label="Luque Law"
     >
-      <rect width="32" height="32" fill="#1a3a1f" />
+      <rect width="32" height="32" fill="#1c1f24" />
       <rect
-        x="1.5"
-        y="1.5"
-        width="29"
-        height="29"
+        x="3.8"
+        y="3.8"
+        width="24.4"
+        height="24.4"
         fill="none"
-        stroke="#f5f2ec"
-        strokeWidth="1"
-        strokeOpacity="0.3"
+        stroke="#45617d"
+        strokeWidth="1.1"
       />
-      <text
-        x="16"
-        y="20.5"
-        textAnchor="middle"
-        fill="#f5f2ec"
-        fontSize="9.5"
-        fontWeight="700"
-        fontFamily="ui-sans-serif, system-ui, sans-serif"
-        letterSpacing="-0.04em"
-      >
-        LL
-      </text>
+      {/* Back L */}
+      <path
+        d="M8.2 8.5H11.4V20.3H20.5V23.5H8.2Z"
+        fill="#f5f6f7"
+      />
+      {/* Front L */}
+      <path
+        d="M12.6 10.3H15.8V22.1H24.9V25.3H12.6Z"
+        fill="#8fb2d4"
+        fillOpacity="0.92"
+      />
     </svg>
   );
 }
