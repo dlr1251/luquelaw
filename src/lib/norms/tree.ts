@@ -127,6 +127,8 @@ export type TocEntry = {
   depth: number;
   isActive: boolean;
   hasChildren: boolean;
+  /** True when the section has body HTML (article / content node). */
+  hasContent: boolean;
   /** Slash-joined section_key path from root */
   pathKey: string;
 };
@@ -134,6 +136,35 @@ export type TocEntry = {
 export type TocNode = TocEntry & {
   children: TocNode[];
 };
+
+export function flattenTocEntries(nodes: TocNode[]): TocEntry[] {
+  return nodes.flatMap(({ children, ...entry }) => [entry, ...flattenTocEntries(children)]);
+}
+
+/** Prev/next among content sections (articles); falls back when on a structural heading. */
+export function findAdjacentContent(
+  toc: TocNode[],
+  activePathKey: string,
+): { prev: TocEntry | null; next: TocEntry | null } {
+  const all = flattenTocEntries(toc);
+  const content = all.filter((entry) => entry.hasContent);
+  const contentIdx = content.findIndex((entry) => entry.pathKey === activePathKey);
+
+  if (contentIdx >= 0) {
+    return {
+      prev: content[contentIdx - 1] ?? null,
+      next: content[contentIdx + 1] ?? null,
+    };
+  }
+
+  const allIdx = all.findIndex((entry) => entry.pathKey === activePathKey);
+  if (allIdx < 0) return { prev: null, next: null };
+
+  const prev =
+    [...all.slice(0, allIdx)].reverse().find((entry) => entry.hasContent) ?? null;
+  const next = all.slice(allIdx + 1).find((entry) => entry.hasContent) ?? null;
+  return { prev, next };
+}
 
 export function buildTocTree(
   tree: NormSectionNode[],
@@ -155,6 +186,7 @@ export function buildTocTree(
         depth: node.depth,
         isActive: pathKey === activeKey,
         hasChildren: node.children.length > 0,
+        hasContent: Boolean(node.html?.trim()),
         pathKey,
         children: walk(node.children, path),
       };

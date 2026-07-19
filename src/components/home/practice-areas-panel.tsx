@@ -73,12 +73,12 @@ export function PracticeAreasPanel({ label, areas, credentialsLine, className, i
               {area.href ? (
                 <Link
                   href={area.href}
-                  className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 transition-colors hover:border-foreground/25 sm:p-5"
+                  className="flex h-full flex-col gap-3 border border-border bg-background p-4 transition-colors hover:border-foreground/25 sm:p-5"
                 >
                   {body}
                 </Link>
               ) : (
-                <div className="flex h-full flex-col gap-3 border border-border bg-surface/60 p-4 sm:p-5">
+                <div className="flex h-full flex-col gap-3 border border-border bg-background p-4 sm:p-5">
                   {body}
                 </div>
               )}

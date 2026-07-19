@@ -173,14 +173,14 @@ export const PAGE_SEO = {
   },
   about: {
     en: {
-      title: "About Luque Law — Team & Counsel in Medellín",
+      title: "About Luque Law — Boutique Firm in Medellín",
       description:
-        "Meet Daniel Luque Restrepo and the Luque Law team — bilingual legal counsel for international clients in Colombia.",
+        "A boutique bilingual firm in Medellín for international clients in Colombia — high-quality, strategic counsel and a focused team.",
     },
     es: {
-      title: "Nosotros — Equipo Luque Law en Medellín",
+      title: "Nosotros — Despacho boutique Luque Law en Medellín",
       description:
-        "Conoce a Daniel Luque Restrepo y al equipo de Luque Law — asesoría jurídica bilingüe para clientes internacionales en Colombia.",
+        "Un despacho boutique bilingüe en Medellín para clientes internacionales en Colombia — asesoría de alta calidad, enfoque estratégico y un equipo cercano.",
     },
   },
   services: {

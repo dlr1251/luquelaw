@@ -88,6 +88,9 @@ export default async function NormPageEs({ params }: Props) {
         locale={locale}
         signedIn={signedIn}
         sectionPath={canonicalPath}
+        sectionTitle={active.title}
+        sectionNumberLabel={active.number_label}
+        sectionHtml={active.html}
         title={norm.title}
         description={norm.description}
         category={norm.category}
@@ -96,31 +99,12 @@ export default async function NormPageEs({ params }: Props) {
         officialSourceUrl={norm.official_source_url}
         toc={toc}
       >
-        <article>
-          <header className="mb-6 border-b border-[color:var(--moss)]/20 pb-4">
-            {active.number_label ? (
-              <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
-                {active.number_label}
-              </p>
-            ) : null}
-            <h2 className="font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
-              {active.title}
-            </h2>
-          </header>
-          {active.html ? (
-            <div dangerouslySetInnerHTML={{ __html: active.html }} />
-          ) : (
-            <p className="text-sm text-muted-foreground">
-              Esta sección es un encabezado estructural. Selecciona una sección hija en la tabla de contenidos.
-            </p>
-          )}
-          <NormAnnotationForm
-            normId={norm.id}
-            sectionId={active.id}
-            locale={locale}
-            canAnnotate={canAnnotate}
-          />
-        </article>
+        <NormAnnotationForm
+          normId={norm.id}
+          sectionId={active.id}
+          locale={locale}
+          canAnnotate={canAnnotate}
+        />
       </NormLayout>
     </>
   );

@@ -7,9 +7,11 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
+import { NormCopyMarkdownButton } from "@/components/norms/norm-copy-markdown-button";
+import { NormReaderBar } from "@/components/norms/norm-reader-bar";
 import { NormToc } from "@/components/norms/norm-toc";
 import { Prose } from "@/components/prose";
-import type { TocNode } from "@/lib/norms/tree";
+import { findAdjacentContent, type TocNode } from "@/lib/norms/tree";
 import type { NormCategory, NormType } from "@/lib/norms/types";
 import { normCategoryLabel, normTypeLabel } from "@/lib/norms/types";
 
@@ -23,6 +25,9 @@ type Props = {
   locale?: "en" | "es";
   signedIn?: boolean;
   sectionPath: string[];
+  sectionTitle: string;
+  sectionNumberLabel?: string | null;
+  sectionHtml?: string | null;
   toc: TocNode[];
   children: ReactNode;
 };
@@ -37,6 +42,9 @@ export function NormLayout({
   locale = "en",
   signedIn = false,
   sectionPath,
+  sectionTitle,
+  sectionNumberLabel = null,
+  sectionHtml = null,
   toc,
   children,
 }: Props) {
@@ -59,6 +67,8 @@ export function NormLayout({
           expandAll: "Expandir",
           collapseAll: "Colapsar",
           sections: "secciones",
+          structural:
+            "Esta sección es un encabezado estructural. Selecciona una sección hija en la tabla de contenidos.",
         }
       : {
           hub: "All norms",
@@ -74,9 +84,12 @@ export function NormLayout({
           expandAll: "Expand",
           collapseAll: "Collapse",
           sections: "sections",
+          structural:
+            "This section is a structural heading. Select a child section in the table of contents.",
         };
 
   const activeTitle = findActiveTitle(toc, sectionPath);
+  const { prev, next } = findAdjacentContent(toc, sectionPath.join("/"));
   const tocCopy = {
     contents: copy.contents,
     searchPlaceholder: copy.searchPlaceholder,
@@ -87,7 +100,7 @@ export function NormLayout({
   };
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] lg:pb-0">
       <ClkrProductNav locale={locale} signedIn={signedIn} />
 
       {/* Compact norm chrome */}
@@ -174,12 +187,51 @@ export function NormLayout({
 
           <div className="lg:col-span-8 xl:col-span-9">
             <div className="bg-[color:var(--card)] p-5 sm:border sm:border-[color:var(--moss)]/25 sm:p-8 lg:p-10">
-              <Prose>{children}</Prose>
+              <article>
+                <header className="mb-6 flex flex-wrap items-start justify-between gap-3 border-b border-[color:var(--moss)]/20 pb-4">
+                  <div className="min-w-0 flex-1">
+                    {sectionNumberLabel ? (
+                      <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
+                        {sectionNumberLabel}
+                      </p>
+                    ) : null}
+                    <h2 className="font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
+                      {sectionTitle}
+                    </h2>
+                  </div>
+                  <NormCopyMarkdownButton
+                    locale={locale}
+                    title={sectionTitle}
+                    numberLabel={sectionNumberLabel}
+                    html={sectionHtml}
+                    className="shrink-0"
+                    disabled={!sectionHtml?.trim()}
+                  />
+                </header>
+
+                <Prose>
+                  {sectionHtml?.trim() ? (
+                    <div dangerouslySetInnerHTML={{ __html: sectionHtml }} />
+                  ) : (
+                    <p className="text-sm text-muted-foreground">{copy.structural}</p>
+                  )}
+                </Prose>
+                {children}
+              </article>
               <ClkrDisclaimer text={copy.disclaimer} className="mt-10" />
             </div>
           </div>
         </div>
       </Container>
+
+      <NormReaderBar
+        locale={locale}
+        prev={prev}
+        next={next}
+        sectionTitle={sectionTitle}
+        sectionNumberLabel={sectionNumberLabel}
+        sectionHtml={sectionHtml}
+      />
     </main>
   );
 }

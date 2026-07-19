@@ -40,7 +40,7 @@ export const PALETTES: Palette[] = [
   "terracotta",
 ];
 
-export const DEFAULT_PALETTE: Palette = "forest";
+export const DEFAULT_PALETTE: Palette = "slate";
 
 const PALETTE_CLASS_PREFIX = "palette-";
 

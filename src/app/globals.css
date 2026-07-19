@@ -5,11 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand palette — light mode only */
-  --forest: #152919;
-  --moss: #2a5c32;
-  --parchment: #faf9f6;
-  --ink: #1a1714;
+  /* Brand palette — light mode only. Default = Slate. */
+  --forest: #1c1f24;
+  --moss: #45617d;
+  --parchment: #f5f6f7;
+  --ink: #191b1e;
 
   --radius: 0.625rem;
   --destructive: oklch(0.577 0.245 27.325);
@@ -22,24 +22,24 @@
   --font-ui: var(--font-body);
 }
 
-/* Public marketing site — editorial brand tokens */
+/* Public marketing site — editorial brand tokens (default = Slate) */
 .marketing-theme {
   --background: var(--parchment);
   --foreground: var(--ink);
-  --muted: #ebe6de;
-  --muted-foreground: #625541;
+  --muted: #e8eaee;
+  --muted-foreground: #5c6570;
   --card: #ffffff;
   --card-foreground: var(--ink);
-  --border: #d9d2c7;
-  --surface: #f2efe8;
-  --surface-strong: #e8e2d8;
+  --border: #cfd5dd;
+  --surface: #e8ebf0;
+  --surface-strong: #dde2e8;
   --accent: var(--moss);
   --accent-contrast: var(--parchment);
   --accent-foreground: var(--parchment);
   --hero: var(--forest);
   --hero-foreground: #ffffff;
   --hero-muted: rgb(255 255 255 / 0.76);
-  --hero-accent: #7ecf8a;
+  --hero-accent: #8fb2d4;
   --hero-card: rgb(255 255 255 / 0.08);
   --hero-border: rgb(255 255 255 / 0.18);
   --hero-button: rgb(255 255 255 / 0.1);
@@ -54,7 +54,7 @@
   --primary-foreground: #ffffff;
   --secondary: var(--surface);
   --secondary-foreground: var(--ink);
-  --input: #d9d2c7;
+  --input: #cfd5dd;
   --ring: var(--moss);
 
   min-height: 100%;
@@ -64,10 +64,26 @@
 }
 
 /* ── Switchable brand palettes (light mode only) ──────────────── */
-/* Default (no class) = Forest. Each palette remaps the four brand
-   tokens; --hero-accent is overridden at the .marketing-theme level
-   because that class declares it as a literal. Dark mode stays
-   monochrome, so palettes are scoped with :not(.dark). */
+/* Default (no class) = Slate. Each non-default palette remaps brand
+   tokens + surface/border temperature so washes stay in-family.
+   --hero-accent is overridden at .marketing-theme because that class
+   declares it as a literal. Dark mode stays monochrome. */
+
+html.palette-forest:not(.dark) {
+  --forest: #152919;
+  --moss: #2a5c32;
+  --parchment: #faf9f6;
+  --ink: #1a1714;
+}
+html.palette-forest:not(.dark) .marketing-theme {
+  --hero-accent: #7ecf8a;
+  --muted: #ebe6de;
+  --muted-foreground: #625541;
+  --border: #d9d2c7;
+  --surface: #f2efe8;
+  --surface-strong: #e8e2d8;
+  --input: #d9d2c7;
+}
 
 html.palette-navy:not(.dark) {
   --forest: #14233b;
@@ -77,6 +93,12 @@ html.palette-navy:not(.dark) {
 }
 html.palette-navy:not(.dark) .marketing-theme {
   --hero-accent: #d8b877;
+  --muted: #ebe6de;
+  --muted-foreground: #625541;
+  --border: #d9d2c7;
+  --surface: #f2efe8;
+  --surface-strong: #e8e2d8;
+  --input: #d9d2c7;
 }
 
 html.palette-burgundy:not(.dark) {
@@ -87,16 +109,12 @@ html.palette-burgundy:not(.dark) {
 }
 html.palette-burgundy:not(.dark) .marketing-theme {
   --hero-accent: #e0a3ac;
-}
-
-html.palette-slate:not(.dark) {
-  --forest: #1c1f24;
-  --moss: #45617d;
-  --parchment: #f5f6f7;
-  --ink: #191b1e;
-}
-html.palette-slate:not(.dark) .marketing-theme {
-  --hero-accent: #8fb2d4;
+  --muted: #ebe6de;
+  --muted-foreground: #625541;
+  --border: #d9d2c7;
+  --surface: #f2efe8;
+  --surface-strong: #e8e2d8;
+  --input: #d9d2c7;
 }
 
 html.palette-terracotta:not(.dark) {
@@ -107,6 +125,12 @@ html.palette-terracotta:not(.dark) {
 }
 html.palette-terracotta:not(.dark) .marketing-theme {
   --hero-accent: #e0a06f;
+  --muted: #ebe6de;
+  --muted-foreground: #625541;
+  --border: #d9d2c7;
+  --surface: #f2efe8;
+  --surface-strong: #e8e2d8;
+  --input: #d9d2c7;
 }
 
 /* Admin + portal — shadcn neutral theme */
