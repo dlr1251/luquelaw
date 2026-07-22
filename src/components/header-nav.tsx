@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { SiteSearchTrigger } from "@/components/search/site-search-trigger";
 import { LanguageSwitch } from "@/components/language-switch";
-import { PaletteSwitcher } from "@/components/palette-switcher";
 import { loginHref } from "@/lib/auth/safe-next";
 import { clkrGuidesHubPath } from "@/lib/clkr/types";
 import { localeFromPathname } from "@/lib/locale/paths";
@@ -273,7 +272,6 @@ export function HeaderNav({
         <div className="flex items-center gap-1">
           <SiteSearchTrigger label={copy.search} />
           <LanguageSwitch variant="surface" />
-          <PaletteSwitcher variant="surface" />
         </div>
       </nav>
 
@@ -281,7 +279,6 @@ export function HeaderNav({
         <div className="flex items-center justify-end gap-1">
           <SiteSearchTrigger showShortcut={false} label={copy.search} />
           <LanguageSwitch variant="surface" />
-          <PaletteSwitcher variant="surface" />
           <button
             type="button"
             className={iconButtonClass}

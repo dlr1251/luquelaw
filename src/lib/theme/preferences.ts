@@ -26,46 +26,28 @@ export function applyTheme(theme: Theme) {
 
 export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var t=localStorage.getItem(k);var d=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
 
-/* ── Brand palette (light-mode color scheme) ───────────────────── */
+/* ── Brand palette (locked to slate) ───────────────────────────── */
 
 export const PALETTE_STORAGE_KEY = "palette";
 
-export type Palette = "forest" | "navy" | "burgundy" | "slate" | "terracotta";
+export type Palette = "slate";
 
-export const PALETTES: Palette[] = [
-  "forest",
-  "navy",
-  "burgundy",
-  "slate",
-  "terracotta",
-];
+export const PALETTES: Palette[] = ["slate"];
 
 export const DEFAULT_PALETTE: Palette = "slate";
 
 const PALETTE_CLASS_PREFIX = "palette-";
+const LEGACY_PALETTES = ["forest", "navy", "burgundy", "terracotta"] as const;
 
-function isPalette(value: string | null): value is Palette {
-  return value !== null && (PALETTES as string[]).includes(value);
-}
-
-export function getStoredPalette(): Palette | null {
-  try {
-    return isPalette(window.localStorage.getItem(PALETTE_STORAGE_KEY))
-      ? (window.localStorage.getItem(PALETTE_STORAGE_KEY) as Palette)
-      : null;
-  } catch {
-    return null;
-  }
-}
-
-export function applyPalette(palette: Palette) {
+/** Strip legacy palette-* classes; site brand is slate defaults on :root. */
+export function applyPalette(_palette: Palette = DEFAULT_PALETTE) {
+  if (typeof document === "undefined") return;
   const root = document.documentElement;
-  for (const p of PALETTES) {
+  for (const p of LEGACY_PALETTES) {
     root.classList.remove(`${PALETTE_CLASS_PREFIX}${p}`);
   }
-  if (palette !== DEFAULT_PALETTE) {
-    root.classList.add(`${PALETTE_CLASS_PREFIX}${palette}`);
-  }
+  root.classList.remove(`${PALETTE_CLASS_PREFIX}slate`);
 }
 
-export const paletteInitScript = `(function(){try{var k=${JSON.stringify(PALETTE_STORAGE_KEY)};var p=localStorage.getItem(k);var valid=${JSON.stringify(PALETTES)};if(p&&p!==${JSON.stringify(DEFAULT_PALETTE)}&&valid.indexOf(p)!==-1){document.documentElement.classList.add("${PALETTE_CLASS_PREFIX}"+p);}}catch(e){}})();`;
+/** Clear stored palette preference and legacy classes before paint. */
+export const paletteInitScript = `(function(){try{var k=${JSON.stringify(PALETTE_STORAGE_KEY)};localStorage.removeItem(k);var root=document.documentElement;[${LEGACY_PALETTES.map((p) => JSON.stringify(p)).join(",")}, "slate"].forEach(function(p){root.classList.remove(${JSON.stringify(PALETTE_CLASS_PREFIX)}+p);});}catch(e){}})();`;

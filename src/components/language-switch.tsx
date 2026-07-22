@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/cn";
@@ -12,9 +11,15 @@ type Props = {
 };
 
 function persistLocale(locale: SiteLocale) {
-  document.cookie = `${LOCALE_COOKIE}=${locale};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax`;
+  const secure = typeof window !== "undefined" && window.location.protocol === "https:" ? ";secure" : "";
+  document.cookie = `${LOCALE_COOKIE}=${locale};path=/;max-age=${60 * 60 * 24 * 365};samesite=lax${secure}`;
 }
 
+/**
+ * Full-document navigation is intentional: App Router soft navigation can race
+ * the locale cookie against middleware redirects (cookie still "es" → bounce
+ * back to /es). Hard assign after writing the cookie avoids that.
+ */
 export function LanguageSwitch({ variant = "surface" }: Props) {
   const pathname = usePathname();
   const isSpanish = localeFromPathname(pathname) === "es";
@@ -23,9 +28,13 @@ export function LanguageSwitch({ variant = "surface" }: Props) {
   const forest = variant === "forest";
 
   return (
-    <Link
+    <a
       href={href}
-      onClick={() => persistLocale(nextLocale)}
+      onClick={(event) => {
+        event.preventDefault();
+        persistLocale(nextLocale);
+        window.location.assign(href);
+      }}
       className={cn(
         "inline-flex h-10 items-center justify-center border px-3 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
         forest
@@ -36,6 +45,6 @@ export function LanguageSwitch({ variant = "surface" }: Props) {
       title={isSpanish ? "English" : "Español"}
     >
       {isSpanish ? "EN" : "ES"}
-    </Link>
+    </a>
   );
 }
