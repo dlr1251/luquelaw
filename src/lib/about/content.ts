@@ -57,6 +57,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Alina Restrepo",
         role: "Administrative Assistant",
+        photoSrc: "/images/alina-restrepo.jpg",
         bio: "Alina coordinates client intake, scheduling, and day-to-day firm operations so matters stay organized and responsive. She is often the first point of contact and helps keep communication clear from the first message through follow-up.",
       },
       {
@@ -68,6 +69,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Camilo Uribe",
         role: "Associate Attorney",
+        photoSrc: "/images/camilo-uribe.jpg",
         bio: "Camilo assists with legal analysis and client deliverables across the firm’s practice areas. He focuses on structured workplans, clear written advice, and reliable execution so international clients can move forward with confidence.",
       },
     ],
@@ -100,6 +102,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Alina Restrepo",
         role: "Asistente administrativa",
+        photoSrc: "/images/alina-restrepo.jpg",
         bio: "Alina coordina el intake de clientes, la agenda y la operación diaria del despacho para que los asuntos se mantengan organizados y con respuesta ágil. Suele ser el primer punto de contacto y ayuda a que la comunicación sea clara desde el primer mensaje hasta el seguimiento.",
       },
       {
@@ -111,6 +114,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Camilo Uribe",
         role: "Abogado asociado",
+        photoSrc: "/images/camilo-uribe.jpg",
         bio: "Camilo apoya el análisis jurídico y los entregables al cliente en las áreas de práctica del despacho. Se enfoca en planes de trabajo estructurados, asesoría escrita clara y ejecución confiable para que los clientes internacionales avancen con seguridad.",
       },
     ],
