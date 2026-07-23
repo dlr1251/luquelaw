@@ -29,8 +29,8 @@ export default async function PricingEsPage() {
           Profesional y Cliente
         </h1>
         <p className="marketing-body mt-4 max-w-2xl">
-          Desbloquea agentes LegalAI y tickets del portal. Solo herramientas informativas—no es
-          asesoría jurídica.
+          Planes para módulos CLKR y tickets del portal. Herramientas de estudio y orientación — no
+          son asesoría jurídica.
         </p>
         <div className="mt-12">
           <PricingCards plans={plans} locale="es" signedIn={signedIn} />

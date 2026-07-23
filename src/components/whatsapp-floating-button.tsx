@@ -21,8 +21,8 @@ export function WhatsAppFloatingButton() {
 
   const href = useMemo(() => {
     const text = isSpanish
-      ? "Hola Daniel, acabo de visitar tu sitio web y quiero preguntarte algo..."
-      : "Hi Daniel, I was just visiting your website and want to ask you something...";
+      ? "Hola Luque Law, estuve en su sitio web y tengo una pregunta..."
+      : "Hi Luque Law, I was visiting your website and have a question...";
     return `https://wa.me/573006791123?text=${encodeURIComponent(text)}`;
   }, [isSpanish]);
 

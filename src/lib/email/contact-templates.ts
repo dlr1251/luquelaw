@@ -21,7 +21,7 @@ function layout(content: string, locale: "en" | "es") {
           <tr>
             <td style="background:${BRAND.colors.forest};padding:28px 32px;">
               <p style="margin:0;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:${BRAND.colors.parchment};opacity:0.85;">${BRAND.name}</p>
-              <h1 style="margin:8px 0 0;font-size:22px;font-weight:400;color:${BRAND.colors.parchment};line-height:1.3;">${BRAND.lawyer}</h1>
+              <h1 style="margin:8px 0 0;font-size:22px;font-weight:400;color:${BRAND.colors.parchment};line-height:1.3;">${BRAND.name}</h1>
             </td>
           </tr>
           <tr>
@@ -116,7 +116,7 @@ export function userConfirmationEmail(data: ContactEmailData) {
       <p style="margin:0 0 16px;">Si tu asunto es urgente, también puedes escribirnos por WhatsApp desde nuestro sitio web.</p>
       <p style="margin:24px 0 0;font-size:14px;color:#6b6358;">Resumen de tu mensaje:</p>
       <div style="margin-top:8px;padding:16px;background:${BRAND.colors.parchment};border-left:3px solid ${BRAND.colors.moss};white-space:pre-wrap;font-size:14px;">${escapeHtml(data.message)}</div>
-      <p style="margin:24px 0 0;">Atentamente,<br/><strong>${BRAND.lawyer}</strong><br/>${BRAND.name}</p>
+      <p style="margin:24px 0 0;">Atentamente,<br/><strong>${BRAND.name}</strong><br/>${BRAND.location}</p>
     `;
     return {
       subject: "Confirmación — hemos recibido tu mensaje | Luque Law",
@@ -131,7 +131,7 @@ export function userConfirmationEmail(data: ContactEmailData) {
     <p style="margin:0 0 16px;">If your matter is urgent, you can also reach us via WhatsApp on our website.</p>
     <p style="margin:24px 0 0;font-size:14px;color:#6b6358;">Summary of your message:</p>
     <div style="margin-top:8px;padding:16px;background:${BRAND.colors.parchment};border-left:3px solid ${BRAND.colors.moss};white-space:pre-wrap;font-size:14px;">${escapeHtml(data.message)}</div>
-    <p style="margin:24px 0 0;">Kind regards,<br/><strong>${BRAND.lawyer}</strong><br/>${BRAND.name}</p>
+    <p style="margin:24px 0 0;">Kind regards,<br/><strong>${BRAND.name}</strong><br/>${BRAND.location}</p>
   `;
 
   return {

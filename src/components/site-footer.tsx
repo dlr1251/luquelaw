@@ -17,12 +17,12 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
   const prefix = isSpanish ? "/es" : "";
 
   const tagline = isSpanish
-    ? "Asesoría jurídica para extranjeros en Colombia."
-    : "Legal counsel for foreigners in Colombia.";
+    ? "Derecho colombiano para clientes internacionales."
+    : "Colombian law for international clients.";
 
   const disclaimer = isSpanish
-    ? "Este contenido es solo para fines informativos y no constituye asesoría jurídica. Cada caso es único."
-    : "This content is for informational purposes only and does not constitute legal advice. Every case is unique.";
+    ? "Este contenido es solo informativo y no constituye asesoría jurídica. Cada caso es distinto."
+    : "This content is informational only and is not legal advice. Every case is different.";
 
   const homeHref = prefix || "/";
   const portalHref = signedIn ? "/portal" : "/login";
@@ -83,8 +83,8 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
               <a
                 href={
                   isSpanish
-                    ? "https://wa.me/573006791123?text=Hola%20Daniel%2C%20acabo%20de%20visitar%20tu%20sitio%20web%20y%20quiero%20preguntarte%20algo..."
-                    : "https://wa.me/573006791123?text=Hi%20Daniel%2C%20I%20was%20just%20visiting%20your%20website%20and%20want%20to%20ask%20you%20something..."
+                    ? "https://wa.me/573006791123?text=Hola%20Luque%20Law%2C%20estuve%20en%20su%20sitio%20web%20y%20tengo%20una%20pregunta..."
+                    : "https://wa.me/573006791123?text=Hi%20Luque%20Law%2C%20I%20was%20visiting%20your%20website%20and%20have%20a%20question..."
                 }
                 target="_blank"
                 rel="noreferrer"

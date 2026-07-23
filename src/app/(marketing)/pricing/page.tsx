@@ -29,7 +29,8 @@ export default async function PricingPage() {
           Professional & Client
         </h1>
         <p className="marketing-body mt-4 max-w-2xl">
-          Unlock LegalAI agents and portal tickets. Informational tools only—not legal advice.
+          Plans for CLKR modules and portal tickets. Tools for study and orientation — not legal
+          advice.
         </p>
         <div className="mt-12">
           <PricingCards plans={plans} locale="en" signedIn={signedIn} />
