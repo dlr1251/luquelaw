@@ -22,6 +22,7 @@ type Props = {
   locale?: "en" | "es";
   currentSlug?: string;
   relatedArticles?: ClkrArticle[];
+  headerAction?: ReactNode;
 };
 
 export function ClkrArticleLayout({
@@ -34,6 +35,7 @@ export function ClkrArticleLayout({
   locale = "en",
   currentSlug,
   relatedArticles = [],
+  headerAction,
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
@@ -122,6 +124,7 @@ export function ClkrArticleLayout({
           <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
             {title}
           </h1>
+          {headerAction ? <div className="mt-4">{headerAction}</div> : null}
           {description ? (
             <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
               {description}

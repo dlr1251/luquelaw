@@ -71,6 +71,35 @@ export function AboutPage({ locale }: Props) {
 
       <section className="border-b border-border bg-surface">
         <Container className="marketing-section">
+          <div className="max-w-3xl space-y-5">
+            <p className="marketing-eyebrow">{c.accountLabel}</p>
+            <h2 className="marketing-title">{c.accountTitle}</h2>
+            {c.accountBody.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="marketing-body">
+                {paragraph}
+              </p>
+            ))}
+            <div className="flex flex-wrap gap-3 pt-2">
+              <a
+                href={locale === "es" ? "/login?next=/portal" : "/login?next=/portal"}
+                className="btn-primary btn-primary-lg"
+              >
+                {c.createAccountCta}
+              </a>
+              <button
+                type="button"
+                onClick={openBooking}
+                className="btn-secondary btn-primary-lg"
+              >
+                {c.bookCta}
+              </button>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="border-b border-border bg-background">
+        <Container className="marketing-section">
           <div className="max-w-2xl space-y-3">
             <p className="marketing-eyebrow">{c.teamLabel}</p>
             <h2 className="marketing-title">{c.teamTitle}</h2>

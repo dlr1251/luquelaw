@@ -56,6 +56,7 @@ export function HeaderNav({
         norms: "Normas",
         articles: "Artículos",
         blog: "Blog",
+        community: "Comunidad",
         torny: "Torny",
         admin: "Admin",
         cta: "Agendar consulta",
@@ -70,6 +71,7 @@ export function HeaderNav({
         norms: "Norms",
         articles: "Articles",
         blog: "Blog",
+        community: "Community",
         torny: "Torny",
         admin: "Admin",
         cta: "Book consultation",
@@ -89,8 +91,22 @@ export function HeaderNav({
       { href: clkrGuidesHubPath(locale), label: copy.articles },
       { href: postsHref, label: copy.blog },
       { href: tornyHref, label: copy.torny },
+      {
+        href: isSpanish ? "/es/comunidad" : "/community",
+        label: copy.community,
+      },
     ],
-    [copy.articles, copy.blog, copy.norms, copy.torny, locale, postsHref, tornyHref],
+    [
+      copy.articles,
+      copy.blog,
+      copy.community,
+      copy.norms,
+      copy.torny,
+      isSpanish,
+      locale,
+      postsHref,
+      tornyHref,
+    ],
   );
 
   const servicesActive =

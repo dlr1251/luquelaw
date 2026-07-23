@@ -13,6 +13,10 @@ export type AboutContent = {
   title: string;
   intro: string;
   body: string[];
+  accountLabel: string;
+  accountTitle: string;
+  accountBody: string[];
+  createAccountCta: string;
   teamLabel: string;
   teamTitle: string;
   teamIntro: string;
@@ -40,6 +44,13 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       "Every matter begins the same way: a 45-minute consultation, then a written legal concept (Concepto Jurídico) and a quotation within three business days. After that, a scoped workplan — or an hourly retainer if the work is ongoing.",
       "We stay small on purpose. You know who is on your file. You know what comes next. If something is not worth paying for, we say so.",
     ],
+    accountLabel: "Account",
+    accountTitle: "Create a free account with your email",
+    accountBody: [
+      "Registration is free and takes a minute. We use your email to sign you in — not to spam you. We do not add you to a newsletter by default.",
+      "With an account you can edit your profile, save guides and norms for later, ask and answer in the community forum, and use Torny — our immigration AI consult — with prepaid credits you buy yourself. Luque Law does not gift model tokens; you pay for the usage you run.",
+    ],
+    createAccountCta: "Create account",
     teamLabel: "Team",
     teamTitle: "Who you work with",
     teamIntro:
@@ -85,6 +96,13 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       "Todo encargo empieza igual: una consulta de 45 minutos y, dentro de tres días hábiles, un concepto jurídico escrito y una cotización. Después, un plan de trabajo acotado — o un retainer por hora si el asunto es continuo.",
       "Nos mantenemos pequeños a propósito. Sabes quién lleva tu expediente. Sabes qué sigue. Si algo no vale la pena pagarlo, lo decimos.",
     ],
+    accountLabel: "Cuenta",
+    accountTitle: "Crea una cuenta gratis con tu correo",
+    accountBody: [
+      "Registrarte es gratis y toma un minuto. Usamos tu correo para que inicies sesión — no para llenarte de spam. No te metemos a un newsletter por defecto.",
+      "Con la cuenta puedes editar tu perfil, guardar guías y normas, preguntar y responder en el foro de la comunidad, y usar Torny — nuestra consulta de inmigración con IA — con créditos prepago que compras tú. Luque Law no regala tokens del modelo; pagas el uso que corras.",
+    ],
+    createAccountCta: "Crear cuenta",
     teamLabel: "Equipo",
     teamTitle: "Con quién trabajas",
     teamIntro:

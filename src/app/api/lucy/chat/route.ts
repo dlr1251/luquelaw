@@ -152,7 +152,7 @@ export async function POST(request: Request) {
         costCents,
         "lucy_message",
         msg?.id ?? chatId,
-        `Lucy chat usage (${tokenIn} in / ${tokenOut} out)`,
+        `Torny chat usage (${tokenIn} in / ${tokenOut} out)`,
       );
 
       await supabase

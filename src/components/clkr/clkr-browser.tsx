@@ -32,6 +32,13 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
             Corporate: "Corporativo",
             Labor: "Laboral",
             Civil: "Civil",
+            Family: "Familia",
+            Tax: "Tributario",
+            Digital: "Digital",
+            Administrative: "Administrativo",
+            IP: "Propiedad intelectual",
+            Criminal: "Penal",
+            International: "Internacional",
           } as Record<ClkrCategory, string>,
         }
       : {
@@ -49,6 +56,13 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
             Corporate: "Corporate",
             Labor: "Labor",
             Civil: "Civil",
+            Family: "Family",
+            Tax: "Tax",
+            Digital: "Digital",
+            Administrative: "Administrative",
+            IP: "IP",
+            Criminal: "Criminal",
+            International: "International",
           } as Record<ClkrCategory, string>,
         };
 

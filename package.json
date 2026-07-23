@@ -3,15 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "bash scripts/with-node24.sh next dev",
+    "build": "bash scripts/with-node24.sh next build",
+    "start": "bash scripts/with-node24.sh next start",
     "lint": "eslint",
-    "resend:test": "node scripts/test-resend.mjs",
-    "seed:norms": "node scripts/seed-norms-content.mjs",
-    "index:lucy-rag": "node scripts/index-lucy-rag.mjs",
-    "import:suin-5477": "node scripts/import-suin-5477.mjs",
-    "import:suin-norm": "node scripts/import-suin-norm.mjs"
+    "resend:test": "bash scripts/with-node24.sh node scripts/test-resend.mjs",
+    "seed:norms": "bash scripts/with-node24.sh node scripts/seed-norms-content.mjs",
+    "index:lucy-rag": "bash scripts/with-node24.sh node scripts/index-lucy-rag.mjs",
+    "import:suin-5477": "bash scripts/with-node24.sh node scripts/import-suin-5477.mjs",
+    "import:suin-norm": "bash scripts/with-node24.sh node scripts/import-suin-norm.mjs",
+    "clkr:export-queue": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs export-queue",
+    "clkr:gen-one": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs gen-one",
+    "clkr:run-one": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs run-one",
+    "clkr:run-batch": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs run-batch",
+    "clkr:publish-batch": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs publish-batch",
+    "clkr:status": "bash scripts/with-node24.sh node scripts/clkr-gen/cli.mjs status",
+    "eve:info": "bash scripts/with-node24.sh eve info",
+    "eve:build": "bash scripts/with-node24.sh eve build"
   },
   "dependencies": {
     "@ai-sdk/gateway": "^4.0.23",
@@ -19,9 +27,10 @@
     "@base-ui/react": "^1.5.0",
     "@supabase/ssr": "^0.10.2",
     "@supabase/supabase-js": "^2.103.0",
-    "ai": "^7.0.31",
+    "ai": "^7.0.35",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "eve": "^0.27.1",
     "lucide-react": "^1.16.0",
     "marked": "^18.0.4",
     "next": "16.2.3",
@@ -43,5 +52,8 @@
     "eslint-config-next": "16.2.3",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "24.x"
   }
 }

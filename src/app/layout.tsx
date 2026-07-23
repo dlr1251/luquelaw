@@ -57,10 +57,8 @@ export default async function RootLayout({
         geist.variable,
       )}
     >
-      <head>
-        <ThemeScript />
-      </head>
       <body className="min-h-full bg-background text-foreground">
+        <ThemeScript />
         <CookieConsentProvider>
           <GoogleAnalytics />
           <TooltipProvider>

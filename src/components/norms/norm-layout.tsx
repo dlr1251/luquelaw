@@ -30,6 +30,7 @@ type Props = {
   sectionHtml?: string | null;
   toc: TocNode[];
   children: ReactNode;
+  headerAction?: ReactNode;
 };
 
 export function NormLayout({
@@ -47,6 +48,7 @@ export function NormLayout({
   sectionHtml = null,
   toc,
   children,
+  headerAction,
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const normsHref = `${prefix}/clkr/norms`;
@@ -126,6 +128,7 @@ export function NormLayout({
           <h1 className="mt-3 max-w-3xl font-display text-[clamp(1.65rem,3.5vw,2.35rem)] font-normal leading-[1.1] tracking-tight">
             {title}
           </h1>
+          {headerAction ? <div className="mt-3">{headerAction}</div> : null}
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[color:var(--parchment)]/70 sm:text-base">
             {description}
           </p>

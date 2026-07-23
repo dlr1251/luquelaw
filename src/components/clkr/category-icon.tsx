@@ -1,8 +1,15 @@
 import {
   BriefcaseBusiness,
   Building2,
+  Copyright,
+  Gavel,
+  Globe2,
+  Landmark,
   Plane,
+  Receipt,
   Scale,
+  Shield,
+  Smartphone,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -15,6 +22,13 @@ const iconMap: Record<ClkrCategory, LucideIcon> = {
   Corporate: BriefcaseBusiness,
   Labor: Users,
   Civil: Scale,
+  Family: Users,
+  Tax: Receipt,
+  Digital: Smartphone,
+  Administrative: Landmark,
+  IP: Copyright,
+  Criminal: Gavel,
+  International: Globe2,
 };
 
 export function ClkrCategoryIcon({
@@ -24,6 +38,6 @@ export function ClkrCategoryIcon({
   category: ClkrCategory;
   className?: string;
 }) {
-  const Icon = iconMap[category];
+  const Icon = iconMap[category] ?? Shield;
   return <Icon className={className} strokeWidth={1.75} aria-hidden="true" />;
 }

@@ -3,7 +3,14 @@ export type ClkrCategory =
   | "Real Estate"
   | "Corporate"
   | "Labor"
-  | "Civil";
+  | "Civil"
+  | "Family"
+  | "Tax"
+  | "Digital"
+  | "Administrative"
+  | "IP"
+  | "Criminal"
+  | "International";
 
 export type ClkrSection = {
   id: string;
@@ -45,7 +52,30 @@ export const CLKR_CATEGORIES: ClkrCategory[] = [
   "Corporate",
   "Labor",
   "Civil",
+  "Family",
+  "Tax",
+  "Digital",
+  "Administrative",
+  "IP",
+  "Criminal",
+  "International",
 ];
+
+/** Map Notion CLKR Topics "Módulo" labels → CMS category. */
+export const NOTION_MODULE_TO_CATEGORY: Record<string, ClkrCategory> = {
+  "🛂 Immigration & Visas": "Immigration",
+  "🏠 Real Estate Law": "Real Estate",
+  "⚖️ Labour Law": "Labor",
+  "💰 Tax Law": "Tax",
+  "🏢 Business & Corporate Law": "Corporate",
+  "👨‍⚖️ Family & Civil Law": "Family",
+  "💻 Digital & Consumer Law": "Digital",
+  "🏛️ Civil & Contract Law": "Civil",
+  "⚙️ Administrative & Procedural Law": "Administrative",
+  "🔬 Intellectual Property": "IP",
+  "⚠️ Criminal Law": "Criminal",
+  "🌐 International & Public Law": "International",
+};
 
 export function clkrGuidesHubPath(locale: "en" | "es"): string {
   return locale === "es" ? "/es/clkr/guides" : "/clkr/guides";

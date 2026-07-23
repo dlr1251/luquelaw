@@ -43,7 +43,9 @@ export default async function LucyChatPage({
 
   const { data: chat } = await supabase
     .from("lucy_chats")
-    .select("id, title, aggressiveness, technicality, flexibility")
+    .select(
+      "id, title, aggressiveness, technicality, flexibility, eve_session_id, eve_continuation_token, eve_stream_index",
+    )
     .eq("id", chatId)
     .eq("project_id", projectId)
     .maybeSingle();
@@ -51,6 +53,14 @@ export default async function LucyChatPage({
   if (!chat) redirect(`/portal/lucy/${projectId}`);
 
   const balance = await getLucyBalance(userId);
+  const locale = project.locale === "es" ? "es" : "en";
+  const initialEveSession = chat.eve_session_id
+    ? {
+        sessionId: chat.eve_session_id as string,
+        continuationToken: (chat.eve_continuation_token as string | null) ?? undefined,
+        streamIndex: Number(chat.eve_stream_index ?? 0) || 0,
+      }
+    : null;
 
   const [{ data: messages }, { data: files }, { data: chats }] = await Promise.all([
     supabase
@@ -129,8 +139,10 @@ export default async function LucyChatPage({
           <LucyChatClient
             chatId={chatId}
             projectId={projectId}
+            locale={locale}
             balanceCents={balance}
             sessionSpendCents={sessionSpend}
+            initialEveSession={initialEveSession}
             initialMessages={(messages ?? []).map((m) => ({
               id: m.id,
               role: m.role as "user" | "assistant" | "system",
