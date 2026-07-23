@@ -17,6 +17,7 @@ That file is the master project document: product vision, ontology, phased roadm
 ## Conventions
 
 - Match existing design tokens (`--forest`, `--moss`, `--parchment`) and component patterns.
+- **Brand voice:** [VOICE.md](./VOICE.md) — founder-led “we”, concrete claims, Torny (not Lucy) in UI; apply before any copy edit.
 - RLS on all Supabase tables; admin via `is_clkr_admin()` + `app_metadata.role` / `admin_allowlist`.
 - EN routes at `/`, ES at `/es`. Guide slugs: `/clkr/guides/[slug_key]`. Norms: `/clkr/norms/[slug_key]/...`.
 - Entitlements via `hasEntitlement(userId, feature)` — see `src/lib/billing/entitlements.ts`.
