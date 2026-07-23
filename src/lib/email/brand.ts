@@ -1,7 +1,7 @@
 export const BRAND = {
   name: "Luque Law",
   lawyer: "Daniel Luque Restrepo",
-  tagline: "Asesoría legal para clientes internacionales en Colombia",
+  tagline: "Derecho colombiano para clientes internacionales",
   location: "Medellín, Colombia",
   website: "https://luquelaw.co",
   colors: {
