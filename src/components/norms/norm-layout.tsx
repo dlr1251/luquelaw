@@ -190,13 +190,8 @@ export function NormLayout({
               <article>
                 <header className="mb-6 flex flex-wrap items-start justify-between gap-3 border-b border-[color:var(--moss)]/20 pb-4">
                   <div className="min-w-0 flex-1">
-                    {sectionNumberLabel ? (
-                      <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
-                        {sectionNumberLabel}
-                      </p>
-                    ) : null}
                     <h2 className="font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
-                      {sectionTitle}
+                      {sectionNumberLabel ?? sectionTitle}
                     </h2>
                   </div>
                   <NormCopyMarkdownButton
@@ -242,7 +237,7 @@ function findActiveTitle(toc: TocNode[], sectionPath: string[]): string | null {
   const walk = (nodes: TocNode[]): string | null => {
     for (const node of nodes) {
       if (node.pathKey === key) {
-        return node.numberLabel ? `${node.numberLabel} · ${node.title}` : node.title;
+        return node.numberLabel ?? node.title;
       }
       const child = walk(node.children);
       if (child) return child;

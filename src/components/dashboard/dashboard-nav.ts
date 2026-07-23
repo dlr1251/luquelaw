@@ -52,6 +52,7 @@ export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
       label: "Admin",
       items: [
         { href: "/admin/tickets", label: "Reviews", icon: "ticket" },
+        { href: "/admin/comments", label: "Comments", icon: "message-square" },
         { href: "/admin/clkr", label: "CMS", icon: "file-text" },
       ],
     });
@@ -83,7 +84,10 @@ export const adminNavGroups: DashboardNavGroup[] = [
   },
   {
     label: "Operations",
-    items: [{ href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" }],
+    items: [
+      { href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" },
+      { href: "/admin/comments", label: "Comments", icon: "message-square" },
+    ],
   },
   {
     label: "App",
@@ -131,6 +135,9 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
 export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/tickets")) {
     return { title: "Tickets & reviews", description: "Queue and Lucy consultation reviews" };
+  }
+  if (pathname.startsWith("/admin/comments")) {
+    return { title: "Comments", description: "Norm discussion moderation" };
   }
   if (pathname.startsWith("/admin/norms")) {
     return { title: "Norms", description: "Statute catalog CMS" };

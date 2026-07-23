@@ -486,11 +486,52 @@ html.dark .marketing-eyebrow {
   }
 }
 
+/* Top-bar FX rates: slow continuous scroll on narrow viewports */
+@keyframes fx-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.fx-marquee {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 0.75rem,
+    #000 calc(100% - 0.75rem),
+    transparent
+  );
+}
+
+.fx-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: fx-marquee 22s linear infinite;
+}
+
+.fx-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding-inline-end: 2rem;
+  white-space: nowrap;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-\[fade-up_0\.7s_ease-out_both\],
   .animate-\[fade-up_0\.65s_ease-out_both\],
   [class*="animate-[fade-up"] {
     animation: none !important;
+  }
+
+  .fx-marquee-track {
+    animation: none;
+  }
+
+  .fx-marquee-item + .fx-marquee-item {
+    display: none;
   }
 }
 

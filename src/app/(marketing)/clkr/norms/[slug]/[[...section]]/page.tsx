@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 
 import { NormLayout } from "@/components/norms/norm-layout";
-import { NormAnnotationForm } from "@/components/norms/norm-annotation-form";
+import { NormComments } from "@/components/norms/norm-comments";
 import {
   getPublishedNormWithSections,
   getTranslationSlugKey,
@@ -13,8 +13,9 @@ import {
   resolveSectionRequest,
 } from "@/lib/norms/tree";
 import { getSignedInFlag } from "@/lib/auth/signed-in";
+import { getSessionUserId } from "@/lib/billing/entitlements";
+import { listCommentsForSection } from "@/lib/comments/queries";
 import { normPublicPath } from "@/lib/norms/types";
-import { hasEntitlement } from "@/lib/billing/entitlements";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildNormMetadata } from "@/lib/seo/metadata";
 import { normJsonLd } from "@/lib/seo/schemas";
@@ -76,10 +77,12 @@ export default async function NormPage({ params }: Props) {
   }
 
   const toc = buildTocTree(tree, slug, locale, canonicalPath);
-  const [canAnnotate, signedIn] = await Promise.all([
-    hasEntitlement("norm_annotations"),
+  const [signedIn, viewerUserId] = await Promise.all([
     getSignedInFlag(),
+    getSessionUserId(),
   ]);
+  const comments = await listCommentsForSection(active.id, viewerUserId);
+  const currentPath = normPublicPath(slug, locale, canonicalPath);
 
   return (
     <>
@@ -99,11 +102,14 @@ export default async function NormPage({ params }: Props) {
         officialSourceUrl={norm.official_source_url}
         toc={toc}
       >
-        <NormAnnotationForm
+        <NormComments
           normId={norm.id}
           sectionId={active.id}
           locale={locale}
-          canAnnotate={canAnnotate}
+          signedIn={signedIn}
+          viewerUserId={viewerUserId}
+          initialComments={comments}
+          currentPath={currentPath}
         />
       </NormLayout>
     </>

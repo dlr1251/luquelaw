@@ -1,7 +1,13 @@
 export type FxRates = {
   usdCop: number;
   eurCop: number;
+  /** ISO timestamp of when this snapshot was fetched (or upstream last update). */
   updatedAt: string | null;
+  source?: "coinbase" | "er-api";
+};
+
+type CoinbaseResponse = {
+  data?: { currency?: string; rates?: Record<string, string> };
 };
 
 type ErApiResponse = {
@@ -10,29 +16,83 @@ type ErApiResponse = {
   time_last_update_utc?: string;
 };
 
-async function fetchBaseRates(base: "USD" | "EUR"): Promise<ErApiResponse | null> {
+const REVALIDATE_SECONDS = 3600;
+
+function parseRate(value: unknown): number | undefined {
+  if (typeof value === "number" && Number.isFinite(value) && value > 0) return value;
+  if (typeof value === "string") {
+    const n = Number(value);
+    if (Number.isFinite(n) && n > 0) return n;
+  }
+  return undefined;
+}
+
+async function fetchCoinbaseRates(base: "USD" | "EUR"): Promise<number | undefined> {
+  try {
+    const res = await fetch(
+      `https://api.coinbase.com/v2/exchange-rates?currency=${base}`,
+      { next: { revalidate: REVALIDATE_SECONDS, tags: ["fx-rates"] } },
+    );
+    if (!res.ok) return undefined;
+    const json = (await res.json()) as CoinbaseResponse;
+    return parseRate(json.data?.rates?.COP);
+  } catch {
+    return undefined;
+  }
+}
+
+async function fetchErApiRates(base: "USD" | "EUR"): Promise<{
+  rate?: number;
+  updatedAt?: string;
+} | null> {
   try {
     const res = await fetch(`https://open.er-api.com/v6/latest/${base}`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: REVALIDATE_SECONDS, tags: ["fx-rates"] },
     });
     if (!res.ok) return null;
-    return (await res.json()) as ErApiResponse;
+    const json = (await res.json()) as ErApiResponse;
+    if (json.result !== "success") return null;
+    return {
+      rate: parseRate(json.rates?.COP),
+      updatedAt: json.time_last_update_utc,
+    };
   } catch {
     return null;
   }
 }
 
-/** Cached FX snapshot for the marketing top bar (America/Bogota context). */
+/** Cached FX snapshot for the marketing top bar. Refreshes at most hourly. */
 export async function getFxRates(): Promise<FxRates> {
-  const [usd, eur] = await Promise.all([fetchBaseRates("USD"), fetchBaseRates("EUR")]);
+  const [usdCoinbase, eurCoinbase] = await Promise.all([
+    fetchCoinbaseRates("USD"),
+    fetchCoinbaseRates("EUR"),
+  ]);
 
-  const usdCop = usd?.result === "success" ? usd.rates?.COP : undefined;
-  const eurCop = eur?.result === "success" ? eur.rates?.COP : undefined;
+  if (usdCoinbase && eurCoinbase) {
+    return {
+      usdCop: usdCoinbase,
+      eurCop: eurCoinbase,
+      updatedAt: new Date().toISOString(),
+      source: "coinbase",
+    };
+  }
+
+  const [usdEr, eurEr] = await Promise.all([
+    fetchErApiRates("USD"),
+    fetchErApiRates("EUR"),
+  ]);
+
+  const usdCop = usdCoinbase ?? usdEr?.rate;
+  const eurCop = eurCoinbase ?? eurEr?.rate;
 
   return {
-    usdCop: typeof usdCop === "number" && Number.isFinite(usdCop) ? usdCop : 0,
-    eurCop: typeof eurCop === "number" && Number.isFinite(eurCop) ? eurCop : 0,
-    updatedAt: usd?.time_last_update_utc ?? eur?.time_last_update_utc ?? null,
+    usdCop: usdCop ?? 0,
+    eurCop: eurCop ?? 0,
+    updatedAt:
+      usdEr?.updatedAt ??
+      eurEr?.updatedAt ??
+      (usdCop || eurCop ? new Date().toISOString() : null),
+    source: usdCoinbase || eurCoinbase ? "coinbase" : "er-api",
   };
 }
 
