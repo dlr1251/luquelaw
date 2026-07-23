@@ -8,7 +8,10 @@ export type DashboardNavIcon =
   | "ticket"
   | "sparkles"
   | "scale"
-  | "credit-card";
+  | "credit-card"
+  | "settings"
+  | "bookmark"
+  | "users";
 
 export type DashboardNavItem = {
   href: string;
@@ -53,6 +56,7 @@ export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
       items: [
         { href: "/admin/tickets", label: "Reviews", icon: "ticket" },
         { href: "/admin/comments", label: "Comments", icon: "message-square" },
+        { href: "/admin/community", label: "Community", icon: "users" },
         { href: "/admin/clkr", label: "CMS", icon: "file-text" },
       ],
     });
@@ -61,6 +65,8 @@ export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
   groups.push({
     label: "Account",
     items: [
+      { href: "/portal/settings", label: "Settings", icon: "settings" },
+      { href: "/portal/saved", label: "Saved", icon: "bookmark" },
       { href: "/pricing", label: "Plans & billing", icon: "credit-card", external: true },
       { href: "/", label: "Public site", icon: "home", external: true },
     ],
@@ -76,6 +82,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
       { href: "/admin/clkr", label: "Guides", icon: "file-text" },
       { href: "/admin/norms", label: "Norms", icon: "scale" },
       { href: "/admin/posts", label: "Blog", icon: "book-open" },
+      { href: "/admin/commentaries", label: "Commentaries", icon: "message-square" },
     ],
   },
   {
@@ -86,7 +93,8 @@ export const adminNavGroups: DashboardNavGroup[] = [
     label: "Operations",
     items: [
       { href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" },
-      { href: "/admin/comments", label: "Comments", icon: "message-square" },
+      { href: "/admin/comments", label: "Moderation", icon: "message-square" },
+      { href: "/admin/community", label: "Community", icon: "users" },
     ],
   },
   {
@@ -94,6 +102,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
     items: [
       { href: "/portal/lucy", label: "Torny", icon: "sparkles" },
       { href: "/portal", label: "Portal", icon: "layout-dashboard" },
+      { href: "/community", label: "Community", icon: "users", external: true },
       { href: "/", label: "Public site", icon: "home", external: true },
     ],
   },
@@ -111,7 +120,7 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/portal/lucy")) {
     return {
       title: "Torny",
-      description: "AI immigration consultations",
+      description: "AI immigration consultations · prepaid usage",
     };
   }
   if (pathname.startsWith("/portal/tickets")) {
@@ -120,10 +129,16 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
       description: "Firm requests and lawyer review unlocks",
     };
   }
+  if (pathname.startsWith("/portal/settings")) {
+    return { title: "Settings", description: "Your profile" };
+  }
+  if (pathname.startsWith("/portal/saved")) {
+    return { title: "Saved", description: "Bookmarked guides and norms" };
+  }
   if (pathname.startsWith("/portal/chat")) {
     return {
       title: "Torny",
-      description: "AI immigration consultations",
+      description: "AI immigration consultations · prepaid usage",
     };
   }
   return {
@@ -137,7 +152,13 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
     return { title: "Tickets & reviews", description: "Queue and Torny consultation reviews" };
   }
   if (pathname.startsWith("/admin/comments")) {
-    return { title: "Comments", description: "Norm discussion moderation" };
+    return { title: "Moderation", description: "Norm discussion moderation" };
+  }
+  if (pathname.startsWith("/admin/community")) {
+    return { title: "Community", description: "Forum reports and moderation" };
+  }
+  if (pathname.startsWith("/admin/commentaries")) {
+    return { title: "Commentaries", description: "Firm doctrinal notes on norm sections" };
   }
   if (pathname.startsWith("/admin/norms")) {
     return { title: "Norms", description: "Statute catalog CMS" };
@@ -165,6 +186,15 @@ export function isNavItemActive(pathname: string, item: DashboardNavItem): boole
       pathname.startsWith("/admin/clkr/") ||
       pathname === "/admin" ||
       pathname === "/admin/"
+    );
+  }
+  if (item.href === "/admin/comments") {
+    return pathname === "/admin/comments" || pathname.startsWith("/admin/comments/");
+  }
+  if (item.href === "/admin/commentaries") {
+    return (
+      pathname === "/admin/commentaries" ||
+      pathname.startsWith("/admin/commentaries/")
     );
   }
   return pathname === item.href || pathname.startsWith(`${item.href}/`);

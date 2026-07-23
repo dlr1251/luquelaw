@@ -19,9 +19,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getAllArticlesForAdmin } from "@/lib/clkr/get-articles";
-import type { ClkrArticleRecord } from "@/lib/clkr/types";
-import { clkrPublicPath } from "@/lib/clkr/types";
+import { getAllCommentariesForAdmin } from "@/lib/commentaries/get-commentaries";
+import type { DoctrinalCommentaryAdminRow } from "@/lib/commentaries/types";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 
 type Search = {
@@ -38,55 +37,61 @@ function statusVariant(status: string): "default" | "secondary" | "outline" {
   return "outline";
 }
 
-function filterArticles(
-  items: ClkrArticleRecord[],
+function filterRows(
+  items: DoctrinalCommentaryAdminRow[],
   q: string,
   status: string,
-): ClkrArticleRecord[] {
+): DoctrinalCommentaryAdminRow[] {
   const query = q.trim().toLowerCase();
   return items.filter((row) => {
     if (status && status !== "all" && row.status !== status) return false;
     if (!query) return true;
-    const hay = [row.title, row.slug_key, row.category].join(" ").toLowerCase();
+    const hay = [
+      row.title,
+      row.norm_title,
+      row.norm_slug_key,
+      row.section_title,
+      row.section_key,
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
     return hay.includes(query);
   });
 }
 
-export default async function AdminClkrPage({
+export default async function AdminCommentariesPage({
   searchParams,
 }: {
   searchParams: Promise<Search>;
 }) {
   const sp = await searchParams;
-  const articles = isSupabaseConfigured() ? await getAllArticlesForAdmin() : [];
+  const rows = isSupabaseConfigured() ? await getAllCommentariesForAdmin() : [];
   const q = sp.q ?? "";
   const status = sp.status ?? "all";
-  const filtered = filterArticles(articles, q, status);
-  const en = filtered.filter((a) => a.locale === "en");
-  const es = filtered.filter((a) => a.locale === "es");
+  const filtered = filterRows(rows, q, status);
+  const en = filtered.filter((r) => r.locale === "en");
+  const es = filtered.filter((r) => r.locale === "es");
 
   return (
     <div className="mx-auto w-full max-w-5xl space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h2 className="text-lg font-semibold">CLKR articles</h2>
+          <h2 className="text-lg font-semibold">Doctrinal commentaries</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Create and edit guides stored in Supabase. Published articles appear on{" "}
-            <Link href="/clkr" className="font-medium text-foreground underline-offset-4 hover:underline">
-              /clkr
-            </Link>{" "}
-            and{" "}
-            <Link href="/es/clkr" className="font-medium text-foreground underline-offset-4 hover:underline">
-              /es/clkr
-            </Link>
-            .
+            Firm commentary on norm sections. Published notes appear on the
+            public norm reader above the discussion thread.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
-          <ButtonLink href="/admin/clkr/new?locale=en" size="sm">
+          <ButtonLink href="/admin/commentaries/new?locale=en" size="sm">
             + English
           </ButtonLink>
-          <ButtonLink href="/admin/clkr/new?locale=es" size="sm" variant="outline">
+          <ButtonLink
+            href="/admin/commentaries/new?locale=es"
+            size="sm"
+            variant="outline"
+          >
             + Spanish
           </ButtonLink>
         </div>
@@ -95,8 +100,8 @@ export default async function AdminClkrPage({
       {!isSupabaseConfigured() ? (
         <Alert>
           <AlertDescription>
-            Supabase is not configured. Add keys to <code className="font-mono">.env.local</code> and
-            run migrations in <code className="font-mono">supabase/migrations/</code>.
+            Supabase is not configured. Add keys to{" "}
+            <code className="font-mono">.env.local</code>.
           </AlertDescription>
         </Alert>
       ) : null}
@@ -108,41 +113,46 @@ export default async function AdminClkrPage({
       ) : null}
       {sp.deleted ? (
         <Alert>
-          <AlertDescription>Article deleted.</AlertDescription>
+          <AlertDescription>Commentary deleted.</AlertDescription>
         </Alert>
       ) : null}
 
-      <AdminContentFilters basePath="/admin/clkr" q={q} status={status} />
+      <AdminContentFilters
+        basePath="/admin/commentaries"
+        q={q}
+        status={status}
+        placeholder="Search title, norm, section…"
+      />
 
-      <AdminArticleTable locale="en" title="English (/clkr)" items={en} />
-      <AdminArticleTable locale="es" title="Spanish (/es/clkr)" items={es} />
+      <CommentaryTable locale="en" title="English" items={en} />
+      <CommentaryTable locale="es" title="Spanish" items={es} />
     </div>
   );
 }
 
-function AdminArticleTable({
+function CommentaryTable({
   locale,
   title,
   items,
 }: {
   locale: "en" | "es";
   title: string;
-  items: ClkrArticleRecord[];
+  items: DoctrinalCommentaryAdminRow[];
 }) {
   return (
     <Card>
       <CardHeader>
         <CardTitle className="text-base">{title}</CardTitle>
         <CardDescription>
-          {items.length} article{items.length === 1 ? "" : "s"}
+          {items.length} commentar{items.length === 1 ? "y" : "ies"}
         </CardDescription>
       </CardHeader>
       <CardContent>
         {items.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            No articles match.{" "}
+            No commentaries yet.{" "}
             <Link
-              href={`/admin/clkr/new?locale=${locale}`}
+              href={`/admin/commentaries/new?locale=${locale}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"
             >
               Create one
@@ -153,41 +163,42 @@ function AdminArticleTable({
             <TableHeader>
               <TableRow>
                 <TableHead>Title</TableHead>
-                <TableHead>Slug</TableHead>
+                <TableHead>Norm / section</TableHead>
                 <TableHead>Status</TableHead>
                 <TableHead className="text-right">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {items.map((article) => (
-                <TableRow key={article.id}>
+              {items.map((row) => (
+                <TableRow key={row.id}>
                   <TableCell>
-                    <div className="font-medium">{article.title}</div>
+                    <div className="font-medium">{row.title}</div>
                     <div className="text-xs text-muted-foreground">
-                      {article.category} · order {article.sort_order}
+                      order {row.sort_order}
                     </div>
                   </TableCell>
-                  <TableCell className="font-mono text-xs">{article.slug_key}</TableCell>
                   <TableCell>
-                    <Badge variant={statusVariant(article.status)}>{article.status}</Badge>
+                    <div className="text-sm">{row.norm_title ?? "—"}</div>
+                    <div className="text-xs text-muted-foreground">
+                      {row.section_number_label
+                        ? `${row.section_number_label} · `
+                        : ""}
+                      {row.section_title ?? row.section_key ?? "—"}
+                    </div>
+                  </TableCell>
+                  <TableCell>
+                    <Badge variant={statusVariant(row.status)}>
+                      {row.status}
+                    </Badge>
                   </TableCell>
                   <TableCell className="text-right">
-                    <div className="flex justify-end gap-2">
-                      <ButtonLink href={`/admin/clkr/${article.id}/edit`} size="sm" variant="ghost">
-                        Edit
-                      </ButtonLink>
-                      {article.status === "published" ? (
-                        <ButtonLink
-                          href={clkrPublicPath(article.slug_key, article.locale)}
-                          size="sm"
-                          variant="outline"
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          View
-                        </ButtonLink>
-                      ) : null}
-                    </div>
+                    <ButtonLink
+                      href={`/admin/commentaries/${row.id}/edit`}
+                      size="sm"
+                      variant="ghost"
+                    >
+                      Edit
+                    </ButtonLink>
                   </TableCell>
                 </TableRow>
               ))}

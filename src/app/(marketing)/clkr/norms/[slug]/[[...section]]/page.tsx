@@ -3,6 +3,8 @@ import { notFound, redirect } from "next/navigation";
 
 import { NormLayout } from "@/components/norms/norm-layout";
 import { NormComments } from "@/components/norms/norm-comments";
+import { NormDoctrinalCommentaries } from "@/components/norms/norm-doctrinal-commentaries";
+import { getPublishedCommentariesForSection } from "@/lib/commentaries/get-commentaries";
 import {
   getPublishedNormWithSections,
   getTranslationSlugKey,
@@ -16,9 +18,11 @@ import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { getSessionUserId } from "@/lib/billing/entitlements";
 import { listCommentsForSection } from "@/lib/comments/queries";
 import { normPublicPath } from "@/lib/norms/types";
+import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildNormMetadata } from "@/lib/seo/metadata";
 import { normJsonLd } from "@/lib/seo/schemas";
+import { SaveButton } from "@/components/saves/save-button";
 
 export const dynamic = "force-dynamic";
 
@@ -77,9 +81,11 @@ export default async function NormPage({ params }: Props) {
   }
 
   const toc = buildTocTree(tree, slug, locale, canonicalPath);
-  const [signedIn, viewerUserId] = await Promise.all([
+  const [signedIn, viewerUserId, doctrinal, saved] = await Promise.all([
     getSignedInFlag(),
     getSessionUserId(),
+    getPublishedCommentariesForSection(active.id),
+    isSaved("norm", slug, locale),
   ]);
   const comments = await listCommentsForSection(active.id, viewerUserId);
   const currentPath = normPublicPath(slug, locale, canonicalPath);
@@ -101,7 +107,21 @@ export default async function NormPage({ params }: Props) {
         officialReference={norm.official_reference}
         officialSourceUrl={norm.official_source_url}
         toc={toc}
+        headerAction={
+          <SaveButton
+            targetType="norm"
+            targetSlug={slug}
+            title={norm.title}
+            locale={locale}
+            initiallySaved={saved}
+            loginHref={`/login?next=${encodeURIComponent(currentPath)}`}
+          />
+        }
       >
+        <NormDoctrinalCommentaries
+          commentaries={doctrinal}
+          locale={locale}
+        />
         <NormComments
           normId={norm.id}
           sectionId={active.id}

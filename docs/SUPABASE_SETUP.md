@@ -53,39 +53,52 @@ Después del paso 2, añade tu email admin (paso 4 abajo).
 
 **Vercel:** Settings → Environment Variables → mismas variables en **Production** (y Preview si quieres) → **Redeploy**.
 
-### 4. Admin (para editar CLKR en `/admin/clkr`)
+### 4. Admin (para editar CLKR en `/admin`)
 
-Elige **una** opción:
+Equipo actual (allowlist + `ADMIN_EMAILS` alineados):
+
+| Persona | Email |
+|---------|--------|
+| Daniel | `daniel@luquelaw.co` |
+| Alina | `asistente@luquelaw.co` |
+| Mateo | `mateo.abogado1@gmail.com` |
+| Camilo | `camiloauribeg@gmail.com` |
 
 **A — Allowlist (recomendado para RLS)**
 
 ```sql
 insert into public.admin_allowlist (email)
-values ('daniel@luquelaw.co')
+values
+  ('daniel@luquelaw.co'),
+  ('asistente@luquelaw.co'),
+  ('mateo.abogado1@gmail.com'),
+  ('camiloauribeg@gmail.com')
 on conflict (email) do nothing;
 ```
 
 **B — App metadata**
 
-Dashboard → **Authentication → Users** → tu usuario → **App metadata**:
+Dashboard → **Authentication → Users** → usuario → **App metadata**:
 
 ```json
 { "role": "admin" }
 ```
 
-**C — Env local (solo puerta de la app, no RLS)**
+**C — Env (puerta de la app; alinear con A)**
 
-En `.env.local`:
+En `.env.local` y Vercel (Production / Preview / Development):
 
 ```
-ADMIN_EMAILS=daniel@luquelaw.co
+ADMIN_EMAILS=daniel@luquelaw.co,asistente@luquelaw.co,mateo.abogado1@gmail.com,camiloauribeg@gmail.com
 ```
 
-Para que **guardar artículos funcione**, necesitas **A o B** (RLS usa `is_clkr_admin()`).
+Para que **guardar** funcione, necesitas **A o B** (RLS usa `is_clkr_admin()`). Nuevos admins: crear usuario en Auth (invite o Add user) y pedirles **Forgot password** / recovery link para fijar contraseña.
+
+CMS: Guides `/admin/clkr`, Norms `/admin/norms`, Blog `/admin/posts`, Commentaries `/admin/commentaries`, Moderation `/admin/comments`.
 
 ### 5. Cuenta de login
 
-**Authentication → Users → Add user** (email + password) si aún no tienes cuenta.
+**Authentication → Users → Add user** (email + password) o invite si aún no tienen cuenta.
 
 ### 6. Verificar
 

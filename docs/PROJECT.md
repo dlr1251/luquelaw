@@ -41,6 +41,8 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 | **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser |
 | **Agent / skill / prompt** | `/clkr/agents/...` | Entitlement `agents` | Curated LegalAI toolkit |
 | **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Professional study notes |
+| **Doctrinal commentary** | on norm sections | Public when `published` | Firm notes; CMS `/admin/commentaries` |
+| **Norm discussion comment** | on norm sections | Public thread; Moderation `/admin/comments` | User discussion + reports |
 | **Ticket** | `/portal/tickets` | General: entitlement `portal_tickets`; Lucy consultations: any auth user | Lightweight firm requests + Lucy review unlock |
 | **Lucy consultation** | `/portal/lucy` | Authenticated + prepaid wallet | Projects, chats, files, escalate → pay-to-unlock |
 | **Blog post** | `/posts/[slug]` | Public when `published` | Shorter articles |
@@ -67,15 +69,16 @@ Roles are expressed via `profiles` flags (beta) and/or active Stripe `subscripti
 | `professional` | `agents`, `norm_annotations` |
 | `client` | `portal_tickets` |
 
-### Lucy *(consultas legales AI-first)*
+### Torny *(consultas legales AI-first)*
 
-eve-inspired agent inside the portal (`agent/lucy/` + AI SDK / AI Gateway):
+Product name in UI: **Torny**. Runtime: Vercel **`eve` package** (`withEve` in `next.config.ts`) + AI Gateway. Authored agent under `agent/` (instructions, tools, channel auth, wallet hook). Portal routes may still use `/portal/lucy` and `lucy_*` tables.
 
-- **Projects** hold chats + files; personality dials (aggressiveness / technicality / flexibility) per chat.
-- **Wallet:** prepaid USD credits (Stripe Checkout packs); usage debited per turn.
-- **Escalate:** creates consultation ticket + email to firm (free to submit).
-- **Pay-to-unlock:** after lawyer marks ready, client pays review fee to see verified answer.
-- **Scope v1:** Immigration RAG — pgvector embeddings (with keyword fallback) over norms + guides.
+- **Projects** hold chats + files; personality dials per chat; Eve `sessionId` bound on `lucy_chats`.
+- **Wallet:** prepaid USD credits (Stripe packs); usage debited per Eve `step.completed` (user pays tokens; firm recovers via wallet).
+- **Escalate:** consultation ticket + email to firm (free to submit).
+- **Pay-to-unlock:** after lawyer marks ready, client pays review fee.
+- **Scope v1:** Immigration RAG — pgvector + keyword fallback (norms + guides).
+- **Node:** `engines.node` = `24.x` (required by eve).
 
 ### Tickets *(not cases)*
 
@@ -87,21 +90,17 @@ Lightweight requests to the firm: subject, category, description, thread with ad
 
 ```
 Next.js App Router
-├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /clkr/study, /posts, /pricing
+├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /community, /posts, /pricing
 ├── Gated: /clkr/agents (auth + entitlement)
-├── /login, /portal (Lucy, tickets; /account → /portal)
-├── /admin/clkr, /admin/norms, /admin/posts, /admin/agents, /admin/tickets
+├── /login, /portal (Torny, tickets, settings, saved; /account → /portal)
+├── /admin/clkr, /admin/norms, /admin/posts, /admin/commentaries, /admin/comments, /admin/community, /admin/agents, /admin/tickets
 └── Supabase
-    ├── Auth + profiles
-    ├── clkr_articles, clkr_study_paths, clkr_study_path_steps, clkr_article_relations, clkr_user_progress
-    ├── norms, norm_sections, norm_annotations, posts
-    ├── plans, subscriptions
-    ├── clkr_agents, clkr_skills, clkr_prompts
-    ├── tickets, ticket_messages
-    ├── lucy_projects, lucy_chats, lucy_messages, lucy_files
-    ├── lucy_wallets, lucy_wallet_ledger
-    ├── lucy_knowledge_chunks (pgvector RAG)
-    └── chat_conversations, chat_messages (legacy shell)
+    ├── Auth + profiles (+ reputation)
+    ├── clkr_articles, norms, posts, user_saves
+    ├── community_questions/answers/comments/votes/reports
+    ├── plans, subscriptions, tickets
+    ├── lucy_* (Torny wallet/projects/chats; Eve session columns)
+    └── lucy_knowledge_chunks (pgvector RAG)
 ```
 
 **Auth admin:** `ADMIN_EMAILS` env and/or Supabase `app_metadata.role = "admin"` and/or `admin_allowlist` table (RLS uses the latter two).
@@ -149,7 +148,7 @@ Next.js App Router
 - [x] Profile entitlement columns protected (trigger); `isAppAdmin` uses app_metadata only
 - [x] Checkout `subscription_data.metadata`; webhook fails loud without service role; multi-plan flag sync
 - [x] Seed `plans.stripe_price_id` helper (`STRIPE_PRICE_*` env) + docs for live cutover
-- [x] Align `admin_allowlist` rows with `ADMIN_EMAILS` env (verified `daniel@luquelaw.co`)
+- [x] Align `admin_allowlist` rows with `ADMIN_EMAILS` env (team: Daniel, Alina, Mateo, Camilo)
 - [ ] Flip Stripe to **live** keys + webhook secret in Vercel Production
 
 ### Phase D — Agents / skills / prompts
@@ -167,17 +166,32 @@ Next.js App Router
 - [x] Norm annotations (subscriber)
 - [x] Tickets + admin queue shell
 - [x] Chatbot conversations shell (superseded by Lucy)
+- [x] Norm discussion comments + admin Moderation
+- [x] Firm doctrinal commentaries CMS (`norm_doctrinal_commentaries` + `/admin/commentaries`)
 
-### Phase H — Lucy consultas legales *(in progress / shipped MVP)*
+### Phase H — Torny consultas legales *(shipped MVP + eve)*
 
 - [x] Projects / chats / files + wallet + Stripe top-up
-- [x] AI SDK + AI Gateway streaming agent (`agent/lucy/`)
-- [x] Immigration keyword RAG (norms + guides)
+- [x] Eve package (`eve` + `withEve` + `useEveAgent`) under `agent/`
+- [x] Immigration RAG (norms + guides)
 - [x] Escalate → email → admin draft → pay-to-unlock
 - [x] Discovery CTA on CLKR hub + portal access/wallet status
 - [x] pgvector embeddings RAG (`lucy_knowledge_chunks` + `npm run index:lucy-rag`; keyword fallback)
 - [ ] Expand beyond Immigration
 - [ ] Exact review fee + email to client when review is ready
+
+### Phase I — Account surface *(shipped)*
+
+- [x] About page: free email registration pitch (no spam; Torny prepaid; forum)
+- [x] Portal profile settings (`display_name`, `locale`, short bio)
+- [x] `user_saves` bookmarks for guides/norms + `/portal/saved`
+
+### Phase J — Community forum *(shipped MVP)*
+
+- [x] `/community` + `/es/comunidad` Q&A (ask, answer, comment, vote, accept)
+- [x] Reputation via SECURITY DEFINER RPCs
+- [x] `/admin/community` moderation + reports
+- [x] Disclaimer: peer help, not legal advice
 
 ### Phase G — Properties *(future)*
 
@@ -200,9 +214,12 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Project doc | `docs/PROJECT.md`, `AGENTS.md` |
 | CLKR hub / guides | `src/components/clkr/*`, `src/lib/clkr/*` (includes study paths, navigation) |
 | Normas | `src/components/norms/*`, `src/lib/norms/*` |
+| Commentaries | `src/lib/commentaries/*`, `src/components/admin/commentary-editor.tsx`, `/admin/commentaries` |
 | Agents | `src/lib/agents/*`, `src/components/agents/*`, `src/app/.../clkr/agents` |
 | Entitlements | `src/lib/billing/entitlements.ts` |
-| Lucy | `agent/lucy/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*` |
+| Torny / Eve | `agent/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*`, `eve` + `withEve` |
+| Community | `src/lib/community/*`, `src/components/community/*`, `/community`, `/admin/community` |
+| Saves | `src/lib/saves/*`, `src/components/saves/*`, `/portal/saved` |
 | Portal | `src/app/(dashboard)/portal/` |
 | Migrations | `supabase/migrations/` |
 | Auth admin | `src/lib/auth/is-admin.ts` |
@@ -237,11 +254,12 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Article body storage | `sections` JSON with HTML | TOC + admin simplicity |
 | Properties route | `/properties` | User direction |
 | Dates in roadmap | None | Project rhythm TBD |
-| Lucy runtime | AI SDK + AI Gateway (eve-inspired `agent/lucy/`), not eve package | Fits existing Next/Supabase portal |
-| Lucy review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
-| Lucy wallet | Prepaid Stripe packs; per-turn debit | Transparent usage |
-| Lucy RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
-| Lucy RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
+| Torny runtime | **`eve` package** + AI Gateway + `withEve` / `useEveAgent`; wallet recovers token cost | User direction 2026-07-23; supersedes AI-SDK-only decision |
+| Torny review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
+| Torny wallet | Prepaid Stripe packs; debit on Eve `step.completed` | Transparent usage; firm does not gift tokens |
+| Torny RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
+| Torny RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
+| Community forum | Public read; auth to post/vote; `/community` | Peer help + admin moderation |
 
 ---
 
@@ -258,6 +276,8 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | 2026-07 | Immigration norms: Resoluciones 2061 y 2357 de 2020 (Migración Colombia) + reindex Lucy |
 | 2026-07 | Authz hardening (profiles trigger, admin metadata), auth UX (next/reset), billing webhook reliability, portal access status + Lucy CTA on CLKR hub |
 | 2026-07 | Retired Quizzes module + Student plan from product surface |
+| 2026-07-23 | Torny on real `eve` package (`withEve`/`useEveAgent`); About account pitch; profile/saves; community forum |
+| 2026-07 | Admin team (4) + doctrinal commentaries CMS; norms visual editor; Moderation polish |
 
 ---
 
