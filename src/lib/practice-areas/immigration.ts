@@ -71,10 +71,10 @@ const contentEn: ImmigrationContent = {
   eyebrow: "Practice area",
   title: "Immigration Law",
   intro:
-    "Visas, stay rules, and migratory regularization for foreigners in Colombia — clear counsel, bilingual delivery.",
+    "Visas, stay rules, and migratory regularization for foreigners in Colombia — in plain language, in English or Spanish.",
   bookCta: "Book a consultation",
   bookHref: "#book",
-  lucyCta: "Ask Lucy",
+  lucyCta: "Ask Torny",
   lucyHref: "/portal/lucy",
   visasCta: "Explore visa types",
   visasHref: immigrationPath("/visas", "en"),
@@ -120,18 +120,18 @@ const contentEn: ImmigrationContent = {
   processLabel: "Process",
   processTitle: "How we work",
   processBody:
-    "Every engagement starts with a structured consultation, followed by a written legal concept and a clear workplan.",
+    "Same engagement model as the rest of the firm: consultation, written Concepto Jurídico, then a scoped workplan.",
   processFooter: "You know the path and the fee before committing to a full filing.",
   processSteps: [
     {
       icon: "chat",
       title: "Consultation",
-      body: "We map your nationality, stamps, goals, and risk — tourism quota, visa category, or regularization.",
+      body: "45 minutes to map nationality, stamps, goals, and risk — tourism quota, visa category, or regularization.",
     },
     {
       icon: "doc",
       title: "Written concept",
-      body: "You receive a clear memo: options, documents, timelines, and what Cancillería or Migración typically expects.",
+      body: "A clear memo: options, documents, timelines, and what Cancillería or Migración typically expects.",
     },
     {
       icon: "plan",
@@ -210,10 +210,10 @@ const contentEs: ImmigrationContent = {
   eyebrow: "Área de práctica",
   title: "Derecho migratorio",
   intro:
-    "Visas, reglas de permanencia y regulación migratoria para extranjeros en Colombia — asesoría clara y bilingüe.",
+    "Visas, reglas de permanencia y regulación migratoria para extranjeros en Colombia — en lenguaje claro, en español o en inglés.",
   bookCta: "Agendar consulta",
   bookHref: "#book",
-  lucyCta: "Preguntar a Lucy",
+  lucyCta: "Preguntar a Torny",
   lucyHref: "/portal/lucy",
   visasCta: "Explorar tipos de visa",
   visasHref: immigrationPath("/visas", "es"),
@@ -259,18 +259,18 @@ const contentEs: ImmigrationContent = {
   processLabel: "Proceso",
   processTitle: "Cómo trabajamos",
   processBody:
-    "Todo encargo empieza con una consulta estructurada, seguida de un concepto jurídico escrito y un plan de trabajo claro.",
+    "El mismo modelo del despacho: consulta, concepto jurídico escrito y luego un plan de trabajo acotado.",
   processFooter: "Conoces el camino y el honorario antes de comprometerte con el expediente completo.",
   processSteps: [
     {
       icon: "chat",
       title: "Consulta",
-      body: "Mapeamos nacionalidad, sellos, objetivos y riesgo — cuota de turismo, categoría de visa o regulación.",
+      body: "45 minutos para mapear nacionalidad, sellos, objetivos y riesgo — cuota de turismo, categoría de visa o regulación.",
     },
     {
       icon: "doc",
       title: "Concepto escrito",
-      body: "Recibes un memo claro: opciones, documentos, plazos y lo que Cancillería o Migración suelen esperar.",
+      body: "Un memo claro: opciones, documentos, plazos y lo que Cancillería o Migración suelen esperar.",
     },
     {
       icon: "plan",

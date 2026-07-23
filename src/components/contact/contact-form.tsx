@@ -85,7 +85,7 @@ export function ContactForm({
           attachments: "Adjuntar archivos",
           attachmentsHint: `Hasta ${MAX_CONTACT_FILES} archivos (PDF, Word, Excel, imágenes). Máx. 10 MB c/u.`,
           placeholder:
-            "Cuéntame qué necesitas, dónde estás y qué plazo manejas.",
+            "Cuéntanos qué necesitas, dónde estás y qué plazo manejas.",
           submit: "Enviar mensaje",
           submitting: "Enviando…",
           error: "No se pudo enviar. Intenta por correo o WhatsApp.",
@@ -106,7 +106,7 @@ export function ContactForm({
           attachments: "Attach files",
           attachmentsHint: `Up to ${MAX_CONTACT_FILES} files (PDF, Word, Excel, images). Max 10 MB each.`,
           placeholder:
-            "Tell me what you need, where you're based, and your timeline.",
+            "Tell us what you need, where you're based, and your timeline.",
           submit: "Send message",
           submitting: "Sending…",
           error: "Could not send. Try email or WhatsApp instead.",

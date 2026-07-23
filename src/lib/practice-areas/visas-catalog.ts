@@ -30,17 +30,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Tránsito Aeroportuario"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros de nacionalidades establecidas mediante Resolución que aspiren a realizar tránsito directo en alguno de los aeropuertos del territorio nacional y con destino a un tercer Estado. La permanencia autorizada en el aeropuerto será de máximo veinticuatro (24) horas, restringida estrictamente a zonas estériles o de tránsito directo en un solo aeropuerto con operación internacional. La llegada y la permanenc",
+      "en": "Airport transit for nationals who need a transit visa under the governing resolution — up to 24 hours in sterile/transit zones of an international airport, onward to a third country.",
       "es": "Para extranjeros de nacionalidades establecidas mediante Resolución que aspiren a realizar tránsito directo en alguno de los aeropuertos del territorio nacional y con destino a un tercer Estado. La permanencia autorizada en el aeropuerto será de máximo veinticuatro (24) horas, restringida estrictamente a zonas estériles o de tránsito directo en un solo aeropuerto con operación internacional. La llegada y la permanenc"
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -168,17 +168,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Tratamiento médico"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para asistir en calidad de paciente o de acompañante de este a consulta, intervención o tratamiento médico y odontológico. Esta visa será otorgada para tratamientos específicos, priorizando aquellos de duración concreta, que hagan parte de la oferta exportable de servicios médicos para extranjeros.",
+      "en": "For medical or dental treatment in Colombia as a patient or accompanying person — typically for defined treatment courses, including exportable medical services for foreigners.",
       "es": "Para asistir en calidad de paciente o de acompañante de este a consulta, intervención o tratamiento médico y odontológico. Esta visa será otorgada para tratamientos específicos, priorizando aquellos de duración concreta, que hagan parte de la oferta exportable de servicios médicos para extranjeros."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -204,17 +204,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Trámites administrativos y/o judiciales"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para adelantar trámites de carácter administrativo o judicial ante entidades o autoridades en Colombia.",
+      "en": "To pursue administrative or judicial proceedings before Colombian authorities.",
       "es": "Para adelantar trámites de carácter administrativo o judicial ante entidades o autoridades en Colombia."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -240,17 +240,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Tripulante"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para trabajar en aguas jurisdiccionales colombianas como tripulante de embarcación, draga o en plataforma costa afuera.",
+      "en": "To work in Colombian jurisdictional waters as crew on a vessel, dredge, or offshore platform.",
       "es": "Para trabajar en aguas jurisdiccionales colombianas como tripulante de embarcación, draga o en plataforma costa afuera."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -276,17 +276,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Trabajador agrícola de temporada"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para desarrollar labores agrícolas de temporada bajo programas establecidos por el Ministerio de Agricultura y Desarrollo Rural, o las Gobernaciones en concertación con el sector agrícola, el Ministerio del Trabajo y el Ministerio de Salud y Protección Social, en los que se señalarán los cupos estimados disponibles y las labores en las que se requiere apoyo de mano de obra.",
+      "en": "Seasonal agricultural work under programs set by the Ministry of Agriculture and related authorities, within published quotas and roles.",
       "es": "Para desarrollar labores agrícolas de temporada bajo programas establecidos por el Ministerio de Agricultura y Desarrollo Rural, o las Gobernaciones en concertación con el sector agrícola, el Ministerio del Trabajo y el Ministerio de Salud y Protección Social, en los que se señalarán los cupos estimados disponibles y las labores en las que se requiere apoyo de mano de obra."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -312,17 +312,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Eventos"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para asistir a convenciones y actividades empresariales, culturales o académicas como conferencista, expositor, participante, artista, deportista, jurado, concursante, organizador o personal logístico. No permite trabajar en el territorio colombiano. Los portadores de pasaporte de países o territorios exentos de visa, determinados mediante Resolución, estarán exentos del trámite de este tipo de visa siempre que su pe",
+      "en": "To attend conventions and business, cultural, or academic events as a speaker, exhibitor, participant, artist, athlete, juror, contestant, organizer, or logistics staff. Does not authorize work in Colombia beyond the event purpose.",
       "es": "Para asistir a convenciones y actividades empresariales, culturales o académicas como conferencista, expositor, participante, artista, deportista, jurado, concursante, organizador o personal logístico. No permite trabajar en el territorio colombiano. Los portadores de pasaporte de países o territorios exentos de visa, determinados mediante Resolución, estarán exentos del trámite de este tipo de visa siempre que su pe"
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -348,17 +348,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Religioso"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para trabajar en el ejercicio del ministerio religioso o para ejercer como misionero de una entidad religiosa, debidamente reconocida por el Estado colombiano.",
+      "en": "Religious ministry or missionary work for a religious entity duly recognized by the Colombian State.",
       "es": "Para trabajar en el ejercicio del ministerio religioso o para ejercer como misionero de una entidad religiosa, debidamente reconocida por el Estado colombiano."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -384,17 +384,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V para estudiantes/voluntarios entidades religiosas"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para ingresar y permanecer en el país como voluntario o estudiante en formación religiosa o para llevar a cabo estudios teológicos en instituto u organización de una iglesia o confesión religiosa, debidamente reconocida por el Estado colombiano.",
+      "en": "Religious volunteering, formation, or theological studies with a recognized church or religious institute.",
       "es": "Para ingresar y permanecer en el país como voluntario o estudiante en formación religiosa o para llevar a cabo estudios teológicos en instituto u organización de una iglesia o confesión religiosa, debidamente reconocida por el Estado colombiano."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -420,17 +420,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Voluntario o Cooperante"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para realizar voluntariado de carácter social o de cooperación para el desarrollo.",
+      "en": "Social volunteering or development cooperation work.",
       "es": "Para realizar voluntariado de carácter social o de cooperación para el desarrollo."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -456,17 +456,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Producción cinematográfica o audiovisual"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para participar en producciones cinematográficas o documentales de gran formato.",
+      "en": "Participation in large-format film or documentary productions.",
       "es": "Para participar en producciones cinematográficas o documentales de gran formato."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -528,17 +528,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Cubrimiento periodístico"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para efectuar cubrimiento periodístico de corta duración en el país.",
+      "en": "Short-duration journalistic coverage in Colombia.",
       "es": "Para efectuar cubrimiento periodístico de corta duración en el país."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -564,17 +564,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Corresponsal permanente"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para desempeñarse en Colombia como corresponsal de prensa permanente de un medio extranjero.",
+      "en": "Permanent press correspondent for a foreign media outlet based in Colombia.",
       "es": "Para desempeñarse en Colombia como corresponsal de prensa permanente de un medio extranjero."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -600,17 +600,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Asistencia Técnica"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para prestar asistencia técnica a persona jurídica en Colombia.",
+      "en": "Technical assistance to a legal entity in Colombia.",
       "es": "Para prestar asistencia técnica a persona jurídica en Colombia."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -636,17 +636,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Empresarios TLC"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para facilitar la movilidad de empresarios o personas de negocios, en aplicación de compromisos adquiridos por Colombia en el marco de Tratados de Libre Comercio suscritos y en vigor con otros Estados.",
+      "en": "Businessperson mobility under Colombia’s free-trade commitments currently in force.",
       "es": "Para facilitar la movilidad de empresarios o personas de negocios, en aplicación de compromisos adquiridos por Colombia en el marco de Tratados de Libre Comercio suscritos y en vigor con otros Estados."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -672,17 +672,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Oficiales no acreditados"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para desempeñarse como oficial representante comercial de gobierno de Estado o territorio extranjero, o de agencia gubernamental especializada, en misión que no implique acreditación ante el Ministerio de Relaciones Exteriores.",
+      "en": "Commercial government representatives or specialized agencies on a mission that does not imply diplomatic accreditation.",
       "es": "Para desempeñarse como oficial representante comercial de gobierno de Estado o territorio extranjero, o de agencia gubernamental especializada, en misión que no implique acreditación ante el Ministerio de Relaciones Exteriores."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -708,17 +708,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Vacaciones y Trabajo"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para visitar el territorio nacional bajo Acuerdos de Vacaciones y Trabajo suscritos por Colombia que se encuentren vigentes.",
+      "en": "Entry under a Working Holiday agreement currently in force between Colombia and the visitor’s country.",
       "es": "Para visitar el territorio nacional bajo Acuerdos de Vacaciones y Trabajo suscritos por Colombia que se encuentren vigentes."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -744,17 +744,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Práctica laboral"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para actividades de práctica laboral en empresas establecidas en Colombia. Destinatarios: Titulares de nacionalidades exentas de visa para corta estancia, establecidas mediante Resolución.",
+      "en": "Internship or workplace practice with companies in Colombia — typically for short-stay visa-exempt nationalities under the governing resolution.",
       "es": "Para actividades de práctica laboral en empresas establecidas en Colombia. Destinatarios: Titulares de nacionalidades exentas de visa para corta estancia, establecidas mediante Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -780,17 +780,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Prestador de Servicios, Obra o labor"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para desempeñar labores temporalmente en Colombia bajo contrato de Prestación de servicios, obra o labor.",
+      "en": "Temporary service, obra, or labor contracts in Colombia.",
       "es": "Para desempeñar labores temporalmente en Colombia bajo contrato de Prestación de servicios, obra o labor."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -816,17 +816,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Fomento a la Internacionalización"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para actividades productivas, de innovación o investigación orientadas a la adopción o adaptación de tecnologías que complementen o desarrollen productos. procesos o servicios que contribuyan a fortalecer la competitividad del país; para actividades que contribuyan a incorporar el conocimiento a las prioridades de los planes de desarrollo nacional, regional y territorial; o para actividades o profesiones preestableci",
+      "en": "Productive, innovation, or research activities aimed at adopting or adapting technologies that develop products, processes, or services — under the internationalization pathway.",
       "es": "Para actividades productivas, de innovación o investigación orientadas a la adopción o adaptación de tecnologías que complementen o desarrollen productos. procesos o servicios que contribuyan a fortalecer la competitividad del país; para actividades que contribuyan a incorporar el conocimiento a las prioridades de los planes de desarrollo nacional, regional y territorial; o para actividades o profesiones preestableci"
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -852,17 +852,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Rentista"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros que reciben una renta periódica y variable de fuente lícita acreditable.",
+      "en": "For foreigners who receive a periodic, variable income from a lawful, documentable source.",
       "es": "Para extranjeros que reciben una renta periódica y variable de fuente lícita acreditable."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -888,17 +888,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Casos no previstos"
     },
     "summary": {
-      "en": "Under Resolución 5477: Esta visa se otorgará para casos y circunstancias no previstas en la presente resolución, de manera excepcional y previa valoración de la Autoridad de Visas e Inmigración.",
+      "en": "Exceptional cases not otherwise covered in the resolution, after assessment by the visa authority.",
       "es": "Esta visa se otorgará para casos y circunstancias no previstas en la presente resolución, de manera excepcional y previa valoración de la Autoridad de Visas e Inmigración."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -924,17 +924,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Cortesía Diplomáticos Visitantes"
     },
     "summary": {
-      "en": "Under Resolución 5477: En aplicación del principio de reciprocidad diplomática, para el titular de pasaporte diplomático u oficial de un Estado reconocido por Colombia, que ingresa al país de manera temporal a desarrollar actividades diferentes a las diplomáticas y que no impliquen remuneración económica en el país; o para cónyuge o compañero(a) permanente de funcionario activo de Carrera Diplomática y Consular de Colombia.",
+      "en": "Courtesy entry for diplomatic or official passport holders of a State recognized by Colombia, under reciprocity, for a temporary visit.",
       "es": "En aplicación del principio de reciprocidad diplomática, para el titular de pasaporte diplomático u oficial de un Estado reconocido por Colombia, que ingresa al país de manera temporal a desarrollar actividades diferentes a las diplomáticas y que no impliquen remuneración económica en el país; o para cónyuge o compañero(a) permanente de funcionario activo de Carrera Diplomática y Consular de Colombia."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -960,17 +960,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Programa ICETEX"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para participar en programas académicos o eventos del Instituto Colombiano de Crédito Educativo y Estudios Técnicos en el Exterior “Mariano Ospina Pérez” ICETEX.",
+      "en": "Academic programs or events with ICETEX (Instituto Colombiano de Crédito Educativo y Estudios Técnicos en el Exterior).",
       "es": "Para participar en programas académicos o eventos del Instituto Colombiano de Crédito Educativo y Estudios Técnicos en el Exterior “Mariano Ospina Pérez” ICETEX."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -996,17 +996,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Cortesía Compromisos internacionales"
     },
     "summary": {
-      "en": "Under Resolución 5477: para casos contemplados por la Ley, o en cumplimiento de convenios o tratados internacionales de cooperación en vigor, que contemplen la expedición de esta clase de visa.",
+      "en": "Courtesy visa where law or international cooperation treaties in force provide for this class of visa.",
       "es": "para casos contemplados por la Ley, o en cumplimiento de convenios o tratados internacionales de cooperación en vigor, que contemplen la expedición de esta clase de visa."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1032,17 +1032,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Cortesía Ley de Cine"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para personal artístico, técnico y de producción extranjera que ingrese al país con el objeto de realizar o participar en proyectos de producción audiovisual o rodaje de obras cinematográficas extranjeras al amparo de la Ley de Cine.",
+      "en": "Foreign artistic, technical, and production personnel entering for audiovisual projects or film shoots under the cinema framework.",
       "es": "Para personal artístico, técnico y de producción extranjera que ingrese al país con el objeto de realizar o participar en proyectos de producción audiovisual o rodaje de obras cinematográficas extranjeras al amparo de la Ley de Cine."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1068,17 +1068,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Medida Complementaria al Refugio"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros a quienes la Comisión Asesora para la Determinación de la Condición de Refugiado (CONARE) solicite medida complementaria al Refugio.",
+      "en": "Complementary measure to refugee status when requested by CONARE (Comisión Asesora para la Determinación de la Condición de Refugiado).",
       "es": "Para extranjeros a quienes la Comisión Asesora para la Determinación de la Condición de Refugiado (CONARE) solicite medida complementaria al Refugio."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1140,17 +1140,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Compañero(a) permanente de nacional colombiano"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros que tengan unión de hecho con ciudadanos colombianos. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución.",
+      "en": "De facto union (unión de hecho) with a Colombian national. Time on this visa may count toward a Residente visa under art. 90 of Resolución 5477.",
       "es": "Para extranjeros que tengan unión de hecho con ciudadanos colombianos. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1176,17 +1176,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Madre o Padre o hijo(a) de nacional colombiano por adopción"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para los extranjeros que sean padres o hijos de un ciudadano que sea colombiano por adopción. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución.",
+      "en": "Parent or child of a Colombian national by adoption. Time may count toward Residente under art. 90.",
       "es": "Para los extranjeros que sean padres o hijos de un ciudadano que sea colombiano por adopción. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1212,17 +1212,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M padre o madre de nacional colombiano por nacimiento"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para los extranjeros que sean padres de un ciudadano que sea colombiano por nacimiento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución.",
+      "en": "Parent of a Colombian national by birth. Time may count toward Residente under art. 90.",
       "es": "Para los extranjeros que sean padres de un ciudadano que sea colombiano por nacimiento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1248,17 +1248,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Migrante Mercosur"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para nacionales de los Estados partes del “Acuerdo sobre Residencia para nacionales de los Estados Partes del Mercosur, Bolivia y Chile”, en aplicación del principio de la reciprocidad. Esta visa equivale a la visa de Residente Temporal establecida en dicho instrumento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución.",
+      "en": "Nationals of MERCOSUR Residence Agreement states (plus Bolivia and Chile as applicable), under reciprocity. Time may count toward Residente.",
       "es": "Para nacionales de los Estados partes del “Acuerdo sobre Residencia para nacionales de los Estados Partes del Mercosur, Bolivia y Chile”, en aplicación del principio de la reciprocidad. Esta visa equivale a la visa de Residente Temporal establecida en dicho instrumento. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1284,17 +1284,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Migrante Andino"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para nacionales de alguno de los Estados partes del “Estatuto Migratorio Andino”, en aplicación del principio de la reciprocidad. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución.",
+      "en": "Nationals of Andean Migratory Statute states, under reciprocity. Time may count toward Residente.",
       "es": "Para nacionales de alguno de los Estados partes del “Estatuto Migratorio Andino”, en aplicación del principio de la reciprocidad. Esta visa permite acumular tiempo para la Visa de Residente en los términos del Artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1320,17 +1320,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M refugiado"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros a quienes el Estado colombiano les haya reconocido la condición de Refugiado. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución.",
+      "en": "Foreigners recognized as refugees by the Colombian State. Time may count toward Residente under art. 90.",
       "es": "Para extranjeros a quienes el Estado colombiano les haya reconocido la condición de Refugiado. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1428,17 +1428,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Profesional independiente"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para el extranjero que aspira a ejercer una profesión regulada o, de manera excepcional, una actividad no regulada, siempre que la actividad sea de interés para el país. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución.",
+      "en": "To practice a regulated profession — or, exceptionally, a non-regulated activity of interest to the country. Time may count toward Residente.",
       "es": "Para el extranjero que aspira a ejercer una profesión regulada o, de manera excepcional, una actividad no regulada, siempre que la actividad sea de interés para el país. Esta visa permite acumular tiempo para la Visa de Residente en los términos del artículo 90 de la presente Resolución."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1498,17 +1498,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa M Fomento a la internacionalización"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros con formación a nivel de maestría, doctorado o postdoctorado en ciencias básicas o aplicadas, ingeniería, matemáticas y afines, cuyos perfiles se ajusten a las prioridades requeridas por el país en sus planes de internacionalización públicos y privados; o para profesionales de áreas preestablecidas por la Dirección de Asuntos Migratorios, Consulares y Atención al Ciudadano, cuyo ejercicio aporte a la",
+      "en": "Foreigners with a master’s, doctorate, or postdoctorate in basic or applied sciences, engineering, mathematics, or related fields whose profile matches national priority areas.",
       "es": "Para extranjeros con formación a nivel de maestría, doctorado o postdoctorado en ciencias básicas o aplicadas, ingeniería, matemáticas y afines, cuyos perfiles se ajusten a las prioridades requeridas por el país en sus planes de internacionalización públicos y privados; o para profesionales de áreas preestablecidas por la Dirección de Asuntos Migratorios, Consulares y Atención al Ciudadano, cuyo ejercicio aporte a la"
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
@@ -1570,17 +1570,17 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa R Renuncia a nacionalidad colombiana"
     },
     "summary": {
-      "en": "Under Resolución 5477: Para extranjeros que, habiendo sido colombianos por nacimiento o por adopción, renunciaron a la nacionalidad colombiana.",
+      "en": "Former Colombian nationals (by birth or adoption) who renounced Colombian nationality.",
       "es": "Para extranjeros que, habiendo sido colombianos por nacimiento o por adopción, renunciaron a la nacionalidad colombiana."
     },
     "whoFor": {
-      "en": "Applicants who meet the specific category purpose in Resolución 5477.",
+      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
       "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
     },
     "keyRequirements": {
       "en": [
-        "General requirements for the visa type (V/M/R)",
-        "Category-specific evidence under the governing article",
+        "General requirements for this visa type (V, M, or R) under Resolución 5477",
+        "Evidence required by the governing article for this category",
         "Identity and migratory documentation"
       ],
       "es": [
