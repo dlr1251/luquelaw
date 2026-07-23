@@ -19,12 +19,15 @@ export default function AuthCodeErrorPage() {
         <CardHeader>
           <CardTitle>Link invalid or expired</CardTitle>
           <CardDescription>
-            The confirmation link could not be used. Request a new one from the login page or check
-            your Supabase Auth email template settings.
+            This reset link was already used, expired, or opened by a mail scanner. Request a fresh
+            one — and open it once, in the same browser.
           </CardDescription>
         </CardHeader>
-        <CardContent>
-          <ButtonLink href="/login">Back to sign in</ButtonLink>
+        <CardContent className="flex flex-col gap-2 sm:flex-row sm:justify-center">
+          <ButtonLink href="/login/forgot">Request new reset link</ButtonLink>
+          <ButtonLink href="/login" variant="outline">
+            Back to sign in
+          </ButtonLink>
         </CardContent>
       </Card>
     </div>

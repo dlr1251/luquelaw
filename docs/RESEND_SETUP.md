@@ -87,13 +87,20 @@ Después: **Redeploy** del sitio en Vercel.
 
 ---
 
-## 5. Checklist
+## 5. Supabase Auth SMTP (recovery / invite)
+
+El rate limit `email rate limit exceeded` (~2/h) es del SMTP built-in de Supabase. Para Auth emails (password recovery, invite), configura el mismo Resend como SMTP custom — pasos en [SUPABASE_SETUP.md §6](./SUPABASE_SETUP.md).
+
+Resumen rápido: host `smtp.resend.com`, user `resend`, password = `RESEND_API_KEY`, sender `contacto@luquelaw.co`.
+
+## 6. Checklist
 
 - [ ] API key en `.env.local` y `npm run resend:test` OK
 - [ ] Dominio `luquelaw.co` verificado en Resend
 - [ ] `CONTACT_FROM_EMAIL` con `@luquelaw.co`
 - [ ] Variables en Vercel + redeploy
 - [ ] Envío real desde el formulario en producción
+- [ ] SMTP custom en Supabase Auth (recovery sin rate limit de 2/h)
 
 ---
 
