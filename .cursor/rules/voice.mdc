@@ -1,0 +1,16 @@
+---
+description: Brand voice for all user-facing copy (EN/ES) — Luque Law
+alwaysApply: true
+---
+
+# Voice — Luque Law
+
+Before editing any user-facing string (pages, components, SEO, forms, emails, WhatsApp, empty states, CTAs):
+
+1. Read and follow [VOICE.md](../../VOICE.md) at the repo root.
+2. Firm voice = **we / nosotros**. **I** only where Daniel signs personally.
+3. Brand spelling: **Luque Law** (space). AI product name in UI: **Torny** (never “Lucy” for visitors).
+4. Contact copy speaks as the **firm**, not a one-person shop.
+5. No LinkedIn-speak, no unverifiable claims, no exclamation marks in body copy.
+6. Do not change prices, Law 1581 consent meaning, privacy legal meaning, or the engagement model terms (45-min consult → Concepto Jurídico + quote in 3 business days → workplan/retainer).
+7. Prefer copy-only diffs; do not mix voice rewrites with unrelated logic changes.
