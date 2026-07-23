@@ -15,52 +15,52 @@ export const OG_LOCALE = {
 
 export const DEFAULT_SEO = {
   en: {
-    title: "Luque Law — Abogado · Legal Counsel",
+    title: "Luque Law — Colombian law for international clients",
     description:
-      "Colombian law for international clients — bilingual legal counsel in Medellín, Colombia.",
+      "Bilingual firm in Medellín. Visas, property, companies, and the paperwork underneath — consultation, then a written Concepto Jurídico.",
   },
   es: {
-    title: "Luque Law — Abogado",
+    title: "Luque Law — Derecho colombiano para clientes internacionales",
     description:
-      "Derecho colombiano para clientes internacionales — asesoría legal bilingüe en Medellín, Colombia.",
+      "Despacho bilingüe en Medellín. Visas, inmuebles, sociedades y el papeleo de fondo — consulta y luego un concepto jurídico escrito.",
   },
 } as const;
 
 export const PAGE_SEO = {
   home: {
     en: {
-      title: "Colombian Law for International Clients",
+      title: "Colombian law for international clients",
       description:
-        "Bilingual legal counsel in Medellín, Colombia — immigration, real estate, corporate, and civil law for international clients.",
+        "Luque Law in Medellín — immigration, real estate, corporate, and related counsel. 45-minute consultation, then a written Concepto Jurídico within 3 business days.",
     },
     es: {
       title: "Derecho colombiano para clientes internacionales",
       description:
-        "Asesoría legal bilingüe en Medellín — inmigración, bienes raíces, derecho corporativo y civil para clientes internacionales.",
+        "Luque Law en Medellín — migración, inmobiliario, corporativo y asuntos afines. Consulta de 45 minutos y, en 3 días hábiles, un concepto jurídico escrito.",
     },
   },
   clkrHub: {
     en: {
       title: "CLKR — LegalAI hub for Colombian law",
       description:
-        "Norms, practical guides, and LegalAI agents for studying and practicing Colombian law.",
+        "Norms, practical guides, and Torny — open Colombian legal knowledge you can navigate and cite.",
     },
     es: {
       title: "CLKR — Hub LegalAI de derecho colombiano",
       description:
-        "Normas, guías prácticas y agentes LegalAI para estudiar y practicar el derecho colombiano.",
+        "Normas, guías prácticas y Torny — conocimiento jurídico colombiano abierto, navegable y citable.",
     },
   },
   clkrGuides: {
     en: {
       title: "Legal guides — CLKR",
       description:
-        "Plain-language guides on Colombian immigration, real estate, corporate, labor, and civil law for international clients.",
+        "Plain-language guides on Colombian immigration, real estate, corporate, labour, and civil law.",
     },
     es: {
       title: "Guías jurídicas — CLKR",
       description:
-        "Guías en lenguaje claro sobre inmigración, bienes raíces, derecho corporativo, laboral y civil en Colombia.",
+        "Guías en lenguaje claro sobre migración, inmobiliario, corporativo, laboral y civil en Colombia.",
     },
   },
   normsHub: {
@@ -79,24 +79,24 @@ export const PAGE_SEO = {
     en: {
       title: "Pricing — CLKR & portal plans",
       description:
-        "Professional and Client plans for CLKR LegalAI modules and the Luque Law portal.",
+        "Professional and Client plans for CLKR modules and the Luque Law portal.",
     },
     es: {
       title: "Precios — Planes CLKR y portal",
       description:
-        "Planes Profesional y Cliente para módulos LegalAI de CLKR y el portal Luque Law.",
+        "Planes Profesional y Cliente para módulos CLKR y el portal Luque Law.",
     },
   },
   postsHub: {
     en: {
-      title: "Blog — Legal insights for international clients",
+      title: "Blog — Notes on law and life in Colombia",
       description:
-        "Shorter articles on immigration, property, and business in Colombia — practical updates and checklists from Luque Law.",
+        "Shorter pieces on visas, property, and business in Colombia from Luque Law.",
     },
     es: {
-      title: "Blog — Perspectivas legales para clientes internacionales",
+      title: "Blog — Notas sobre derecho y vida en Colombia",
       description:
-        "Artículos breves sobre inmigración, inmuebles y negocios en Colombia — actualizaciones y listas de verificación de Luque Law.",
+        "Textos breves sobre visas, inmuebles y negocios en Colombia, desde Luque Law.",
     },
   },
   privacy: {
@@ -113,43 +113,43 @@ export const PAGE_SEO = {
   },
   immigration: {
     en: {
-      title: "Immigration Law — Visas & Stay Rules in Colombia",
+      title: "Immigration Law — Visas & stay rules in Colombia",
       description:
-        "Visa assistance, migratory regularization, V/M/R catalog, nationality, extranjería, and a Last Legal Day calculator for international clients.",
+        "Visa strategy, migratory regularization, V/M/R catalog, nationality, extranjería, and a Last Legal Day calculator.",
     },
     es: {
       title: "Derecho migratorio — Visas y permanencia en Colombia",
       description:
-        "Asistencia en visas, regulación migratoria, catálogo V/M/R, nacionalidad, extranjería y calculadora de último día legal para clientes internacionales.",
+        "Estrategia de visa, regulación migratoria, catálogo V/M/R, nacionalidad, extranjería y calculadora de último día legal.",
     },
   },
   immigrationVisas: {
     en: {
-      title: "Colombian Visa Types — V, M & R Catalog",
+      title: "Colombian visa types — V, M & R catalog",
       description:
-        "Browse Visitante (V), Migrante (M), and Residente (R) visa categories under Resolución 5477 de 2022.",
+        "Visitante (V), Migrante (M), and Residente (R) categories under Resolución 5477 de 2022.",
     },
     es: {
       title: "Tipos de visa colombiana — Catálogo V, M y R",
       description:
-        "Explora las categorías Visitante (V), Migrante (M) y Residente (R) bajo la Resolución 5477 de 2022.",
+        "Categorías Visitante (V), Migrante (M) y Residente (R) bajo la Resolución 5477 de 2022.",
     },
   },
   immigrationNationality: {
     en: {
-      title: "Colombian Nationality & Civil Registry",
+      title: "Colombian nationality & civil registry",
       description:
-        "Nationality by birth and adoption, Registro Civil basics, and how they intersect with immigration strategy.",
+        "Nationality by birth and adoption, Registro Civil basics, and how they sit under immigration strategy.",
     },
     es: {
       title: "Nacionalidad colombiana y Registro Civil",
       description:
-        "Nacionalidad por nacimiento y adopción, bases del Registro Civil y su relación con la estrategia migratoria.",
+        "Nacionalidad por nacimiento y adopción, bases del Registro Civil y su lugar en la estrategia migratoria.",
     },
   },
   immigrationExtranjeria: {
     en: {
-      title: "Extranjería Procedures in Colombia",
+      title: "Extranjería procedures in Colombia",
       description:
         "Stay extensions, cédula de extranjería, minors registration, sanctions, appointments, and migratory movements.",
     },
@@ -161,7 +161,7 @@ export const PAGE_SEO = {
   },
   immigrationCalculator: {
     en: {
-      title: "Last Legal Day Calculator — Tourism Stay in Colombia",
+      title: "Last Legal Day calculator — tourism stay in Colombia",
       description:
         "Estimate tourism quota days used and your last lawful day under Colombia’s 180-day calendar-year rules.",
     },
@@ -173,50 +173,50 @@ export const PAGE_SEO = {
   },
   about: {
     en: {
-      title: "About Luque Law — Boutique Firm in Medellín",
+      title: "About Luque Law — Medellín firm for international clients",
       description:
-        "A boutique bilingual firm in Medellín for international clients in Colombia — high-quality, strategic counsel and a focused team.",
+        "Founder-led bilingual firm in Medellín. Who we are, how we work, and the team on your file.",
     },
     es: {
-      title: "Nosotros — Despacho boutique Luque Law en Medellín",
+      title: "Nosotros — Luque Law en Medellín",
       description:
-        "Un despacho boutique bilingüe en Medellín para clientes internacionales en Colombia — asesoría de alta calidad, enfoque estratégico y un equipo cercano.",
+        "Despacho bilingüe liderado por su fundador en Medellín. Quiénes somos, cómo trabajamos y quién lleva tu expediente.",
     },
   },
   services: {
     en: {
-      title: "Legal Services — Immigration, Real Estate, Corporate & More",
+      title: "Legal services — immigration, real estate, corporate & more",
       description:
-        "Explore Luque Law practice areas: immigration, labour, real estate, family, corporate, and taxes for international clients in Colombia.",
+        "Practice areas at Luque Law: immigration, labour, real estate, family, corporate, and tax orientation for international clients in Colombia.",
     },
     es: {
-      title: "Servicios legales — Migración, inmobiliario, corporativo y más",
+      title: "Servicios legales — migración, inmobiliario, corporativo y más",
       description:
-        "Explora las áreas de práctica de Luque Law: migración, laboral, inmobiliario, familia, corporativo e impuestos para clientes internacionales en Colombia.",
+        "Áreas de práctica de Luque Law: migración, laboral, inmobiliario, familia, corporativo y orientación tributaria para clientes internacionales en Colombia.",
     },
   },
   labourLaw: {
     en: {
       title: "Labour Law in Colombia",
       description:
-        "Employment contracts, HR compliance, terminations, and workplace counsel for international clients in Colombia.",
+        "Hiring, contracts, terminations, and labour risk for employers and professionals — including foreign workers.",
     },
     es: {
       title: "Derecho laboral en Colombia",
       description:
-        "Contratos laborales, cumplimiento de RR. HH., terminaciones y asesoría laboral para clientes internacionales en Colombia.",
+        "Contratación, contratos, terminaciones y riesgo laboral para empleadores y profesionales — incluido el trabajador extranjero.",
     },
   },
   realEstate: {
     en: {
       title: "Real Estate Law in Colombia",
       description:
-        "Purchase, sale, leases, and HOA guidance for property transactions in Colombia.",
+        "Purchase, sale, leases, and propiedad horizontal — due diligence and closing for property in Colombia.",
     },
     es: {
       title: "Derecho inmobiliario en Colombia",
       description:
-        "Compraventa, arrendamientos y orientación en propiedad horizontal para transacciones inmobiliarias en Colombia.",
+        "Compraventa, arrendamientos y propiedad horizontal — debida diligencia y cierre de inmuebles en Colombia.",
     },
   },
   familyLaw: {
@@ -235,24 +235,24 @@ export const PAGE_SEO = {
     en: {
       title: "Corporate Law in Colombia",
       description:
-        "Company formation, contracts, and ongoing business counsel for international founders and investors.",
+        "Company formation, contracts, and governance for international founders and investors in Colombia.",
     },
     es: {
       title: "Derecho corporativo en Colombia",
       description:
-        "Constitución de sociedades, contratos y acompañamiento empresarial para fundadores e inversionistas internacionales.",
+        "Constitución de sociedades, contratos y gobierno societario para fundadores e inversionistas internacionales en Colombia.",
     },
   },
   taxes: {
     en: {
-      title: "Tax Orientation in Colombia",
+      title: "Tax orientation in Colombia",
       description:
-        "International tax orientation for individuals and businesses operating in Colombia.",
+        "Tax residency and cross-border orientation for individuals and businesses in Colombia — with specialist handoff when needed.",
     },
     es: {
       title: "Orientación tributaria en Colombia",
       description:
-        "Orientación tributaria internacional para personas y empresas que operan en Colombia.",
+        "Residencia fiscal y orientación transfronteriza para personas y empresas en Colombia — con traspaso a especialista cuando haga falta.",
     },
   },
 } as const;

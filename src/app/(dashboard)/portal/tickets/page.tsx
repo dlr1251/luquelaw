@@ -60,7 +60,7 @@ export default async function PortalTicketsPage({
     <div className="mx-auto w-full max-w-3xl space-y-6">
       {sp.escalated ? (
         <p className="rounded border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-900">
-          Lucy consultation sent to the firm. We&apos;ll notify you here when the verified answer is
+          Torny consultation sent to the firm. We&apos;ll notify you here when the verified answer is
           ready to unlock.
         </p>
       ) : null}
@@ -75,7 +75,7 @@ export default async function PortalTicketsPage({
           <CardHeader>
             <CardTitle>New ticket</CardTitle>
             <CardDescription>
-              Lightweight request to the firm—not an expediente. For Lucy lawyer reviews, escalate
+              Lightweight request to the firm—not an expediente. For Torny lawyer reviews, escalate
               from a chat.
             </CardDescription>
           </CardHeader>
@@ -117,7 +117,7 @@ export default async function PortalTicketsPage({
           <CardHeader>
             <CardTitle>General tickets</CardTitle>
             <CardDescription>
-              Client plan unlocks general firm tickets. Lucy consultations appear below when you
+              Client plan unlocks general firm tickets. Torny consultations appear below when you
               escalate from a chat.
             </CardDescription>
           </CardHeader>
@@ -139,7 +139,7 @@ export default async function PortalTicketsPage({
               <div key={t.id} className="space-y-2 border-b py-3 text-sm">
                 <p className="font-medium">{t.subject}</p>
                 <p className="text-xs text-muted-foreground">
-                  {t.kind === "consultation" ? "Lucy · " : ""}
+                  {t.kind === "consultation" ? "Torny · " : ""}
                   {t.status}
                   {t.review_status ? ` · ${t.review_status}` : ""} ·{" "}
                   {new Date(t.created_at).toLocaleString()}
@@ -176,7 +176,7 @@ export default async function PortalTicketsPage({
 
       <div className="flex gap-4 text-sm">
         <Link href="/portal/lucy" className="underline">
-          Lucy
+          Torny
         </Link>
         <Link href="/portal" className="underline">
           ← Portal overview

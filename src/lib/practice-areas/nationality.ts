@@ -28,7 +28,7 @@ const contentEn: NationalityContent = {
     {
       id: "birth",
       title: "Nationality by birth",
-      body: "Colombia recognizes nationality by birth under constitutional and statutory rules (including jus soli and jus sanguinis pathways). A child born in Colombia to foreign parents may acquire Colombian nationality depending on domicile and registration facts. Getting the Registro Civil de Nacimiento right early avoids later migratory friction.",
+      body: "Colombia recognizes nationality by birth under constitutional and statutory rules — by soil (jus soli) and by blood (jus sanguinis), with conditions. A child born in Colombia to foreign parents may acquire Colombian nationality depending on domicile and registration facts. Getting the Registro Civil de Nacimiento right early avoids later migratory friction.",
     },
     {
       id: "adoption",

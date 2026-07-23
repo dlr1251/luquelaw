@@ -40,7 +40,7 @@ export default async function ClkrAgentsEsPage() {
         title="Agentes, skills y prompts"
         subtitle="Copia prompts en tus herramientas de IA. Verifica siempre contra fuentes primarias."
         contactCta="¿Consulta guiada?"
-        contactLink="Conoce a Lucy"
+        contactLink="Conoce a Torny"
         contactHref="/portal/lucy"
       />
       <Container className="py-12 sm:py-14">

@@ -85,10 +85,10 @@ export async function POST(request: Request) {
             "topup",
             "stripe_checkout",
             session.id,
-            `Lucy top-up pack ${session.metadata?.pack_id ?? ""}`,
+            `Torny top-up pack ${session.metadata?.pack_id ?? ""}`,
           );
           if (!result.ok) {
-            throw new Error(`Lucy top-up credit failed: ${result.error}`);
+            throw new Error(`Torny top-up credit failed: ${result.error}`);
           }
         }
       } else if (lucyKind === "review_unlock" && userId) {

@@ -74,7 +74,7 @@ export default async function PortalPage({ searchParams }: Props) {
         <CardHeader>
           <CardTitle>Your access</CardTitle>
           <CardDescription>
-            Subscriptions unlock CLKR modules. Lucy uses a prepaid wallet (separate from plans).
+            Subscriptions unlock CLKR modules. Torny uses a prepaid wallet (separate from plans).
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
@@ -92,10 +92,10 @@ export default async function PortalPage({ searchParams }: Props) {
             </ButtonLink>
           </div>
           <div className="space-y-1 text-sm">
-            <p className="font-medium text-foreground">Lucy wallet</p>
+            <p className="font-medium text-foreground">Torny wallet</p>
             <p className="text-muted-foreground">${balanceUsd} USD available</p>
             <ButtonLink href="/portal/lucy" variant="outline" className="mt-3 justify-start">
-              Open Lucy consultations
+              Open Torny consultations
             </ButtonLink>
           </div>
         </CardContent>
@@ -126,10 +126,10 @@ export default async function PortalPage({ searchParams }: Props) {
             Agents {agents ? "" : "(upgrade)"}
           </ButtonLink>
           <ButtonLink href="/portal/lucy" variant="outline" className="justify-start">
-            Lucy consultations
+            Torny consultations
           </ButtonLink>
           <ButtonLink href="/portal/tickets" variant="outline" className="justify-start">
-            Tickets {tickets ? "" : "(Lucy reviews + client)"}
+            Tickets {tickets ? "" : "(Torny reviews + client)"}
           </ButtonLink>
           <ButtonLink href="/pricing" variant="outline" className="justify-start">
             Plans & billing

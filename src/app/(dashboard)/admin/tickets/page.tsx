@@ -34,7 +34,7 @@ export default async function AdminTicketsPage() {
         <CardHeader>
           <CardTitle>Tickets queue</CardTitle>
           <CardDescription>
-            General portal tickets and Lucy consultation reviews (pay-to-unlock).
+            General portal tickets and Torny consultation reviews (pay-to-unlock).
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-3">
@@ -49,7 +49,7 @@ export default async function AdminTicketsPage() {
               >
                 <p className="font-medium">{t.subject}</p>
                 <p className="text-xs text-muted-foreground">
-                  {t.kind === "consultation" ? "Lucy · " : ""}
+                  {t.kind === "consultation" ? "Torny · " : ""}
                   {t.status}
                   {t.review_status ? ` · ${t.review_status}` : ""} · {t.category} ·{" "}
                   {new Date(t.created_at).toLocaleString()}

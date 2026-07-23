@@ -25,6 +25,7 @@ export function BookingCalendarEmbed({
   const multiPage = configured && isMultiBookingPageUrl(bookingUrl);
 
   if (!configured) {
+    const isDev = process.env.NODE_ENV === "development";
     return (
       <div
         className={cn(
@@ -32,19 +33,31 @@ export function BookingCalendarEmbed({
           className,
         )}
       >
-        {locale === "es" ? (
+        {isDev ? (
+          locale === "es" ? (
+            <>
+              Falta configurar el enlace del calendario. Define{" "}
+              <span className="font-bold text-foreground">NEXT_PUBLIC_BOOKING_URL</span> con el embed
+              de <span className="font-bold text-foreground">una sola</span> página de reserva
+              (<code className="text-foreground">…/appointments/schedules/…</code>).
+            </>
+          ) : (
+            <>
+              The scheduler link isn&apos;t configured yet. Set{" "}
+              <span className="font-bold text-foreground">NEXT_PUBLIC_BOOKING_URL</span> to a{" "}
+              <span className="font-bold text-foreground">single</span> booking-page embed (
+              <code className="text-foreground">…/appointments/schedules/…</code>).
+            </>
+          )
+        ) : locale === "es" ? (
           <>
-            Falta configurar el enlace del calendario. Define{" "}
-            <span className="font-bold text-foreground">NEXT_PUBLIC_BOOKING_URL</span> con el embed
-            de <span className="font-bold text-foreground">una sola</span> página de reserva
-            (<code className="text-foreground">…/appointments/schedules/…</code>).
+            La reserva en línea no está disponible por ahora. Escríbenos por WhatsApp o por el
+            formulario de contacto.
           </>
         ) : (
           <>
-            The scheduler link isn&apos;t configured yet. Set{" "}
-            <span className="font-bold text-foreground">NEXT_PUBLIC_BOOKING_URL</span> to a{" "}
-            <span className="font-bold text-foreground">single</span> booking-page embed (
-            <code className="text-foreground">…/appointments/schedules/…</code>).
+            Online booking is temporarily unavailable. Reach us on WhatsApp or through the contact
+            form.
           </>
         )}
       </div>

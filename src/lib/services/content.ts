@@ -66,9 +66,9 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "migracion",
     title: "Immigration Law",
     shortTitle: "Immigration",
-    blurb: "Visas, stay rules, nationality, and extranjería for international clients.",
+    blurb: "What visa you need, how long you can stay, and what happens when the stamp runs out.",
     intro:
-      "Clear guidance on Colombian visas, migratory regularization, nationality, and stay compliance — from first entry through long-term residence.",
+      "Colombian visas, migratory regularization, nationality, and stay rules — from first entry through long-term residence, with the paperwork Migración Colombia actually asks for.",
     services: [
       "Visa strategy and filing support (V, M, R)",
       "Migratory regularization and overstay risk review",
@@ -83,9 +83,9 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "laboral",
     title: "Labour Law",
     shortTitle: "Labour",
-    blurb: "Employment contracts, HR compliance, and workplace disputes in Colombia.",
+    blurb: "Hiring, contracts, terminations, and the labour risks foreigners often miss.",
     intro:
-      "Practical counsel for employers and professionals on hiring, contracts, terminations, and Colombian labour compliance.",
+      "Counsel for employers and professionals on hiring, contracts, terminations, and Colombian labour compliance — including documentation when the worker is a foreign national.",
     services: [
       "Employment contracts and onboarding packages",
       "HR policies and workplace compliance reviews",
@@ -100,15 +100,15 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "inmobiliario",
     title: "Real Estate",
     shortTitle: "Real Estate",
-    blurb: "Purchase, sale, leases, and HOA matters for property in Colombia.",
+    blurb: "Buying, selling, or leasing — with due diligence that survives a civil-law closing.",
     intro:
-      "Transaction support for buying, selling, and leasing property in Colombia — with clear due diligence and closing coordination.",
+      "Support for buying, selling, and leasing property in Colombia: title checks, contract review, propiedad horizontal, and closing coordination. Escrow is not the default here; we explain what actually secures the deal.",
     services: [
       "Purchase and sale due diligence",
       "Lease drafting and review",
-      "HOA / propiedad horizontal guidance",
+      "Propiedad horizontal (HOA) guidance",
       "Title and registry coordination",
-      "Escrow and closing support",
+      "Closing support and payment mechanics",
     ],
   },
   {
@@ -117,9 +117,9 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "familia",
     title: "Family Law",
     shortTitle: "Family",
-    blurb: "Marriage, divorce, custody, and cross-border family matters.",
+    blurb: "Marriage, divorce, and custody when one foot is still in another country.",
     intro:
-      "Sensitive, bilingual guidance on family matters that often intersect with immigration and asset planning for international clients.",
+      "Bilingual guidance on family matters that often cross into visas, civil registry, and asset planning — without pretending every case is the same.",
     services: [
       "Marriage and prenuptial agreements",
       "Divorce and separation strategy",
@@ -134,13 +134,13 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "corporativo",
     title: "Corporate Law",
     shortTitle: "Corporate",
-    blurb: "Company formation, contracts, and ongoing business counsel.",
+    blurb: "Incorporate, contract, and keep the company in good standing.",
     intro:
-      "Help international founders and investors set up and operate companies in Colombia with clean corporate hygiene.",
+      "Help international founders and investors set up and operate companies in Colombia — bylaws, shareholder agreements, and the housekeeping Cámara de Comercio actually expects.",
     services: [
       "Company incorporation and bylaws",
       "Shareholder and commercial contracts",
-      "Corporate housekeeping and governance",
+      "Corporate governance and filings",
       "Foreign investment registration orientation",
       "Ongoing business legal support",
     ],
@@ -151,15 +151,15 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "impuestos",
     title: "Taxes",
     shortTitle: "Taxes",
-    blurb: "International tax orientation for individuals and businesses in Colombia.",
+    blurb: "Tax residency and cross-border orientation — then the right specialist when the numbers get deep.",
     intro:
-      "High-level tax orientation for foreigners and companies operating in Colombia — coordinated with specialist allies when needed.",
+      "Orientation on tax residency and cross-border reporting for foreigners and companies in Colombia. When the matter needs a full tax specialist, we say so and coordinate the handoff.",
     services: [
       "Tax residency orientation",
       "Cross-border income and reporting overview",
       "Corporate tax setup coordination",
       "Real estate transaction tax checkpoints",
-      "Referrals to allied tax specialists",
+      "Referral to tax specialists when needed",
     ],
   },
 ];
@@ -171,9 +171,9 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "migracion",
     title: "Derecho migratorio",
     shortTitle: "Migración",
-    blurb: "Visas, permanencia, nacionalidad y extranjería para clientes internacionales.",
+    blurb: "Qué visa necesitas, cuánto puedes quedarte y qué pasa cuando se acaba el sello.",
     intro:
-      "Orientación clara sobre visas colombianas, regulación migratoria, nacionalidad y cumplimiento de permanencia — desde el primer ingreso hasta la residencia de largo plazo.",
+      "Visas colombianas, regulación migratoria, nacionalidad y reglas de permanencia — desde el primer ingreso hasta la residencia de largo plazo, con el papeleo que Migración Colombia pide de verdad.",
     services: [
       "Estrategia y acompañamiento en visas (V, M, R)",
       "Regulación migratoria y revisión de sobreestadía",
@@ -188,9 +188,9 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "laboral",
     title: "Derecho laboral",
     shortTitle: "Laboral",
-    blurb: "Contratos laborales, cumplimiento de RR. HH. y conflictos en el trabajo.",
+    blurb: "Contratación, contratos, terminaciones y los riesgos laborales que el extranjero suele pasar por alto.",
     intro:
-      "Asesoría práctica para empleadores y profesionales en contratación, terminaciones y cumplimiento laboral en Colombia.",
+      "Asesoría para empleadores y profesionales en contratación, contratos, terminaciones y cumplimiento laboral en Colombia — incluida la documentación cuando el trabajador es extranjero.",
     services: [
       "Contratos laborales y paquetes de ingreso",
       "Políticas de RR. HH. y revisiones de cumplimiento",
@@ -205,15 +205,15 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "inmobiliario",
     title: "Derecho inmobiliario",
     shortTitle: "Inmobiliario",
-    blurb: "Compraventa, arrendamientos y propiedad horizontal en Colombia.",
+    blurb: "Comprar, vender o arrendar — con debida diligencia que aguante un cierre en derecho continental.",
     intro:
-      "Acompañamiento en compraventa y arrendamiento de inmuebles en Colombia, con debida diligencia clara y coordinación del cierre.",
+      "Acompañamiento en compraventa y arrendamiento: títulos, contratos, propiedad horizontal y cierre. El escrow no es la regla aquí; explicamos qué garantiza el negocio de verdad.",
     services: [
       "Debida diligencia en compraventa",
       "Redacción y revisión de arrendamientos",
       "Orientación en propiedad horizontal",
       "Coordinación de títulos y registro",
-      "Apoyo en depósito y cierre",
+      "Apoyo en cierre y mecánicas de pago",
     ],
   },
   {
@@ -222,9 +222,9 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "familia",
     title: "Derecho de familia",
     shortTitle: "Familia",
-    blurb: "Matrimonio, divorcio, custodia y asuntos familiares transfronterizos.",
+    blurb: "Matrimonio, divorcio y custodia cuando un pie sigue en otro país.",
     intro:
-      "Orientación bilingüe y cuidadosa en asuntos de familia que suelen cruzarse con migración y planeación patrimonial.",
+      "Orientación bilingüe en asuntos de familia que suelen cruzarse con visas, registro civil y planeación patrimonial — sin pretender que todos los casos sean iguales.",
     services: [
       "Matrimonio y capitulaciones",
       "Estrategia de divorcio y separación",
@@ -239,13 +239,13 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "corporativo",
     title: "Derecho corporativo",
     shortTitle: "Corporativo",
-    blurb: "Constitución de sociedades, contratos y acompañamiento empresarial.",
+    blurb: "Constituir, contratar y mantener la sociedad en regla.",
     intro:
-      "Ayudamos a fundadores e inversionistas internacionales a constituir y operar compañías en Colombia con higiene societaria clara.",
+      "Ayudamos a fundadores e inversionistas internacionales a constituir y operar compañías en Colombia: estatutos, acuerdos de socios y el housekeeping que Cámara de Comercio espera de verdad.",
     services: [
       "Constitución de sociedades y estatutos",
       "Contratos societarios y mercantiles",
-      "Gobierno corporativo y housekeeping",
+      "Gobierno societario y radicaciones",
       "Orientación en registro de inversión extranjera",
       "Acompañamiento jurídico continuo",
     ],
@@ -256,15 +256,15 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEs: "impuestos",
     title: "Impuestos",
     shortTitle: "Impuestos",
-    blurb: "Orientación tributaria internacional para personas y empresas en Colombia.",
+    blurb: "Residencia fiscal y orientación transfronteriza — y el especialista correcto cuando los números se profundizan.",
     intro:
-      "Orientación tributaria de alto nivel para extranjeros y empresas en Colombia — coordinada con aliados especialistas cuando haga falta.",
+      "Orientación sobre residencia fiscal y reportes transfronterizos para extranjeros y empresas en Colombia. Cuando el asunto pide un especialista tributario de tiempo completo, lo decimos y coordinamos el traspaso.",
     services: [
       "Orientación sobre residencia fiscal",
       "Panorama de ingresos y reportes transfronterizos",
       "Coordinación de setup tributario societario",
       "Puntos de control fiscal en inmuebles",
-      "Remisiones a especialistas tributarios aliados",
+      "Remisión a especialistas tributarios cuando haga falta",
     ],
   },
 ];
@@ -272,18 +272,18 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
 export const servicesHubContent: Record<ServicesLocale, ServicesHubContent> = {
   en: {
     eyebrow: "Services",
-    title: "Legal services for international clients in Colombia.",
+    title: "What we handle for international clients in Colombia.",
     intro:
-      "Six practice areas under one bilingual team — clear scope, structured engagement, and counsel that is easy to act on.",
+      "Six practice areas. Same method every time: consultation, written Concepto Jurídico, then a scoped plan you can act on.",
     areasLabel: "Practice areas",
     bookCta: "Book a consultation",
     learnMore: "Learn more",
   },
   es: {
     eyebrow: "Servicios",
-    title: "Servicios legales para clientes internacionales en Colombia.",
+    title: "Qué atendemos para clientes internacionales en Colombia.",
     intro:
-      "Seis áreas de práctica bajo un equipo bilingüe — alcance claro, encargo estructurado y asesoría fácil de ejecutar.",
+      "Seis áreas de práctica. El mismo método siempre: consulta, concepto jurídico escrito y un plan acotado que puedas ejecutar.",
     areasLabel: "Áreas de práctica",
     bookCta: "Agendar consulta",
     learnMore: "Ver más",

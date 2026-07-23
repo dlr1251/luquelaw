@@ -31,7 +31,7 @@ export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
     {
       label: "Workspace",
       items: [
-        { href: "/portal/lucy", label: "Lucy", icon: "sparkles" },
+        { href: "/portal/lucy", label: "Torny", icon: "sparkles" },
         { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
         { href: "/portal", label: "Home", icon: "layout-dashboard" },
       ],
@@ -92,7 +92,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "App",
     items: [
-      { href: "/portal/lucy", label: "Lucy", icon: "sparkles" },
+      { href: "/portal/lucy", label: "Torny", icon: "sparkles" },
       { href: "/portal", label: "Portal", icon: "layout-dashboard" },
       { href: "/", label: "Public site", icon: "home", external: true },
     ],
@@ -110,7 +110,7 @@ export type DashboardPageMeta = {
 export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/portal/lucy")) {
     return {
-      title: "Lucy",
+      title: "Torny",
       description: "AI immigration consultations",
     };
   }
@@ -122,19 +122,19 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
   }
   if (pathname.startsWith("/portal/chat")) {
     return {
-      title: "Lucy",
+      title: "Torny",
       description: "AI immigration consultations",
     };
   }
   return {
     title: "Home",
-    description: "Your workspace for Lucy, tickets, and CLKR",
+    description: "Your workspace for Torny, tickets, and CLKR",
   };
 }
 
 export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/tickets")) {
-    return { title: "Tickets & reviews", description: "Queue and Lucy consultation reviews" };
+    return { title: "Tickets & reviews", description: "Queue and Torny consultation reviews" };
   }
   if (pathname.startsWith("/admin/comments")) {
     return { title: "Comments", description: "Norm discussion moderation" };

@@ -37,7 +37,7 @@ export async function sendLucyEscalateEmail(
       : "(no files)";
 
   const html = `
-    <h2>Lucy consultation escalated</h2>
+    <h2>Torny consultation escalated</h2>
     <p><strong>Ticket:</strong> ${escapeHtml(payload.ticketId)}</p>
     <p><strong>Client:</strong> ${escapeHtml(payload.userEmail)}</p>
     <p><strong>Project:</strong> ${escapeHtml(payload.projectTitle)}</p>
@@ -58,7 +58,7 @@ export async function sendLucyEscalateEmail(
   const result = await resend.emails.send({
     from,
     to,
-    subject: `[Lucy] Review requested — ${payload.subject.slice(0, 80)}`,
+    subject: `[Torny] Review requested — ${payload.subject.slice(0, 80)}`,
     html,
     replyTo: payload.userEmail,
   });

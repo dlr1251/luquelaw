@@ -79,7 +79,7 @@ export function HomePage({ locale }: Props) {
         </Container>
       </section>
 
-      {/* Work with me */}
+      {/* Work with us */}
       <section className="bg-surface">
         <Container className="marketing-section">
           <div className="space-y-5">

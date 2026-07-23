@@ -69,7 +69,7 @@ export default async function LucyProjectPage({
         <Card>
           <CardHeader>
             <CardTitle>Chats</CardTitle>
-            <CardDescription>Conversations with Lucy in this project.</CardDescription>
+            <CardDescription>Conversations with Torny in this project.</CardDescription>
           </CardHeader>
           <CardContent className="space-y-3">
             <form action={createLucyChat}>
