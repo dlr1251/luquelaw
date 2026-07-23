@@ -121,7 +121,7 @@ export default async function LucyChatPage({
         <CardHeader>
           <CardTitle>{chat.title}</CardTitle>
           <CardDescription>
-            Lucy · Immigration · not legal advice until lawyer unlock
+            Torny · Immigration · not legal advice until lawyer unlock
           </CardDescription>
         </CardHeader>
         <CardContent>

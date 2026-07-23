@@ -40,7 +40,7 @@ export default async function ClkrAgentsPage() {
         title="Agents, skills & prompts"
         subtitle="Copy prompts into your AI tools. Always verify outputs against primary sources."
         contactCta="Need a guided consultation?"
-        contactLink="Meet Lucy"
+        contactLink="Meet Torny"
         contactHref="/portal/lucy"
       />
       <Container className="py-12 sm:py-14">

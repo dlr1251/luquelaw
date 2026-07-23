@@ -96,7 +96,7 @@ export function LucyChatClient({
       <div className="flex-1 space-y-3 overflow-y-auto rounded-lg border bg-muted/20 p-3">
         {messages.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            Ask Lucy about Colombian immigration. Upload files in the sidebar, tune personality
+            Ask Torny about Colombian immigration. Upload files in the sidebar, tune personality
             dials, and escalate for lawyer review when ready.
           </p>
         ) : (
@@ -122,12 +122,12 @@ export function LucyChatClient({
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={3}
-          placeholder="Ask Lucy…"
+          placeholder="Ask Torny…"
           className="w-full rounded border px-3 py-2 text-sm"
           disabled={busy}
         />
         <button type="submit" className="btn-primary" disabled={busy || !input.trim()}>
-          {busy ? "Lucy is thinking…" : "Send"}
+          {busy ? "Torny is thinking…" : "Send"}
         </button>
       </form>
     </div>

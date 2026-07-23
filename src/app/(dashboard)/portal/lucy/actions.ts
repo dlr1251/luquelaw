@@ -215,9 +215,9 @@ export async function escalateLucyChat(formData: FormData) {
   const aiSummary =
     note ||
     lastAssistant?.content.slice(0, 2000) ||
-    "Client requested lawyer review of this Lucy conversation.";
+    "Client requested lawyer review of this Torny conversation.";
 
-  const subject = `Lucy review: ${chat.title}`.slice(0, 200);
+  const subject = `Torny review: ${chat.title}`.slice(0, 200);
 
   const { data: ticket, error } = await supabase
     .from("tickets")

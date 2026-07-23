@@ -65,8 +65,8 @@ export async function POST(request: Request) {
           currency: "usd",
           unit_amount: pack.amountCents,
           product_data: {
-            name: `Lucy credits — ${pack.label}`,
-            description: "Prepaid wallet credit for Lucy legal consultations",
+            name: `Torny credits — ${pack.label}`,
+            description: "Prepaid wallet credit for Torny legal consultations",
           },
         },
       },

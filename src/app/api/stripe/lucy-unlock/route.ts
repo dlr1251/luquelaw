@@ -79,7 +79,7 @@ export async function POST(request: Request) {
           currency: "usd",
           unit_amount: feeCents,
           product_data: {
-            name: "Lucy lawyer review — unlock",
+            name: "Torny lawyer review — unlock",
             description: ticket.subject.slice(0, 200),
           },
         },

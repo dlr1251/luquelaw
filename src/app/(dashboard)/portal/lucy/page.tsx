@@ -32,7 +32,7 @@ export default async function LucyProjectsPage({
   return (
     <div className="mx-auto w-full max-w-4xl space-y-6">
       <div>
-        <h1 className="font-serif text-2xl text-[var(--forest)]">Lucy</h1>
+        <h1 className="font-serif text-2xl text-[var(--forest)]">Torny</h1>
         <p className="text-sm text-muted-foreground">
           AI immigration consultations — projects, files, and lawyer review unlock.
         </p>
@@ -40,7 +40,7 @@ export default async function LucyProjectsPage({
 
       {sp.topup === "success" ? (
         <p className="rounded border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-900">
-          Credits added. You can chat with Lucy now.
+          Credits added. You can chat with Torny now.
         </p>
       ) : null}
       {sp.error ? <p className="text-sm text-red-700">{sp.error}</p> : null}
@@ -49,7 +49,7 @@ export default async function LucyProjectsPage({
         <CardHeader>
           <CardTitle>New project</CardTitle>
           <CardDescription>
-            Each project holds chats and files for a matter. Lucy stays in Immigration for now.
+            Each project holds chats and files for a matter. Torny stays in Immigration for now.
           </CardDescription>
         </CardHeader>
         <CardContent>
