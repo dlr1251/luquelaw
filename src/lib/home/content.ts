@@ -51,46 +51,46 @@ export type HomeContent = {
 };
 
 const heroIntroEn =
-  "Clear, bilingual guidance on visas, property, and business in Colombia.";
+  "Visas, property, and business in Colombia — explained in plain language, in English or Spanish.";
 
 const heroIntroEs =
-  "Orientación clara y bilingüe sobre visas, propiedad y negocios en Colombia.";
+  "Visas, propiedad y negocios en Colombia: en lenguaje claro, en español o en inglés.";
 
 const practiceAreasEn = [
   {
     icon: "immigration" as const,
     title: "Immigration Law",
-    detail: "Permits, Visas, Citizenship.",
+    detail: "Visa strategy, stay compliance, nationality.",
     href: "/services/immigration",
   },
   {
     icon: "labour" as const,
     title: "Labour Law",
-    detail: "Contracts, HR compliance, workplace disputes.",
+    detail: "Hiring, contracts, terminations, HR risk.",
     href: "/services/labour-law",
   },
   {
     icon: "realEstate" as const,
     title: "Real Estate",
-    detail: "Purchase and Sales, Rents, HOA",
+    detail: "Purchase, sale, leases, propiedad horizontal.",
     href: "/services/real-estate",
   },
   {
     icon: "family" as const,
     title: "Family Law",
-    detail: "Marriage, divorce, custody.",
+    detail: "Marriage, divorce, custody across borders.",
     href: "/services/family-law",
   },
   {
     icon: "corporate" as const,
     title: "Corporate",
-    detail: "Incorporation, contracts, governance.",
+    detail: "Company setup, contracts, governance.",
     href: "/services/corporate-law",
   },
   {
     icon: "taxes" as const,
     title: "Taxes",
-    detail: "International tax orientation.",
+    detail: "Tax residency and cross-border orientation.",
     href: "/services/taxes",
   },
 ];
@@ -99,13 +99,13 @@ const practiceAreasEs = [
   {
     icon: "immigration" as const,
     title: "Derecho migratorio",
-    detail: "Permisos, visas, nacionalidad.",
+    detail: "Estrategia de visa, permanencia, nacionalidad.",
     href: "/es/servicios/migracion",
   },
   {
     icon: "labour" as const,
     title: "Derecho laboral",
-    detail: "Contratos, RR. HH., conflictos laborales.",
+    detail: "Contratación, contratos, terminaciones, riesgo laboral.",
     href: "/es/servicios/laboral",
   },
   {
@@ -117,7 +117,7 @@ const practiceAreasEs = [
   {
     icon: "family" as const,
     title: "Familia",
-    detail: "Matrimonio, divorcio, custodia.",
+    detail: "Matrimonio, divorcio, custodia transfronteriza.",
     href: "/es/servicios/familia",
   },
   {
@@ -129,7 +129,7 @@ const practiceAreasEs = [
   {
     icon: "taxes" as const,
     title: "Impuestos",
-    detail: "Orientación tributaria internacional.",
+    detail: "Residencia fiscal y orientación transfronteriza.",
     href: "/es/servicios/impuestos",
   },
 ];
@@ -137,52 +137,52 @@ const practiceAreasEs = [
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     eyebrow: "Immigration · Real Estate · Corporate",
-    title: "Legal Counsel for international clients in Colombia.",
+    title: "Colombian law for international clients — without the fog.",
     intro: heroIntroEn,
     bookCta: "Book a consultation",
     clkrCta: "Explore CLKR",
     clkrHref: "/clkr",
     whatsappHref:
-      "https://wa.me/573006791123?text=Hi%20Daniel%2C%20I%20was%20just%20visiting%20your%20website%20and%20want%20to%20ask%20you%20something...",
+      "https://wa.me/573006791123?text=Hi%20Luque%20Law%2C%20I%20was%20visiting%20your%20website%20and%20have%20a%20question...",
     practiceAreasLabel: "Practice areas",
     practiceAreas: practiceAreasEn,
-    credentialsLine: "Daniel Luque Restrepo · attorney · Medellín, Colombia",
+    credentialsLine: "Luque Law · Medellín, Colombia",
     process: {
       label: "Process",
       title: "How it works",
-      body: "Every engagement starts with a structured consultation, followed by a written legal concept and a clear workplan — so you know exactly what you need before committing.",
+      body: "You get a clear question, a written answer, and a price — before you commit to ongoing work.",
       engagementLabel: "Engagement model",
       steps: [
         {
           icon: "chat",
           title: "Initial consultation",
-          body: "1 hour to map the facts, identify risks, and define the legal question.",
+          body: "45 minutes to map the facts, name the risks, and define the legal question.",
         },
         {
           icon: "doc",
           title: "Written concept + quotation",
-          body: "You receive a written legal concept (Concepto Jurídico) and a formal quotation within 3 business days.",
+          body: "A written legal concept (Concepto Jurídico) and a formal quotation within 3 business days.",
         },
         {
           icon: "plan",
-          title: "Workplan execution (or retainer)",
-          body: "Proceed with a scoped workplan, or switch to an hourly retainer for ongoing matters.",
+          title: "Workplan (or retainer)",
+          body: "A scoped workplan — or an hourly retainer if the matter keeps running.",
         },
       ],
       footer: "Deliverables within 3 business days after the consultation.",
     },
     about: {
-      title: "Counsel built for international clients operating in Colombia.",
+      title: "We work where two legal cultures meet.",
       body: danielBioEn,
     },
     workWithMe: {
-      label: "Work with me",
+      label: "Work with us",
       title: "How it works",
-      body: "Every engagement starts with a structured consultation, followed by a written legal concept and a clear workplan — so you know exactly what you need before committing.",
+      body: "You get a clear question, a written answer, and a price — before you commit to ongoing work.",
     },
     contactForm: {
       title: "Send a message",
-      subtitle: "I'll respond as soon as possible. For urgent matters, use WhatsApp below.",
+      subtitle: "We’ll get back to you as soon as we can. For urgent matters, use WhatsApp below.",
     },
     booking: {
       buttonLabel: "45-minute initial consultation",
@@ -190,52 +190,52 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   },
   es: {
     eyebrow: "Inmigración · Inmobiliario · Corporativo",
-    title: "Asesoría legal para clientes internacionales en Colombia.",
+    title: "Derecho colombiano para clientes internacionales — sin la niebla.",
     intro: heroIntroEs,
     bookCta: "Agendar consulta",
     clkrCta: "Explorar CLKR",
     clkrHref: "/es/clkr",
     whatsappHref:
-      "https://wa.me/573006791123?text=Hola%20Daniel%2C%20acabo%20de%20visitar%20tu%20sitio%20web%20y%20quiero%20preguntarte%20algo...",
+      "https://wa.me/573006791123?text=Hola%20Luque%20Law%2C%20estuve%20en%20su%20sitio%20web%20y%20tengo%20una%20pregunta...",
     practiceAreasLabel: "Áreas de práctica",
     practiceAreas: practiceAreasEs,
-    credentialsLine: "Daniel Luque Restrepo · attorney · Medellín, Colombia",
+    credentialsLine: "Luque Law · Medellín, Colombia",
     process: {
       label: "Proceso",
       title: "Cómo funciona",
-      body: "Cada encargo comienza con una consulta estructurada, seguida de un concepto jurídico escrito y un plan de trabajo claro — para que sepas exactamente qué necesitas antes de comprometerte.",
+      body: "Una pregunta clara, una respuesta escrita y un precio — antes de comprometerte con trabajo continuo.",
       engagementLabel: "Modelo de trabajo",
       steps: [
         {
           icon: "chat",
           title: "Consulta inicial",
-          body: "1 hora para ordenar hechos, identificar riesgos y definir la pregunta jurídica.",
+          body: "45 minutos para ordenar hechos, nombrar riesgos y definir la pregunta jurídica.",
         },
         {
           icon: "doc",
           title: "Concepto + cotización",
-          body: "Recibes un concepto jurídico escrito y una cotización formal dentro de 3 días hábiles.",
+          body: "Un concepto jurídico escrito y una cotización formal dentro de 3 días hábiles.",
         },
         {
           icon: "plan",
-          title: "Ejecución (o retainer)",
-          body: "Avanzamos con un plan acotado, o pasamos a retainer por hora para asuntos continuos.",
+          title: "Plan de trabajo (o retainer)",
+          body: "Un plan acotado — o retainer por hora si el asunto sigue abierto.",
         },
       ],
       footer: "Entrega dentro de 3 días hábiles después de la consulta.",
     },
     about: {
-      title: "Asesoría pensada para clientes internacionales en Colombia.",
+      title: "Trabajamos donde se cruzan dos culturas jurídicas.",
       body: danielBioEs,
     },
     workWithMe: {
-      label: "Trabajar conmigo",
+      label: "Trabajar con nosotros",
       title: "Cómo funciona",
-      body: "Cada encargo comienza con una consulta estructurada, seguida de un concepto jurídico escrito y un plan de trabajo claro — para que sepas exactamente qué necesitas antes de comprometerte.",
+      body: "Una pregunta clara, una respuesta escrita y un precio — antes de comprometerte con trabajo continuo.",
     },
     contactForm: {
       title: "Enviar un mensaje",
-      subtitle: "Responderé lo antes posible. Para asuntos urgentes, usa WhatsApp abajo.",
+      subtitle: "Te respondemos lo antes posible. Para asuntos urgentes, usa WhatsApp abajo.",
     },
     booking: {
       buttonLabel: "Consulta inicial de 45 minutos",
