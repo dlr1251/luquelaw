@@ -51,12 +51,12 @@ export function ClkrArticleLayout({
           mobileContents: "Tabla de contenido",
           related: "Otros artículos",
           read: "Leer artículo",
-          ctaTitle: "¿Tienes una consulta puntual?",
+          ctaTitle: "¿Consulta sobre hechos concretos?",
           ctaBody:
-            "Escríbeme con los hechos de tu caso. Recibirás un concepto jurídico escrito y una cotización dentro de 3 días hábiles tras la consulta inicial.",
-          contact: "Contactar →",
+            "Escríbenos con los hechos. Tras la consulta inicial, recibes un concepto jurídico escrito y una cotización dentro de 3 días hábiles.",
+          contact: "Escríbenos →",
           disclaimer:
-            "Solo fines informativos. La ley colombiana cambia; confirma siempre las reglas vigentes para tu caso.",
+            "Solo informativo. La ley colombiana cambia; confirma las reglas vigentes para tu caso.",
         }
       : {
           home: "Home",
@@ -66,12 +66,12 @@ export function ClkrArticleLayout({
           mobileContents: "Table of contents",
           related: "More articles",
           read: "Read article",
-          ctaTitle: "Have a fact-specific question?",
+          ctaTitle: "A question about your facts?",
           ctaBody:
-            "Send me the facts of your case. After an initial consultation, you'll receive a written legal concept and a quotation within 3 business days.",
+            "Write us with the facts. After the initial consultation, you get a written legal concept (Concepto Jurídico) and a quotation within 3 business days.",
           contact: "Get in touch →",
           disclaimer:
-            "For informational purposes only. Colombian law changes; always confirm current rules for your case.",
+            "Informational only. Colombian law changes; confirm the current rules for your case.",
         };
 
   const related = relatedArticles;

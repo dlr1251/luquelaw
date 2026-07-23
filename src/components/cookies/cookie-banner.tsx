@@ -16,13 +16,13 @@ export function CookieBanner() {
   const privacyHref = isSpanish ? "/es/privacidad" : "/privacy";
   const copy = isSpanish
     ? {
-        body: "Usamos cookies esenciales para que el sitio funcione, y opcionales de analítica para mejorar la experiencia.",
+        body: "Usamos cookies esenciales para que el sitio funcione, y opcionales de analítica para entender qué páginas ayudan.",
         privacy: "Política de datos",
         accept: "Aceptar",
         essential: "Solo esenciales",
       }
     : {
-        body: "We use essential cookies to run the site, and optional analytics cookies to improve the experience.",
+        body: "We use essential cookies to run the site, and optional analytics cookies to see which pages help.",
         privacy: "Privacy policy",
         accept: "Accept",
         essential: "Essential only",

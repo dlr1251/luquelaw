@@ -87,40 +87,40 @@ export const clkrHubContent = {
     eyebrow: "CLKR · Articles",
     title: "Legal articles",
     subtitle:
-      "In-depth articles on Colombian law for international clients—written to be practical, cited, and easy to navigate. Not legal advice; every case is different.",
+      "Articles on Colombian law for international clients — practical, cited, and easy to navigate. Not legal advice; every case still turns on its facts.",
     howItWorksTitle: "How to use this library",
     howItWorks: [
       "Start with the topic closest to your situation (immigration, property, etc.).",
       "Use the table of contents inside each article to jump to sections.",
-      "When your facts are specific, book a consultation for a written legal concept tailored to you.",
+      "When your facts are specific, book a consultation for a written legal concept (Concepto Jurídico).",
     ],
     articleCountLabel: "Articles",
     categoryLabel: "Topics covered",
     browseTitle: "All articles",
-    browseSubtitle: "Search and filter by topic. New articles are added over time.",
+    browseSubtitle: "Search and filter by topic.",
     contactCta: "Questions about your situation?",
     contactLink: "Get in touch",
     disclaimer:
-      "For informational purposes only. Colombian law changes; always confirm current rules for your case.",
+      "Informational only. Colombian law changes; confirm the current rules for your case.",
   },
   es: {
     eyebrow: "CLKR · Artículos",
     title: "Artículos jurídicos",
     subtitle:
-      "Artículos sobre derecho colombiano para clientes internacionales—prácticos, con fuentes y fáciles de navegar. No constituye asesoría jurídica; cada caso es único.",
+      "Artículos sobre derecho colombiano para clientes internacionales — prácticos, con fuentes y fáciles de navegar. No es asesoría jurídica; cada caso sigue dependiendo de sus hechos.",
     howItWorksTitle: "Cómo usar esta biblioteca",
     howItWorks: [
       "Empieza por el tema más cercano a tu situación (migratorio, inmuebles, etc.).",
       "Usa la tabla de contenidos dentro de cada artículo para saltar a secciones.",
-      "Si tus hechos son específicos, agenda una consulta para un concepto jurídico a tu medida.",
+      "Si tus hechos son específicos, agenda una consulta para un concepto jurídico escrito.",
     ],
     articleCountLabel: "Artículos",
     categoryLabel: "Temas disponibles",
     browseTitle: "Todos los artículos",
-    browseSubtitle: "Busca y filtra por tema. Se irán sumando nuevos artículos.",
+    browseSubtitle: "Busca y filtra por tema.",
     contactCta: "¿Preguntas sobre tu caso?",
     contactLink: "Escríbenos",
     disclaimer:
-      "Solo fines informativos. La ley colombiana cambia; confirma siempre las reglas vigentes para tu caso.",
+      "Solo informativo. La ley colombiana cambia; confirma las reglas vigentes para tu caso.",
   },
 } as const;
