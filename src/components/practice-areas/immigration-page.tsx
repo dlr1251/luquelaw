@@ -94,6 +94,7 @@ export function ImmigrationPage({ locale, signedIn = false }: Props) {
                 label={c.processLabel}
                 steps={c.processSteps}
                 footer={c.processFooter}
+                ctaLabel={c.bookCta}
               />
             </div>
           </Container>

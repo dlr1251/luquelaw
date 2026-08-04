@@ -137,7 +137,7 @@ const practiceAreasEs = [
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     eyebrow: "Immigration · Real Estate · Corporate",
-    title: "Colombian law for international clients — without the fog.",
+    title: "Colombian law for international clients.",
     intro: heroIntroEn,
     bookCta: "Book a consultation",
     clkrCta: "Explore CLKR",
@@ -190,7 +190,7 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
   },
   es: {
     eyebrow: "Inmigración · Inmobiliario · Corporativo",
-    title: "Derecho colombiano para clientes internacionales — sin la niebla.",
+    title: "Derecho colombiano para clientes internacionales.",
     intro: heroIntroEs,
     bookCta: "Agendar consulta",
     clkrCta: "Explorar CLKR",

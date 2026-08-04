@@ -1,5 +1,6 @@
 "use client";
 
+import { useBookingModal } from "@/components/booking/BookingProvider";
 import { cn } from "@/lib/cn";
 import { ClipboardList, FileText, MessageSquareText } from "lucide-react";
 
@@ -13,6 +14,7 @@ type Props = {
   label: string;
   steps: [Step, Step, Step];
   footer: string;
+  ctaLabel?: string;
   className?: string;
 };
 
@@ -23,7 +25,9 @@ function Icon({ name }: { name: Step["icon"] }) {
   return <ClipboardList {...props} />;
 }
 
-export function EngagementModel({ label, steps, footer, className }: Props) {
+export function EngagementModel({ label, steps, footer, ctaLabel, className }: Props) {
+  const { open: openBooking } = useBookingModal();
+
   return (
     <div
       className={cn(
@@ -60,7 +64,14 @@ export function EngagementModel({ label, steps, footer, className }: Props) {
         ))}
       </ol>
 
-      <div className="text-sm leading-relaxed text-muted-foreground">{footer}</div>
+      <div className="space-y-4">
+        <div className="text-sm leading-relaxed text-muted-foreground">{footer}</div>
+        {ctaLabel ? (
+          <button type="button" onClick={openBooking} className="btn-primary w-full sm:w-auto">
+            {ctaLabel}
+          </button>
+        ) : null}
+      </div>
     </div>
   );
 }

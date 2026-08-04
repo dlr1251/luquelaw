@@ -93,6 +93,7 @@ export function HomePage({ locale }: Props) {
               label={c.process.engagementLabel}
               steps={engagementSteps}
               footer={c.process.footer}
+              ctaLabel={c.bookCta}
             />
           </div>
         </Container>
