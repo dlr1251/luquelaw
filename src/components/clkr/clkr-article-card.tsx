@@ -7,11 +7,18 @@ import type { ClkrArticle } from "@/lib/clkr/articles";
 type Props = {
   article: ClkrArticle;
   readLabel: string;
+  categoryLabel?: string;
   featured?: boolean;
   className?: string;
 };
 
-export function ClkrArticleCard({ article, readLabel, featured = false, className }: Props) {
+export function ClkrArticleCard({
+  article,
+  readLabel,
+  categoryLabel,
+  featured = false,
+  className,
+}: Props) {
   return (
     <Link
       href={article.slug}
@@ -26,7 +33,7 @@ export function ClkrArticleCard({ article, readLabel, featured = false, classNam
           <span className="inline-flex h-8 w-8 items-center justify-center border border-[color:var(--moss)]/35 bg-[color:var(--surface)] text-[color:var(--moss)]">
             <ClkrCategoryIcon category={article.category} />
           </span>
-          {article.category}
+          {categoryLabel ?? article.category}
         </span>
         <span className="shrink-0 font-[family-name:var(--font-ui)] text-[0.6875rem] uppercase tracking-[0.1em] text-muted-foreground">
           {article.readingTime}

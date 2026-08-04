@@ -120,8 +120,9 @@ Next.js App Router
 - [x] Hub reads from DB
 - [x] Study paths and enhanced navigation
 - [x] Article relationships (prerequisites, next steps)
-- [x] Bulk EN+ES generation pipeline (`scripts/clkr-gen`) — 117 topics × 2 locales as **drafts** in `clkr_articles` (review → `npm run clkr:publish-batch` → `npm run index:lucy-rag`)
-- [ ] Lawyer review + publish generated drafts in production
+- [x] Bulk EN+ES generation pipeline (`scripts/clkr-gen`) — 117 topics × 2 locales in `clkr_articles`
+- [x] Publish generated guides + SEO polish (titles/descriptions); Torny RAG reindex after publish
+- [ ] Ongoing lawyer spot-check of published guides (citations / EN–ES norm alignment)
 - [ ] Deprecate `clkr_article_settings` (optional)
 
 ### Phase A — CLKR LegalAI hub + Normas under CLKR
