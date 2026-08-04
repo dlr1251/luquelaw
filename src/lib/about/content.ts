@@ -38,7 +38,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
     eyebrow: "About",
     title: "A Medellín firm for people building a life — or a business — in Colombia.",
     intro:
-      "We are Luque Law: bilingual counsel for international clients who need to understand how this country actually works, not a brochure version of it.",
+      "We are Luque Law: strategic professional counsel — honest and transparent — with humanism, ethics, and our clients' needs first.",
     body: [
       "Colombia is a civil-law country. That matters the day you buy property, sign a lease, hire someone, or file a visa — the documents, the guarantees, and the timelines are not the ones you grew up with. We start by mapping your facts, naming the real legal question, and writing it down so you can decide with your eyes open.",
       "Every matter begins the same way: a 45-minute consultation, then a written legal concept (Concepto Jurídico) and a quotation within three business days. After that, a scoped workplan — or an hourly retainer if the work is ongoing.",
@@ -90,7 +90,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
     eyebrow: "Nosotros",
     title: "Un despacho en Medellín para quien construye una vida — o un negocio — en Colombia.",
     intro:
-      "Somos Luque Law: asesoría bilingüe para clientes internacionales que necesitan entender cómo funciona este país de verdad, no la versión de folleto.",
+      "Somos Luque Law: asesoría estratégica profesional, honesta y transparente, priorizando el humanismo, la ética y las necesidades de nuestros clientes.",
     body: [
       "Colombia es un país de derecho continental. Eso importa el día que compras un inmueble, firmas un arrendamiento, contratas a alguien o presentas una visa: los documentos, las garantías y los plazos no son los que traías de casa. Empezamos por ordenar los hechos, nombrar la pregunta jurídica real y dejarla por escrito para que decidas con los ojos abiertos.",
       "Todo encargo empieza igual: una consulta de 45 minutos y, dentro de tres días hábiles, un concepto jurídico escrito y una cotización. Después, un plan de trabajo acotado — o un retainer por hora si el asunto es continuo.",
