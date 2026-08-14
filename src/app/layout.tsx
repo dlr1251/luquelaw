@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import { Arbutus_Slab, Figtree, Geist, Libre_Baskerville } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { CookieBanner } from "@/components/cookies/cookie-banner";
@@ -72,6 +74,8 @@ export default async function RootLayout({
             <CookieBanner />
           </TooltipProvider>
         </CookieConsentProvider>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
