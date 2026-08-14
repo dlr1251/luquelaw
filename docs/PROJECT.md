@@ -111,93 +111,48 @@ Next.js App Router
 
 ## 4. Phased roadmap
 
-### Phase 1 — CLKR CMS *(done)*
+### Live tracking
 
-- [x] `clkr_articles` table + RLS
-- [x] Seed starter articles
-- [x] Dynamic guide routes
-- [x] Admin CRUD
-- [x] Hub reads from DB
-- [x] Study paths and enhanced navigation
-- [x] Article relationships (prerequisites, next steps)
-- [x] Bulk EN+ES generation pipeline (`scripts/clkr-gen`) — 117 topics × 2 locales in `clkr_articles`
-- [x] Publish generated guides + SEO polish (titles/descriptions); Torny RAG reindex after publish
-- [ ] Ongoing lawyer spot-check of published guides (citations / EN–ES norm alignment)
-- [ ] Deprecate `clkr_article_settings` (optional)
+Open work, priorities, and fine-grained tasks are tracked in the Notion [Website Tasks board](https://app.notion.com/p/8445c0f2649644beae693185c7b3c7a7). This document records **shipped**, **retired**, and **future** phase labels for context — not an active checklist.
 
-### Phase A — CLKR LegalAI hub + Normas under CLKR
+### Shipped phases
 
-- [x] `/clkr` four-module hub
-- [x] Guides at `/clkr/guides`, norms at `/clkr/norms`
-- [x] Redirects from `/norms` and legacy `/clkr/[slug]`
-- [x] Nav: single CLKR link
-- [x] Agents/quizzes placeholder routes → agents shipped; quizzes retired 2026-07
+**Phase 1 — CLKR CMS**  
+DB-backed guides system: 238 published articles (EN+ES), admin editor, study paths, relationships. Ongoing lawyer spot-check of citations and norm alignment happens in Notion.
 
-### Phase B — Profiles + portal shell
+**Phase A — CLKR LegalAI hub + Normas under CLKR**  
+Four-module hub at `/clkr`: Guides, Normas, Agents, Community. Norms moved under CLKR. Legacy redirects in place.
 
-- [x] `profiles` table + signup trigger
-- [x] `/portal` (redirect `/account`)
-- [x] Auth gate for agents routes
-- [x] Login `?next=` return URL, password reset, auth-code-error page
-- [x] Header/footer Pricing + footer Portal respects session
+**Phase B — Profiles + portal shell**  
+`profiles` table, `/portal` shell (redirects `/account`), auth gate, login `?next=` return, password reset.
 
-### Phase C — Stripe subscriptions
+**Phase C — Stripe subscriptions**  
+Plans + subscriptions tables, entitlement helper, checkout + webhook, `/pricing`, multi-plan sync. **Not yet done:** flip to live Stripe keys in Production (tracked in Notion).
 
-- [x] `plans` + `subscriptions` tables
-- [x] Entitlement helper
-- [x] Checkout + webhook + `/pricing`
-- [x] Gate premium modules
-- [x] Profile entitlement columns protected (trigger); `isAppAdmin` uses app_metadata only
-- [x] Checkout `subscription_data.metadata`; webhook fails loud without service role; multi-plan flag sync
-- [x] Seed `plans.stripe_price_id` helper (`STRIPE_PRICE_*` env) + docs for live cutover
-- [x] Align `admin_allowlist` rows with `ADMIN_EMAILS` env (team: Daniel, Alina, Mateo, Camilo)
-- [ ] Flip Stripe to **live** keys + webhook secret in Vercel Production
+**Phase D — Agents / skills / prompts**  
+Tables, admin CMS, gated public UI at `/clkr/agents`. Entitlement: Professional plan.
 
-### Phase D — Agents / skills / prompts
+**Phase F — Annotations, tickets, chatbot**  
+Norm annotations (Professional), tickets + admin queue, norm discussion comments + moderation, firm doctrinal commentaries CMS.
 
-- [x] Tables + admin CMS
-- [x] Gated public UI
+**Phase H — Torny consultas legales (MVP + eve)**  
+Projects / chats / files, wallet (prepaid Stripe packs), Eve runtime (`eve` package + `withEve` / `useEveAgent`), Immigration RAG (pgvector + AI Gateway embeddings, keyword fallback), escalate → pay-to-unlock. **Not yet done:** expand beyond Immigration, exact review fee + client email (tracked in Notion).
 
-### Phase E — Quizzes *(retired 2026-07)*
+**Phase I — Account surface**  
+About page (registration pitch), portal profile settings (`display_name`, `locale`, bio), bookmarks (`user_saves` + `/portal/saved`).
 
-- [x] Tables + attempts (historical; not exposed in app)
-- [x] Product surface removed (routes, CMS, Student plan deactivated)
+**Phase J — Community forum (MVP)**  
+Public Q&A at `/community`, auth to post/vote/comment, reputation, admin moderation + reports.
 
-### Phase F — Annotations, tickets, chatbot
+### Retired phases
 
-- [x] Norm annotations (subscriber)
-- [x] Tickets + admin queue shell
-- [x] Chatbot conversations shell (superseded by Lucy)
-- [x] Norm discussion comments + admin Moderation
-- [x] Firm doctrinal commentaries CMS (`norm_doctrinal_commentaries` + `/admin/commentaries`)
+**Phase E — Quizzes**  
+Tables remain (historical attempts); product surface removed (routes, CMS, Student plan deactivated) 2026-07.
 
-### Phase H — Torny consultas legales *(shipped MVP + eve)*
+### Future phases
 
-- [x] Projects / chats / files + wallet + Stripe top-up
-- [x] Eve package (`eve` + `withEve` + `useEveAgent`) under `agent/`
-- [x] Immigration RAG (norms + guides)
-- [x] Escalate → email → admin draft → pay-to-unlock
-- [x] Discovery CTA on CLKR hub + portal access/wallet status
-- [x] pgvector embeddings RAG (`lucy_knowledge_chunks` + `npm run index:lucy-rag`; keyword fallback)
-- [ ] Expand beyond Immigration
-- [ ] Exact review fee + email to client when review is ready
-
-### Phase I — Account surface *(shipped)*
-
-- [x] About page: free email registration pitch (no spam; Torny prepaid; forum)
-- [x] Portal profile settings (`display_name`, `locale`, short bio)
-- [x] `user_saves` bookmarks for guides/norms + `/portal/saved`
-
-### Phase J — Community forum *(shipped MVP)*
-
-- [x] `/community` + `/es/comunidad` Q&A (ask, answer, comment, vote, accept)
-- [x] Reputation via SECURITY DEFINER RPCs
-- [x] `/admin/community` moderation + reports
-- [x] Disclaimer: peer help, not legal advice
-
-### Phase G — Properties *(future)*
-
-- [ ] `property_listings` + public `/properties`
+**Phase G — Properties**  
+`property_listings` table + public `/properties` route for rental and sale listings. Spec TBD.
 
 ---
 
