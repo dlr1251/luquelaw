@@ -63,6 +63,8 @@ export default async function RootLayout({
         <ThemeScript />
         <CookieConsentProvider>
           <GoogleAnalytics />
+          <Analytics />
+          <SpeedInsights />
           <TooltipProvider>
             <a
               href="#main"
@@ -74,8 +76,6 @@ export default async function RootLayout({
             <CookieBanner />
           </TooltipProvider>
         </CookieConsentProvider>
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
