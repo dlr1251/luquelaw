@@ -8,6 +8,62 @@ import { sendLucyEscalateEmail } from "@/lib/lucy/email";
 import { getLucyReviewFeeCents } from "@/lib/lucy/pricing";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
+/** Open a chat immediately — used after signup so the first screen is Lucy AI. */
+export async function ensureDefaultLucyChat(): Promise<{
+  projectId: string;
+  chatId: string;
+} | null> {
+  const userId = await getSessionUserId();
+  if (!userId || !isSupabaseConfigured()) return null;
+
+  const supabase = await createClient();
+  const { data: project } = await supabase
+    .from("lucy_projects")
+    .select("id")
+    .eq("user_id", userId)
+    .order("updated_at", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  if (project) {
+    const { data: chat } = await supabase
+      .from("lucy_chats")
+      .select("id")
+      .eq("project_id", project.id)
+      .order("updated_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    if (chat?.id) {
+      return { projectId: project.id, chatId: chat.id };
+    }
+    return { projectId: project.id, chatId: "" };
+  }
+
+  const { data: createdProject, error: projectError } = await supabase
+    .from("lucy_projects")
+    .insert({ user_id: userId, title: "My consultation", locale: "en" })
+    .select("id")
+    .single();
+
+  if (projectError || !createdProject) {
+    console.error("ensureDefaultLucyChat project", projectError?.message);
+    return null;
+  }
+
+  const { data: createdChat, error: chatError } = await supabase
+    .from("lucy_chats")
+    .insert({ project_id: createdProject.id, title: "New chat" })
+    .select("id")
+    .single();
+
+  if (chatError || !createdChat) {
+    console.error("ensureDefaultLucyChat chat", chatError?.message);
+    return { projectId: createdProject.id, chatId: "" };
+  }
+
+  return { projectId: createdProject.id, chatId: createdChat.id };
+}
+
 export async function createLucyProject(formData: FormData) {
   const userId = await getSessionUserId();
   if (!userId) redirect("/login");
@@ -69,6 +125,38 @@ export async function createLucyChat(formData: FormData) {
 
   revalidatePath(`/portal/lucy/${projectId}`);
   redirect(`/portal/lucy/${projectId}/${chat.id}`);
+}
+
+export async function renameLucyChat(formData: FormData) {
+  const userId = await getSessionUserId();
+  if (!userId) redirect("/login");
+
+  const chatId = String(formData.get("chat_id") ?? "").trim();
+  const projectId = String(formData.get("project_id") ?? "").trim();
+  const title = String(formData.get("title") ?? "").trim().slice(0, 80) || "New chat";
+  if (!chatId || !projectId) redirect("/portal/lucy");
+
+  const supabase = await createClient();
+  const { data: chat } = await supabase
+    .from("lucy_chats")
+    .select("id, lucy_projects!inner(user_id)")
+    .eq("id", chatId)
+    .maybeSingle();
+
+  const project = chat?.lucy_projects as
+    | { user_id: string }
+    | { user_id: string }[]
+    | null
+    | undefined;
+  const owner = Array.isArray(project) ? project[0]?.user_id : project?.user_id;
+  if (!chat || owner !== userId) redirect("/portal/lucy");
+
+  await supabase
+    .from("lucy_chats")
+    .update({ title, updated_at: new Date().toISOString() })
+    .eq("id", chatId);
+
+  revalidatePath(`/portal/lucy/${projectId}/${chatId}`);
 }
 
 export async function updateLucyChatPersonality(formData: FormData) {
@@ -215,9 +303,9 @@ export async function escalateLucyChat(formData: FormData) {
   const aiSummary =
     note ||
     lastAssistant?.content.slice(0, 2000) ||
-    "Client requested lawyer review of this Torny conversation.";
+    "Client requested lawyer review of this Lucy AI conversation.";
 
-  const subject = `Torny review: ${chat.title}`.slice(0, 200);
+  const subject = `Lucy AI review: ${chat.title}`.slice(0, 200);
 
   const { data: ticket, error } = await supabase
     .from("tickets")

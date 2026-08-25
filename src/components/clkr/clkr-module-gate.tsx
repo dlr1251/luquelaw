@@ -15,7 +15,7 @@ const copy = {
     ctaLogin: "Sign in",
     ctaPricing: "View plans",
     contactCta: "Need a guided consultation?",
-    contactLink: "Meet Torny",
+    contactLink: "Meet Lucy AI",
     disclaimer:
       "Informational tools only. Not legal advice. You remain responsible for professional judgment and verification.",
   },
@@ -26,7 +26,7 @@ const copy = {
     ctaLogin: "Iniciar sesión",
     ctaPricing: "Ver planes",
     contactCta: "¿Consulta guiada?",
-    contactLink: "Conoce a Torny",
+    contactLink: "Conoce a Lucy AI",
     disclaimer:
       "Solo herramientas informativas. No es asesoría jurídica. Tú respondes por el criterio profesional y la verificación.",
   },

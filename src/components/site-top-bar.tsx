@@ -7,6 +7,7 @@ import { useBookingModal } from "@/components/booking/BookingProvider";
 import { Container } from "@/components/container";
 import { localeFromPathname } from "@/lib/locale/paths";
 import { formatCopRate, type FxRates } from "@/lib/markets/fx";
+import { getConsultationPayUrl } from "@/lib/booking/url";
 
 const TZ = "America/Bogota";
 const FX_REFRESH_MS = 60 * 60 * 1000;
@@ -100,12 +101,14 @@ export function SiteTopBar({ rates: initialRates }: Props) {
     locale === "es"
       ? {
           cta: "Agendar consulta",
+          payCta: "Pagar consulta",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",
         }
       : {
           cta: "Book consultation",
+          payCta: "Pay consultation",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",
@@ -178,13 +181,23 @@ export function SiteTopBar({ rates: initialRates }: Props) {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={openBooking}
-          className="shrink-0 whitespace-nowrap border border-hero-foreground/35 bg-transparent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero-foreground transition hover:bg-hero-foreground/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/50"
-        >
-          {copy.cta}
-        </button>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <a
+            href={getConsultationPayUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap border border-hero-accent/75 bg-hero-accent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent/50"
+          >
+            {copy.payCta}
+          </a>
+          <button
+            type="button"
+            onClick={openBooking}
+            className="whitespace-nowrap border border-hero-accent/75 bg-transparent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero-accent transition hover:bg-hero-accent/12 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent/50"
+          >
+            {copy.cta}
+          </button>
+        </div>
       </Container>
     </div>
   );

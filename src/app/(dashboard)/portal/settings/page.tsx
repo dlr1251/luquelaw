@@ -46,7 +46,7 @@ export default async function PortalSettingsPage({
         <CardHeader>
           <CardTitle>Profile</CardTitle>
           <CardDescription>
-            Display name and locale for Torny, saves, and the community forum. Email is managed via
+            Display name and locale for Lucy AI, saves, and the community forum. Email is managed via
             login.
           </CardDescription>
         </CardHeader>

@@ -12,7 +12,7 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 |-------|---------|----------|
 | **Marketing site** | Trust, contact, practice areas, booking | Everyone |
 | **CLKR** | LegalAI hub — norms, guides, agents/skills | Public modules + subscriber modules |
-| **Subscriber portal** | Overview, tickets, **Lucy** consultations, CLKR links | Authenticated (wallet / entitlements via Stripe) |
+| **Portal** | Overview, tickets, **Lucy AI** consultations, CLKR links | Authenticated (wallet / entitlements via Stripe) |
 | **Properties** *(future)* | Promote rental and sale listings | Everyone |
 | **Blog** | Shorter posts (`/posts`) | Public |
 
@@ -69,12 +69,12 @@ Roles are expressed via `profiles` flags (beta) and/or active Stripe `subscripti
 | `professional` | `agents`, `norm_annotations` |
 | `client` | `portal_tickets` |
 
-### Torny *(consultas legales AI-first)*
+### Lucy AI *(consultas legales AI-first)*
 
-Product name in UI: **Torny**. Runtime: Vercel **`eve` package** (`withEve` in `next.config.ts`) + AI Gateway. Authored agent under `agent/` (instructions, tools, channel auth, wallet hook). Portal routes may still use `/portal/lucy` and `lucy_*` tables.
+Product name in UI: **Lucy AI**. Runtime: Vercel **`eve` package** (`withEve` in `next.config.ts`) + AI Gateway. Authored agent under `agent/` (instructions, tools, channel auth, wallet hook). Portal routes use `/portal/lucy` and `lucy_*` tables.
 
-- **Projects** hold chats + files; personality dials per chat; Eve `sessionId` bound on `lucy_chats`.
-- **Wallet:** prepaid USD credits (Stripe packs); usage debited per Eve `step.completed` (user pays tokens; firm recovers via wallet).
+- **Projects** hold chats + files; personality dials per chat; Eve `sessionId` bound on `lucy_chats`. First login opens a chat (no project form).
+- **Wallet:** new accounts receive **USD 10** signup credit; more via prepaid Stripe packs. Usage debited per Eve `step.completed`. Default model `google/gemini-2.5-flash-lite`.
 - **Escalate:** consultation ticket + email to firm (free to submit).
 - **Pay-to-unlock:** after lawyer marks ready, client pays review fee.
 - **Scope v1:** Immigration RAG — pgvector + keyword fallback (norms + guides).
@@ -92,14 +92,14 @@ Lightweight requests to the firm: subject, category, description, thread with ad
 Next.js App Router
 ├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /community, /posts, /pricing
 ├── Gated: /clkr/agents (auth + entitlement)
-├── /login, /portal (Torny, tickets, settings, saved; /account → /portal)
+├── /login, /portal (Lucy AI, tickets, settings, saved; /account → /portal)
 ├── /admin/clkr, /admin/norms, /admin/posts, /admin/commentaries, /admin/comments, /admin/community, /admin/agents, /admin/tickets
 └── Supabase
     ├── Auth + profiles (+ reputation)
     ├── clkr_articles, norms, posts, user_saves
     ├── community_questions/answers/comments/votes/reports
     ├── plans, subscriptions, tickets
-    ├── lucy_* (Torny wallet/projects/chats; Eve session columns)
+    ├── lucy_* (Lucy AI wallet/projects/chats; Eve session columns)
     └── lucy_knowledge_chunks (pgvector RAG)
 ```
 
@@ -174,7 +174,7 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Commentaries | `src/lib/commentaries/*`, `src/components/admin/commentary-editor.tsx`, `/admin/commentaries` |
 | Agents | `src/lib/agents/*`, `src/components/agents/*`, `src/app/.../clkr/agents` |
 | Entitlements | `src/lib/billing/entitlements.ts` |
-| Torny / Eve | `agent/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*`, `eve` + `withEve` |
+| Lucy AI / Eve | `agent/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*`, `eve` + `withEve` |
 | Community | `src/lib/community/*`, `src/components/community/*`, `/community`, `/admin/community` |
 | Saves | `src/lib/saves/*`, `src/components/saves/*`, `/portal/saved` |
 | Portal | `src/app/(dashboard)/portal/` |
@@ -211,11 +211,11 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Article body storage | `sections` JSON with HTML | TOC + admin simplicity |
 | Properties route | `/properties` | User direction |
 | Dates in roadmap | None | Project rhythm TBD |
-| Torny runtime | **`eve` package** + AI Gateway + `withEve` / `useEveAgent`; wallet recovers token cost | User direction 2026-07-23; supersedes AI-SDK-only decision |
-| Torny review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
-| Torny wallet | Prepaid Stripe packs; debit on Eve `step.completed` | Transparent usage; firm does not gift tokens |
-| Torny RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
-| Torny RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
+| Lucy AI runtime | **`eve` package** + AI Gateway + `withEve` / `useEveAgent`; default `google/gemini-2.5-flash-lite` | User direction 2026-08-14 (was Torny + Sonnet) |
+| Lucy AI review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
+| Lucy AI wallet | USD 10 signup credit + prepaid Stripe packs; debit on Eve `step.completed` | First-screen access; firm recovers usage above the gift |
+| Lucy AI RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
+| Lucy AI RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
 | Community forum | Public read; auth to post/vote; `/community` | Peer help + admin moderation |
 
 ---
@@ -234,6 +234,7 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | 2026-07 | Authz hardening (profiles trigger, admin metadata), auth UX (next/reset), billing webhook reliability, portal access status + Lucy CTA on CLKR hub |
 | 2026-07 | Retired Quizzes module + Student plan from product surface |
 | 2026-07-23 | Torny on real `eve` package (`withEve`/`useEveAgent`); About account pitch; profile/saves; community forum |
+| 2026-08-14 | Product name **Lucy AI**; USD 10 signup credit; default model `google/gemini-2.5-flash-lite`; login lands in chat |
 | 2026-07 | Admin team (4) + doctrinal commentaries CMS; norms visual editor; Moderation polish |
 
 ---

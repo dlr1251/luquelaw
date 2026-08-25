@@ -49,3 +49,11 @@ export function isSingleBookingPageConfigured(): boolean {
   const url = readBookingUrl();
   return isBookingConfigured() && !isMultiBookingPageUrl(url);
 }
+
+/** Stripe Payment Link for the 45-min initial consultation (USD 55). */
+export function getConsultationPayUrl(): string {
+  return (
+    process.env.NEXT_PUBLIC_CONSULTATION_PAY_URL?.trim() ||
+    "https://buy.stripe.com/4gw15yaIM3Ri2oE5ko"
+  );
+}

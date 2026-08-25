@@ -5,17 +5,17 @@ export const clkrLegalAiHubContent = {
     eyebrow: "CLKR · LegalAI hub",
     title: "Colombian Legal Knowledge Repository",
     subtitle:
-      "Norms you can navigate, guides you can cite, and Torny for guided immigration questions in the portal. Study tools — not legal advice.",
+      "Norms you can navigate, guides you can cite, and Lucy AI for guided immigration questions in the portal. Study tools — not legal advice.",
     modulesTitle: "Modules",
     modulesSubtitle: "Public libraries first. Agents unlock with a Professional plan.",
     contactCta: "Questions about your situation?",
     contactLink: "Get in touch",
     lucyEyebrow: "AI consultation",
-    lucyTitle: "Meet Torny",
+    lucyTitle: "Meet Lucy AI",
     lucyBody:
       "Guided immigration consultations in the portal — prepaid wallet, cited norms and articles. Escalate to a lawyer when you need a verified answer.",
-    lucyCta: "Open Torny in the portal",
-    lucyCtaShort: "Open Torny",
+    lucyCta: "Open Lucy AI in the portal",
+    lucyCtaShort: "Open Lucy AI",
     lucySignIn: "Sign in to start",
     disclaimer:
       "Informational only. Colombian law changes; confirm the current rules for your case.",
@@ -44,17 +44,17 @@ export const clkrLegalAiHubContent = {
     eyebrow: "CLKR · Hub LegalAI",
     title: "Repositorio de Conocimiento Jurídico Colombiano",
     subtitle:
-      "Normas navegables, guías citables y Torny para preguntas guiadas de migración en el portal. Herramientas de estudio — no asesoría jurídica.",
+      "Normas navegables, guías citables y Lucy AI para preguntas guiadas de migración en el portal. Herramientas de estudio — no asesoría jurídica.",
     modulesTitle: "Módulos",
     modulesSubtitle: "Primero las bibliotecas públicas. Los agentes se desbloquean con el plan Profesional.",
     contactCta: "¿Preguntas sobre tu caso?",
     contactLink: "Escríbenos",
     lucyEyebrow: "Consulta con IA",
-    lucyTitle: "Conoce a Torny",
+    lucyTitle: "Conoce a Lucy AI",
     lucyBody:
       "Consultas guiadas de migración en el portal — wallet prepago, normas y artículos citados. Escala a un abogado cuando necesites una respuesta verificada.",
-    lucyCta: "Abrir Torny en el portal",
-    lucyCtaShort: "Abrir Torny",
+    lucyCta: "Abrir Lucy AI en el portal",
+    lucyCtaShort: "Abrir Lucy AI",
     lucySignIn: "Inicia sesión para empezar",
     disclaimer:
       "Solo informativo. La ley colombiana cambia; confirma las reglas vigentes para tu caso.",

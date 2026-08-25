@@ -26,62 +26,35 @@ export type DashboardNavGroup = {
 };
 
 /** @deprecated Prefer portalNavGroups — kept for any leftover flat consumers */
-export const portalNavItems = (isAdmin: boolean): DashboardNavItem[] =>
-  portalNavGroups(isAdmin).flatMap((g) => g.items);
+export const portalNavItems = (): DashboardNavItem[] =>
+  portalNavGroups().flatMap((g) => g.items);
 
-export const portalNavGroups = (isAdmin: boolean): DashboardNavGroup[] => {
-  const groups: DashboardNavGroup[] = [
-    {
-      label: "Workspace",
-      items: [
-        { href: "/portal/lucy", label: "Torny", icon: "sparkles" },
-        { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
-        { href: "/portal", label: "Home", icon: "layout-dashboard" },
-      ],
-    },
-    {
-      label: "CLKR",
-      items: [
-        { href: "/clkr", label: "Hub", icon: "book-open", external: true },
-        { href: "/clkr/guides", label: "Guides", icon: "file-text", external: true },
-        { href: "/clkr/norms", label: "Norms", icon: "scale", external: true },
-        { href: "/clkr/agents", label: "Agents", icon: "bot", external: true },
-      ],
-    },
-  ];
-
-  if (isAdmin) {
-    groups.push({
-      label: "Admin",
-      items: [
-        { href: "/admin/tickets", label: "Reviews", icon: "ticket" },
-        { href: "/admin/comments", label: "Comments", icon: "message-square" },
-        { href: "/admin/community", label: "Community", icon: "users" },
-        { href: "/admin/clkr", label: "CMS", icon: "file-text" },
-      ],
-    });
-  }
-
-  groups.push({
+export const portalNavGroups = (): DashboardNavGroup[] => [
+  {
+    label: "Workspace",
+    items: [
+      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
+      { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
+      { href: "/portal/saved", label: "Saved", icon: "bookmark" },
+    ],
+  },
+  {
     label: "Account",
     items: [
       { href: "/portal/settings", label: "Settings", icon: "settings" },
-      { href: "/portal/saved", label: "Saved", icon: "bookmark" },
       { href: "/pricing", label: "Plans & billing", icon: "credit-card", external: true },
-      { href: "/", label: "Public site", icon: "home", external: true },
     ],
-  });
-
-  return groups;
-};
+  },
+];
 
 export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "Content",
     items: [
-      { href: "/admin/clkr", label: "Guides", icon: "file-text" },
+      { href: "/admin/clkr", label: "CLKR", icon: "file-text" },
       { href: "/admin/norms", label: "Norms", icon: "scale" },
       { href: "/admin/posts", label: "Blog", icon: "book-open" },
+      { href: "/admin/community", label: "Forum", icon: "users" },
       { href: "/admin/commentaries", label: "Commentaries", icon: "message-square" },
     ],
   },
@@ -94,15 +67,14 @@ export const adminNavGroups: DashboardNavGroup[] = [
     items: [
       { href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" },
       { href: "/admin/comments", label: "Moderation", icon: "message-square" },
-      { href: "/admin/community", label: "Community", icon: "users" },
     ],
   },
   {
     label: "App",
     items: [
-      { href: "/portal/lucy", label: "Torny", icon: "sparkles" },
+      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
       { href: "/portal", label: "Portal", icon: "layout-dashboard" },
-      { href: "/community", label: "Community", icon: "users", external: true },
+      { href: "/community", label: "Public forum", icon: "users", external: true },
       { href: "/", label: "Public site", icon: "home", external: true },
     ],
   },
@@ -119,8 +91,8 @@ export type DashboardPageMeta = {
 export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/portal/lucy")) {
     return {
-      title: "Torny",
-      description: "AI immigration consultations · prepaid usage",
+      title: "Lucy AI",
+      description: "AI immigration consultations · USD 10 to start",
     };
   }
   if (pathname.startsWith("/portal/tickets")) {
@@ -137,25 +109,25 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
   }
   if (pathname.startsWith("/portal/chat")) {
     return {
-      title: "Torny",
-      description: "AI immigration consultations · prepaid usage",
+      title: "Lucy AI",
+      description: "AI immigration consultations · USD 10 to start",
     };
   }
   return {
     title: "Home",
-    description: "Your workspace for Torny, tickets, and CLKR",
+    description: "Your workspace for Lucy AI, tickets, and CLKR",
   };
 }
 
 export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/tickets")) {
-    return { title: "Tickets & reviews", description: "Queue and Torny consultation reviews" };
+    return { title: "Tickets & reviews", description: "Queue and Lucy AI consultation reviews" };
   }
   if (pathname.startsWith("/admin/comments")) {
     return { title: "Moderation", description: "Norm discussion moderation" };
   }
   if (pathname.startsWith("/admin/community")) {
-    return { title: "Community", description: "Forum reports and moderation" };
+    return { title: "Forum", description: "Community questions and reports" };
   }
   if (pathname.startsWith("/admin/commentaries")) {
     return { title: "Commentaries", description: "Firm doctrinal notes on norm sections" };
@@ -170,7 +142,7 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
     return { title: "Blog", description: "Posts CMS" };
   }
   if (pathname.startsWith("/admin/clkr")) {
-    return { title: "Guides", description: "CLKR articles CMS" };
+    return { title: "CLKR", description: "CLKR articles CMS" };
   }
   return { title: "Administration", description: "Site & content CMS" };
 }

@@ -12,7 +12,7 @@ type Body = {
   costCents?: number;
 };
 
-/** Persist a completed Torny turn into lucy_messages (owner-only). */
+/** Persist a completed Lucy AI turn into lucy_messages (owner-only). */
 export async function POST(request: Request) {
   const userId = await getSessionUserId();
   if (!userId) {

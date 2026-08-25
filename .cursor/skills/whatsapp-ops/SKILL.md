@@ -13,7 +13,7 @@ Local Cursor execution of the Notion protocol. Source of truth (blacklist edits,
 
 **Browser:** always use `browser-harness` (read that skill). Attach to **local** Chrome with WA Business already logged in. Do not use cloud browser (needs the firm session).
 
-**Cadence:** prefer **08:00 / 11:00 / 15:00 / 20:00** Colombia — not continuous loops. WhatsApp Web must run on **this Mac** with the firm session (cloud Automation cannot see the inbox).
+**Cadence:** prefer **07:30 / 10:45 / 14:45 / 19:00** Colombia — not continuous loops. WhatsApp Web must run on **this Mac** with the firm session (cloud Automation cannot see the inbox).
 
 IDs, blacklist snapshot, templates, Drive root, and CDP snippets: [reference.md](./reference.md).
 
@@ -24,7 +24,7 @@ IDs, blacklist snapshot, templates, Drive root, and CDP snippets: [reference.md]
 3. Open a chat **once**, finish file/voice/classify/reply/log, then leave.
 4. Batch Notion writes per chat (Update + Pendiente + Review in one burst).
 5. No mega-lists only in agent chat — each future item → Pendiente or Review `Draft pending`.
-6. Never run a tight `/loop` on WhatsApp. If scheduling, at most the four daily windows (08 / 11 / 15 / 20 COT), then stop. Cloud-only runs skip WA and only do email if Gmail is connected.
+6. Never run a tight `/loop` on WhatsApp. If scheduling, at most the four daily windows (07:30 / 10:45 / 14:45 / 19:00 COT), then stop. Cloud-only runs skip WA and only do email if Gmail is connected.
 
 ## Preflight (browser)
 
@@ -58,7 +58,7 @@ For each chat, in order:
    - Page **icon = 📱** (always). Distinct from the Updates DB bell. Email recibido/enviado → ✉️ when that pass exists.
    - Notify Daniel: **do not @mention him in comments** (the agent writes as Daniel; self-mentions never hit Inbox). Use a **Reminder**:
      1. Pendientes that need him → `Due Date` as **datetime** (Colombia) when there is a real deadline; Person = Daniel.
-     2. Digest of the pass → one `<mention-date start="YYYY-MM-DD" startTime="HH:mm" timeZone="America/Bogota"/>` on the pass log (next window 08:00 / 11:00 / 15:00 / 20:00).
+     2. Digest of the pass → one `<mention-date start="YYYY-MM-DD" startTime="HH:mm" timeZone="America/Bogota"/>` on the pass log (next window 07:30 / 10:45 / 14:45 / 19:00).
      3. One-time in Notion: Pendientes DB → property **Due Date** → Remind (e.g. at time of event). After that, filling Due Date is what pings Inbox.
 7. **Reply:**
    - **Send** if safe class (below) **and** user did not require “draft only / OK first”.

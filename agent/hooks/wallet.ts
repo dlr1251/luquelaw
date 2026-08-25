@@ -44,7 +44,7 @@ export default defineHook({
         p_amount_cents: costCents,
         p_ref_type: "eve_step",
         p_ref_id: `${sessionId}:${event.data.turnId}:${event.data.stepIndex}`,
-        p_note: `Torny usage (${tokenIn} in / ${tokenOut} out)`,
+        p_note: `Lucy AI usage (${tokenIn} in / ${tokenOut} out)`,
       });
 
       if (debitErr) {

@@ -28,7 +28,7 @@ export default async function CommunityPage({
           <h1 className="marketing-display text-hero-foreground">Ask the forum</h1>
           <p className="marketing-lead max-w-2xl italic text-hero-muted">
             Peer Q&A on Colombian legal topics. Not legal advice — for firm counsel, book a
-            consultation. Torny remains a prepaid AI consult in the portal.
+            consultation. Lucy AI remains a prepaid AI consult in the portal.
           </p>
         </Container>
       </section>

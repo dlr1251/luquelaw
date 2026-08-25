@@ -22,7 +22,7 @@ export function ProfilePortrait({ className, align = "end", size = "default" }: 
     >
       <div className="relative aspect-square overflow-hidden rounded-full border-2 border-border bg-card shadow-[0_12px_40px_rgba(0,0,0,0.2)] ring-2 ring-hero-foreground/10">
         <Image
-          src="/images/profile.png"
+          src="/images/daniel-luque.png"
           alt="Daniel Luque Restrepo"
           fill
           sizes="(max-width: 640px) 240px, 320px"

@@ -28,7 +28,7 @@ export default async function ComunidadPage({
           <h1 className="marketing-display text-hero-foreground">Pregunta en el foro</h1>
           <p className="marketing-lead max-w-2xl italic text-hero-muted">
             Preguntas y respuestas entre pares sobre temas legales en Colombia. No es asesoría
-            jurídica — para eso, agenda una consulta. Torny sigue siendo la consulta con IA
+            jurídica — para eso, agenda una consulta. Lucy AI sigue siendo la consulta con IA
             prepaga en el portal.
           </p>
         </Container>

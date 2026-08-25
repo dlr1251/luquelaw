@@ -12,7 +12,7 @@ function loginPath(opts?: { error?: string; message?: string; next?: string }) {
   if (opts?.error) params.set("error", opts.error);
   if (opts?.message) params.set("message", opts.message);
   const next = opts?.next ? safeNextPath(opts.next) : null;
-  if (next && next !== "/portal") params.set("next", next);
+  if (next && next !== "/portal/lucy") params.set("next", next);
   const qs = params.toString();
   return qs ? `/login?${qs}` : "/login";
 }

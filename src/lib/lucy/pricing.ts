@@ -18,11 +18,11 @@ export function getLucyMinBalanceCents(): number {
 }
 
 export function getLucyInputCentsPer1k(): number {
-  return Number(process.env.LUCY_INPUT_CENTS_PER_1K ?? "30") || 30;
+  return Number(process.env.LUCY_INPUT_CENTS_PER_1K ?? "1") || 1;
 }
 
 export function getLucyOutputCentsPer1k(): number {
-  return Number(process.env.LUCY_OUTPUT_CENTS_PER_1K ?? "150") || 150;
+  return Number(process.env.LUCY_OUTPUT_CENTS_PER_1K ?? "2") || 2;
 }
 
 /** Default lawyer review unlock fee ($150). */

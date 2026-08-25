@@ -43,12 +43,12 @@ export const PAGE_SEO = {
     en: {
       title: "CLKR — LegalAI hub for Colombian law",
       description:
-        "Norms, practical guides, and Torny — open Colombian legal knowledge you can navigate and cite.",
+        "Norms, practical guides, and Lucy AI — open Colombian legal knowledge you can navigate and cite.",
     },
     es: {
       title: "CLKR — Hub LegalAI de derecho colombiano",
       description:
-        "Normas, guías prácticas y Torny — conocimiento jurídico colombiano abierto, navegable y citable.",
+        "Normas, guías prácticas y Lucy AI — conocimiento jurídico colombiano abierto, navegable y citable.",
     },
   },
   clkrGuides: {

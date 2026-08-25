@@ -1,15 +1,15 @@
-/** Shared Torny wallet pricing (USD cents) for Eve hooks — mirrors src/lib/lucy/pricing. */
+/** Shared Lucy AI wallet pricing (USD cents) for Eve hooks — mirrors src/lib/lucy/pricing. */
 
 export function getMinBalanceCents(): number {
   return Number(process.env.LUCY_MIN_BALANCE_CENTS ?? "5") || 5;
 }
 
 export function getInputCentsPer1k(): number {
-  return Number(process.env.LUCY_INPUT_CENTS_PER_1K ?? "30") || 30;
+  return Number(process.env.LUCY_INPUT_CENTS_PER_1K ?? "1") || 1;
 }
 
 export function getOutputCentsPer1k(): number {
-  return Number(process.env.LUCY_OUTPUT_CENTS_PER_1K ?? "150") || 150;
+  return Number(process.env.LUCY_OUTPUT_CENTS_PER_1K ?? "2") || 2;
 }
 
 export function computeUsageCents(tokenIn: number, tokenOut: number): number {

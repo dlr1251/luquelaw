@@ -1,6 +1,10 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-import { createLucyProject } from "@/app/(dashboard)/portal/lucy/actions";
+import {
+  createLucyProject,
+  ensureDefaultLucyChat,
+} from "@/app/(dashboard)/portal/lucy/actions";
 import {
   Card,
   CardContent,
@@ -9,18 +13,21 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { getSessionUserId } from "@/lib/billing/entitlements";
+import { LUCY_AI_NAME } from "@/lib/lucy/brand";
+import { getLucyBalance } from "@/lib/lucy/wallet";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
-import { redirect } from "next/navigation";
 
 export default async function LucyProjectsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; topup?: string }>;
+  searchParams: Promise<{ error?: string; topup?: string; list?: string }>;
 }) {
   const sp = await searchParams;
   const userId = await getSessionUserId();
   if (!userId) redirect("/login");
   if (!isSupabaseConfigured()) redirect("/login");
+
+  await getLucyBalance(userId);
 
   const supabase = await createClient();
   const { data: projects } = await supabase
@@ -29,18 +36,30 @@ export default async function LucyProjectsPage({
     .eq("user_id", userId)
     .order("updated_at", { ascending: false });
 
+  const showList = sp.list === "1" || Boolean(sp.error) || Boolean(sp.topup);
+  if (!showList) {
+    const open = await ensureDefaultLucyChat();
+    if (open?.chatId) {
+      redirect(`/portal/lucy/${open.projectId}/${open.chatId}`);
+    }
+    if (open?.projectId) {
+      redirect(`/portal/lucy/${open.projectId}`);
+    }
+  }
+
   return (
     <div className="mx-auto w-full max-w-4xl space-y-6">
       <div>
-        <h1 className="font-serif text-2xl text-[var(--forest)]">Torny</h1>
+        <h1 className="font-serif text-2xl text-[var(--forest)]">{LUCY_AI_NAME}</h1>
         <p className="text-sm text-muted-foreground">
-          AI immigration consultations — projects, files, and lawyer review unlock.
+          AI immigration consultations — projects, files, and lawyer review unlock. New accounts
+          start with USD 10.
         </p>
       </div>
 
       {sp.topup === "success" ? (
         <p className="rounded border border-green-200 bg-green-50 px-3 py-2 text-sm text-green-900">
-          Credits added. You can chat with Torny now.
+          Credits added. You can chat with {LUCY_AI_NAME} now.
         </p>
       ) : null}
       {sp.error ? <p className="text-sm text-red-700">{sp.error}</p> : null}
@@ -49,7 +68,8 @@ export default async function LucyProjectsPage({
         <CardHeader>
           <CardTitle>New project</CardTitle>
           <CardDescription>
-            Each project holds chats and files for a matter. Torny stays in Immigration for now.
+            Each project holds chats and files for a matter. {LUCY_AI_NAME} stays in Immigration
+            for now.
           </CardDescription>
         </CardHeader>
         <CardContent>

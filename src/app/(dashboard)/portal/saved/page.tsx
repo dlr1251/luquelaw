@@ -40,7 +40,7 @@ export default async function PortalSavedPage() {
         <CardHeader>
           <CardTitle>Saved</CardTitle>
           <CardDescription>
-            Guides and norms you bookmarked for later. Torny usage still comes from your prepaid
+            Guides and norms you bookmarked for later. Lucy AI usage still comes from your prepaid
             wallet.
           </CardDescription>
         </CardHeader>

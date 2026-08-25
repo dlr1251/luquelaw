@@ -40,7 +40,7 @@ const links = (prefix: string, signedIn: boolean) =>
     {
       href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy"),
       match: () => false,
-      label: { en: "Torny", es: "Torny" },
+      label: { en: "Lucy AI", es: "Lucy AI" },
       icon: Sparkles,
       accent: true,
     },
