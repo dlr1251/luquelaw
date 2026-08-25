@@ -53,41 +53,75 @@ Después del paso 2, añade tu email admin (paso 4 abajo).
 
 **Vercel:** Settings → Environment Variables → mismas variables en **Production** (y Preview si quieres) → **Redeploy**.
 
-### 4. Admin (para editar CLKR en `/admin/clkr`)
+### 4. Admin (para editar CLKR en `/admin`)
 
-Elige **una** opción:
+Equipo actual (allowlist + `ADMIN_EMAILS` alineados):
+
+| Persona | Email |
+|---------|--------|
+| Daniel | `daniel@luquelaw.co` |
+| Alina | `asistente@luquelaw.co` |
+| Mateo | `mateo.abogado1@gmail.com` |
+| Camilo | `camiloauribeg@gmail.com` |
 
 **A — Allowlist (recomendado para RLS)**
 
 ```sql
 insert into public.admin_allowlist (email)
-values ('daniel@luquelaw.co')
+values
+  ('daniel@luquelaw.co'),
+  ('asistente@luquelaw.co'),
+  ('mateo.abogado1@gmail.com'),
+  ('camiloauribeg@gmail.com')
 on conflict (email) do nothing;
 ```
 
 **B — App metadata**
 
-Dashboard → **Authentication → Users** → tu usuario → **App metadata**:
+Dashboard → **Authentication → Users** → usuario → **App metadata**:
 
 ```json
 { "role": "admin" }
 ```
 
-**C — Env local (solo puerta de la app, no RLS)**
+**C — Env (puerta de la app; alinear con A)**
 
-En `.env.local`:
+En `.env.local` y Vercel (Production / Preview / Development):
 
 ```
-ADMIN_EMAILS=daniel@luquelaw.co
+ADMIN_EMAILS=daniel@luquelaw.co,asistente@luquelaw.co,mateo.abogado1@gmail.com,camiloauribeg@gmail.com
 ```
 
-Para que **guardar artículos funcione**, necesitas **A o B** (RLS usa `is_clkr_admin()`).
+Para que **guardar** funcione, necesitas **A o B** (RLS usa `is_clkr_admin()`). Nuevos admins: crear usuario en Auth (invite o Add user) y fijar contraseña (ver §5 y §7).
 
-### 5. Cuenta de login
+CMS: Guides `/admin/clkr`, Norms `/admin/norms`, Blog `/admin/posts`, Commentaries `/admin/commentaries`, Moderation `/admin/comments`.
 
-**Authentication → Users → Add user** (email + password) si aún no tienes cuenta.
+### 5. Cuenta de login (sin depender del email de recovery)
 
-### 6. Verificar
+**Authentication → Users → Add user** (email + password), o sobre un usuario existente: **⋯ → Update user** → set password.
+
+Si el recovery email falla con `email rate limit exceeded`, **no reintentes**: el SMTP built-in de Supabase solo deja ~**2 emails Auth/hora**. Pon la contraseña temporal en el Dashboard y mándala por WhatsApp.
+
+### 6. Auth emails vía Resend (quitar el rate limit de 2/h)
+
+El formulario de contacto ya usa Resend ([RESEND_SETUP.md](./RESEND_SETUP.md)). Auth **no** — sigue en `noreply@mail.app.supabase.io` hasta cablear SMTP custom.
+
+1. Confirma dominio `luquelaw.co` verificado en [Resend → Domains](https://resend.com/domains).
+2. Supabase → **Authentication → Emails → SMTP Settings** (o **Project Settings → Auth → SMTP**):
+   - Enable custom SMTP: **on**
+   - Host: `smtp.resend.com`
+   - Port: `465` (SSL) — o `587` (STARTTLS)
+   - Username: `resend`
+   - Password: tu `RESEND_API_KEY` (`re_…`)
+   - Sender email: `contacto@luquelaw.co` (o el from verificado)
+   - Sender name: `Luque Law`
+3. **Authentication → URL Configuration**:
+   - Site URL: `https://luquelaw.co`
+   - Redirect URLs: `https://luquelaw.co/**` y `http://localhost:3000/**` (solo local)
+4. En Vercel (y `.env.local`): `NEXT_PUBLIC_SITE_URL=https://luquelaw.co` — los links de recovery/signup usan `getSiteUrl()`; sin esto caen a `localhost:3000`.
+5. Prueba **Send password recovery** una vez. Debe salir desde Resend (logs en Resend → Emails), no desde `mail.app.supabase.io`.
+
+### 7. Verificar
 
 En SQL Editor:
 
@@ -119,10 +153,13 @@ npm run dev
 | Guardar artículo falla (RLS) | Email no en allowlist | `admin_allowlist` o `app_metadata.role` |
 | Hub vacío | Migración no aplicada o sin `published` | Ejecutar migraciones; revisar `status` |
 | `/admin` redirige a `/account` | No eres admin en app | `ADMIN_EMAILS` o metadata |
+| `email rate limit exceeded` en recovery | SMTP built-in (~2 Auth emails/h) | Set password en Dashboard **o** cablear Resend SMTP (§6) |
+| Recovery link apunta a `localhost:3000` | Falta `NEXT_PUBLIC_SITE_URL` y/o Site URL en Auth | `https://luquelaw.co` en Vercel + Auth URL config (§6) |
 
 ---
 
 ## Referencia
 
 - Roadmap completo: [docs/PROJECT.md](./PROJECT.md)
+- Resend (contacto + SMTP Auth): [docs/RESEND_SETUP.md](./RESEND_SETUP.md)
 - Migraciones: `supabase/migrations/`

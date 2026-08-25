@@ -37,6 +37,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# eve agent build artifacts
+.eve/
+.output/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
@@ -51,3 +55,8 @@ scripts/.suin-*-chunks/
 scripts/.raw-*.txt
 scripts/.seed-chunks/
 scripts/.chunk-meta.json
+
+scripts/clkr-gen/out/
+scripts/clkr-gen/checkpoint.json
+scripts/clkr-gen/queue.json
+scripts/clkr-gen/*.log

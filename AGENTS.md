@@ -17,15 +17,15 @@ That file is the master project document: product vision, ontology, phased roadm
 ## Conventions
 
 - Match existing design tokens (`--forest`, `--moss`, `--parchment`) and component patterns.
-- **Brand voice:** [VOICE.md](./VOICE.md) — founder-led “we”, concrete claims, Torny (not Lucy) in UI; apply before any copy edit.
+- **Brand voice:** [VOICE.md](./VOICE.md) — founder-led “we”, concrete claims, Lucy AI (not Torny) in UI; apply before any copy edit.
 - RLS on all Supabase tables; admin via `is_clkr_admin()` + `app_metadata.role` / `admin_allowlist`.
 - EN routes at `/`, ES at `/es`. Guide slugs: `/clkr/guides/[slug_key]`. Norms: `/clkr/norms/[slug_key]/...`.
 - Entitlements via `hasEntitlement(userId, feature)` — see `src/lib/billing/entitlements.ts`.
 - Do not commit secrets; use `.env.example` as template.
 
-## Immediate priority
+## Current work
 
-Lucy RAG v2: apply `20260718180139_lucy_knowledge_rag` migration, then `npm run index:lucy-rag` (needs `AI_GATEWAY_API_KEY` + service role). Keep docs/checklists in PROJECT.md in sync.
+Live tasks and priorities are tracked in the Notion [Website Tasks board](https://app.notion.com/p/8445c0f2649644beae693185c7b3c7a7). At the start of each session, read that board to see what's open or in progress. PROJECT.md documents the product spec (vision, architecture, ontology, decisions) — not a task checklist.
 
 ## Working sessions (Notion project hub)
 

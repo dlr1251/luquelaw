@@ -4,6 +4,10 @@ import { createServiceClient, isServiceRoleConfigured } from "@/lib/supabase/ser
 export async function ensureLucyWallet(userId: string): Promise<number> {
   if (!isSupabaseConfigured()) return 0;
   const supabase = await createClient();
+
+  const { data: bonus } = await supabase.rpc("lucy_grant_own_signup_bonus");
+  if (typeof bonus === "number") return bonus;
+
   const { data } = await supabase
     .from("lucy_wallets")
     .select("balance_cents")

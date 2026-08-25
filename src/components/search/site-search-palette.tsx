@@ -58,7 +58,7 @@ export function SiteSearchPalette({ signedIn = false }: Props) {
       ? {
           placeholder: "Buscar normas, artículos, blog, servicios…",
           empty: "Escribe para buscar en el sitio",
-          noResults: "Sin resultados",
+          noResults: "Sin resultados para eso — prueba otra búsqueda",
           loading: "Cargando índice…",
           hint: "↑↓ navegar · ↵ abrir · esc cerrar",
           title: "Buscar",
@@ -66,7 +66,7 @@ export function SiteSearchPalette({ signedIn = false }: Props) {
       : {
           placeholder: "Search norms, articles, blog, services…",
           empty: "Start typing to search the site",
-          noResults: "No results",
+          noResults: "Nothing for that — try another search",
           loading: "Loading index…",
           hint: "↑↓ navigate · ↵ open · esc close",
           title: "Search",

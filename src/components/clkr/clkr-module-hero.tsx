@@ -9,7 +9,7 @@ type Props = {
   subtitle: string;
   contactCta: string;
   contactLink: string;
-  /** Override default #contact link (e.g. Torny). */
+  /** Override default #contact link (e.g. Lucy AI). */
   contactHref?: string;
 };
 

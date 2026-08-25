@@ -152,7 +152,7 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
         </Container>
       </section>
 
-      {/* Torny */}
+      {/* Lucy AI */}
       <section className="relative overflow-hidden bg-[color:var(--surface)]">
         <div
           aria-hidden

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AdminContentFilters } from "@/components/admin/admin-content-filters";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -19,15 +20,36 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getAllArticlesForAdmin } from "@/lib/clkr/get-articles";
+import type { ClkrArticleRecord } from "@/lib/clkr/types";
 import { clkrPublicPath } from "@/lib/clkr/types";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 
-type Search = { error?: string; saved?: string; deleted?: string };
+type Search = {
+  error?: string;
+  saved?: string;
+  deleted?: string;
+  q?: string;
+  status?: string;
+};
 
 function statusVariant(status: string): "default" | "secondary" | "outline" {
   if (status === "published") return "default";
   if (status === "draft") return "secondary";
   return "outline";
+}
+
+function filterArticles(
+  items: ClkrArticleRecord[],
+  q: string,
+  status: string,
+): ClkrArticleRecord[] {
+  const query = q.trim().toLowerCase();
+  return items.filter((row) => {
+    if (status && status !== "all" && row.status !== status) return false;
+    if (!query) return true;
+    const hay = [row.title, row.slug_key, row.category].join(" ").toLowerCase();
+    return hay.includes(query);
+  });
 }
 
 export default async function AdminClkrPage({
@@ -37,8 +59,11 @@ export default async function AdminClkrPage({
 }) {
   const sp = await searchParams;
   const articles = isSupabaseConfigured() ? await getAllArticlesForAdmin() : [];
-  const en = articles.filter((a) => a.locale === "en");
-  const es = articles.filter((a) => a.locale === "es");
+  const q = sp.q ?? "";
+  const status = sp.status ?? "all";
+  const filtered = filterArticles(articles, q, status);
+  const en = filtered.filter((a) => a.locale === "en");
+  const es = filtered.filter((a) => a.locale === "es");
 
   return (
     <div className="mx-auto w-full max-w-5xl space-y-6">
@@ -87,6 +112,8 @@ export default async function AdminClkrPage({
         </Alert>
       ) : null}
 
+      <AdminContentFilters basePath="/admin/clkr" q={q} status={status} />
+
       <AdminArticleTable locale="en" title="English (/clkr)" items={en} />
       <AdminArticleTable locale="es" title="Spanish (/es/clkr)" items={es} />
     </div>
@@ -100,18 +127,20 @@ function AdminArticleTable({
 }: {
   locale: "en" | "es";
   title: string;
-  items: Awaited<ReturnType<typeof getAllArticlesForAdmin>>;
+  items: ClkrArticleRecord[];
 }) {
   return (
     <Card>
       <CardHeader>
         <CardTitle className="text-base">{title}</CardTitle>
-        <CardDescription>{items.length} article{items.length === 1 ? "" : "s"}</CardDescription>
+        <CardDescription>
+          {items.length} article{items.length === 1 ? "" : "s"}
+        </CardDescription>
       </CardHeader>
       <CardContent>
         {items.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            No articles yet.{" "}
+            No articles match.{" "}
             <Link
               href={`/admin/clkr/new?locale=${locale}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"

@@ -74,7 +74,8 @@ export default async function PortalPage({ searchParams }: Props) {
         <CardHeader>
           <CardTitle>Your access</CardTitle>
           <CardDescription>
-            Subscriptions unlock CLKR modules. Torny uses a prepaid wallet (separate from plans).
+            Subscriptions unlock CLKR modules. Lucy AI uses a prepaid wallet (separate from plans).
+            New accounts start with USD 10.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-4 sm:grid-cols-2">
@@ -92,10 +93,10 @@ export default async function PortalPage({ searchParams }: Props) {
             </ButtonLink>
           </div>
           <div className="space-y-1 text-sm">
-            <p className="font-medium text-foreground">Torny wallet</p>
+            <p className="font-medium text-foreground">Lucy AI wallet</p>
             <p className="text-muted-foreground">${balanceUsd} USD available</p>
             <ButtonLink href="/portal/lucy" variant="outline" className="mt-3 justify-start">
-              Open Torny consultations
+              Open Lucy AI
             </ButtonLink>
           </div>
         </CardContent>
@@ -105,31 +106,22 @@ export default async function PortalPage({ searchParams }: Props) {
         <CardHeader>
           <CardTitle>Welcome</CardTitle>
           <CardDescription>
-            Use CLKR for norms, guides, and agents. Client tickets stay separate from case files.
+            Your account: Lucy AI, tickets to the firm, and saved guides or norms. CLKR stays on the
+            public site.
           </CardDescription>
         </CardHeader>
         <CardContent className="grid gap-3 sm:grid-cols-2">
-          <ButtonLink href="/clkr" variant="outline" className="justify-start">
-            CLKR LegalAI hub
-          </ButtonLink>
-          <ButtonLink href="/clkr/guides" variant="outline" className="justify-start">
-            Guides
-          </ButtonLink>
-          <ButtonLink href="/clkr/norms" variant="outline" className="justify-start">
-            Norms
-          </ButtonLink>
-          <ButtonLink
-            href={agents ? "/clkr/agents" : "/pricing"}
-            variant="outline"
-            className="justify-start"
-          >
-            Agents {agents ? "" : "(upgrade)"}
-          </ButtonLink>
           <ButtonLink href="/portal/lucy" variant="outline" className="justify-start">
-            Torny consultations
+            Lucy AI
           </ButtonLink>
           <ButtonLink href="/portal/tickets" variant="outline" className="justify-start">
-            Tickets {tickets ? "" : "(Torny reviews + client)"}
+            Tickets {tickets ? "" : "(Lucy AI reviews + client)"}
+          </ButtonLink>
+          <ButtonLink href="/portal/saved" variant="outline" className="justify-start">
+            Saved
+          </ButtonLink>
+          <ButtonLink href="/portal/settings" variant="outline" className="justify-start">
+            Settings
           </ButtonLink>
           <ButtonLink href="/pricing" variant="outline" className="justify-start">
             Plans & billing

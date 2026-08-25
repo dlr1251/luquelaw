@@ -13,6 +13,10 @@ export type AboutContent = {
   title: string;
   intro: string;
   body: string[];
+  accountLabel: string;
+  accountTitle: string;
+  accountBody: string[];
+  createAccountCta: string;
   teamLabel: string;
   teamTitle: string;
   teamIntro: string;
@@ -32,14 +36,21 @@ export const danielBioEs =
 export const aboutContent: Record<AboutLocale, AboutContent> = {
   en: {
     eyebrow: "About",
-    title: "A Medellín firm for people building a life — or a business — in Colombia.",
+    title: "A Medellín firm for those who want to build a life or a business in Colombia.",
     intro:
-      "We are Luque Law: bilingual counsel for international clients who need to understand how this country actually works, not a brochure version of it.",
+      "We are Luque Law. The craft is strategy; the language, plain. Honest, transparent, with humanism and ethics placed where they matter: in what each client actually needs.",
     body: [
       "Colombia is a civil-law country. That matters the day you buy property, sign a lease, hire someone, or file a visa — the documents, the guarantees, and the timelines are not the ones you grew up with. We start by mapping your facts, naming the real legal question, and writing it down so you can decide with your eyes open.",
       "Every matter begins the same way: a 45-minute consultation, then a written legal concept (Concepto Jurídico) and a quotation within three business days. After that, a scoped workplan — or an hourly retainer if the work is ongoing.",
       "We stay small on purpose. You know who is on your file. You know what comes next. If something is not worth paying for, we say so.",
     ],
+    accountLabel: "Account",
+    accountTitle: "Create a free account with your email",
+    accountBody: [
+      "Registration is free and takes a minute. We use your email to sign you in — not to spam you. We do not add you to a newsletter by default.",
+      "With an account you can edit your profile, save guides and norms for later, ask and answer in the community forum, and use Lucy AI — our immigration consult. New accounts start with USD 10 in credits; you can buy more when that runs out.",
+    ],
+    createAccountCta: "Create account",
     teamLabel: "Team",
     teamTitle: "Who you work with",
     teamIntro:
@@ -51,7 +62,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Daniel Luque Restrepo",
         role: "Attorney · Founder",
-        photoSrc: "/images/profile.png",
+        photoSrc: "/images/daniel-luque.png",
         isFounder: true,
         bio: danielBioEn,
       },
@@ -64,27 +75,34 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Mateo Taborda",
         role: "Associate Attorney",
-        photoSrc: "/images/mateo-taborda.jpg",
+        photoSrc: "/images/mateo-taborda.png",
         bio: "Mateo handles research, drafting, and follow-through on core matters. He works with the founding attorney to keep filings, contracts, and procedural steps accurate and on schedule.",
       },
       {
         name: "Camilo Uribe",
         role: "Associate Attorney",
-        photoSrc: "/images/camilo-uribe.jpg",
+        photoSrc: "/images/camilo-uribe.png",
         bio: "Camilo works on legal analysis and client deliverables across our practice areas — structured workplans, clear written advice, and steady execution so international clients can move forward.",
       },
     ],
   },
   es: {
     eyebrow: "Nosotros",
-    title: "Un despacho en Medellín para quien construye una vida — o un negocio — en Colombia.",
+    title: "Una firma en Medellín para quien quiere construir una vida o un negocio en Colombia.",
     intro:
-      "Somos Luque Law: asesoría bilingüe para clientes internacionales que necesitan entender cómo funciona este país de verdad, no la versión de folleto.",
+      "Somos Luque Law. El oficio, con estrategia; la palabra, clara. Honestos, transparentes, y con el humanismo y la ética puestos donde importan: en lo que cada cliente necesita.",
     body: [
       "Colombia es un país de derecho continental. Eso importa el día que compras un inmueble, firmas un arrendamiento, contratas a alguien o presentas una visa: los documentos, las garantías y los plazos no son los que traías de casa. Empezamos por ordenar los hechos, nombrar la pregunta jurídica real y dejarla por escrito para que decidas con los ojos abiertos.",
       "Todo encargo empieza igual: una consulta de 45 minutos y, dentro de tres días hábiles, un concepto jurídico escrito y una cotización. Después, un plan de trabajo acotado — o un retainer por hora si el asunto es continuo.",
       "Nos mantenemos pequeños a propósito. Sabes quién lleva tu expediente. Sabes qué sigue. Si algo no vale la pena pagarlo, lo decimos.",
     ],
+    accountLabel: "Cuenta",
+    accountTitle: "Crea una cuenta gratis con tu correo",
+    accountBody: [
+      "Registrarte es gratis y toma un minuto. Usamos tu correo para que inicies sesión — no para llenarte de spam. No te metemos a un newsletter por defecto.",
+      "Con la cuenta puedes editar tu perfil, guardar guías y normas, preguntar y responder en el foro de la comunidad, y usar Lucy AI — nuestra consulta de inmigración. Las cuentas nuevas empiezan con USD 10 en créditos; puedes comprar más cuando se agoten.",
+    ],
+    createAccountCta: "Crear cuenta",
     teamLabel: "Equipo",
     teamTitle: "Con quién trabajas",
     teamIntro:
@@ -96,7 +114,7 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Daniel Luque Restrepo",
         role: "Abogado · Fundador",
-        photoSrc: "/images/profile.png",
+        photoSrc: "/images/daniel-luque.png",
         isFounder: true,
         bio: danielBioEs,
       },
@@ -109,13 +127,13 @@ export const aboutContent: Record<AboutLocale, AboutContent> = {
       {
         name: "Mateo Taborda",
         role: "Abogado asociado",
-        photoSrc: "/images/mateo-taborda.jpg",
+        photoSrc: "/images/mateo-taborda.png",
         bio: "Mateo se encarga de investigación, redacción y seguimiento en los asuntos centrales. Trabaja con el abogado fundador para mantener precisos y a tiempo memoriales, contratos y pasos procesales.",
       },
       {
         name: "Camilo Uribe",
         role: "Abogado asociado",
-        photoSrc: "/images/camilo-uribe.jpg",
+        photoSrc: "/images/camilo-uribe.png",
         bio: "Camilo trabaja en análisis jurídico y entregables al cliente en nuestras áreas de práctica: planes de trabajo claros, asesoría escrita y ejecución firme para que los clientes internacionales puedan avanzar.",
       },
     ],

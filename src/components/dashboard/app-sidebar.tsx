@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   BookOpenIcon,
+  BookmarkIcon,
   BotIcon,
   CreditCardIcon,
   ExternalLinkIcon,
@@ -13,8 +14,10 @@ import {
   LogOutIcon,
   MessageSquareIcon,
   ScaleIcon,
+  SettingsIcon,
   SparklesIcon,
   TicketIcon,
+  UsersIcon,
 } from "lucide-react";
 
 import { signOut } from "@/app/(dashboard)/portal/actions";
@@ -52,6 +55,9 @@ const navIcons: Record<
   sparkles: SparklesIcon,
   scale: ScaleIcon,
   "credit-card": CreditCardIcon,
+  settings: SettingsIcon,
+  bookmark: BookmarkIcon,
+  users: UsersIcon,
 };
 
 type Props = {

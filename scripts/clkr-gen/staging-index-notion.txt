@@ -1,0 +1,24 @@
+# CLKR Generation Staging Index
+
+Updated: 2026-07-23T12:26:10.892Z
+
+Completed: 14 · Failed: 0 · Queue: 117
+
+Drafts live in Supabase `clkr_articles` (status=draft) and `scripts/clkr-gen/out/<slug>/{en,es}.md`.
+
+| slug_key | topic | module | locales |
+|---|---|---|---|
+| `migrant-visa-type-m-investor` | Migrant Visa Type M (Investor) | 🛂 Immigration & Visas | en+es |
+| `tax-residency-in-colombia` | Tax Residency in Colombia | 💰 Tax Law | en+es |
+| `migrant-visa-type-m-worker` | Migrant Visa Type M (Worker) | 🛂 Immigration & Visas | en+es |
+| `sas-general-assembly-s-acts` | SAS General Assembly Acts | 🏢 Business & Corporate Law | en+es |
+| `sas-shareholders-rights` | Shareholders' Rights in Colombian SAS | 🏢 Business & Corporate Law | en+es |
+| `employment-contract-types` | Employment Contract Types in Colombia | ⚖️ Labour Law | en+es |
+| `tax-year-and-filing` | Tax Year and Filing in Colombia | 💰 Tax Law | en+es |
+| `common-law-union` | Common-Law Union in Colombia (Unión Marital de Hecho) | 👨‍⚖️ Family & Civil Law | en+es |
+| `liquidation-of-marital-partnership` | Liquidation of Marital Partnership | 👨‍⚖️ Family & Civil Law | en+es |
+| `prenuptial-agreement` | Prenuptial Agreement in Colombian Law | 👨‍⚖️ Family & Civil Law | en+es |
+| `contracts-formation-and-validity` | Contracts — Formation and Validity | 🏛️ Civil & Contract Law | en+es |
+| `copyright` | Copyright in Colombia | 🔬 Intellectual Property | en+es |
+| `migrant-visa-type-m-pensioner-rentier` | Migrant Visa Type M (Pensioner/Rentier) in Colombia | 🛂 Immigration & Visas | en+es |
+| `safe-conduct-salvoconducto-de-permanencia` | Safe-Conduct for Permanence (Salvoconducto de Permanencia) | 🛂 Immigration & Visas | en+es |

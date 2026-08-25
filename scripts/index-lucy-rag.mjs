@@ -22,12 +22,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 const envPath = resolve(root, ".env.local");
 
-const IMMIGRATION_GUIDE_SLUGS = [
-  "investor-visa",
-  "visas-ground-rules",
-  "last-legal-day",
-  "real-estate-transactions",
-];
+/** When set, only these guide slugs are indexed. When empty/null, index all published guides. */
+const GUIDE_SLUG_ALLOWLIST = process.env.LUCY_GUIDE_SLUGS?.trim()
+  ? process.env.LUCY_GUIDE_SLUGS.split(",").map((s) => s.trim()).filter(Boolean)
+  : null;
 
 const EMBEDDING_MODEL =
   process.env.LUCY_EMBEDDING_MODEL?.trim() || "openai/text-embedding-3-small";
@@ -177,8 +175,10 @@ async function main() {
   let guidesQuery = supabase
     .from("clkr_articles")
     .select("id, slug_key, title, description, locale, status, sections, category")
-    .eq("status", "published")
-    .in("slug_key", IMMIGRATION_GUIDE_SLUGS);
+    .eq("status", "published");
+  if (GUIDE_SLUG_ALLOWLIST?.length) {
+    guidesQuery = guidesQuery.in("slug_key", GUIDE_SLUG_ALLOWLIST);
+  }
   if (args.locale) guidesQuery = guidesQuery.eq("locale", args.locale);
 
   const { data: guides, error: guidesErr } = await guidesQuery;

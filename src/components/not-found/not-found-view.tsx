@@ -5,12 +5,12 @@ import { Container } from "@/components/container";
 const copy = {
   en: {
     eyebrow: "Page not found",
-    title: "This page doesn\u2019t exist.",
+    title: "This page isn’t here.",
     description:
-      "The link may be outdated, or the page may have moved. You can return home or reach out if you need legal guidance in Colombia.",
+      "The link may be old, or the page moved. Head home — or write us if you need counsel on a Colombian matter.",
     home: "Back to home",
     contact: "Contact us",
-    linksLabel: "Helpful links",
+    linksLabel: "Useful links",
     links: [
       { href: "/services", label: "Services" },
       { href: "/clkr", label: "CLKR" },
@@ -20,14 +20,14 @@ const copy = {
   },
   es: {
     eyebrow: "Página no encontrada",
-    title: "Esta página no existe.",
+    title: "Esta página no está aquí.",
     description:
-      "El enlace puede estar desactualizado o la página pudo haberse movido. Puedes volver al inicio o escribirnos si necesitas asesoría legal en Colombia.",
+      "El enlace puede estar viejo, o la página se movió. Vuelve al inicio — o escríbenos si necesitas orientación sobre un asunto en Colombia.",
     home: "Volver al inicio",
-    contact: "Contáctanos",
+    contact: "Escríbenos",
     linksLabel: "Enlaces útiles",
     links: [
-      { href: "/es/services", label: "Servicios" },
+      { href: "/es/servicios", label: "Servicios" },
       { href: "/es/clkr", label: "CLKR" },
       { href: "/es/posts", label: "Blog" },
       { href: "/es/book", label: "Agendar consulta" },

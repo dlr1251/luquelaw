@@ -8,7 +8,7 @@ let cachedInstructions: string | null = null;
 
 export async function loadLucyInstructions(): Promise<string> {
   if (cachedInstructions) return cachedInstructions;
-  const filePath = path.join(process.cwd(), "agent/lucy/instructions.md");
+  const filePath = path.join(process.cwd(), "agent/instructions.md");
   cachedInstructions = await readFile(filePath, "utf8");
   return cachedInstructions;
 }

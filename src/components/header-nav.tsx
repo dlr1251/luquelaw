@@ -9,7 +9,6 @@ import { useBookingModal } from "@/components/booking/BookingProvider";
 import { SiteSearchTrigger } from "@/components/search/site-search-trigger";
 import { LanguageSwitch } from "@/components/language-switch";
 import { loginHref } from "@/lib/auth/safe-next";
-import { clkrGuidesHubPath } from "@/lib/clkr/types";
 import { localeFromPathname } from "@/lib/locale/paths";
 import { normsHubPath } from "@/lib/norms/types";
 import { getServiceAreas } from "@/lib/services/content";
@@ -54,9 +53,10 @@ export function HeaderNav({
         allServices: "Todos los servicios",
         resources: "Recursos",
         norms: "Normas",
-        articles: "Artículos",
+        clkr: "CLKR",
         blog: "Blog",
-        torny: "Torny",
+        community: "Comunidad",
+        torny: "Lucy AI",
         admin: "Admin",
         cta: "Agendar consulta",
         close: "Cerrar",
@@ -68,9 +68,10 @@ export function HeaderNav({
         allServices: "All services",
         resources: "Resources",
         norms: "Norms",
-        articles: "Articles",
+        clkr: "CLKR",
         blog: "Blog",
-        torny: "Torny",
+        community: "Community",
+        torny: "Lucy AI",
         admin: "Admin",
         cta: "Book consultation",
         close: "Close",
@@ -79,18 +80,18 @@ export function HeaderNav({
 
   const aboutHref = isSpanish ? "/es/nosotros" : "/about";
   const servicesHref = isSpanish ? "/es/servicios" : "/services";
+  const clkrHref = `${prefix}/clkr`;
   const postsHref = `${prefix}/posts`;
+  const communityHref = isSpanish ? "/es/comunidad" : "/community";
   const tornyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy");
   const serviceAreas = useMemo(() => getServiceAreas(locale), [locale]);
 
   const resourceItems = useMemo(
     () => [
-      { href: normsHubPath(locale), label: copy.norms },
-      { href: clkrGuidesHubPath(locale), label: copy.articles },
-      { href: postsHref, label: copy.blog },
       { href: tornyHref, label: copy.torny },
+      { href: normsHubPath(locale), label: copy.norms },
     ],
-    [copy.articles, copy.blog, copy.norms, copy.torny, locale, postsHref, tornyHref],
+    [copy.norms, copy.torny, locale, tornyHref],
   );
 
   const servicesActive =
@@ -100,15 +101,25 @@ export function HeaderNav({
       ? pathname.startsWith("/es/servicios")
       : pathname === "/services" || pathname.startsWith("/services/"));
 
+  const isPath = (href: string) =>
+    pathname === href || pathname.startsWith(`${href}/`);
+
+  const clkrActive =
+    isPath(clkrHref) && !pathname.startsWith(`${prefix}/clkr/norms`);
+  const blogActive = isPath(postsHref);
+  const communityActive = isPath(communityHref);
   const resourcesActive =
-    pathname === `${prefix}/clkr` ||
-    pathname.startsWith(`${prefix}/clkr/`) ||
-    pathname === postsHref ||
-    pathname.startsWith(`${postsHref}/`) ||
+    pathname.startsWith(`${prefix}/clkr/norms`) ||
     pathname.startsWith("/portal/lucy");
 
+  const primaryLinks = [
+    { href: clkrHref, label: copy.clkr, active: clkrActive },
+    { href: postsHref, label: copy.blog, active: blogActive },
+    { href: communityHref, label: copy.community, active: communityActive },
+  ];
+
   const activeNavClass =
-    "text-[color:var(--forest)] after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:bg-[color:var(--forest)]/50";
+    "text-[color:var(--forest)] after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:bg-[color:var(--moss)]";
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
@@ -220,6 +231,17 @@ export function HeaderNav({
               </div>
             ) : null}
           </div>
+
+          {primaryLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`${navLinkClass}${item.active ? ` ${activeNavClass}` : ""}`}
+              aria-current={item.active ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          ))}
 
           <div
             className="relative"
@@ -393,6 +415,18 @@ export function HeaderNav({
                     </div>
                   ) : null}
                 </div>
+
+                {primaryLinks.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    aria-current={item.active ? "page" : undefined}
+                    className={mobileLinkClass(item.active)}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
 
                 <div>
                   <button

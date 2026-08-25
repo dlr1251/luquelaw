@@ -5,11 +5,11 @@ export const normsHubContent = {
     eyebrow: "Norms · Reference library",
     title: "Colombian legal norms",
     subtitle:
-      "Primary statutes, codes, and regulations in Spanish and English—for reference and navigation. Not legal advice; always verify the official gazette for your case.",
+      "Primary statutes, codes, and regulations in Spanish and English — for reference and navigation. Not legal advice; verify the official gazette for your case.",
     normCountLabel: "Norms",
     categoryLabel: "Areas of law",
     browseTitle: "Browse norms",
-    browseSubtitle: "Filter by area of law or document type. Content is loaded section by section.",
+    browseSubtitle: "Filter by area or document type. Content loads section by section.",
     searchPlaceholder: "Filter by title or reference…",
     allCategories: "All areas",
     allTypes: "All types",
@@ -20,7 +20,7 @@ export const normsHubContent = {
       "Switch EN/ES for parallel reference when available.",
     ],
     disclaimer:
-      "For reference only. Colombian law changes; confirm the current official text before acting.",
+      "Reference only. Colombian law changes; confirm the official text before you act.",
     read: "Open norm",
     contents: "Table of contents",
     mobileContents: "Contents",
@@ -31,7 +31,7 @@ export const normsHubContent = {
     eyebrow: "Normas · Biblioteca de referencia",
     title: "Normas jurídicas colombianas",
     subtitle:
-      "Estatutos, códigos y reglamentos en español e inglés—para consulta y navegación. No constituye asesoría jurídica; verifique siempre la norma oficial vigente.",
+      "Estatutos, códigos y reglamentos en español e inglés — para consulta y navegación. No es asesoría jurídica; verifica la norma oficial vigente.",
     normCountLabel: "Normas",
     categoryLabel: "Ramas del derecho",
     browseTitle: "Explorar normas",
@@ -46,7 +46,7 @@ export const normsHubContent = {
       "Cambia EN/ES para consulta paralela cuando esté disponible.",
     ],
     disclaimer:
-      "Solo referencia. La ley colombiana cambia; confirma el texto oficial vigente antes de actuar.",
+      "Solo referencia. La ley colombiana cambia; confirma el texto oficial antes de actuar.",
     read: "Abrir norma",
     contents: "Tabla de contenidos",
     mobileContents: "Contenido",

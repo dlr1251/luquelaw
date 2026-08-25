@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { Arbutus_Slab, Figtree, Geist, Libre_Baskerville } from "next/font/google";
 
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { VercelAnalytics } from "@/components/analytics/vercel-analytics";
 import { CookieBanner } from "@/components/cookies/cookie-banner";
 import { CookieConsentProvider } from "@/components/cookies/cookie-consent-provider";
 import { ThemeScript } from "@/components/theme-script";
@@ -57,12 +58,11 @@ export default async function RootLayout({
         geist.variable,
       )}
     >
-      <head>
-        <ThemeScript />
-      </head>
       <body className="min-h-full bg-background text-foreground">
+        <ThemeScript />
         <CookieConsentProvider>
           <GoogleAnalytics />
+          <VercelAnalytics />
           <TooltipProvider>
             <a
               href="#main"

@@ -1,5 +1,6 @@
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 import type { DashboardNavGroup } from "@/components/dashboard/dashboard-nav";
 
@@ -13,6 +14,7 @@ type Props = {
   pageDescription?: string;
   groups: DashboardNavGroup[];
   headerAction?: React.ReactNode;
+  contentClassName?: string;
   children: React.ReactNode;
 };
 
@@ -24,6 +26,7 @@ export function DashboardShell({
   pageDescription,
   groups,
   headerAction,
+  contentClassName,
   children,
 }: Props) {
   return (
@@ -46,7 +49,9 @@ export function DashboardShell({
           </div>
           {headerAction ? <div className="shrink-0">{headerAction}</div> : null}
         </header>
-        <div className="flex flex-1 flex-col p-4 md:p-6">{children}</div>
+        <div className={cn("flex min-h-0 flex-1 flex-col p-4 md:p-6", contentClassName)}>
+          {children}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   );

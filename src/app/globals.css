@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Brand palette — light mode only. Default = Slate. */
+  /* Brand palette — light mode only. Charcoal + clean gold. */
   --forest: #1c1f24;
-  --moss: #45617d;
+  --moss: #d4b445;
   --parchment: #f5f6f7;
   --ink: #191b1e;
 
@@ -22,7 +22,7 @@
   --font-ui: var(--font-body);
 }
 
-/* Public marketing site — editorial brand tokens (default = Slate) */
+/* Public marketing site — charcoal + gold */
 .marketing-theme {
   --background: var(--parchment);
   --foreground: var(--ink);
@@ -39,7 +39,7 @@
   --hero: var(--forest);
   --hero-foreground: #ffffff;
   --hero-muted: rgb(255 255 255 / 0.76);
-  --hero-accent: #8fb2d4;
+  --hero-accent: #edd56a;
   --hero-card: rgb(255 255 255 / 0.08);
   --hero-border: rgb(255 255 255 / 0.18);
   --hero-button: rgb(255 255 255 / 0.1);
@@ -241,7 +241,7 @@ html.dark .marketing-theme {
   --hero: oklch(0 0 0);
   --hero-foreground: oklch(0.97 0 0);
   --hero-muted: oklch(0.66 0 0);
-  --hero-accent: oklch(0.72 0 0);
+  --hero-accent: #edd56a;
   --hero-card: oklch(1 0 0 / 0.06);
   --hero-border: oklch(1 0 0 / 0.16);
   --hero-button: oklch(1 0 0 / 0.08);
@@ -304,7 +304,7 @@ html.dark {
   --hero: oklch(0 0 0);
   --hero-foreground: oklch(0.97 0 0);
   --hero-muted: oklch(0.66 0 0);
-  --hero-accent: oklch(0.72 0 0);
+  --hero-accent: #edd56a;
   --header-fg: oklch(0.97 0 0);
   --header-fg-muted: oklch(0.66 0 0);
   --footer-fg: oklch(0.62 0 0);
@@ -378,10 +378,6 @@ html.dark {
     color: var(--moss);
   }
 
-  html.dark .marketing-theme .accent-italic {
-    color: oklch(0.78 0 0);
-  }
-
   html.dark .clkr-section-html h3 {
     color: var(--foreground);
   }
@@ -431,10 +427,6 @@ html.dark {
   line-height: 1.4;
   text-transform: uppercase;
   color: var(--moss);
-}
-
-html.dark .marketing-eyebrow {
-  color: var(--muted-foreground);
 }
 
 .marketing-eyebrow-on-hero {
@@ -541,7 +533,7 @@ html.dark .marketing-eyebrow {
   width: 0.5em;
   flex-shrink: 0;
   border-radius: 9999px;
-  border: 1px solid currentColor;
+  background-color: var(--hero-accent);
 }
 
 /* ── Buttons ────────────────────────────────────────────────── */

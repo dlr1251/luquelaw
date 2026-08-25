@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
+import { withEve } from "eve/next";
 
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 
@@ -16,6 +17,8 @@ const nextConfig: NextConfig = {
       { source: "/es/norms/:slug*", destination: "/es/clkr/norms/:slug*", permanent: true },
       { source: "/account", destination: "/portal", permanent: true },
       { source: "/account/:path*", destination: "/portal/:path*", permanent: true },
+      { source: "/portal/torny", destination: "/portal/lucy", permanent: true },
+      { source: "/portal/torny/:path*", destination: "/portal/lucy/:path*", permanent: true },
       { source: "/immigration", destination: "/services/immigration", permanent: true },
       {
         source: "/immigration/:path*",
@@ -38,4 +41,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default nextConfig;
+export default withEve(nextConfig);

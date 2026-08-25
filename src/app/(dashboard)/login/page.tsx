@@ -43,7 +43,7 @@ export default async function LoginPage({ searchParams }: Props) {
           </p>
           <h1 className="text-2xl font-semibold tracking-tight">Sign in</h1>
           <p className="text-sm text-muted-foreground">
-            Access your client portal or admin dashboard.
+            Open Lucy AI in the portal. New accounts start with USD 10 in credits.
           </p>
         </div>
 

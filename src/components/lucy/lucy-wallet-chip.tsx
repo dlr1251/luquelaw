@@ -38,7 +38,7 @@ export function LucyWalletChip({ balanceCents }: { balanceCents: number }) {
         onClick={() => setOpen((v) => !v)}
         className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm font-medium shadow-sm"
       >
-        <span className="text-muted-foreground">Torny credits</span>
+        <span className="text-muted-foreground">Lucy AI credits</span>
         <span>{formatUsdCents(balanceCents)}</span>
         <span className="text-xs text-[var(--moss)]">Recargar</span>
       </button>
@@ -46,7 +46,8 @@ export function LucyWalletChip({ balanceCents }: { balanceCents: number }) {
       {open ? (
         <div className="absolute right-0 z-20 mt-2 w-64 rounded-lg border bg-background p-3 shadow-lg">
           <p className="mb-2 text-xs text-muted-foreground">
-            Prepaid wallet for Torny chats. Lawyer review unlock is billed separately.
+            Prepaid wallet for Lucy AI chats. New accounts start with USD 10. Lawyer review unlock
+            is billed separately.
           </p>
           <div className="space-y-2">
             {LUCY_TOPUP_PACKS.map((pack) => (

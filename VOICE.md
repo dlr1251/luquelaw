@@ -15,7 +15,7 @@ The site speaks as a **founder-led team**, not a faceless institution and not a 
 | Brand spelling | **Luque Law** (space) everywhere user-facing |
 | Firm vs founder | Firm = **we / nosotros**. **I** only where Daniel signs personally (About founder note, blog bylines) |
 | Contact door | Public copy is the **firm** (“we’ll reply”). Operational channels may still reach Daniel; WhatsApp prefill addresses **Luque Law**, not “Hi Daniel…” |
-| AI product name | **Torny** only in user-facing UI. Do not expose “Lucy” to visitors. Routes/modules may still use `lucy` on disk |
+| AI product name | **Lucy AI** in user-facing UI (never “Torny”). Routes/modules may still use `lucy` on disk |
 | Engagement model | 45-minute initial consultation → written legal concept (**Concepto Jurídico**) + quotation within **3 business days** → scoped workplan or hourly retainer |
 | Booking product | Match live product: **45 min / USD 55** (Google Meet). Do not invent a 1-hour product in copy |
 
@@ -51,7 +51,7 @@ Only the first writer ships. If a sentence sounds like the second, cut or rewrit
 | ~25% | Explorer | First impression: empathy with the journey of living/operating in another country. |
 | ~15% | Outlaw | Candor — say what other lawyers avoid. Dry humor site-wide, salt not sauce. |
 
-Magician & Ruler appear as **evidence** (CLKR, Torny, ordered engagement) — never as “innovative disruptive solutions” language.
+Magician & Ruler appear as **evidence** (CLKR, Lucy AI, ordered engagement) — never as “innovative disruptive solutions” language.
 
 **Anti-archetypes:** motivational guru, cheap visa tramitador, stuffy solemn firm, lawyer-influencer, faceless corporate brand.
 

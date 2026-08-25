@@ -1,7 +1,7 @@
 /** Safe internal redirect path (blocks open redirects). */
 export function safeNextPath(
   raw: string | null | undefined,
-  fallback = "/portal",
+  fallback = "/portal/lucy",
 ): string {
   if (!raw) return fallback;
   let decoded = raw;
@@ -23,7 +23,7 @@ export function safeNextPath(
 
 /** Build /login?next=… when the destination is not the default portal. */
 export function loginHref(next?: string | null): string {
-  const path = safeNextPath(next, "/portal");
-  if (path === "/portal") return "/login";
+  const path = safeNextPath(next, "/portal/lucy");
+  if (path === "/portal/lucy") return "/login";
   return `/login?next=${encodeURIComponent(path)}`;
 }

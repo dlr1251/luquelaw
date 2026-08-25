@@ -60,7 +60,7 @@ export function PostEditor({ post, locale, saveAction, deleteAction }: Props) {
       };
 
   return (
-    <form action={saveAction} className="space-y-8">
+    <form action={saveAction} className="space-y-8 pb-24">
       {post ? <input type="hidden" name="id" value={post.id} /> : null}
       <input type="hidden" name="locale" value={locale} />
       <input type="hidden" name="body_markdown" value={markdown} />
@@ -206,12 +206,9 @@ export function PostEditor({ post, locale, saveAction, deleteAction }: Props) {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-3 border-t pt-6">
+      <div className="sticky bottom-0 z-10 -mx-1 flex flex-wrap gap-3 border-t border-border bg-background/95 px-1 py-4 backdrop-blur supports-backdrop-filter:bg-background/80">
         <Button type="submit">{copy.save}</Button>
-      </div>
-
-      {post && deleteAction ? (
-        <div className="border-t pt-4">
+        {post && deleteAction ? (
           <Button
             type="submit"
             variant="destructive"
@@ -225,8 +222,8 @@ export function PostEditor({ post, locale, saveAction, deleteAction }: Props) {
           >
             {copy.delete}
           </Button>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </form>
   );
 }

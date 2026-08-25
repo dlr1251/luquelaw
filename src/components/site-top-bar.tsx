@@ -7,6 +7,7 @@ import { useBookingModal } from "@/components/booking/BookingProvider";
 import { Container } from "@/components/container";
 import { localeFromPathname } from "@/lib/locale/paths";
 import { formatCopRate, type FxRates } from "@/lib/markets/fx";
+import { getConsultationPayUrl } from "@/lib/booking/url";
 
 const TZ = "America/Bogota";
 const FX_REFRESH_MS = 60 * 60 * 1000;
@@ -15,19 +16,28 @@ type Props = {
   rates: FxRates;
 };
 
-function formatBogotaClock(now: Date, locale: "en" | "es") {
-  const date = new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
-    timeZone: TZ,
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  }).format(now);
+/** Node and browsers disagree on narrow/NBSP in es-CO time strings (a. m. vs a.\u00a0m.). */
+function normalizeIntlText(value: string) {
+  return value.replace(/[\u00a0\u202f\u2007\u2009]/g, " ");
+}
 
-  const time = new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
-    timeZone: TZ,
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(now);
+function formatBogotaClock(now: Date, locale: "en" | "es") {
+  const date = normalizeIntlText(
+    new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
+      timeZone: TZ,
+      weekday: "short",
+      month: "short",
+      day: "numeric",
+    }).format(now),
+  );
+
+  const time = normalizeIntlText(
+    new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
+      timeZone: TZ,
+      hour: "numeric",
+      minute: "2-digit",
+    }).format(now),
+  );
 
   return { date, time };
 }
@@ -38,11 +48,13 @@ function formatUpdatedAt(updatedAt: string | null, locale: "en" | "es"): string 
   if (Number.isNaN(date.getTime())) {
     return locale === "es" ? `Actualizado ${updatedAt}` : `Updated ${updatedAt}`;
   }
-  const formatted = new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
-    timeZone: TZ,
-    dateStyle: "medium",
-    timeStyle: "short",
-  }).format(date);
+  const formatted = normalizeIntlText(
+    new Intl.DateTimeFormat(locale === "es" ? "es-CO" : "en-US", {
+      timeZone: TZ,
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(date),
+  );
   return locale === "es" ? `Actualizado ${formatted}` : `Updated ${formatted}`;
 }
 
@@ -50,7 +62,8 @@ export function SiteTopBar({ rates: initialRates }: Props) {
   const pathname = usePathname();
   const locale = localeFromPathname(pathname) === "es" ? "es" : "en";
   const { open: openBooking } = useBookingModal();
-  const [clock, setClock] = useState(() => formatBogotaClock(new Date(), locale));
+  // Render clock only after mount so SSR/client ICU + wall-clock can't mismatch.
+  const [clock, setClock] = useState<{ date: string; time: string } | null>(null);
   const [rates, setRates] = useState(initialRates);
 
   useEffect(() => {
@@ -63,7 +76,6 @@ export function SiteTopBar({ rates: initialRates }: Props) {
     const id = window.setInterval(tick, 30_000);
     return () => window.clearInterval(id);
   }, [locale]);
-
   useEffect(() => {
     let cancelled = false;
 
@@ -89,12 +101,14 @@ export function SiteTopBar({ rates: initialRates }: Props) {
     locale === "es"
       ? {
           cta: "Agendar consulta",
+          payCta: "Pagar consulta",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",
         }
       : {
           cta: "Book consultation",
+          payCta: "Pay consultation",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",
@@ -118,18 +132,23 @@ export function SiteTopBar({ rates: initialRates }: Props) {
       <Container className="flex min-h-9 items-center justify-between gap-3 py-1.5">
         <div className="flex min-w-0 flex-1 items-center gap-3 overflow-hidden sm:gap-5">
           <p className="hidden shrink-0 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.12em] text-hero-foreground/75 sm:block">
-            <span>{copy.medellin} · </span>
-            <span className="normal-case tracking-normal text-hero-foreground/90">
-              {clock.date}
-            </span>
-            <span className="mx-1.5 text-hero-foreground/35" aria-hidden="true">
-              ·
-            </span>
-            <span className="tabular-nums text-hero-foreground">{clock.time}</span>
+            <span>{copy.medellin}</span>
+            {clock ? (
+              <>
+                <span> · </span>
+                <span className="normal-case tracking-normal text-hero-foreground/90">
+                  {clock.date}
+                </span>
+                <span className="mx-1.5 text-hero-foreground/35" aria-hidden="true">
+                  ·
+                </span>
+                <span className="tabular-nums text-hero-foreground">{clock.time}</span>
+              </>
+            ) : null}
           </p>
 
           <p className="shrink-0 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium tabular-nums text-hero-foreground sm:hidden">
-            {clock.time}
+            {clock?.time ?? "\u00a0"}
           </p>
 
           <span className="hidden h-3 w-px shrink-0 bg-hero-foreground/20 sm:block" aria-hidden="true" />
@@ -162,13 +181,23 @@ export function SiteTopBar({ rates: initialRates }: Props) {
           </div>
         </div>
 
-        <button
-          type="button"
-          onClick={openBooking}
-          className="shrink-0 whitespace-nowrap border border-hero-foreground/35 bg-transparent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero-foreground transition hover:bg-hero-foreground/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/50"
-        >
-          {copy.cta}
-        </button>
+        <div className="flex shrink-0 items-center gap-1.5">
+          <a
+            href={getConsultationPayUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="whitespace-nowrap border border-hero-accent/75 bg-hero-accent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent/50"
+          >
+            {copy.payCta}
+          </a>
+          <button
+            type="button"
+            onClick={openBooking}
+            className="whitespace-nowrap border border-hero-accent/75 bg-transparent px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-hero-accent transition hover:bg-hero-accent/12 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent/50"
+          >
+            {copy.cta}
+          </button>
+        </div>
       </Container>
     </div>
   );

@@ -12,7 +12,7 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 |-------|---------|----------|
 | **Marketing site** | Trust, contact, practice areas, booking | Everyone |
 | **CLKR** | LegalAI hub — norms, guides, agents/skills | Public modules + subscriber modules |
-| **Subscriber portal** | Overview, tickets, **Lucy** consultations, CLKR links | Authenticated (wallet / entitlements via Stripe) |
+| **Portal** | Overview, tickets, **Lucy AI** consultations, CLKR links | Authenticated (wallet / entitlements via Stripe) |
 | **Properties** *(future)* | Promote rental and sale listings | Everyone |
 | **Blog** | Shorter posts (`/posts`) | Public |
 
@@ -41,6 +41,8 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 | **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser |
 | **Agent / skill / prompt** | `/clkr/agents/...` | Entitlement `agents` | Curated LegalAI toolkit |
 | **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Professional study notes |
+| **Doctrinal commentary** | on norm sections | Public when `published` | Firm notes; CMS `/admin/commentaries` |
+| **Norm discussion comment** | on norm sections | Public thread; Moderation `/admin/comments` | User discussion + reports |
 | **Ticket** | `/portal/tickets` | General: entitlement `portal_tickets`; Lucy consultations: any auth user | Lightweight firm requests + Lucy review unlock |
 | **Lucy consultation** | `/portal/lucy` | Authenticated + prepaid wallet | Projects, chats, files, escalate → pay-to-unlock |
 | **Blog post** | `/posts/[slug]` | Public when `published` | Shorter articles |
@@ -67,15 +69,16 @@ Roles are expressed via `profiles` flags (beta) and/or active Stripe `subscripti
 | `professional` | `agents`, `norm_annotations` |
 | `client` | `portal_tickets` |
 
-### Lucy *(consultas legales AI-first)*
+### Lucy AI *(consultas legales AI-first)*
 
-eve-inspired agent inside the portal (`agent/lucy/` + AI SDK / AI Gateway):
+Product name in UI: **Lucy AI**. Runtime: Vercel **`eve` package** (`withEve` in `next.config.ts`) + AI Gateway. Authored agent under `agent/` (instructions, tools, channel auth, wallet hook). Portal routes use `/portal/lucy` and `lucy_*` tables.
 
-- **Projects** hold chats + files; personality dials (aggressiveness / technicality / flexibility) per chat.
-- **Wallet:** prepaid USD credits (Stripe Checkout packs); usage debited per turn.
-- **Escalate:** creates consultation ticket + email to firm (free to submit).
-- **Pay-to-unlock:** after lawyer marks ready, client pays review fee to see verified answer.
-- **Scope v1:** Immigration RAG — pgvector embeddings (with keyword fallback) over norms + guides.
+- **Projects** hold chats + files; personality dials per chat; Eve `sessionId` bound on `lucy_chats`. First login opens a chat (no project form).
+- **Wallet:** new accounts receive **USD 10** signup credit; more via prepaid Stripe packs. Usage debited per Eve `step.completed`. Default model `google/gemini-2.5-flash-lite`.
+- **Escalate:** consultation ticket + email to firm (free to submit).
+- **Pay-to-unlock:** after lawyer marks ready, client pays review fee.
+- **Scope v1:** Immigration RAG — pgvector + keyword fallback (norms + guides).
+- **Node:** `engines.node` = `24.x` (required by eve).
 
 ### Tickets *(not cases)*
 
@@ -87,21 +90,17 @@ Lightweight requests to the firm: subject, category, description, thread with ad
 
 ```
 Next.js App Router
-├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /clkr/study, /posts, /pricing
+├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /community, /posts, /pricing
 ├── Gated: /clkr/agents (auth + entitlement)
-├── /login, /portal (Lucy, tickets; /account → /portal)
-├── /admin/clkr, /admin/norms, /admin/posts, /admin/agents, /admin/tickets
+├── /login, /portal (Lucy AI, tickets, settings, saved; /account → /portal)
+├── /admin/clkr, /admin/norms, /admin/posts, /admin/commentaries, /admin/comments, /admin/community, /admin/agents, /admin/tickets
 └── Supabase
-    ├── Auth + profiles
-    ├── clkr_articles, clkr_study_paths, clkr_study_path_steps, clkr_article_relations, clkr_user_progress
-    ├── norms, norm_sections, norm_annotations, posts
-    ├── plans, subscriptions
-    ├── clkr_agents, clkr_skills, clkr_prompts
-    ├── tickets, ticket_messages
-    ├── lucy_projects, lucy_chats, lucy_messages, lucy_files
-    ├── lucy_wallets, lucy_wallet_ledger
-    ├── lucy_knowledge_chunks (pgvector RAG)
-    └── chat_conversations, chat_messages (legacy shell)
+    ├── Auth + profiles (+ reputation)
+    ├── clkr_articles, norms, posts, user_saves
+    ├── community_questions/answers/comments/votes/reports
+    ├── plans, subscriptions, tickets
+    ├── lucy_* (Lucy AI wallet/projects/chats; Eve session columns)
+    └── lucy_knowledge_chunks (pgvector RAG)
 ```
 
 **Auth admin:** `ADMIN_EMAILS` env and/or Supabase `app_metadata.role = "admin"` and/or `admin_allowlist` table (RLS uses the latter two).
@@ -112,76 +111,48 @@ Next.js App Router
 
 ## 4. Phased roadmap
 
-### Phase 1 — CLKR CMS *(done)*
+### Live tracking
 
-- [x] `clkr_articles` table + RLS
-- [x] Seed starter articles
-- [x] Dynamic guide routes
-- [x] Admin CRUD
-- [x] Hub reads from DB
-- [x] Study paths and enhanced navigation
-- [x] Article relationships (prerequisites, next steps)
-- [ ] Admin fills/edits full article bodies in production
-- [ ] Deprecate `clkr_article_settings` (optional)
+Open work, priorities, and fine-grained tasks are tracked in the Notion [Website Tasks board](https://app.notion.com/p/8445c0f2649644beae693185c7b3c7a7). This document records **shipped**, **retired**, and **future** phase labels for context — not an active checklist.
 
-### Phase A — CLKR LegalAI hub + Normas under CLKR
+### Shipped phases
 
-- [x] `/clkr` four-module hub
-- [x] Guides at `/clkr/guides`, norms at `/clkr/norms`
-- [x] Redirects from `/norms` and legacy `/clkr/[slug]`
-- [x] Nav: single CLKR link
-- [x] Agents/quizzes placeholder routes → agents shipped; quizzes retired 2026-07
+**Phase 1 — CLKR CMS**  
+DB-backed guides system: 238 published articles (EN+ES), admin editor, study paths, relationships. Ongoing lawyer spot-check of citations and norm alignment happens in Notion.
 
-### Phase B — Profiles + portal shell
+**Phase A — CLKR LegalAI hub + Normas under CLKR**  
+Four-module hub at `/clkr`: Guides, Normas, Agents, Community. Norms moved under CLKR. Legacy redirects in place.
 
-- [x] `profiles` table + signup trigger
-- [x] `/portal` (redirect `/account`)
-- [x] Auth gate for agents routes
-- [x] Login `?next=` return URL, password reset, auth-code-error page
-- [x] Header/footer Pricing + footer Portal respects session
+**Phase B — Profiles + portal shell**  
+`profiles` table, `/portal` shell (redirects `/account`), auth gate, login `?next=` return, password reset.
 
-### Phase C — Stripe subscriptions
+**Phase C — Stripe subscriptions**  
+Plans + subscriptions tables, entitlement helper, checkout + webhook, `/pricing`, multi-plan sync. **Not yet done:** flip to live Stripe keys in Production (tracked in Notion).
 
-- [x] `plans` + `subscriptions` tables
-- [x] Entitlement helper
-- [x] Checkout + webhook + `/pricing`
-- [x] Gate premium modules
-- [x] Profile entitlement columns protected (trigger); `isAppAdmin` uses app_metadata only
-- [x] Checkout `subscription_data.metadata`; webhook fails loud without service role; multi-plan flag sync
-- [x] Seed `plans.stripe_price_id` helper (`STRIPE_PRICE_*` env) + docs for live cutover
-- [x] Align `admin_allowlist` rows with `ADMIN_EMAILS` env (verified `daniel@luquelaw.co`)
-- [ ] Flip Stripe to **live** keys + webhook secret in Vercel Production
+**Phase D — Agents / skills / prompts**  
+Tables, admin CMS, gated public UI at `/clkr/agents`. Entitlement: Professional plan.
 
-### Phase D — Agents / skills / prompts
+**Phase F — Annotations, tickets, chatbot**  
+Norm annotations (Professional), tickets + admin queue, norm discussion comments + moderation, firm doctrinal commentaries CMS.
 
-- [x] Tables + admin CMS
-- [x] Gated public UI
+**Phase H — Torny consultas legales (MVP + eve)**  
+Projects / chats / files, wallet (prepaid Stripe packs), Eve runtime (`eve` package + `withEve` / `useEveAgent`), Immigration RAG (pgvector + AI Gateway embeddings, keyword fallback), escalate → pay-to-unlock. **Not yet done:** expand beyond Immigration, exact review fee + client email (tracked in Notion).
 
-### Phase E — Quizzes *(retired 2026-07)*
+**Phase I — Account surface**  
+About page (registration pitch), portal profile settings (`display_name`, `locale`, bio), bookmarks (`user_saves` + `/portal/saved`).
 
-- [x] Tables + attempts (historical; not exposed in app)
-- [x] Product surface removed (routes, CMS, Student plan deactivated)
+**Phase J — Community forum (MVP)**  
+Public Q&A at `/community`, auth to post/vote/comment, reputation, admin moderation + reports.
 
-### Phase F — Annotations, tickets, chatbot
+### Retired phases
 
-- [x] Norm annotations (subscriber)
-- [x] Tickets + admin queue shell
-- [x] Chatbot conversations shell (superseded by Lucy)
+**Phase E — Quizzes**  
+Tables remain (historical attempts); product surface removed (routes, CMS, Student plan deactivated) 2026-07.
 
-### Phase H — Lucy consultas legales *(in progress / shipped MVP)*
+### Future phases
 
-- [x] Projects / chats / files + wallet + Stripe top-up
-- [x] AI SDK + AI Gateway streaming agent (`agent/lucy/`)
-- [x] Immigration keyword RAG (norms + guides)
-- [x] Escalate → email → admin draft → pay-to-unlock
-- [x] Discovery CTA on CLKR hub + portal access/wallet status
-- [x] pgvector embeddings RAG (`lucy_knowledge_chunks` + `npm run index:lucy-rag`; keyword fallback)
-- [ ] Expand beyond Immigration
-- [ ] Exact review fee + email to client when review is ready
-
-### Phase G — Properties *(future)*
-
-- [ ] `property_listings` + public `/properties`
+**Phase G — Properties**  
+`property_listings` table + public `/properties` route for rental and sale listings. Spec TBD.
 
 ---
 
@@ -200,9 +171,12 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Project doc | `docs/PROJECT.md`, `AGENTS.md` |
 | CLKR hub / guides | `src/components/clkr/*`, `src/lib/clkr/*` (includes study paths, navigation) |
 | Normas | `src/components/norms/*`, `src/lib/norms/*` |
+| Commentaries | `src/lib/commentaries/*`, `src/components/admin/commentary-editor.tsx`, `/admin/commentaries` |
 | Agents | `src/lib/agents/*`, `src/components/agents/*`, `src/app/.../clkr/agents` |
 | Entitlements | `src/lib/billing/entitlements.ts` |
-| Lucy | `agent/lucy/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*` |
+| Lucy AI / Eve | `agent/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*`, `eve` + `withEve` |
+| Community | `src/lib/community/*`, `src/components/community/*`, `/community`, `/admin/community` |
+| Saves | `src/lib/saves/*`, `src/components/saves/*`, `/portal/saved` |
 | Portal | `src/app/(dashboard)/portal/` |
 | Migrations | `supabase/migrations/` |
 | Auth admin | `src/lib/auth/is-admin.ts` |
@@ -237,11 +211,12 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | Article body storage | `sections` JSON with HTML | TOC + admin simplicity |
 | Properties route | `/properties` | User direction |
 | Dates in roadmap | None | Project rhythm TBD |
-| Lucy runtime | AI SDK + AI Gateway (eve-inspired `agent/lucy/`), not eve package | Fits existing Next/Supabase portal |
-| Lucy review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
-| Lucy wallet | Prepaid Stripe packs; per-turn debit | Transparent usage |
-| Lucy RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
-| Lucy RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
+| Lucy AI runtime | **`eve` package** + AI Gateway + `withEve` / `useEveAgent`; default `google/gemini-2.5-flash-lite` | User direction 2026-08-14 (was Torny + Sonnet) |
+| Lucy AI review payment | Pay-to-unlock after lawyer draft | Cash after value delivered |
+| Lucy AI wallet | USD 10 signup credit + prepaid Stripe packs; debit on Eve `step.completed` | First-screen access; firm recovers usage above the gift |
+| Lucy AI RAG v1 | Keyword ILIKE Immigration norms/guides | Ship without pgvector blocker |
+| Lucy AI RAG v2 | pgvector + `openai/text-embedding-3-small` via AI Gateway; keyword fallback | Better recall; reindex via `npm run index:lucy-rag` |
+| Community forum | Public read; auth to post/vote; `/community` | Peer help + admin moderation |
 
 ---
 
@@ -258,6 +233,9 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | 2026-07 | Immigration norms: Resoluciones 2061 y 2357 de 2020 (Migración Colombia) + reindex Lucy |
 | 2026-07 | Authz hardening (profiles trigger, admin metadata), auth UX (next/reset), billing webhook reliability, portal access status + Lucy CTA on CLKR hub |
 | 2026-07 | Retired Quizzes module + Student plan from product surface |
+| 2026-07-23 | Torny on real `eve` package (`withEve`/`useEveAgent`); About account pitch; profile/saves; community forum |
+| 2026-08-14 | Product name **Lucy AI**; USD 10 signup credit; default model `google/gemini-2.5-flash-lite`; login lands in chat |
+| 2026-07 | Admin team (4) + doctrinal commentaries CMS; norms visual editor; Moderation polish |
 
 ---
 

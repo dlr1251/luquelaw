@@ -26,7 +26,7 @@ export const SEARCH_TYPE_LABELS: Record<
   norm: { en: "Norms", es: "Normas" },
   article: { en: "Articles", es: "Artículos" },
   post: { en: "Blog", es: "Blog" },
-  torny: { en: "Torny", es: "Torny" },
+  torny: { en: "Lucy AI", es: "Lucy AI" },
   service: { en: "Services", es: "Servicios" },
 };
 

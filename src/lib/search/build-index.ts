@@ -152,7 +152,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
 
   items.push({
     id: "torny:all",
-    title: "Torny",
+    title: "Lucy AI",
     description:
       "AI-guided immigration consultations in the portal — prepaid wallet, cited norms and articles.",
     href: "/portal/lucy",

@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { AdminContentFilters } from "@/components/admin/admin-content-filters";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button-link";
@@ -19,15 +20,32 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { getAllPostsForAdmin } from "@/lib/posts/get-posts";
+import type { PostRecord } from "@/lib/posts/types";
 import { postPublicPath } from "@/lib/posts/types";
 import { isSupabaseConfigured } from "@/lib/supabase/server";
 
-type Search = { error?: string; saved?: string; deleted?: string };
+type Search = {
+  error?: string;
+  saved?: string;
+  deleted?: string;
+  q?: string;
+  status?: string;
+};
 
 function statusVariant(status: string): "default" | "secondary" | "outline" {
   if (status === "published") return "default";
   if (status === "draft") return "secondary";
   return "outline";
+}
+
+function filterPosts(items: PostRecord[], q: string, status: string): PostRecord[] {
+  const query = q.trim().toLowerCase();
+  return items.filter((row) => {
+    if (status && status !== "all" && row.status !== status) return false;
+    if (!query) return true;
+    const hay = [row.title, row.slug_key, row.category].join(" ").toLowerCase();
+    return hay.includes(query);
+  });
 }
 
 export default async function AdminPostsPage({
@@ -37,8 +55,11 @@ export default async function AdminPostsPage({
 }) {
   const sp = await searchParams;
   const posts = isSupabaseConfigured() ? await getAllPostsForAdmin() : [];
-  const en = posts.filter((p) => p.locale === "en");
-  const es = posts.filter((p) => p.locale === "es");
+  const q = sp.q ?? "";
+  const status = sp.status ?? "all";
+  const filtered = filterPosts(posts, q, status);
+  const en = filtered.filter((p) => p.locale === "en");
+  const es = filtered.filter((p) => p.locale === "es");
 
   return (
     <div className="mx-auto w-full max-w-5xl space-y-6">
@@ -87,6 +108,8 @@ export default async function AdminPostsPage({
         </Alert>
       ) : null}
 
+      <AdminContentFilters basePath="/admin/posts" q={q} status={status} />
+
       <AdminPostTable locale="en" title="English (/posts)" items={en} />
       <AdminPostTable locale="es" title="Spanish (/es/posts)" items={es} />
     </div>
@@ -100,7 +123,7 @@ function AdminPostTable({
 }: {
   locale: "en" | "es";
   title: string;
-  items: Awaited<ReturnType<typeof getAllPostsForAdmin>>;
+  items: PostRecord[];
 }) {
   return (
     <Card>
@@ -111,7 +134,7 @@ function AdminPostTable({
       <CardContent>
         {items.length === 0 ? (
           <p className="text-sm text-muted-foreground">
-            No posts yet.{" "}
+            No posts match.{" "}
             <Link
               href={`/admin/posts/new?locale=${locale}`}
               className="font-medium text-foreground underline-offset-4 hover:underline"
