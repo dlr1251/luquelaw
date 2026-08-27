@@ -6,7 +6,7 @@ import { useMemo, useState } from "react";
 
 import type { ImmigrationLocale } from "@/lib/practice-areas/immigration";
 import {
-  VISAS_CATALOG,
+  type VisaCatalogEntry,
   type VisaCategory,
   visaDetailPath,
 } from "@/lib/practice-areas/visas-catalog";
@@ -14,9 +14,10 @@ import { cn } from "@/lib/cn";
 
 type Props = {
   locale: ImmigrationLocale;
+  visas: VisaCatalogEntry[];
 };
 
-export function VisasCatalogBrowser({ locale }: Props) {
+export function VisasCatalogBrowser({ locale, visas }: Props) {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<VisaCategory | "all">("all");
 
@@ -43,7 +44,7 @@ export function VisasCatalogBrowser({ locale }: Props) {
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    return VISAS_CATALOG.filter((v) => {
+    return visas.filter((v) => {
       if (category !== "all" && v.category !== category) return false;
       if (!q) return true;
       return (
@@ -53,7 +54,7 @@ export function VisasCatalogBrowser({ locale }: Props) {
         String(v.articleNum).includes(q)
       );
     });
-  }, [category, locale, query]);
+  }, [category, locale, query, visas]);
 
   const filters: Array<VisaCategory | "all"> = ["all", "V", "M", "R"];
 

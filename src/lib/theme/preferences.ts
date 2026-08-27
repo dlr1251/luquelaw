@@ -24,7 +24,8 @@ export function applyTheme(theme: Theme) {
   document.documentElement.classList.toggle("dark", theme === "dark");
 }
 
-export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var t=localStorage.getItem(k);var d=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
+/** Public marketing stays light. Dashboard follows an explicit store, else the OS. */
+export const themeInitScript = `(function(){try{var k=${JSON.stringify(THEME_STORAGE_KEY)};var t=localStorage.getItem(k);var p=location.pathname;var dash=p==="/login"||p.indexOf("/login/")===0||p==="/admin"||p.indexOf("/admin/")===0||p==="/portal"||p.indexOf("/portal/")===0||p==="/account"||p.indexOf("/account/")===0||p.indexOf("/auth/")===0;var d=false;if(dash){d=t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches);if(t==="light")d=false;}document.documentElement.classList.toggle("dark",d);}catch(e){}})();`;
 
 /* ── Brand palette (locked to slate) ───────────────────────────── */
 

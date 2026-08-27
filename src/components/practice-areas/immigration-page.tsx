@@ -1,10 +1,8 @@
 import Link from "next/link";
 
-import { BookingCalendarEmbed } from "@/components/booking/booking-calendar-embed";
 import { Container } from "@/components/container";
 import { EngagementModel } from "@/components/engagement/EngagementModel";
 import { ImmigrationHubShell } from "@/components/practice-areas/immigration-hub-shell";
-import { loginHref } from "@/lib/auth/safe-next";
 import {
   immigrationContent,
   type ImmigrationLocale,
@@ -12,12 +10,10 @@ import {
 
 type Props = {
   locale: ImmigrationLocale;
-  signedIn?: boolean;
 };
 
-export function ImmigrationPage({ locale, signedIn = false }: Props) {
+export function ImmigrationPage({ locale }: Props) {
   const c = immigrationContent[locale];
-  const lucyHref = signedIn ? c.lucyHref : loginHref(c.lucyHref);
 
   return (
     <ImmigrationHubShell locale={locale}>
@@ -29,18 +25,15 @@ export function ImmigrationPage({ locale, signedIn = false }: Props) {
               <h1 className="marketing-display text-hero-foreground">{c.title}</h1>
               <p className="marketing-lead max-w-2xl italic text-hero-muted">{c.intro}</p>
               <div className="flex flex-wrap gap-3">
-                <Link href={c.bookHref} className="btn-primary-inverted btn-primary-lg">
+                <Link
+                  href={c.bookHref}
+                  className="inline-flex min-h-11 items-center justify-center border border-hero-accent bg-hero-accent px-6 font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium uppercase tracking-[0.1em] text-hero transition hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-accent/50"
+                >
                   {c.bookCta}
                 </Link>
                 <Link
-                  href={lucyHref}
-                  className="btn-secondary btn-secondary-lg border-hero-foreground/35 !text-white hover:bg-hero-foreground/10"
-                >
-                  {c.lucyCta}
-                </Link>
-                <Link
                   href={c.visasHref}
-                  className="btn-secondary btn-secondary-lg border-hero-foreground/35 !text-white hover:bg-hero-foreground/10"
+                  className="inline-flex min-h-11 items-center justify-center border border-hero-foreground/70 bg-transparent px-6 font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium uppercase tracking-[0.1em] text-hero-foreground transition hover:bg-hero-foreground/12 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40"
                 >
                   {c.visasCta}
                 </Link>
@@ -70,12 +63,9 @@ export function ImmigrationPage({ locale, signedIn = false }: Props) {
                   <h3 className="mt-3 font-[family-name:var(--font-ui)] text-[0.9375rem] font-semibold text-foreground">
                     {service.title}
                   </h3>
-                  <p className="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {service.detail}
                   </p>
-                  <Link href={c.bookHref} className="btn-primary mt-6 w-full sm:w-auto">
-                    {c.serviceCta}
-                  </Link>
                 </li>
               ))}
             </ul>
@@ -128,7 +118,7 @@ export function ImmigrationPage({ locale, signedIn = false }: Props) {
           </Container>
         </section>
 
-        <section className="border-b border-border bg-surface">
+        <section className="bg-surface">
           <Container className="marketing-section">
             <div className="max-w-2xl space-y-3">
               <p className="marketing-eyebrow">{c.hubLabel}</p>
@@ -154,17 +144,6 @@ export function ImmigrationPage({ locale, signedIn = false }: Props) {
                 </li>
               ))}
             </ul>
-          </Container>
-        </section>
-
-        <section id="book" className="scroll-mt-28 bg-background">
-          <Container className="py-10 sm:py-12 lg:py-14">
-            <div className="mx-auto max-w-4xl space-y-5">
-              <p className="marketing-eyebrow">{c.bookingLabel}</p>
-              <h2 className="marketing-title">{c.bookingTitle}</h2>
-              <p className="marketing-body max-w-2xl">{c.bookingBody}</p>
-              <BookingCalendarEmbed title={c.bookingTitle} locale={locale} />
-            </div>
           </Container>
         </section>
       </main>

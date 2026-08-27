@@ -2,33 +2,24 @@ import { BookingProvider } from "@/components/booking/BookingProvider";
 import { SiteSearchPalette } from "@/components/search/site-search-palette";
 import { SiteSearchProvider } from "@/components/search/site-search-provider";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { SiteHeaderChrome } from "@/components/site-header-chrome";
+import { getSiteHeaderProps } from "@/components/site-header";
 import { WhatsAppFloatingButton } from "@/components/whatsapp-floating-button";
-import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
 
 export default async function MarketingLayout({ children }: { children: React.ReactNode }) {
-  let signedIn = false;
-  if (isSupabaseConfigured()) {
-    try {
-      const supabase = await createClient();
-      const { data } = await supabase.auth.getClaims();
-      signedIn = Boolean(data?.claims);
-    } catch {
-      signedIn = false;
-    }
-  }
+  const header = await getSiteHeaderProps();
 
   return (
     <div className="marketing-theme flex min-h-full flex-col">
       <SiteSearchProvider>
         <BookingProvider>
-          <SiteHeader />
+          <SiteHeaderChrome {...header} />
           <div id="main" className="flex flex-1 flex-col">
             {children}
           </div>
-          <SiteFooter signedIn={signedIn} />
+          <SiteFooter signedIn={header.signedIn} />
           <WhatsAppFloatingButton />
-          <SiteSearchPalette signedIn={signedIn} />
+          <SiteSearchPalette signedIn={header.signedIn} />
         </BookingProvider>
       </SiteSearchProvider>
     </div>

@@ -81,3 +81,10 @@ export async function getAllAgentsForAdmin(): Promise<AgentRecord[]> {
   const { data } = await supabase.from("clkr_agents").select("*").order("sort_order");
   return (data as AgentRecord[]) ?? [];
 }
+
+export async function getAllPromptsForAdmin(): Promise<PromptRecord[]> {
+  if (!isSupabaseConfigured()) return [];
+  const supabase = await createClient();
+  const { data } = await supabase.from("clkr_prompts").select("*").order("sort_order");
+  return (data as PromptRecord[]) ?? [];
+}

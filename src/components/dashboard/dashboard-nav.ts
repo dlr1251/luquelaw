@@ -11,7 +11,9 @@ export type DashboardNavIcon =
   | "credit-card"
   | "settings"
   | "bookmark"
-  | "users";
+  | "users"
+  | "scroll-text"
+  | "shield";
 
 export type DashboardNavItem = {
   href: string;
@@ -51,30 +53,36 @@ export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "Content",
     items: [
+      { href: "/admin/posts", label: "Blog – News", icon: "book-open" },
+      { href: "/admin/visas", label: "Visas", icon: "scroll-text" },
       { href: "/admin/clkr", label: "CLKR", icon: "file-text" },
       { href: "/admin/norms", label: "Norms", icon: "scale" },
-      { href: "/admin/posts", label: "Blog", icon: "book-open" },
-      { href: "/admin/community", label: "Forum", icon: "users" },
-      { href: "/admin/commentaries", label: "Commentaries", icon: "message-square" },
+      { href: "/admin/commentaries", label: "Legal Commentaries", icon: "message-square" },
     ],
   },
   {
-    label: "LegalAI",
-    items: [{ href: "/admin/agents", label: "Agents", icon: "bot" }],
+    label: "Community",
+    items: [
+      { href: "/admin/community", label: "Forum", icon: "users" },
+      { href: "/admin/comments", label: "Moderation", icon: "shield" },
+    ],
+  },
+  {
+    label: "Legal AI",
+    items: [
+      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
+      { href: "/admin/agents", label: "Agents", icon: "bot" },
+      { href: "/admin/prompts", label: "Prompts Arena", icon: "scroll-text" },
+    ],
   },
   {
     label: "Operations",
-    items: [
-      { href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" },
-      { href: "/admin/comments", label: "Moderation", icon: "message-square" },
-    ],
+    items: [{ href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" }],
   },
   {
     label: "App",
     items: [
-      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
       { href: "/portal", label: "Portal", icon: "layout-dashboard" },
-      { href: "/community", label: "Public forum", icon: "users", external: true },
       { href: "/", label: "Public site", icon: "home", external: true },
     ],
   },
@@ -123,14 +131,14 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/tickets")) {
     return { title: "Tickets & reviews", description: "Queue and Lucy AI consultation reviews" };
   }
-  if (pathname.startsWith("/admin/comments")) {
+  if (pathname === "/admin/comments" || pathname.startsWith("/admin/comments/")) {
     return { title: "Moderation", description: "Norm discussion moderation" };
   }
   if (pathname.startsWith("/admin/community")) {
     return { title: "Forum", description: "Community questions and reports" };
   }
   if (pathname.startsWith("/admin/commentaries")) {
-    return { title: "Commentaries", description: "Firm doctrinal notes on norm sections" };
+    return { title: "Legal Commentaries", description: "Firm doctrinal notes on norm sections" };
   }
   if (pathname.startsWith("/admin/norms")) {
     return { title: "Norms", description: "Statute catalog CMS" };
@@ -138,8 +146,20 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/agents")) {
     return { title: "Agents", description: "LegalAI agents CMS" };
   }
+  if (pathname.startsWith("/admin/prompts")) {
+    return {
+      title: "Prompts Arena",
+      description: "Curated prompts for the LegalAI hub",
+    };
+  }
   if (pathname.startsWith("/admin/posts")) {
-    return { title: "Blog", description: "Posts CMS" };
+    return { title: "Blog – News", description: "Posts CMS" };
+  }
+  if (pathname.startsWith("/admin/visas")) {
+    return {
+      title: "Visas",
+      description: "Visa categories CMS (Resolución 5477)",
+    };
   }
   if (pathname.startsWith("/admin/clkr")) {
     return { title: "CLKR", description: "CLKR articles CMS" };

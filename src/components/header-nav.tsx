@@ -205,7 +205,7 @@ export function HeaderNav({
             {servicesOpen ? (
               <div
                 id={servicesMenuId}
-                className="absolute left-0 top-full z-50 min-w-[14rem] border border-border bg-card py-2 shadow-lg"
+                className="absolute left-0 top-full z-50 min-w-[18rem] border border-border bg-card py-2 shadow-lg"
                 role="menu"
               >
                 <Link

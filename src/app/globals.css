@@ -7,7 +7,7 @@
 :root {
   /* Brand palette — light mode only. Charcoal + clean gold. */
   --forest: #1c1f24;
-  --moss: #d4b445;
+  --moss: #e4bb00;
   --parchment: #f5f6f7;
   --ink: #191b1e;
 
@@ -39,7 +39,7 @@
   --hero: var(--forest);
   --hero-foreground: #ffffff;
   --hero-muted: rgb(255 255 255 / 0.76);
-  --hero-accent: #edd56a;
+  --hero-accent: #f0cd3a;
   --hero-card: rgb(255 255 255 / 0.08);
   --hero-border: rgb(255 255 255 / 0.18);
   --hero-button: rgb(255 255 255 / 0.1);
@@ -57,6 +57,7 @@
   --input: #cfd5dd;
   --ring: var(--moss);
 
+  color-scheme: light;
   min-height: 100%;
   background: var(--background);
   color: var(--foreground);
@@ -67,7 +68,7 @@
 /* Default (no class) = Slate. Each non-default palette remaps brand
    tokens + surface/border temperature so washes stay in-family.
    --hero-accent is overridden at .marketing-theme because that class
-   declares it as a literal. Dark mode stays monochrome. */
+   declares it as a literal. */
 
 html.palette-forest:not(.dark) {
   --forest: #152919;
@@ -224,41 +225,8 @@ html.palette-terracotta:not(.dark) .marketing-theme {
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Dark mode — monochrome black & white */
-html.dark .marketing-theme {
-  --background: oklch(0.07 0 0);
-  --foreground: oklch(0.97 0 0);
-  --muted: oklch(0.18 0 0);
-  --muted-foreground: oklch(0.68 0 0);
-  --card: oklch(0.11 0 0);
-  --card-foreground: oklch(0.97 0 0);
-  --border: oklch(1 0 0 / 0.14);
-  --surface: oklch(0.1 0 0);
-  --surface-strong: oklch(0.15 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-contrast: oklch(0.07 0 0);
-  --accent-foreground: oklch(0.07 0 0);
-  --hero: oklch(0 0 0);
-  --hero-foreground: oklch(0.97 0 0);
-  --hero-muted: oklch(0.66 0 0);
-  --hero-accent: #edd56a;
-  --hero-card: oklch(1 0 0 / 0.06);
-  --hero-border: oklch(1 0 0 / 0.16);
-  --hero-button: oklch(1 0 0 / 0.08);
-  --hero-button-hover: oklch(1 0 0 / 0.14);
-  --header-fg: oklch(0.97 0 0);
-  --header-fg-muted: oklch(0.66 0 0);
-  --footer-fg: oklch(0.62 0 0);
-  --heading: oklch(0.97 0 0);
-  --panel: oklch(0.11 0 0);
-  --panel-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.97 0 0);
-  --primary-foreground: oklch(0.07 0 0);
-  --secondary: oklch(0.15 0 0);
-  --secondary-foreground: oklch(0.97 0 0);
-  --input: oklch(1 0 0 / 0.14);
-  --ring: oklch(0.72 0 0);
-}
+/* Dark mode is for admin/portal only. Marketing keeps the light brand
+   (charcoal + gold on parchment) even if the OS/Chrome is in dark mode. */
 
 html.dark .dashboard-theme {
   --background: oklch(0.07 0 0);
@@ -287,6 +255,7 @@ html.dark .dashboard-theme {
   --sidebar-accent-foreground: oklch(0.97 0 0);
   --sidebar-border: oklch(1 0 0 / 0.14);
   --sidebar-ring: oklch(0.72 0 0);
+  color-scheme: dark;
 }
 
 html.dark {
@@ -304,7 +273,7 @@ html.dark {
   --hero: oklch(0 0 0);
   --hero-foreground: oklch(0.97 0 0);
   --hero-muted: oklch(0.66 0 0);
-  --hero-accent: #edd56a;
+  --hero-accent: #f0cd3a;
   --header-fg: oklch(0.97 0 0);
   --header-fg-muted: oklch(0.66 0 0);
   --footer-fg: oklch(0.62 0 0);
@@ -525,6 +494,52 @@ html.dark {
   .fx-marquee-item + .fx-marquee-item {
     display: none;
   }
+
+  .practice-area-card:hover .practice-area-icon,
+  .practice-area-card:focus-visible .practice-area-icon,
+  .practice-area-card:hover .practice-area-sheen,
+  .practice-area-card:focus-visible .practice-area-sheen {
+    animation: none !important;
+  }
+}
+
+@keyframes practice-icon-pop {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  35% {
+    transform: scale(1.2) rotate(-8deg);
+  }
+  65% {
+    transform: scale(1.08) rotate(4deg);
+  }
+  100% {
+    transform: scale(1.12) rotate(0deg);
+  }
+}
+
+@keyframes practice-sheen {
+  from {
+    transform: translateX(-130%) skewX(-16deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.55;
+  }
+  to {
+    transform: translateX(240%) skewX(-16deg);
+    opacity: 0;
+  }
+}
+
+.practice-area-card:hover .practice-area-icon,
+.practice-area-card:focus-visible .practice-area-icon {
+  animation: practice-icon-pop 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.practice-area-card:hover .practice-area-sheen,
+.practice-area-card:focus-visible .practice-area-sheen {
+  animation: practice-sheen 0.75s ease-out both;
 }
 
 .brand-mark-dot {
@@ -558,12 +573,12 @@ html.dark {
   background-color: var(--moss);
 }
 
-html.dark .btn-primary {
+html.dark .dashboard-theme .btn-primary {
   background-color: var(--foreground);
   color: var(--background);
 }
 
-html.dark .btn-primary:hover {
+html.dark .dashboard-theme .btn-primary:hover {
   background-color: oklch(0.86 0 0);
 }
 
@@ -588,34 +603,34 @@ html.dark .btn-primary:hover {
   background-color: color-mix(in srgb, var(--forest) 10%, transparent);
 }
 
-html.dark .btn-secondary {
+html.dark .dashboard-theme .btn-secondary {
   border-color: oklch(1 0 0 / 0.28);
   color: var(--foreground);
 }
 
-html.dark .btn-secondary:hover {
+html.dark .dashboard-theme .btn-secondary:hover {
   background-color: oklch(1 0 0 / 0.08);
 }
 
-html.dark .btn-primary-inverted {
+html.dark .dashboard-theme .btn-primary-inverted {
   background-color: var(--foreground);
   color: var(--background);
 }
 
-html.dark .btn-primary-inverted:hover {
+html.dark .dashboard-theme .btn-primary-inverted:hover {
   opacity: 0.92;
 }
 
-html.dark .engagement-flow__rail {
+html.dark .dashboard-theme .engagement-flow__rail {
   background: oklch(1 0 0 / 0.22);
 }
 
-html.dark .engagement-flow__node {
+html.dark .dashboard-theme .engagement-flow__node {
   border-color: oklch(1 0 0 / 0.35);
   background: oklch(0.11 0 0);
 }
 
-html.dark .engagement-flow__pulse {
+html.dark .dashboard-theme .engagement-flow__pulse {
   background: oklch(0.86 0 0);
 }
 
