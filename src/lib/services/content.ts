@@ -65,7 +65,7 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEn: "immigration",
     slugEs: "migracion",
     title: "Immigration Law",
-    shortTitle: "Immigration",
+    shortTitle: "Immigration Law",
     blurb: "What visa you need, how long you can stay, and what happens when the stamp runs out.",
     intro:
       "Colombian visas, migratory regularization, nationality, and stay rules — from first entry through long-term residence, with the paperwork Migración Colombia actually asks for.",
@@ -82,7 +82,7 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     slugEn: "labour-law",
     slugEs: "laboral",
     title: "Labour Law",
-    shortTitle: "Labour",
+    shortTitle: "Labour Law",
     blurb: "Hiring, contracts, terminations, and the labour risks foreigners often miss.",
     intro:
       "Counsel for employers and professionals on hiring, contracts, terminations, and Colombian labour compliance — including documentation when the worker is a foreign national.",
@@ -98,8 +98,8 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     id: "real-estate",
     slugEn: "real-estate",
     slugEs: "inmobiliario",
-    title: "Real Estate",
-    shortTitle: "Real Estate",
+    title: "Real Estate Law",
+    shortTitle: "Real Estate Law",
     blurb: "Buying, selling, or leasing — with due diligence that survives a civil-law closing.",
     intro:
       "Support for buying, selling, and leasing property in Colombia: title checks, contract review, propiedad horizontal, and closing coordination. Escrow is not the default here; we explain what actually secures the deal.",
@@ -115,8 +115,8 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     id: "family-law",
     slugEn: "family-law",
     slugEs: "familia",
-    title: "Family Law",
-    shortTitle: "Family",
+    title: "Civil and Family Law",
+    shortTitle: "Civil and Family Law",
     blurb: "Marriage, divorce, and custody when one foot is still in another country.",
     intro:
       "Bilingual guidance on family matters that often cross into visas, civil registry, and asset planning — without pretending every case is the same.",
@@ -132,8 +132,8 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     id: "corporate-law",
     slugEn: "corporate-law",
     slugEs: "corporativo",
-    title: "Corporate Law",
-    shortTitle: "Corporate",
+    title: "Commercial and Company Law",
+    shortTitle: "Commercial and Company Law",
     blurb: "Incorporate, contract, and keep the company in good standing.",
     intro:
       "Help international founders and investors set up and operate companies in Colombia — bylaws, shareholder agreements, and the housekeeping Cámara de Comercio actually expects.",
@@ -149,8 +149,8 @@ const areasEn: Omit<ServiceAreaContent, "href">[] = [
     id: "taxes",
     slugEn: "taxes",
     slugEs: "impuestos",
-    title: "Taxes",
-    shortTitle: "Taxes",
+    title: "Tax and Foreign Exchange Law",
+    shortTitle: "Tax and Foreign Exchange Law",
     blurb: "Tax residency and cross-border orientation — then the right specialist when the numbers get deep.",
     intro:
       "Orientation on tax residency and cross-border reporting for foreigners and companies in Colombia. When the matter needs a full tax specialist, we say so and coordinate the handoff.",
@@ -170,7 +170,7 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEn: "immigration",
     slugEs: "migracion",
     title: "Derecho migratorio",
-    shortTitle: "Migración",
+    shortTitle: "Derecho migratorio",
     blurb: "Qué visa necesitas, cuánto puedes quedarte y qué pasa cuando se acaba el sello.",
     intro:
       "Visas colombianas, regulación migratoria, nacionalidad y reglas de permanencia — desde el primer ingreso hasta la residencia de largo plazo, con el papeleo que Migración Colombia pide de verdad.",
@@ -187,7 +187,7 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEn: "labour-law",
     slugEs: "laboral",
     title: "Derecho laboral",
-    shortTitle: "Laboral",
+    shortTitle: "Derecho laboral",
     blurb: "Contratación, contratos, terminaciones y los riesgos laborales que el extranjero suele pasar por alto.",
     intro:
       "Asesoría para empleadores y profesionales en contratación, contratos, terminaciones y cumplimiento laboral en Colombia — incluida la documentación cuando el trabajador es extranjero.",
@@ -204,7 +204,7 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     slugEn: "real-estate",
     slugEs: "inmobiliario",
     title: "Derecho inmobiliario",
-    shortTitle: "Inmobiliario",
+    shortTitle: "Derecho inmobiliario",
     blurb: "Comprar, vender o arrendar — con debida diligencia que aguante un cierre en derecho continental.",
     intro:
       "Acompañamiento en compraventa y arrendamiento: títulos, contratos, propiedad horizontal y cierre. El escrow no es la regla aquí; explicamos qué garantiza el negocio de verdad.",
@@ -220,8 +220,8 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     id: "family-law",
     slugEn: "family-law",
     slugEs: "familia",
-    title: "Derecho de familia",
-    shortTitle: "Familia",
+    title: "Derecho civil y de familia",
+    shortTitle: "Derecho civil y de familia",
     blurb: "Matrimonio, divorcio y custodia cuando un pie sigue en otro país.",
     intro:
       "Orientación bilingüe en asuntos de familia que suelen cruzarse con visas, registro civil y planeación patrimonial — sin pretender que todos los casos sean iguales.",
@@ -237,8 +237,8 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     id: "corporate-law",
     slugEn: "corporate-law",
     slugEs: "corporativo",
-    title: "Derecho corporativo",
-    shortTitle: "Corporativo",
+    title: "Derecho comercial y de la empresa",
+    shortTitle: "Derecho comercial y de la empresa",
     blurb: "Constituir, contratar y mantener la sociedad en regla.",
     intro:
       "Ayudamos a fundadores e inversionistas internacionales a constituir y operar compañías en Colombia: estatutos, acuerdos de socios y el housekeeping que Cámara de Comercio espera de verdad.",
@@ -254,8 +254,8 @@ const areasEs: Omit<ServiceAreaContent, "href">[] = [
     id: "taxes",
     slugEn: "taxes",
     slugEs: "impuestos",
-    title: "Impuestos",
-    shortTitle: "Impuestos",
+    title: "Derecho tributario y cambiario",
+    shortTitle: "Derecho tributario y cambiario",
     blurb: "Residencia fiscal y orientación transfronteriza — y el especialista correcto cuando los números se profundizan.",
     intro:
       "Orientación sobre residencia fiscal y reportes transfronterizos para extranjeros y empresas en Colombia. Cuando el asunto pide un especialista tributario de tiempo completo, lo decimos y coordinamos el traspaso.",
@@ -292,10 +292,17 @@ export const servicesHubContent: Record<ServicesLocale, ServicesHubContent> = {
 
 export function getServiceAreas(locale: ServicesLocale): ServiceAreaContent[] {
   const source = locale === "es" ? areasEs : areasEn;
-  return source.map((area) => ({
-    ...area,
-    href: hrefFor(area.id, locale),
-  }));
+  const byId = new Map(source.map((area) => [area.id, area]));
+  return SERVICE_AREA_IDS.map((id) => {
+    const area = byId.get(id);
+    if (!area) {
+      throw new Error(`Missing service area: ${id}`);
+    }
+    return {
+      ...area,
+      href: hrefFor(id, locale),
+    };
+  });
 }
 
 export function getServiceArea(
@@ -307,18 +314,18 @@ export function getServiceArea(
 
 export const SERVICE_AREA_IDS: ServiceAreaId[] = [
   "immigration",
-  "labour-law",
   "real-estate",
-  "family-law",
   "corporate-law",
   "taxes",
+  "family-law",
+  "labour-law",
 ];
 
 /** Non-immigration MVP area ids (have dedicated simple pages). */
 export const MVP_SERVICE_AREA_IDS: Exclude<ServiceAreaId, "immigration">[] = [
-  "labour-law",
   "real-estate",
-  "family-law",
   "corporate-law",
   "taxes",
+  "family-law",
+  "labour-law",
 ];

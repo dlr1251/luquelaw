@@ -14,7 +14,9 @@ import {
   LogOutIcon,
   MessageSquareIcon,
   ScaleIcon,
+  ScrollTextIcon,
   SettingsIcon,
+  ShieldIcon,
   SparklesIcon,
   TicketIcon,
   UsersIcon,
@@ -58,6 +60,8 @@ const navIcons: Record<
   settings: SettingsIcon,
   bookmark: BookmarkIcon,
   users: UsersIcon,
+  "scroll-text": ScrollTextIcon,
+  shield: ShieldIcon,
 };
 
 type Props = {

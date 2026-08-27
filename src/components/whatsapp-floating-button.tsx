@@ -14,10 +14,19 @@ function hasMobileNormReaderBar(pathname: string): boolean {
   );
 }
 
+/** Mobile visa catalog bar on visa detail pages (`lg:hidden`). */
+function hasMobileVisaCatalogNav(pathname: string): boolean {
+  return (
+    /^\/services\/immigration\/visas\/[^/]+/.test(pathname) ||
+    /^\/es\/servicios\/migracion\/visas\/[^/]+/.test(pathname)
+  );
+}
+
 export function WhatsAppFloatingButton() {
   const pathname = usePathname();
   const isSpanish = pathname === "/es" || pathname.startsWith("/es/");
-  const liftAboveReaderBar = hasMobileNormReaderBar(pathname);
+  const liftAboveBottomBar =
+    hasMobileNormReaderBar(pathname) || hasMobileVisaCatalogNav(pathname);
 
   const href = useMemo(() => {
     const text = isSpanish
@@ -36,10 +45,10 @@ export function WhatsAppFloatingButton() {
       aria-label={label}
       title="WhatsApp"
       className={cn(
-        "fixed right-4 z-[65] inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#128C7E] text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition hover:bg-[#0f7a6e] hover:shadow-[0_10px_28px_rgba(0,0,0,0.26)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)] sm:right-5 sm:h-14 sm:w-14",
-        // Match NormLayout mobile bottom padding (4.5rem bar) + small gap; reset at lg where the bar hides.
-        liftAboveReaderBar
-          ? "bottom-[calc(4.5rem+0.75rem+env(safe-area-inset-bottom,0px))] lg:bottom-[max(1.25rem,env(safe-area-inset-bottom))]"
+        "fixed right-4 inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#128C7E] text-white shadow-[0_8px_24px_rgba(0,0,0,0.22)] transition hover:bg-[#0f7a6e] hover:shadow-[0_10px_28px_rgba(0,0,0,0.26)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[color:var(--parchment)] sm:right-5 sm:h-14 sm:w-14",
+        hasMobileVisaCatalogNav(pathname) ? "z-[45]" : "z-[65]",
+        liftAboveBottomBar
+          ? "bottom-[calc(4.75rem+0.75rem+env(safe-area-inset-bottom,0px))] lg:bottom-[max(1.25rem,env(safe-area-inset-bottom))]"
           : "bottom-[max(1.25rem,env(safe-area-inset-bottom))]",
       )}
     >

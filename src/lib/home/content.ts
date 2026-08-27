@@ -64,34 +64,34 @@ const practiceAreasEn = [
     href: "/services/immigration",
   },
   {
-    icon: "labour" as const,
-    title: "Labour Law",
-    detail: "Hiring, contracts, terminations, HR risk.",
-    href: "/services/labour-law",
-  },
-  {
     icon: "realEstate" as const,
-    title: "Real Estate",
+    title: "Real Estate Law",
     detail: "Purchase, sale, leases, propiedad horizontal.",
     href: "/services/real-estate",
   },
   {
-    icon: "family" as const,
-    title: "Family Law",
-    detail: "Marriage, divorce, custody across borders.",
-    href: "/services/family-law",
-  },
-  {
     icon: "corporate" as const,
-    title: "Corporate",
+    title: "Commercial and Company Law",
     detail: "Company setup, contracts, governance.",
     href: "/services/corporate-law",
   },
   {
     icon: "taxes" as const,
-    title: "Taxes",
+    title: "Tax and Foreign Exchange Law",
     detail: "Tax residency and cross-border orientation.",
     href: "/services/taxes",
+  },
+  {
+    icon: "family" as const,
+    title: "Civil and Family Law",
+    detail: "Marriage, divorce, custody across borders.",
+    href: "/services/family-law",
+  },
+  {
+    icon: "labour" as const,
+    title: "Labour Law",
+    detail: "Hiring, contracts, terminations, HR risk.",
+    href: "/services/labour-law",
   },
 ];
 
@@ -103,34 +103,34 @@ const practiceAreasEs = [
     href: "/es/servicios/migracion",
   },
   {
-    icon: "labour" as const,
-    title: "Derecho laboral",
-    detail: "Contratación, contratos, terminaciones, riesgo laboral.",
-    href: "/es/servicios/laboral",
-  },
-  {
     icon: "realEstate" as const,
-    title: "Inmobiliario",
+    title: "Derecho inmobiliario",
     detail: "Compraventa, arrendamientos, propiedad horizontal.",
     href: "/es/servicios/inmobiliario",
   },
   {
-    icon: "family" as const,
-    title: "Familia",
-    detail: "Matrimonio, divorcio, custodia transfronteriza.",
-    href: "/es/servicios/familia",
-  },
-  {
     icon: "corporate" as const,
-    title: "Corporativo",
+    title: "Derecho comercial y de la empresa",
     detail: "Constitución, contratos, gobierno societario.",
     href: "/es/servicios/corporativo",
   },
   {
     icon: "taxes" as const,
-    title: "Impuestos",
+    title: "Derecho tributario y cambiario",
     detail: "Residencia fiscal y orientación transfronteriza.",
     href: "/es/servicios/impuestos",
+  },
+  {
+    icon: "family" as const,
+    title: "Derecho civil y de familia",
+    detail: "Matrimonio, divorcio, custodia transfronteriza.",
+    href: "/es/servicios/familia",
+  },
+  {
+    icon: "labour" as const,
+    title: "Derecho laboral",
+    detail: "Contratación, contratos, terminaciones, riesgo laboral.",
+    href: "/es/servicios/laboral",
   },
 ];
 

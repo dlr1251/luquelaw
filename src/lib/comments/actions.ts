@@ -60,6 +60,30 @@ async function revalidateNormPaths(sectionId: string) {
   revalidatePath("/clkr/norms");
   revalidatePath("/es/clkr/norms");
   revalidatePath("/admin/comments");
+
+  // Visa detail pages that surface the same article discussion
+  if (isSupabaseConfigured()) {
+    const supabase = await createClient();
+    const { data: section } = await supabase
+      .from("norm_sections")
+      .select("section_key")
+      .eq("id", sectionId)
+      .maybeSingle();
+    const key = section?.section_key as string | undefined;
+    if (key?.startsWith("art-")) {
+      const articleNum = Number(key.slice(4));
+      if (Number.isFinite(articleNum)) {
+        const { VISAS_CATALOG, visaDetailPath } = await import(
+          "@/lib/practice-areas/visas-catalog"
+        );
+        for (const visa of VISAS_CATALOG) {
+          if (!visa.enableNormComments || visa.articleNum !== articleNum) continue;
+          revalidatePath(visaDetailPath(visa.slug, "en"));
+          revalidatePath(visaDetailPath(visa.slug, "es"));
+        }
+      }
+    }
+  }
 }
 
 export async function createComment(input: {

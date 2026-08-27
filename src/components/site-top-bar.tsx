@@ -101,14 +101,14 @@ export function SiteTopBar({ rates: initialRates }: Props) {
     locale === "es"
       ? {
           cta: "Agendar consulta",
-          payCta: "Pagar consulta",
+          payCta: "Pagos",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",
         }
       : {
           cta: "Book consultation",
-          payCta: "Pay consultation",
+          payCta: "Payments",
           medellin: "Medellín",
           usd: "USD/COP",
           eur: "EUR/COP",

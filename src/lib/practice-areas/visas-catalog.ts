@@ -13,49 +13,126 @@ export type VisaCatalogEntry = {
   name: Record<ImmigrationLocale, string>;
   summary: Record<ImmigrationLocale, string>;
   whoFor: Record<ImmigrationLocale, string>;
+  /** General eligibility notes (nationality lists, exemptions, fit). */
+  eligibility?: Record<ImmigrationLocale, string>;
+  /** What the visa authorizes (rights / scope of stay). */
+  rights?: Record<ImmigrationLocale, string[]>;
+  /** Explicit limits (no work, no beneficiaries, zone limits, etc.). */
+  restrictions?: Record<ImmigrationLocale, string[]>;
+  /** Filing checklist: general + category-specific documents. */
+  applicationChecklist?: Record<ImmigrationLocale, string[]>;
   keyRequirements: Record<ImmigrationLocale, string[]>;
   durationNotes: Record<ImmigrationLocale, string>;
   workPermit: boolean | string;
+  /** Optional bilingual override for work authorization copy. */
+  workPermitNotes?: Record<ImmigrationLocale, string>;
   beneficiaries: string;
+  /** Prefer this over `beneficiaries` when both locales are filled. */
+  beneficiaryNotes?: Record<ImmigrationLocale, string>;
   relatedGuideSlug: string | null;
+  /** When true, visa detail loads discussion comments for art. N of Resolución 5477. */
+  enableNormComments?: boolean;
 };
 
 export const VISAS_CATALOG: VisaCatalogEntry[] = [
   {
-    "slug": "transito-aeroportuario",
-    "category": "V",
-    "articleNum": 33,
-    "name": {
-      "en": "V Visa — Tránsito Aeroportuario",
-      "es": "Visa V Tránsito Aeroportuario"
+    slug: "transito-aeroportuario",
+    category: "V",
+    articleNum: 33,
+    name: {
+      en: "V Visa — Airport Transit",
+      es: "Visa V Tránsito Aeroportuario",
     },
-    "summary": {
-      "en": "Airport transit for nationals who need a transit visa under the governing resolution — up to 24 hours in sterile/transit zones of an international airport, onward to a third country.",
-      "es": "Para extranjeros de nacionalidades establecidas mediante Resolución que aspiren a realizar tránsito directo en alguno de los aeropuertos del territorio nacional y con destino a un tercer Estado. La permanencia autorizada en el aeropuerto será de máximo veinticuatro (24) horas, restringida estrictamente a zonas estériles o de tránsito directo en un solo aeropuerto con operación internacional. La llegada y la permanenc"
+    summary: {
+      en: "For foreign nationals of nationalities listed by resolution who need a direct airport transit in Colombia en route to a third country. Authorized stay is up to 24 hours, strictly in sterile or direct-transit zones of a single international airport. Presence in those zones is not an entry into Colombian territory for immigration purposes.",
+      es: "Para extranjeros de nacionalidades establecidas mediante Resolución que aspiren a realizar tránsito directo en alguno de los aeropuertos del territorio nacional y con destino a un tercer Estado. La permanencia autorizada es de máximo veinticuatro (24) horas, restringida a zonas estériles o de tránsito directo en un solo aeropuerto con operación internacional. La llegada y permanencia en esas zonas no se consideran ingreso al territorio nacional, en términos migratorios.",
     },
-    "whoFor": {
-      "en": "Applicants whose purpose matches this category in Resolución 5477 — confirm fit before filing.",
-      "es": "Solicitantes que cumplan el propósito específico de la categoría en la Resolución 5477."
+    whoFor: {
+      en: "Travelers who must change flights in Colombia without entering the country, and whose nationality requires an airport-transit visa under the list published by Cancillería (Resolución 5488 de 2022, art. 8, as amended — notably by Resolución 3717 de 2023).",
+      es: "Viajeros que deben hacer conexión en Colombia sin ingresar al país, y cuya nacionalidad exige visa de tránsito aeroportuario según el listado de Cancillería (Resolución 5488 de 2022, art. 8, modificado — en particular por la Resolución 3717 de 2023).",
     },
-    "keyRequirements": {
-      "en": [
-        "General requirements for this visa type (V, M, or R) under Resolución 5477",
-        "Evidence required by the governing article for this category",
-        "Identity and migratory documentation"
+    eligibility: {
+      en: "Only nationals of States or territories that Cancillería lists as requiring this visa. Stateless persons with a travel document issued by a State recognized by Colombia also need it (Res. 5488 art. 8, as amended). Nationals not on that list are exempt from the airport-transit visa for a direct connection to a third State. Confirm the current list before filing — it can change by resolution. Countries commonly listed as requiring it include Afghanistan, Angola, Bangladesh, Burkina Faso, Cameroon, Cote d'Ivoire, Egypt, Ethiopia, Eritrea, Gambia, Ghana, Haiti, India, Iran, Kenya, Lebanon, Mali, Nepal, Nigeria, Pakistan, Sierra Leone, Syria, Somalia, Sri Lanka, Sudan, Tajikistan, and Uzbekistan.",
+      es: "Solo nacionales de Estados o territorios que Cancillería liste como obligados a esta visa. Los apátridas con documento de viaje de un Estado reconocido por Colombia también la requieren (Res. 5488 art. 8, modificado). Quienes no estén en ese listado están exentos de la visa de tránsito aeroportuario directo hacia un tercer Estado. Confirme el listado vigente antes de solicitar — puede cambiar por resolución. Países que suelen figurar como obligados incluyen Afganistán, Angola, Bangladesh, Burkina Faso, Camerún, Costa de Marfil, Egipto, Etiopía, Eritrea, Gambia, Ghana, Haití, India, Irán, Kenia, Líbano, Malí, Nepal, Nigeria, Pakistán, Sierra Leona, Siria, Somalia, Sri Lanka, Sudán, Tayikistán y Uzbekistán.",
+    },
+    rights: {
+      en: [
+        "Direct transit through the international/sterile zone of one Colombian airport with international operations, onward to a third country.",
+        "Authorized presence in that zone for up to 24 hours per transit.",
+        "Visa validity of up to 30 days for multiple transits (as authorized).",
+        "Multiple entries/transits are generally allowed under the visa framework (art. 27), within the authorization granted.",
+        "Time spent in the international transit zone is not treated as entry into Colombian territory for immigration purposes — without limiting Migración Colombia’s control of those zones.",
       ],
-      "es": [
-        "Requisitos generales del tipo de visa (V/M/R)",
-        "Evidencia específica de la categoría según el artículo",
-        "Documentación de identidad y migratoria"
-      ]
+      es: [
+        "Tránsito directo por la zona internacional/estéril de un aeropuerto colombiano con operación internacional, con destino a un tercer país.",
+        "Permanencia autorizada en esa zona hasta por 24 horas por tránsito.",
+        "Vigencia de la visa de hasta 30 días para múltiples tránsitos (según autorización).",
+        "Entradas/tránsitos múltiples están en principio permitidos en el régimen de visas (art. 27), dentro de lo autorizado.",
+        "La permanencia en la zona de tránsito internacional no se considera ingreso al territorio nacional en términos migratorios — sin menoscabo del control que Migración Colombia ejerce sobre esas zonas.",
+      ],
     },
-    "durationNotes": {
-      "en": "Validity and stay are set by Cancillería for each authorization.",
-      "es": "Vigencia y permanencia las fija Cancillería en cada autorización."
+    restrictions: {
+      en: [
+        "No work authorization in Colombia.",
+        "No exit from the sterile/direct-transit zone; no change of airport.",
+        "Maximum 24 hours in the transit zone per connection.",
+        "Does not authorize entry into Colombian national territory beyond the transit zone (art. 14).",
+        "Does not allow applications as a beneficiary (dependents).",
+        "Does not carry the study permission that other longer visitor visas may allow (art. 28 excludes airport transit).",
+        "Obtain it before the connection, through the Colombian consulate covering your legal residence — not as a filing from inside Colombia for this transit purpose.",
+      ],
+      es: [
+        "No otorga permiso de trabajo en Colombia.",
+        "No permite salir de la zona estéril/de tránsito directo ni cambiar de aeropuerto.",
+        "Máximo 24 horas en la zona de tránsito por conexión.",
+        "No autoriza el ingreso al territorio nacional más allá de la zona de tránsito (art. 14).",
+        "No admite solicitudes en calidad de beneficiario.",
+        "No incluye el permiso de estudio que otras visas de visitante más largas pueden permitir (el art. 28 exceptúa el tránsito aeroportuario).",
+        "Obténgala antes de la conexión, ante el consulado colombiano de su residencia legal — no como trámite pensado para radicar desde dentro de Colombia para este tránsito.",
+      ],
     },
-    "workPermit": "See category rules in Resolución 5477.",
-    "beneficiaries": "Depends on category — verify before planning a family filing.",
-    "relatedGuideSlug": null
+    applicationChecklist: {
+      en: [
+        "Complete the online visa application (SITAC / Cancillería) for category V — Airport Transit, filed with the Colombian consulate whose jurisdiction covers your legal residence — before travel.",
+        "Recent digital color photo on a white background (neutral expression; max 300 KB; face fully visible).",
+        "Passport or accepted travel document valid at least six (6) months from the application date, in good condition, with a blank page if a sticker may be needed — plus a copy of the bio page.",
+        "Airline ticket showing entry into and exit from Colombia to a third country.",
+        "Proof of admissibility to the final destination — mainly the visa for that third State when required.",
+        "Pay the study fee within the calendar deadline Cancillería sets after filing; if approved, pay the issuance fee within its deadline.",
+      ],
+      es: [
+        "Diligenciar la solicitud en línea (SITAC / Cancillería) en categoría V — Tránsito Aeroportuario, ante el consulado colombiano de la circunscripción de su residencia legal — antes del viaje.",
+        "Fotografía digital reciente a color con fondo blanco (expresión neutra; máximo 300 KB; rostro completo y visible).",
+        "Pasaporte o documento de viaje aceptado con vigencia mínima de seis (6) meses al momento de la solicitud, en buen estado y con hojas libres si se requiere etiqueta — más copia de la página de datos.",
+        "Tiquete aéreo de entrada y salida de Colombia con destino a un tercer país.",
+        "Prueba de admisibilidad al destino final — principalmente la visa del tercer Estado cuando la exija.",
+        "Pagar la tasa de estudio dentro del plazo calendario que fije Cancillería tras el radicado; si aprueban, pagar la tasa de expedición en su plazo.",
+      ],
+    },
+    keyRequirements: {
+      en: [
+        "General filing formalities under art. 24 (form, photo, passport).",
+        "Air ticket into and out of Colombia to a third country (art. 33).",
+        "Proof of admissibility to the final destination, mainly a visa if required (art. 33).",
+      ],
+      es: [
+        "Formalidades generales de solicitud del art. 24 (formulario, foto, pasaporte).",
+        "Tiquete aéreo de entrada y salida de Colombia hacia un tercer país (art. 33).",
+        "Demostrar admisibilidad al destino final, principalmente visa si se requiere (art. 33).",
+      ],
+    },
+    durationNotes: {
+      en: "Visa validity: up to thirty (30) days for multiple transits. Stay in the airport transit zone: maximum twenty-four (24) hours per transit.",
+      es: "Vigencia de la visa: hasta treinta (30) días para múltiples tránsitos. Permanencia en la zona de tránsito: máximo veinticuatro (24) horas por tránsito.",
+    },
+    workPermit: false,
+    beneficiaries: "Not allowed.",
+    beneficiaryNotes: {
+      en: "This visa does not allow applications as a beneficiary.",
+      es: "Esta visa no permite solicitudes en calidad de beneficiario.",
+    },
+    relatedGuideSlug: null,
+    enableNormComments: true,
   },
   {
     "slug": "turismo",
@@ -91,40 +168,75 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
     "beneficiaries": "Usually not for dependents as primary purpose.",
     "relatedGuideSlug": "last-legal-day"
   },
-  {
-    "slug": "negocios",
-    "category": "V",
-    "articleNum": 35,
-    "name": {
-      "en": "V Visa — Business",
-      "es": "Visa V Negocios"
+    {
+      "slug": "negocios",
+      "category": "V",
+      "articleNum": 35,
+      "name": {
+        "en": "V Visa — Business",
+        "es": "Visa V Negocios"
+      },
+      "summary": {
+        "en": "For business dealings, market studies, direct-investment plans or filings, company formation, negotiation, contracts, or commercial representation. It is for nationalities that need a visa for short visits — and also for nationalities that are exempt from a short-stay visa when they need a longer stay in the country.",
+        "es": "Para gestiones de negocios, estudios de mercado, planes o trámites de inversión directa y constitución de sociedad comercial, negociación, celebración de contratos o representación comercial. Está destinada a nacionalidades que no están exentas de visa para visitas cortas — y también a quienes, estando eximidos de visa de corta duración, precisan de una mayor permanencia en el país."
+      },
+      "whoFor": {
+        "en": "Two doors, same visa. Nationals who are not on Cancillería’s short-stay visa-exemption list, and need to come for business. And nationals who are on that list, but whose business stay will not fit inside the exemption (they need more time, documented as a V Negocios).",
+        "es": "Dos puertas, la misma visa. Nacionales que no están en el listado de exención de visa de corta estancia de Cancillería, y vienen por negocios. Y nacionales que sí están en ese listado, pero cuya permanencia de negocios no cabe en la exención (necesitan más tiempo, documentado como V Negocios)."
+      },
+      "eligibility": {
+        "en": "Confirm the current short-stay exemption list (Resolución 5488 de 2022 and its amendments) before you decide between entering as a visitor without a visa and filing V Negocios. The list changes. If you are exempt and the trip fits inside the permitted stay, you typically do not need this visa. If you need more time, or your nationality is not exempt, this is the category.",
+        "es": "Confirme el listado vigente de exención de visa de corta estancia (Resolución 5488 de 2022 y sus modificaciones) antes de decidir entre ingresar como visitante sin visa y radicar V Negocios. El listado cambia. Si está exento y el viaje cabe en la permanencia permitida, por regla no necesita esta visa. Si necesita más tiempo, o su nacionalidad no está exenta, esta es la categoría."
+      },
+      "rights": {
+        "en": [
+          "Carry out the business activities authorized in the visa: dealings, market studies, direct-investment plans or filings, company formation, negotiation, contracts, or commercial representation (art. 35).",
+          "Visa validity: up to two (2) years, with multiple entries (art. 27).",
+          "Authorized stay in Colombia: up to 180 calendar days, continuous or discontinuous, in each 365-calendar-day period counted from the date the visa is issued — not extendable.",
+        ],
+        "es": [
+          "Adelantar las actividades de negocios autorizadas en la visa: gestiones, estudios de mercado, planes o trámites de inversión directa y constitución de sociedad, negociación, contratos o representación comercial (art. 35).",
+          "Vigencia de la visa: hasta dos (2) años, con entradas múltiples (art. 27).",
+          "Permanencia autorizada en Colombia: máximo 180 días calendario, continuos o discontinuos, en cada periodo de 365 días calendario contados desde la expedición de la visa — improrrogable.",
+        ]
+      },
+      "restrictions": {
+        "en": [
+          "Does not grant a work permit or affiliation to the Colombian social-security system. That is not a ban on the business activities art. 35 authorizes — market studies, investment plans, forming a company, negotiating, signing contracts, or commercial representation — within what the visa records. It does not cover taking a job or subordinate work in Colombia.",
+          "Does not allow applications as a beneficiary (dependents).",
+        ],
+        "es": [
+          "No otorga permiso de trabajo ni permite vincularse al Sistema de Seguridad Social. Eso no impide las gestiones de negocios que autoriza el art. 35 — estudios de mercado, planes de inversión, constituir sociedad, negociar, firmar contratos o representación comercial — dentro de lo que quede registrado en la visa. Lo que no cubre es emplearse o prestar trabajo subordinado en Colombia.",
+          "No admite solicitudes en calidad de beneficiario.",
+        ]
+      },
+      "keyRequirements": {
+        "en": [
+          "General filing formalities under art. 24 (form, photo, passport).",
+          "Then art. 31 (personal filing) or art. 32 (legal-entity sponsor), whichever applies — including the schedule of activities.",
+        ],
+        "es": [
+          "Formalidades generales de solicitud del art. 24 (formulario, foto, pasaporte).",
+          "Luego art. 31 (título personal) o art. 32 (respaldo de persona jurídica), según proceda — incluido el cronograma de actividades.",
+        ]
+      },
+      "durationNotes": {
+        "en": "Validity: up to two (2) years. Stay: maximum 180 calendar days, continuous or discontinuous, non-extendable in each 365-calendar-day period from the date the visa is issued.",
+        "es": "Vigencia: hasta dos (2) años. Permanencia: máximo 180 días calendario, continuos o discontinuos, improrrogables en cada periodo de 365 días calendario contados a partir de la expedición de la visa."
+      },
+      "workPermit": false,
+      "workPermitNotes": {
+        "en": "No work permit, and no affiliation to Colombian social security. You may still carry out the business activities art. 35 names — you may not take a job here.",
+        "es": "No hay permiso de trabajo ni afiliación al Sistema de Seguridad Social. Sí puede adelantar las gestiones de negocios del art. 35 — no puede emplearse aquí."
+      },
+      "beneficiaries": "Not allowed.",
+      "beneficiaryNotes": {
+        "en": "This visa does not allow applications as a beneficiary.",
+        "es": "Esta visa no permite solicitudes en calidad de beneficiario."
+      },
+      "relatedGuideSlug": null,
+      "enableNormComments": true
     },
-    "summary": {
-      "en": "For business dealings, market studies, investment planning, company formation, negotiation, contracts, or commercial representation.",
-      "es": "Para gestiones de negocios, estudios de mercado, planes de inversión, constitución de sociedad, negociación, contratos o representación comercial."
-    },
-    "whoFor": {
-      "en": "Foreign nationals needing business stay beyond short-visit exemptions.",
-      "es": "Extranjeros que necesitan permanencia de negocios más allá de las exenciones de corta visita."
-    },
-    "keyRequirements": {
-      "en": [
-        "Purpose and sponsor documentation",
-        "General/corporate support as applicable"
-      ],
-      "es": [
-        "Documentación de propósito y respaldo",
-        "Soporte general/corporativo según aplique"
-      ]
-    },
-    "durationNotes": {
-      "en": "Duration set by Cancillería for the specific filing.",
-      "es": "Duración fijada por Cancillería según el expediente."
-    },
-    "workPermit": false,
-    "beneficiaries": "Case-specific; check category rules.",
-    "relatedGuideSlug": null
-  },
   {
     "slug": "estudiante",
     "category": "V",
@@ -134,30 +246,71 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
       "es": "Visa V Estudiante"
     },
     "summary": {
-      "en": "For in-person, virtual, or distance studies (arts/trade, K–12, higher education), student practice, or academic exchange under higher-education agreements.",
-      "es": "Para estudios presenciales, virtuales o a distancia, prácticas estudiantiles o intercambio académico por convenio entre instituciones de educación superior."
+      "en": "For in-person, virtual, or distance study (arts and trades, preschool through secondary, work-and-human-development programs, and higher education), student internships, or academic exchange under a higher-education agreement. Passport holders from visa-exempt countries or territories do not need this visa if their stay in Colombia will not exceed 180 calendar days.",
+      "es": "Para estudios presenciales, virtuales o a distancia (arte u oficio, preescolar a media, educación para el trabajo y el desarrollo humano, y educación superior), prácticas estudiantiles o intercambio académico por convenio entre instituciones de educación superior. Quienes porten pasaporte de país o territorio exento de visa no necesitan este trámite si su permanencia en Colombia no supera 180 días calendario."
     },
     "whoFor": {
-      "en": "Foreign students enrolled in recognized Colombian programs.",
-      "es": "Estudiantes extranjeros matriculados en programas reconocidos en Colombia."
+      "en": "Foreign students who will study in Colombia beyond a short visa-exempt visit — or whose nationality is not on the short-stay exemption list. The program must match art. 36: study, a student internship, or an academic exchange.",
+      "es": "Estudiantes extranjeros que van a estudiar en Colombia más allá de una visita corta exenta de visa — o cuya nacionalidad no está en el listado de exención de corta estancia. El programa tiene que caber en el art. 36: estudio, prácticas estudiantiles o intercambio académico."
+    },
+    "eligibility": {
+      "en": "Confirm the current short-stay exemption list (Resolución 5488 de 2022 and its amendments). If you are exempt and the stay will not exceed 180 calendar days, you typically do not file this visa. If you need more time, or your nationality is not exempt, this is the category. A second or later student visa also needs proof that you attended and finished the prior course, studies, or internship.",
+      "es": "Confirme el listado vigente de exención de visa de corta estancia (Resolución 5488 de 2022 y sus modificaciones). Si está exento y la permanencia no supera 180 días calendario, por regla no radica esta visa. Si necesita más tiempo, o su nacionalidad no está exenta, esta es la categoría. Una segunda visa de estudiante y las siguientes también piden prueba de asistencia y terminación del curso, estudios o prácticas anteriores."
+    },
+    "rights": {
+      "en": [
+        "Carry out the studies, student internship, or academic exchange authorized in the visa (art. 36).",
+        "Visa validity: up to two (2) years, with multiple entries (art. 27).",
+        "Stay: the visa itself authorizes presence in Colombia while it is valid (art. 15). Unlike V Negocios or V Turismo, art. 36 does not cap stay at 180 days per year.",
+        "University postgraduate students may work up to twenty (20) hours a week if the employer reports it to Migración Colombia and the Ministry of Labour.",
+      ],
+      "es": [
+        "Adelantar los estudios, las prácticas estudiantiles o el intercambio académico autorizados en la visa (art. 36).",
+        "Vigencia de la visa: hasta dos (2) años, con entradas múltiples (art. 27).",
+        "Permanencia: la visa autoriza estar en Colombia mientras esté vigente (art. 15). A diferencia de V Negocios o V Turismo, el art. 36 no pone un tope de 180 días por año.",
+        "El estudiante universitario de posgrado puede trabajar hasta veinte (20) horas semanales si el empleador lo reporta a Migración Colombia y al Ministerio del Trabajo.",
+      ]
+    },
+    "restrictions": {
+      "en": [
+        "For in-person programs, absence from Colombia of more than ninety (90) calendar days automatically ends the visa. That absence rule does not apply to virtual or distance study.",
+        "Work is not open. Only university postgraduate students get the 20-hour weekly permit, after the employer’s report. A program internship (paid or unpaid) is part of the study activity, with the school’s letter — it is not a general work permit.",
+        "Does not allow applications as a beneficiary, except when the principal is a postgraduate student.",
+      ],
+      "es": [
+        "En formación presencial, la ausencia del país por más de noventa (90) días calendario termina la visa de forma automática. Esa regla de ausencia no aplica a formación virtual o a distancia.",
+        "El trabajo no es abierto. Solo el estudiante universitario de posgrado tiene el permiso de veinte (20) horas semanales, previo reporte del empleador. Las prácticas del programa (remuneradas o no) van con el aval de la institución — no son un permiso de trabajo general.",
+        "No admite solicitudes en calidad de beneficiario, salvo cuando el titular es estudiante de posgrado.",
+      ]
     },
     "keyRequirements": {
       "en": [
-        "Admission/enrollment proof",
-        "Means of support"
+        "Art. 31 (personal filing) or art. 32 (legal-entity sponsor), whichever applies.",
+        "Admission or enrollment certificate stating the grade or program and its duration; for a student internship, the school’s letter and duration.",
+        "Health policy covering Colombia for the planned stay.",
       ],
       "es": [
-        "Prueba de admisión/matrícula",
-        "Medios de sustentación"
+        "Art. 31 (título personal) o art. 32 (respaldo de persona jurídica), según proceda.",
+        "Certificado de admisión o matrícula con el grado o programa y su duración; si son prácticas, comunicación de la institución y la duración.",
+        "Póliza de salud con cobertura en Colombia por el tiempo de permanencia previsto.",
       ]
     },
     "durationNotes": {
-      "en": "Typically aligned to the academic program period authorized.",
-      "es": "Generalmente alineada al periodo del programa académico autorizado."
+      "en": "Validity: up to two (2) years. Stay: while the visa is valid (art. 15) — not the 180-day yearly cap used in V Negocios or V Turismo. For in-person study, more than 90 calendar days outside Colombia ends the visa automatically; virtual or distance study is excepted from that absence rule.",
+      "es": "Vigencia: hasta dos (2) años. Permanencia: mientras la visa esté vigente (art. 15) — no el tope de 180 días por año de V Negocios o V Turismo. En formación presencial, más de 90 días calendario fuera de Colombia termina la visa de forma automática; esa regla no aplica a formación virtual o a distancia."
     },
-    "workPermit": "Limited — verify student work rules for the category.",
-    "beneficiaries": "May allow certain dependents subject to category rules.",
-    "relatedGuideSlug": null
+    "workPermit": false,
+    "workPermitNotes": {
+      "en": "Not a general work permit. University postgraduate students may work up to 20 hours a week if the employer reports it to Migración Colombia and the Ministry of Labour. Other programs in this category do not get that permit. A school-endorsed internship is study activity under art. 36, not open employment.",
+      "es": "No es un permiso de trabajo general. El estudiante universitario de posgrado puede trabajar hasta 20 horas semanales si el empleador lo reporta a Migración Colombia y al Ministerio del Trabajo. Los demás programas de esta categoría no traen ese permiso. Las prácticas con aval de la institución son actividad de estudio del art. 36, no empleo abierto."
+    },
+    "beneficiaries": "Not allowed, except for postgraduate students.",
+    "beneficiaryNotes": {
+      "en": "As a rule, this visa does not allow applications as a beneficiary. The exception is when the principal is a postgraduate student.",
+      "es": "Por regla no admite solicitudes en calidad de beneficiario. La excepción es cuando el titular es estudiante de posgrado."
+    },
+    "relatedGuideSlug": null,
+    "enableNormComments": true
   },
   {
     "slug": "tratamiento-medico",
@@ -1490,7 +1643,7 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
     "relatedGuideSlug": null
   },
   {
-    "slug": "fomento-a-la-internacionalizacion",
+    "slug": "fomento-a-la-internacionalizacion-migrante",
     "category": "M",
     "articleNum": 78,
     "name": {
@@ -1648,6 +1801,22 @@ export function visaDetailPath(slug: string, locale: ImmigrationLocale): string 
   return immigrationPath(`/visas/${slug}`, locale);
 }
 
+export type VisaNavItem = {
+  slug: string;
+  category: VisaCategory;
+  articleNum: number;
+  name: Record<ImmigrationLocale, string>;
+};
+
+export function toVisaNavItems(visas: VisaCatalogEntry[]): VisaNavItem[] {
+  return visas.map((v) => ({
+    slug: v.slug,
+    category: v.category,
+    articleNum: v.articleNum,
+    name: v.name,
+  }));
+}
+
 export function visaNormHref(locale: ImmigrationLocale): string {
   return normPublicPath("resolucion-5477-2022", locale);
 }
@@ -1659,8 +1828,27 @@ export function visaGuideHref(slugKey: string, locale: ImmigrationLocale): strin
 export function formatWorkPermit(
   value: boolean | string,
   locale: ImmigrationLocale,
+  notes?: Record<ImmigrationLocale, string> | null,
 ): string {
-  if (typeof value === "string") return value;
+  if (notes?.[locale]?.trim()) return notes[locale].trim();
+  if (typeof value === "string") {
+    if (locale === "es") {
+      return "Según las reglas de la categoría en la Resolución 5477.";
+    }
+    return value;
+  }
   if (locale === "es") return value ? "Sí (según alcance de la categoría)" : "No por defecto";
   return value ? "Yes (within category scope)" : "Not by default";
+}
+
+export function formatBeneficiaries(
+  visa: VisaCatalogEntry,
+  locale: ImmigrationLocale,
+): string {
+  const notes = visa.beneficiaryNotes?.[locale]?.trim();
+  if (notes) return notes;
+  if (locale === "es") {
+    return "Según las reglas de la categoría — verifique antes de una radicación familiar.";
+  }
+  return visa.beneficiaries;
 }

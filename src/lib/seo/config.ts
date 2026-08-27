@@ -187,12 +187,12 @@ export const PAGE_SEO = {
     en: {
       title: "Legal services — immigration, real estate, corporate & more",
       description:
-        "Practice areas at Luque Law: immigration, labour, real estate, family, corporate, and tax orientation for international clients in Colombia.",
+        "Practice areas at Luque Law: immigration, real estate, commercial, tax and foreign exchange, civil and family, and labour law for international clients in Colombia.",
     },
     es: {
       title: "Servicios legales — migración, inmobiliario, corporativo y más",
       description:
-        "Áreas de práctica de Luque Law: migración, laboral, inmobiliario, familia, corporativo y orientación tributaria para clientes internacionales en Colombia.",
+        "Áreas de práctica de Luque Law: migratorio, inmobiliario, comercial y de la empresa, tributario y cambiario, civil y de familia, y laboral para clientes internacionales en Colombia.",
     },
   },
   labourLaw: {
@@ -221,36 +221,36 @@ export const PAGE_SEO = {
   },
   familyLaw: {
     en: {
-      title: "Family Law in Colombia",
+      title: "Civil and Family Law in Colombia",
       description:
         "Marriage, divorce, custody, and cross-border family matters for international clients.",
     },
     es: {
-      title: "Derecho de familia en Colombia",
+      title: "Derecho civil y de familia en Colombia",
       description:
         "Matrimonio, divorcio, custodia y asuntos familiares transfronterizos para clientes internacionales.",
     },
   },
   corporateLaw: {
     en: {
-      title: "Corporate Law in Colombia",
+      title: "Commercial and Company Law in Colombia",
       description:
         "Company formation, contracts, and governance for international founders and investors in Colombia.",
     },
     es: {
-      title: "Derecho corporativo en Colombia",
+      title: "Derecho comercial y de la empresa en Colombia",
       description:
         "Constitución de sociedades, contratos y gobierno societario para fundadores e inversionistas internacionales en Colombia.",
     },
   },
   taxes: {
     en: {
-      title: "Tax orientation in Colombia",
+      title: "Tax and Foreign Exchange Law in Colombia",
       description:
         "Tax residency and cross-border orientation for individuals and businesses in Colombia — with specialist handoff when needed.",
     },
     es: {
-      title: "Orientación tributaria en Colombia",
+      title: "Derecho tributario y cambiario en Colombia",
       description:
         "Residencia fiscal y orientación transfronteriza para personas y empresas en Colombia — con traspaso a especialista cuando haga falta.",
     },

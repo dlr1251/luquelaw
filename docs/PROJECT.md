@@ -93,16 +93,15 @@ Next.js App Router
 ├── Public: home, /clkr hub, /clkr/guides, /clkr/norms, /community, /posts, /pricing
 ├── Gated: /clkr/agents (auth + entitlement)
 ├── /login, /portal (Lucy AI, tickets, settings, saved; /account → /portal)
-├── /admin/clkr, /admin/norms, /admin/posts, /admin/commentaries, /admin/comments, /admin/community, /admin/agents, /admin/tickets
+├── /admin/clkr, /admin/norms, /admin/posts, /admin/visas, /admin/commentaries, /admin/comments, /admin/community, /admin/agents, /admin/prompts, /admin/tickets
 └── Supabase
     ├── Auth + profiles (+ reputation)
-    ├── clkr_articles, norms, posts, user_saves
+    ├── clkr_articles, norms, posts, visa_categories, user_saves
     ├── community_questions/answers/comments/votes/reports
     ├── plans, subscriptions, tickets
     ├── lucy_* (Lucy AI wallet/projects/chats; Eve session columns)
     └── lucy_knowledge_chunks (pgvector RAG)
 ```
-
 **Auth admin:** `ADMIN_EMAILS` env and/or Supabase `app_metadata.role = "admin"` and/or `admin_allowlist` table (RLS uses the latter two).
 
 **Env:** see `.env.example` (includes Stripe keys when billing is configured). Plan price IDs: [docs/STRIPE_PLANS.md](./STRIPE_PLANS.md).
@@ -172,10 +171,11 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | CLKR hub / guides | `src/components/clkr/*`, `src/lib/clkr/*` (includes study paths, navigation) |
 | Normas | `src/components/norms/*`, `src/lib/norms/*` |
 | Commentaries | `src/lib/commentaries/*`, `src/components/admin/commentary-editor.tsx`, `/admin/commentaries` |
-| Agents | `src/lib/agents/*`, `src/components/agents/*`, `src/app/.../clkr/agents` |
+| Agents / prompts | `src/lib/agents/*`, `src/components/agents/*`, `/admin/agents`, `/admin/prompts`, `src/app/.../clkr/agents` |
 | Entitlements | `src/lib/billing/entitlements.ts` |
 | Lucy AI / Eve | `agent/*`, `src/lib/lucy/*`, `src/app/(dashboard)/portal/lucy/`, `src/app/api/lucy/*`, `eve` + `withEve` |
 | Community | `src/lib/community/*`, `src/components/community/*`, `/community`, `/admin/community` |
+| Visa categories CMS | `src/lib/visas/*`, `src/components/admin/visa-editor.tsx`, `/admin/visas` (published rows override hardcoded `VISAS_CATALOG`) |
 | Saves | `src/lib/saves/*`, `src/components/saves/*`, `/portal/saved` |
 | Portal | `src/app/(dashboard)/portal/` |
 | Migrations | `supabase/migrations/` |
