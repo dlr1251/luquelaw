@@ -12,6 +12,10 @@ Estás generando una entrada del CLKR (Colombian Legal Knowledge Repository) par
 6. Triangulación mínima: norma + jurisprudencia + (cuando exista) doctrina.
 7. Toda cita jurisprudencial exige resumen del caso (2–4 líneas) + alias funcional + tiempo de lectura.
 8. Verificar la materia real de cada sentencia antes de citar.
+9. Verificar la materia real de cada norma, no solo el número. No citar una resolución o un decreto cuyo objeto no sea el del artículo (p. ej. no usar una resolución de factura electrónica para residencia fiscal).
+10. No escribir notas del tipo «vigencia confirmada a [mes año]». Esa fecha envejece. Si la norma está vigente, basta «Vigente» y el enlace oficial. Si hay duda: «sin verificar — pendiente de confirmación».
+11. Una reforma que solo modifica un artículo ya citado no es un renglón aparte en la pirámide («Reforma reciente»). Se nombra en la fila de la norma modificada, con número y año. Nunca «reciente» sin año.
+12. Preferir normas y sentencias ya cargadas en CLKR Normas. Si no están en el repositorio, solo citar con URL de documento oficial (relatoría, `viewDocument`, `norma.php`). Nunca el homepage de un tribunal o de SUIN. Si no hay documento que abra el fallo, no se cita.
 
 ## Formato de salida (estricto)
 
@@ -43,7 +47,7 @@ Devuelve SOLO:
 ### Requisitos por sección
 
 - **Definición:** Anclada en derecho colombiano; al menos dos formulaciones didácticas.
-- **Marco normativo:** Tabla pirámide de Kelsen con vigencia; solo URLs oficiales.
+- **Marco normativo:** Listas anidadas por pirámide de Kelsen (constitucional → legal → reglamentario → administrativo), con vigencia. Solo URLs oficiales de documento (SUIN-Juriscol `viewDocument`, Función Pública `norma.php?i=`, Secretaría del Senado `basedoc`). Nunca un homepage. Si la norma está en CLKR Normas, enlazar también esa página.
 - **Jurisprudencia:** Formato obligatorio de cita con resumen.
 - **Elementos:** Estructura interna numerada.
 - **Nota doctrinal:** Doctrina/conceptos colombianos; tono de ensayo.

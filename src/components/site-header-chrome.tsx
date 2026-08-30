@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useLayoutEffect, useRef } from "react";
 
 import { Container } from "@/components/container";
 import { HeaderNav } from "@/components/header-nav";
@@ -14,8 +15,28 @@ export type SiteHeaderChromeProps = {
 };
 
 export function SiteHeaderChrome({ rates, signedIn, isAdmin }: SiteHeaderChromeProps) {
+  const headerRef = useRef<HTMLElement>(null);
+
+  useLayoutEffect(() => {
+    const el = headerRef.current;
+    if (!el) return;
+    const apply = () => {
+      document.documentElement.style.setProperty("--ll-site-header-h", `${el.offsetHeight}px`);
+    };
+    apply();
+    const observer = new ResizeObserver(apply);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      document.documentElement.style.removeProperty("--ll-site-header-h");
+    };
+  }, []);
+
   return (
-    <header className="sticky top-0 z-50 border-b border-border bg-background text-foreground">
+    <header
+      ref={headerRef}
+      className="sticky top-0 z-50 border-b border-border bg-background text-foreground"
+    >
       <SiteTopBar rates={rates} />
       <Container className="flex min-h-16 items-center justify-between gap-3 py-3 sm:py-2">
         <Link

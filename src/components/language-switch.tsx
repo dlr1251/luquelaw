@@ -33,13 +33,13 @@ export function LanguageSwitch({ variant = "surface" }: Props) {
       onClick={(event) => {
         event.preventDefault();
         persistLocale(nextLocale);
-        window.location.assign(href);
+        window.location.assign(`${href}${window.location.search}`);
       }}
       className={cn(
         "inline-flex h-10 items-center justify-center border px-3 text-sm font-bold transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2",
         forest
           ? "border-transparent bg-transparent text-[color:var(--header-fg)]/70 hover:text-[color:var(--header-fg)] focus-visible:outline-[color:var(--header-fg)]/40"
-          : "rounded-lg border-border bg-card text-foreground hover:bg-muted focus-visible:outline-ring",
+          : "border-border bg-card font-[family-name:var(--font-ui)] text-xs font-medium uppercase tracking-[0.12em] text-[color:var(--forest)] hover:bg-surface focus-visible:outline-[color:var(--forest)]/40",
       )}
       aria-label={isSpanish ? "Switch language to English" : "Cambiar idioma a español"}
       title={isSpanish ? "English" : "Español"}

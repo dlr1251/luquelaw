@@ -66,11 +66,11 @@ export default async function ClkrArticleEsPage({ params }: Props) {
             title={article.title}
             locale={locale}
             initiallySaved={saved}
-            loginHref={`/login?next=/es/clkr/guides/${slug}`}
+            loginHref={`/es/login?next=/es/clkr/guides/${slug}`}
           />
         }
       >
-        <ClkrSectionBody sections={article.sections} />
+        <ClkrSectionBody sections={article.sections} locale={locale} />
       </ClkrArticleLayout>
     </>
   );

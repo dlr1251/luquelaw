@@ -125,10 +125,12 @@ export function NormLayout({
             </span>
           </div>
 
-          <h1 className="mt-3 max-w-3xl font-display text-[clamp(1.65rem,3.5vw,2.35rem)] font-normal leading-[1.1] tracking-tight">
-            {title}
-          </h1>
-          {headerAction ? <div className="mt-3">{headerAction}</div> : null}
+          <div className="mt-3 flex max-w-3xl items-start gap-2">
+            <h1 className="min-w-0 flex-1 font-display text-[clamp(1.65rem,3.5vw,2.35rem)] font-normal leading-[1.1] tracking-tight">
+              {title}
+            </h1>
+            {headerAction ? <div className="mt-1 shrink-0">{headerAction}</div> : null}
+          </div>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[color:var(--parchment)]/70 sm:text-base">
             {description}
           </p>

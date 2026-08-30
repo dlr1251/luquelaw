@@ -1,11 +1,3 @@
-import { ButtonLink } from "@/components/ui/button-link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { hasEntitlement, getSessionUserId } from "@/lib/billing/entitlements";
 import { ACTIVE_SUB_STATUSES } from "@/lib/billing/types";
 import { getLucyBalance } from "@/lib/lucy/wallet";
@@ -48,101 +40,98 @@ export default async function PortalPage({ searchParams }: Props) {
   const balanceUsd = (balanceCents / 100).toFixed(2);
 
   return (
-    <div className="mx-auto w-full max-w-4xl space-y-6">
+    <div className="mx-auto w-full max-w-3xl space-y-8">
       {checkout === "success" ? (
-        <Card className="border-green-700/30 bg-green-50/50 dark:bg-green-950/20">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Subscription updated</CardTitle>
-            <CardDescription>
-              Stripe checkout completed. Your entitlements refresh within a few seconds after the
-              webhook lands.
-            </CardDescription>
-          </CardHeader>
-        </Card>
+        <p className="border border-border bg-surface px-4 py-3 text-sm leading-6 text-muted-foreground">
+          Subscription updated. Entitlements refresh within a few seconds after the webhook lands.
+        </p>
       ) : null}
 
       {password === "updated" ? (
-        <Card>
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Password updated</CardTitle>
-            <CardDescription>Your new password is saved.</CardDescription>
-          </CardHeader>
-        </Card>
+        <p className="border border-border bg-surface px-4 py-3 text-sm leading-6 text-muted-foreground">
+          Your new password is saved.
+        </p>
       ) : null}
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Your access</CardTitle>
-          <CardDescription>
-            Subscriptions unlock CLKR modules. Lucy AI uses a prepaid wallet (separate from plans).
-            New accounts start with USD 10.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-4 sm:grid-cols-2">
-          <div className="space-y-1 text-sm">
-            <p className="font-medium text-foreground">Plans</p>
+      <section className="border border-border bg-card p-6 sm:p-8">
+        <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
+          Access
+        </p>
+        <h2 className="mt-2 font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
+          Your access
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+          Subscriptions unlock CLKR modules. Lucy AI uses a prepaid wallet (separate from plans).
+          New accounts start with USD 10.
+        </p>
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          <div className="space-y-2 text-sm leading-6">
+            <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--forest)]">
+              Plans
+            </p>
             <p className="text-muted-foreground">
               {activePlans.length ? activePlans.join(", ") : "No active subscription"}
             </p>
-            <ul className="mt-2 space-y-1 text-muted-foreground">
+            <ul className="space-y-1 text-muted-foreground">
               <li>Agents: {agents ? "unlocked" : "locked"}</li>
               <li>Client tickets: {tickets ? "unlocked" : "locked"}</li>
             </ul>
-            <ButtonLink href="/pricing" variant="outline" className="mt-3 justify-start">
+            <a href="/pricing" className="btn-secondary btn-secondary-sm mt-3 inline-flex">
               {activePlans.length ? "Manage / upgrade plans" : "View plans"}
-            </ButtonLink>
+            </a>
           </div>
-          <div className="space-y-1 text-sm">
-            <p className="font-medium text-foreground">Lucy AI wallet</p>
+          <div className="space-y-2 text-sm leading-6">
+            <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--forest)]">
+              Lucy AI wallet
+            </p>
             <p className="text-muted-foreground">${balanceUsd} USD available</p>
-            <ButtonLink href="/portal/lucy" variant="outline" className="mt-3 justify-start">
+            <a href="/portal/lucy" className="btn-primary btn-primary-sm mt-3 inline-flex">
               Open Lucy AI
-            </ButtonLink>
+            </a>
           </div>
-        </CardContent>
-      </Card>
+        </div>
+      </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Welcome</CardTitle>
-          <CardDescription>
-            Your account: Lucy AI, tickets to the firm, and saved guides or norms. CLKR stays on the
-            public site.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3 sm:grid-cols-2">
-          <ButtonLink href="/portal/lucy" variant="outline" className="justify-start">
+      <section className="border border-border bg-card p-6 sm:p-8">
+        <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
+          Portal
+        </p>
+        <h2 className="mt-2 font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
+          Welcome
+        </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+          Your account: Lucy AI, tickets to the firm, and saved guides or norms. CLKR stays on the
+          public site.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a href="/portal/lucy" className="btn-secondary btn-secondary-sm">
             Lucy AI
-          </ButtonLink>
-          <ButtonLink href="/portal/tickets" variant="outline" className="justify-start">
+          </a>
+          <a href="/portal/tickets" className="btn-secondary btn-secondary-sm">
             Tickets {tickets ? "" : "(Lucy AI reviews + client)"}
-          </ButtonLink>
-          <ButtonLink href="/portal/saved" variant="outline" className="justify-start">
+          </a>
+          <a href="/portal/saved" className="btn-secondary btn-secondary-sm">
             Saved
-          </ButtonLink>
-          <ButtonLink href="/portal/settings" variant="outline" className="justify-start">
+          </a>
+          <a href="/portal/settings" className="btn-secondary btn-secondary-sm">
             Settings
-          </ButtonLink>
-          <ButtonLink href="/pricing" variant="outline" className="justify-start">
+          </a>
+          <a href="/pricing" className="btn-secondary btn-secondary-sm">
             Plans & billing
-          </ButtonLink>
-        </CardContent>
-      </Card>
+          </a>
+        </div>
+      </section>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-base">Need help?</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-sm text-muted-foreground">
-            Email{" "}
-            <a className="font-medium text-foreground underline" href="mailto:daniel@luquelaw.co">
-              daniel@luquelaw.co
-            </a>{" "}
-            or open a ticket if your plan includes portal support.
-          </p>
-        </CardContent>
-      </Card>
+      <p className="text-sm leading-6 text-muted-foreground">
+        Need help? Email{" "}
+        <a
+          className="font-medium text-[color:var(--forest)] underline-offset-4 hover:underline"
+          href="mailto:daniel@luquelaw.co"
+        >
+          daniel@luquelaw.co
+        </a>{" "}
+        or open a ticket if your plan includes portal support.
+      </p>
     </div>
   );
 }

@@ -7,7 +7,6 @@ import {
   BookmarkIcon,
   BotIcon,
   CreditCardIcon,
-  ExternalLinkIcon,
   FileTextIcon,
   HomeIcon,
   LayoutDashboardIcon,
@@ -39,10 +38,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarSeparator,
 } from "@/components/ui/sidebar";
-import { cn } from "@/lib/utils";
-
 const navIcons: Record<
   DashboardNavIcon,
   React.ComponentType<{ className?: string }>
@@ -71,35 +67,26 @@ type Props = {
   groups: DashboardNavGroup[];
 };
 
-export function AppSidebar({ email, productName, productTagline, groups }: Props) {
+const itemClass =
+  "rounded-none font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] hover:bg-surface hover:text-[color:var(--forest)] data-active:bg-surface data-active:font-medium data-active:text-[color:var(--forest)] data-active:shadow-[inset_2px_0_0_var(--moss)]";
+
+export function AppSidebar({ email, productName, groups }: Props) {
   const pathname = usePathname();
 
   return (
-    <Sidebar collapsible="icon" variant="inset">
+    <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border px-3 py-4">
-        <Link
-          href="/portal"
-          className="flex items-start gap-2.5 rounded-md px-1 outline-none ring-sidebar-ring focus-visible:ring-2"
-        >
-          <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-lg bg-[var(--forest)] text-xs font-semibold text-[var(--parchment)]">
-            LL
-          </span>
-          <span className="min-w-0 flex-1 group-data-[collapsible=icon]:hidden">
-            <span className="block text-[10px] font-medium uppercase tracking-[0.14em] text-muted-foreground">
-              Luque Law
-            </span>
-            <span className="block truncate text-sm font-semibold leading-tight text-foreground">
-              {productName}
-            </span>
-            <span className="block truncate text-xs text-muted-foreground">{productTagline}</span>
-          </span>
-        </Link>
+        <p className="px-2 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.16em] text-[color:var(--moss)] group-data-[collapsible=icon]:hidden">
+          {productName}
+        </p>
       </SidebarHeader>
 
       <SidebarContent>
         {groups.map((group) => (
           <SidebarGroup key={group.label}>
-            <SidebarGroupLabel>{group.label}</SidebarGroupLabel>
+            <SidebarGroupLabel className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
+              {group.label}
+            </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu>
                 {group.items.map((item) => {
@@ -109,21 +96,13 @@ export function AppSidebar({ email, productName, productTagline, groups }: Props
                   return (
                     <SidebarMenuItem key={`${group.label}:${item.href}:${item.label}`}>
                       <SidebarMenuButton
-                        render={
-                          <Link
-                            href={item.href}
-                            target={item.external ? "_blank" : undefined}
-                            rel={item.external ? "noreferrer" : undefined}
-                          />
-                        }
+                        render={<Link href={item.href} />}
                         isActive={active}
                         tooltip={item.label}
+                        className={itemClass}
                       >
                         <Icon />
                         <span>{item.label}</span>
-                        {item.external ? (
-                          <ExternalLinkIcon className="ml-auto size-3.5 opacity-50" />
-                        ) : null}
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   );
@@ -135,14 +114,13 @@ export function AppSidebar({ email, productName, productTagline, groups }: Props
       </SidebarContent>
 
       <SidebarFooter className="border-t border-sidebar-border">
-        <div className={cn("px-2 py-2 text-xs text-muted-foreground group-data-[collapsible=icon]:hidden")}>
-          <p className="truncate font-medium text-foreground">{email ?? "Signed in"}</p>
+        <div className="px-3 py-2 group-data-[collapsible=icon]:hidden">
+          <p className="truncate text-xs leading-5 text-muted-foreground">{email ?? "Signed in"}</p>
         </div>
-        <SidebarSeparator />
         <SidebarMenu>
           <SidebarMenuItem>
             <form action={signOut}>
-              <SidebarMenuButton type="submit" tooltip="Sign out">
+              <SidebarMenuButton type="submit" tooltip="Sign out" className={itemClass}>
                 <LogOutIcon />
                 <span>Sign out</span>
               </SidebarMenuButton>

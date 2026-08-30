@@ -197,7 +197,7 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
           <div className="min-h-[28rem] rounded-md border border-input bg-[color:var(--parchment,#f5f2ec)] p-6 sm:p-8">
             {previewSections.length ? (
               <Prose>
-                <ClkrSectionBody sections={previewSections} />
+                <ClkrSectionBody sections={previewSections} locale={locale} />
               </Prose>
             ) : (
               <p className="text-sm text-muted-foreground">{copy.previewEmpty}</p>

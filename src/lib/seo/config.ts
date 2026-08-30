@@ -243,6 +243,18 @@ export const PAGE_SEO = {
         "Constitución de sociedades, contratos y gobierno societario para fundadores e inversionistas internacionales en Colombia.",
     },
   },
+  medellinExpats: {
+    en: {
+      title: "Five legal files for people already in Medellín",
+      description:
+        "Visa, lease, purchase, tax residency, and company setup — a plain map from Luque Law. 45-minute consultation, then a written Concepto Jurídico.",
+    },
+    es: {
+      title: "Cinco expedientes para quien ya está en Medellín",
+      description:
+        "Visa, arriendo, compraventa, residencia fiscal y sociedad — un mapa claro de Luque Law. Consulta de 45 minutos y luego un concepto jurídico escrito.",
+    },
+  },
   taxes: {
     en: {
       title: "Tax and Foreign Exchange Law in Colombia",

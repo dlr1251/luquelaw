@@ -64,7 +64,7 @@ export default async function ComunidadPage({
           <CommunityAskForm locale="es" />
         ) : (
           <p className="text-sm text-muted-foreground">
-            <Link href="/login?next=/es/comunidad" className="underline">
+            <Link href="/es/login?next=/es/comunidad" className="underline">
               Inicia sesión
             </Link>{" "}
             para preguntar, votar o responder.

@@ -57,7 +57,7 @@ export default async function PostEsPage({ params }: Props) {
         sections={sections}
         relatedPosts={related.map(recordToHubPost)}
       >
-        <ClkrSectionBody sections={post.sections} />
+        <ClkrSectionBody sections={post.sections} locale={locale} />
       </PostLayout>
     </>
   );

@@ -61,7 +61,7 @@ export function CommunityQuestionView({
   const [error, setError] = useState<string | null>(null);
   const loginHref =
     locale === "es"
-      ? `/login?next=/es/comunidad`
+      ? `/es/login?next=/es/comunidad`
       : `/login?next=/community`;
 
   function refresh() {

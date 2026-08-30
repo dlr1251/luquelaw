@@ -114,7 +114,8 @@ export default async function NormPageEs({ params }: Props) {
             title={norm.title}
             locale={locale}
             initiallySaved={saved}
-            loginHref={`/login?next=${encodeURIComponent(currentPath)}`}
+            loginHref={`/es/login?next=${encodeURIComponent(currentPath)}`}
+            tone="inverse"
           />
         }
       >

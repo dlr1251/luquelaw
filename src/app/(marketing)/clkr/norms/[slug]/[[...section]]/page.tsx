@@ -115,6 +115,7 @@ export default async function NormPage({ params }: Props) {
             locale={locale}
             initiallySaved={saved}
             loginHref={`/login?next=${encodeURIComponent(currentPath)}`}
+            tone="inverse"
           />
         }
       >

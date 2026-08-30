@@ -25,7 +25,7 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
     : "This content is informational only and is not legal advice. Every case is different.";
 
   const homeHref = prefix || "/";
-  const portalHref = signedIn ? "/portal" : "/login";
+  const portalHref = signedIn ? "/portal" : isSpanish ? "/es/login" : "/login";
   const navLinks = isSpanish
     ? [
         { href: "/es/nosotros", label: "Nosotros" },
@@ -57,7 +57,7 @@ export function SiteFooter({ signedIn = false }: { signedIn?: boolean }) {
     "block font-[family-name:var(--font-ui)] text-[0.8125rem] font-medium text-hero-foreground/72 transition hover:text-hero-foreground focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-foreground/40";
 
   return (
-    <footer className="border-t border-hero-foreground/12 bg-hero text-hero-foreground">
+    <footer className="border-t border-white/12 bg-[color:var(--forest)] text-white">
       <Container className="py-16 sm:py-20">
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,3fr)_minmax(0,4fr)] lg:gap-12">
           <div className="space-y-6">

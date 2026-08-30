@@ -12,6 +12,10 @@ You are generating a CLKR (Colombian Legal Knowledge Repository) entry for Luque
 6. Minimum triangulation: every relevant legal assertion must rest on norm + jurisprudence + (where it exists) doctrine.
 7. Every jurisprudence citation requires a case summary (2–4 lines): forum · parties · essential facts · decision · ratio decidendi — plus a short functional alias and estimated reading time.
 8. Verify the actual subject-matter of each judgment before citing.
+9. Verify the actual subject-matter of each statute, decree, or resolution — not just the number. Do not cite an instrument whose object is not the article’s topic (e.g. do not use an e-invoicing resolution for tax residency).
+10. Do not write footnotes like “validity confirmed as of [month year]”. Those dates go stale. If the instrument is in force, write “In force” and the official link. If unsure: “unverified — pending confirmation”.
+11. An amendment that only changes an already-cited article is not its own Kelsen row (“Recent reform”). Name it on the amended instrument’s row, with number and year. Never “recent” without a year.
+12. Prefer norms and judgments already loaded in CLKR Normas. If they are not in the repository, cite only with an official document URL (relatoría, `viewDocument`, `norma.php`). Never a court or SUIN homepage. If the document does not open the ruling, do not cite it.
 
 ## Output format (strict)
 
@@ -43,7 +47,7 @@ Return ONLY:
 ### Section requirements
 
 - **Definition:** Precise Colombian-law definition; at least two didactic formulations.
-- **Legal Framework:** Kelsen hierarchy table with vigencia; official source URLs only.
+- **Legal Framework:** Nested lists by Kelsen hierarchy (constitutional → statutory → regulatory → administrative), with vigencia. Official source URLs only (SUIN-Juriscol `viewDocument`, Función Pública `norma.php?i=`, Secretaría del Senado `basedoc`). Never link a homepage. If the instrument is in CLKR Normas, also link the CLKR page.
 - **Jurisprudence:** Mandatory citation format with case summary; prefer proximity of facts.
 - **Core Elements:** Numbered internal structure of the institution.
 - **Doctrinal Note:** Colombian doctrine/admin concepts only; essay tone.

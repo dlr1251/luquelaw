@@ -30,7 +30,7 @@ export function DashboardShell({
   children,
 }: Props) {
   return (
-    <SidebarProvider>
+    <SidebarProvider className="min-h-0 flex-1">
       <AppSidebar
         email={email}
         productName={productName}
@@ -38,13 +38,15 @@ export function DashboardShell({
         groups={groups}
       />
       <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-14 shrink-0 items-center gap-2 border-b bg-background/95 px-4 backdrop-blur supports-[backdrop-filter]:bg-background/80">
+        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background px-4">
           <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
+          <Separator orientation="vertical" className="mr-1 h-4" />
           <div className="min-w-0 flex-1">
-            <h1 className="truncate text-sm font-semibold tracking-tight">{pageTitle}</h1>
+            <h1 className="truncate font-display text-lg font-normal tracking-tight text-[color:var(--forest)]">
+              {pageTitle}
+            </h1>
             {pageDescription ? (
-              <p className="truncate text-xs text-muted-foreground">{pageDescription}</p>
+              <p className="truncate text-xs leading-5 text-muted-foreground">{pageDescription}</p>
             ) : null}
           </div>
           {headerAction ? <div className="shrink-0">{headerAction}</div> : null}
