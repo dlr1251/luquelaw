@@ -4,12 +4,14 @@ import Link from "next/link";
 
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { Container } from "@/components/container";
+import { RegisteredServiceSection } from "@/components/services/registered-service-section";
 import {
   getServiceArea,
   servicesHubContent,
   type ServiceAreaId,
   type ServicesLocale,
 } from "@/lib/services/content";
+import { getRegisteredService } from "@/lib/services/registered-services";
 
 type Props = {
   locale: ServicesLocale;
@@ -19,6 +21,7 @@ type Props = {
 export function ServiceAreaPage({ locale, areaId }: Props) {
   const area = getServiceArea(areaId, locale);
   const hub = servicesHubContent[locale];
+  const registered = getRegisteredService(areaId, locale);
   const { open: openBooking } = useBookingModal();
 
   if (!area) return null;
@@ -75,16 +78,20 @@ export function ServiceAreaPage({ locale, areaId }: Props) {
               </li>
             ))}
           </ul>
+        </Container>
+      </section>
 
-          <div className="mt-12 border-t border-border pt-10">
-            <button
-              type="button"
-              onClick={openBooking}
-              className="btn-primary btn-primary-lg"
-            >
-              {hub.bookCta}
-            </button>
-          </div>
+      {registered ? <RegisteredServiceSection service={registered} /> : null}
+
+      <section className="border-b border-border bg-background">
+        <Container className="py-10 sm:py-12">
+          <button
+            type="button"
+            onClick={openBooking}
+            className="btn-primary btn-primary-lg"
+          >
+            {hub.bookCta}
+          </button>
         </Container>
       </section>
     </main>

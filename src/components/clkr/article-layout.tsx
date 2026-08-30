@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 
+import { ArticleDesktopToc, ArticleMobileToc } from "@/components/clkr/article-toc";
 import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { Container } from "@/components/container";
@@ -121,10 +122,12 @@ export function ClkrArticleLayout({
               <span className="font-normal normal-case text-muted-foreground">{readingTime}</span>
             ) : null}
           </div>
-          <h1 className="mt-4 max-w-4xl font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
-            {title}
-          </h1>
-          {headerAction ? <div className="mt-4">{headerAction}</div> : null}
+          <div className="mt-4 flex max-w-4xl items-start gap-2">
+            <h1 className="min-w-0 flex-1 font-display text-[2.25rem] font-normal leading-tight tracking-tight text-[color:var(--forest)] sm:text-[2.6rem]">
+              {title}
+            </h1>
+            {headerAction ? <div className="mt-1.5 shrink-0 sm:mt-2">{headerAction}</div> : null}
+          </div>
           {description ? (
             <p className="mt-4 max-w-3xl text-base leading-7 text-muted-foreground sm:text-lg">
               {description}
@@ -134,42 +137,15 @@ export function ClkrArticleLayout({
       </section>
 
       <Container className="py-10 sm:py-14">
+        <ArticleMobileToc
+          sections={sections}
+          label={copy.mobileContents}
+          locale={locale}
+        />
         <div className="grid gap-10 lg:grid-cols-12">
-          <aside className="lg:col-span-3">
+          <aside className="hidden lg:col-span-3 lg:block">
             <div className="lg:sticky lg:top-24">
-              <div className="hidden lg:block">
-                <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
-                  {copy.contents}
-                </div>
-                <nav className="mt-4 space-y-2 text-sm">
-                  {sections.map((s) => (
-                    <a
-                      key={s.id}
-                      href={`#${s.id}`}
-                      className="block border-l-2 border-transparent px-2 py-1.5 text-muted-foreground transition hover:border-[color:var(--moss)] hover:text-[color:var(--ink)]"
-                    >
-                      {s.title}
-                    </a>
-                  ))}
-                </nav>
-              </div>
-
-              <details className="border border-[color:var(--moss)]/35 bg-[color:var(--card)] p-5 lg:hidden">
-                <summary className="cursor-pointer list-none text-sm font-bold text-[color:var(--ink)]">
-                  {copy.mobileContents}
-                </summary>
-                <nav className="mt-4 space-y-2 text-sm">
-                  {sections.map((s) => (
-                    <a
-                      key={s.id}
-                      href={`#${s.id}`}
-                      className="block px-2 py-1.5 text-muted-foreground hover:text-[color:var(--ink)]"
-                    >
-                      {s.title}
-                    </a>
-                  ))}
-                </nav>
-              </details>
+              <ArticleDesktopToc sections={sections} label={copy.contents} />
             </div>
           </aside>
 

@@ -38,7 +38,7 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 |------|------------------|--------|-------|
 | **CLKR hub** | `/clkr`, `/es/clkr` | Public | Three-module landing |
 | **CLKR Guide** | `/clkr/guides/[slug]` | Public when `published` | Long guides, JSON sections + TOC |
-| **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser |
+| **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser (includes Estatuto Tributario; judgments still pending) |
 | **Agent / skill / prompt** | `/clkr/agents/...` | Entitlement `agents` | Curated LegalAI toolkit |
 | **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Professional study notes |
 | **Doctrinal commentary** | on norm sections | Public when `published` | Firm notes; CMS `/admin/commentaries` |

@@ -15,6 +15,11 @@ const supportedEnglishPaths = new Set([
   "/services/corporate-law",
   "/services/taxes",
   "/pricing",
+  "/login",
+  "/login/forgot",
+  "/login/update-password",
+  "/medellin",
+  "/medellin/social",
   "/clkr",
   "/clkr/guides",
   "/clkr/norms",
@@ -149,7 +154,6 @@ export function localeFromPathname(pathname: string): SiteLocale {
 export function shouldLocalizePath(pathname: string): boolean {
   if (pathname.startsWith("/api")) return false;
   if (pathname.startsWith("/auth")) return false;
-  if (pathname.startsWith("/login")) return false;
   if (pathname.startsWith("/account")) return false;
   if (pathname.startsWith("/portal")) return false;
   if (pathname.startsWith("/admin")) return false;

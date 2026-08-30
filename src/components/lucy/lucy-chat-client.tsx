@@ -185,10 +185,15 @@ export function LucyChatClient({
     <div className="flex min-h-0 flex-1 flex-col">
       <div ref={scrollerRef} className="min-h-0 flex-1 overflow-y-auto">
         {visible.length === 0 ? (
-          <div className="mx-auto flex max-w-2xl flex-col items-center justify-center gap-6 px-4 py-16 text-center">
-            <div className="space-y-2">
-              <p className="font-serif text-2xl text-[var(--forest)]">{LUCY_AI_NAME}</p>
-              <p className="text-sm text-muted-foreground">
+          <div className="mx-auto flex max-w-2xl flex-col items-start justify-center gap-6 px-4 py-16">
+            <div className="space-y-3">
+              <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.14em] text-[color:var(--moss)]">
+                Portal
+              </p>
+              <p className="font-display text-3xl font-normal tracking-tight text-[color:var(--forest)]">
+                {LUCY_AI_NAME}
+              </p>
+              <p className="max-w-md text-sm leading-6 text-muted-foreground">
                 Colombian immigration questions, grounded in norms and guides. Not legal advice.
               </p>
             </div>
@@ -199,7 +204,7 @@ export function LucyChatClient({
                   type="button"
                   disabled={busy}
                   onClick={() => void sendText(prompt)}
-                  className="rounded-xl border bg-background px-4 py-3 text-left text-sm text-foreground transition-colors hover:bg-muted/50"
+                  className="border border-border bg-card px-4 py-3 text-left text-sm leading-6 text-foreground transition-colors hover:bg-surface"
                 >
                   {prompt}
                 </button>
@@ -215,14 +220,14 @@ export function LucyChatClient({
                   key={m.id}
                   className={cn("flex flex-col gap-1", isUser ? "items-end" : "items-start")}
                 >
-                  <p className="px-1 text-[11px] font-medium tracking-wide text-muted-foreground">
+                  <p className="px-1 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.12em] text-muted-foreground">
                     {isUser ? "You" : LUCY_AI_NAME}
                   </p>
                   <div
                     className={cn(
                       "max-w-[92%] whitespace-pre-wrap text-sm leading-relaxed",
                       isUser
-                        ? "rounded-2xl rounded-br-md bg-[var(--forest)] px-4 py-2.5 text-white"
+                        ? "bg-[color:var(--forest)] px-4 py-2.5 text-[color:var(--parchment)]"
                         : "text-foreground",
                     )}
                   >
@@ -242,7 +247,7 @@ export function LucyChatClient({
         <form
           ref={formRef}
           onSubmit={onSubmit}
-          className="mx-auto flex max-w-2xl items-end gap-2 rounded-2xl border bg-muted/20 px-3 py-2"
+          className="mx-auto flex max-w-2xl items-end gap-2 border border-border bg-card px-3 py-2"
         >
           <Textarea
             value={input}
@@ -261,7 +266,7 @@ export function LucyChatClient({
           <Button
             type="submit"
             size="icon"
-            className="mb-0.5 rounded-full"
+            className="mb-0.5 rounded-[2px] bg-[color:var(--forest)] text-[color:var(--parchment)] hover:bg-[color:var(--moss)]"
             disabled={busy || !input.trim()}
             aria-label="Send"
           >

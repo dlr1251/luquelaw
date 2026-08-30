@@ -8,7 +8,6 @@ import { usePathname } from "next/navigation";
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { SiteSearchTrigger } from "@/components/search/site-search-trigger";
 import { LanguageSwitch } from "@/components/language-switch";
-import { loginHref } from "@/lib/auth/safe-next";
 import { localeFromPathname } from "@/lib/locale/paths";
 import { normsHubPath } from "@/lib/norms/types";
 import { getServiceAreas } from "@/lib/services/content";
@@ -58,6 +57,11 @@ export function HeaderNav({
         community: "Comunidad",
         torny: "Lucy AI",
         admin: "Admin",
+        portal: "Portal",
+        portalHome: "Inicio",
+        tickets: "Tickets",
+        saved: "Guardados",
+        settings: "Cuenta",
         cta: "Agendar consulta",
         close: "Cerrar",
         search: "Buscar",
@@ -73,6 +77,11 @@ export function HeaderNav({
         community: "Community",
         torny: "Lucy AI",
         admin: "Admin",
+        portal: "Portal",
+        portalHome: "Home",
+        tickets: "Tickets",
+        saved: "Saved",
+        settings: "Settings",
         cta: "Book consultation",
         close: "Close",
         search: "Search",
@@ -83,15 +92,22 @@ export function HeaderNav({
   const clkrHref = `${prefix}/clkr`;
   const postsHref = `${prefix}/posts`;
   const communityHref = isSpanish ? "/es/comunidad" : "/community";
-  const tornyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy");
   const serviceAreas = useMemo(() => getServiceAreas(locale), [locale]);
 
   const resourceItems = useMemo(
+    () => [{ href: normsHubPath(locale), label: copy.norms }],
+    [copy.norms, locale],
+  );
+
+  const portalItems = useMemo(
     () => [
-      { href: tornyHref, label: copy.torny },
-      { href: normsHubPath(locale), label: copy.norms },
+      { href: "/portal", label: copy.portalHome },
+      { href: "/portal/lucy", label: copy.torny },
+      { href: "/portal/tickets", label: copy.tickets },
+      { href: "/portal/saved", label: copy.saved },
+      { href: "/portal/settings", label: copy.settings },
     ],
-    [copy.norms, copy.torny, locale, tornyHref],
+    [copy.portalHome, copy.saved, copy.settings, copy.tickets, copy.torny],
   );
 
   const servicesActive =
@@ -108,9 +124,9 @@ export function HeaderNav({
     isPath(clkrHref) && !pathname.startsWith(`${prefix}/clkr/norms`);
   const blogActive = isPath(postsHref);
   const communityActive = isPath(communityHref);
-  const resourcesActive =
-    pathname.startsWith(`${prefix}/clkr/norms`) ||
-    pathname.startsWith("/portal/lucy");
+  const resourcesActive = pathname.startsWith(`${prefix}/clkr/norms`);
+  const portalActive = pathname === "/portal" || pathname.startsWith("/portal/");
+  const adminActive = pathname === "/admin" || pathname.startsWith("/admin/");
 
   const primaryLinks = [
     { href: clkrHref, label: copy.clkr, active: clkrActive },
@@ -124,16 +140,20 @@ export function HeaderNav({
   const [mobileOpen, setMobileOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
+  const [portalOpen, setPortalOpen] = useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false);
+  const [mobilePortalOpen, setMobilePortalOpen] = useState(false);
   const [menuPath, setMenuPath] = useState(pathname);
 
   if (pathname !== menuPath) {
     setMenuPath(pathname);
     setServicesOpen(false);
     setResourcesOpen(false);
+    setPortalOpen(false);
     setMobileServicesOpen(false);
     setMobileResourcesOpen(false);
+    setMobilePortalOpen(false);
     setMobileOpen(false);
   }
 
@@ -243,6 +263,46 @@ export function HeaderNav({
             </Link>
           ))}
 
+          {signedIn ? (
+            <div
+              className="relative"
+              onMouseEnter={() => setPortalOpen(true)}
+              onMouseLeave={() => setPortalOpen(false)}
+            >
+              <button
+                type="button"
+                className={`${navLinkClass}${portalActive ? ` ${activeNavClass}` : ""}`}
+                aria-expanded={portalOpen}
+                aria-controls="site-portal-menu"
+                aria-haspopup="true"
+                onClick={() => setPortalOpen((open) => !open)}
+                onFocus={() => setPortalOpen(true)}
+              >
+                {copy.portal}
+                <Chevron className="ml-1 h-2.5 w-2.5" />
+              </button>
+              {portalOpen ? (
+                <div
+                  id="site-portal-menu"
+                  className="absolute left-0 top-full z-50 min-w-[12rem] border border-border bg-card py-2 shadow-lg"
+                  role="menu"
+                >
+                  {portalItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      role="menuitem"
+                      className={menuItemClass}
+                      onClick={() => setPortalOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+            </div>
+          ) : null}
+
           <div
             className="relative"
             onMouseEnter={() => setResourcesOpen(true)}
@@ -283,7 +343,11 @@ export function HeaderNav({
           </div>
 
           {signedIn && isAdmin ? (
-            <Link href="/admin/clkr" className={navLinkClass}>
+            <Link
+              href="/admin/clkr"
+              className={`${navLinkClass}${adminActive ? ` ${activeNavClass}` : ""}`}
+              aria-current={adminActive ? "page" : undefined}
+            >
               {copy.admin}
             </Link>
           ) : null}
@@ -428,6 +492,36 @@ export function HeaderNav({
                   </Link>
                 ))}
 
+                {signedIn ? (
+                  <div>
+                    <button
+                      type="button"
+                      className={`${mobileLinkClass(portalActive)} flex w-full items-center justify-between`}
+                      aria-expanded={mobilePortalOpen}
+                      onClick={() => setMobilePortalOpen((open) => !open)}
+                    >
+                      {copy.portal}
+                      <Chevron
+                        className={`h-3 w-3 transition ${mobilePortalOpen ? "rotate-180" : ""}`}
+                      />
+                    </button>
+                    {mobilePortalOpen ? (
+                      <div className="pb-2 pl-2">
+                        {portalItems.map((item) => (
+                          <Link
+                            key={item.href}
+                            href={item.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : null}
+                  </div>
+                ) : null}
+
                 <div>
                   <button
                     type="button"
@@ -460,7 +554,7 @@ export function HeaderNav({
                   <Link
                     href="/admin/clkr"
                     onClick={() => setMobileOpen(false)}
-                    className={mobileLinkClass(false)}
+                    className={mobileLinkClass(adminActive)}
                   >
                     {copy.admin}
                   </Link>

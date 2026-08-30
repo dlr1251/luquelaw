@@ -138,7 +138,7 @@ export function SiteSearchPalette({ signedIn = false }: Props) {
 
   function resolveHref(item: SiteSearchItem): string {
     if (item.type === "torny" && !signedIn) {
-      return loginHref("/portal/lucy");
+      return loginHref("/portal/lucy", locale);
     }
     return item.href;
   }

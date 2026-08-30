@@ -28,6 +28,8 @@ export const STATIC_ROUTE_PAIRS = [
   { en: "/services/family-law", es: "/es/servicios/familia" },
   { en: "/services/corporate-law", es: "/es/servicios/corporativo" },
   { en: "/services/taxes", es: "/es/servicios/impuestos" },
+  { en: "/medellin", es: "/es/medellin" },
+  { en: "/medellin/social", es: "/es/medellin/social" },
 ] as const;
 
 const LOCALIZED_PREFIXES = ["/clkr/", "/posts/", "/services/"] as const;
@@ -183,4 +185,6 @@ export const SITEMAP_STATIC_PATHS = [
   { path: "/es/pricing", priority: 0.7 },
   { path: "/privacy", priority: 0.3 },
   { path: "/es/privacidad", priority: 0.3 },
+  { path: "/medellin", priority: 0.75 },
+  { path: "/es/medellin", priority: 0.75 },
 ] as const;

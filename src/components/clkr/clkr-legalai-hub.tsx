@@ -41,7 +41,7 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
   const copy = clkrLegalAiHubContent[locale];
   const prefix = locale === "es" ? "/es" : "";
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
-  const lucyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy");
+  const lucyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy", locale);
   const normsHref = `${prefix}/clkr/norms`;
 
   return (

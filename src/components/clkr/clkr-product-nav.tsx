@@ -38,7 +38,7 @@ const links = (prefix: string, signedIn: boolean) =>
       icon: Bot,
     },
     {
-      href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy"),
+      href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy", prefix === "/es" ? "es" : "en"),
       match: () => false,
       label: { en: "Lucy AI", es: "Lucy AI" },
       icon: Sparkles,

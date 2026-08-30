@@ -134,38 +134,44 @@ html.palette-terracotta:not(.dark) .marketing-theme {
   --input: #d9d2c7;
 }
 
-/* Admin + portal — shadcn neutral theme */
+/* Admin + portal — same brand tokens as the public site */
 .dashboard-theme {
-  --background: oklch(0.985 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.42 0 0);
-  --accent: oklch(0.96 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --border: oklch(0.88 0 0);
-  --input: oklch(0.88 0 0);
-  --ring: oklch(0.708 0 0);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: var(--parchment);
+  --foreground: var(--ink);
+  --muted: #e8eaee;
+  --muted-foreground: #5c6570;
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--forest);
+  --primary-foreground: #ffffff;
+  --secondary: #e8ebf0;
+  --secondary-foreground: var(--ink);
+  --accent: #e8ebf0;
+  --accent-foreground: var(--ink);
+  --border: #cfd5dd;
+  --input: #cfd5dd;
+  --ring: var(--moss);
+  --heading: var(--forest);
+  --hero: var(--forest);
+  --hero-accent: #f0cd3a;
+  --surface: #e8ebf0;
+  --surface-strong: #dde2e8;
+  --sidebar: #ffffff;
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--forest);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e8ebf0;
+  --sidebar-accent-foreground: var(--forest);
+  --sidebar-border: #cfd5dd;
+  --sidebar-ring: var(--moss);
+  --radius: 2px;
 
   min-height: 100svh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
 }
 
 @theme inline {
@@ -229,32 +235,35 @@ html.palette-terracotta:not(.dark) .marketing-theme {
    (charcoal + gold on parchment) even if the OS/Chrome is in dark mode. */
 
 html.dark .dashboard-theme {
-  --background: oklch(0.07 0 0);
-  --foreground: oklch(0.97 0 0);
-  --card: oklch(0.11 0 0);
-  --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.11 0 0);
-  --popover-foreground: oklch(0.97 0 0);
-  --primary: oklch(0.97 0 0);
-  --primary-foreground: oklch(0.07 0 0);
-  --secondary: oklch(0.15 0 0);
-  --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.15 0 0);
-  --muted-foreground: oklch(0.68 0 0);
-  --accent: oklch(0.18 0 0);
-  --accent-foreground: oklch(0.97 0 0);
+  --background: #121417;
+  --foreground: #f5f6f7;
+  --card: #1c1f24;
+  --card-foreground: #f5f6f7;
+  --popover: #1c1f24;
+  --popover-foreground: #f5f6f7;
+  --primary: #f0cd3a;
+  --primary-foreground: #1c1f24;
+  --secondary: #1c1f24;
+  --secondary-foreground: #f5f6f7;
+  --muted: #1c1f24;
+  --muted-foreground: rgb(255 255 255 / 0.68);
+  --accent: #25282e;
+  --accent-foreground: #f5f6f7;
   --destructive: oklch(0.65 0.2 25);
-  --border: oklch(1 0 0 / 0.14);
-  --input: oklch(1 0 0 / 0.12);
-  --ring: oklch(0.72 0 0);
-  --sidebar: oklch(0.09 0 0);
-  --sidebar-foreground: oklch(0.97 0 0);
-  --sidebar-primary: oklch(0.97 0 0);
-  --sidebar-primary-foreground: oklch(0.07 0 0);
-  --sidebar-accent: oklch(0.15 0 0);
-  --sidebar-accent-foreground: oklch(0.97 0 0);
-  --sidebar-border: oklch(1 0 0 / 0.14);
-  --sidebar-ring: oklch(0.72 0 0);
+  --border: rgb(255 255 255 / 0.14);
+  --input: rgb(255 255 255 / 0.14);
+  --ring: #f0cd3a;
+  --heading: #f5f6f7;
+  --surface: #1c1f24;
+  --surface-strong: #25282e;
+  --sidebar: #1c1f24;
+  --sidebar-foreground: #f5f6f7;
+  --sidebar-primary: #f0cd3a;
+  --sidebar-primary-foreground: #1c1f24;
+  --sidebar-accent: #25282e;
+  --sidebar-accent-foreground: #f5f6f7;
+  --sidebar-border: rgb(255 255 255 / 0.14);
+  --sidebar-ring: #f0cd3a;
   color-scheme: dark;
 }
 
@@ -336,9 +345,29 @@ html.dark {
   .dashboard-theme h1,
   .dashboard-theme h2,
   .dashboard-theme h3 {
-    font-family: var(--font-sans), system-ui, sans-serif;
-    color: inherit;
-    font-weight: 600;
+    font-family: var(--font-heading), Georgia, "Times New Roman", serif;
+    color: var(--heading);
+    font-weight: 400;
+  }
+
+  .dashboard-theme h1 {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  .dashboard-theme .marketing-theme h1,
+  .dashboard-theme .marketing-theme h2,
+  .dashboard-theme .marketing-theme h3 {
+    font-family: var(--font-heading), Georgia, "Times New Roman", serif;
+    font-weight: 400;
+    color: var(--heading);
+  }
+
+  .dashboard-theme .marketing-theme h1 {
+    font-family: var(--font-display), Georgia, "Times New Roman", serif;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
   }
 
   .marketing-theme .accent-italic {
@@ -363,6 +392,31 @@ html.dark {
 
   .clkr-section-html ul {
     list-style: disc;
+  }
+
+  .clkr-section-html ul.clkr-framework-list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .clkr-section-html .clkr-framework-level {
+    margin: 0 0 0.35rem;
+    font-family: var(--font-heading), Georgia, "Times New Roman", serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--forest);
+  }
+
+  .clkr-section-html ul.clkr-framework-list > li > ul {
+    margin-top: 0.4rem;
+  }
+
+  .clkr-section-html ul.clkr-framework-meta {
+    list-style: none;
+    padding-left: 0;
+    font-size: 0.92em;
+    color: color-mix(in oklab, var(--ink) 72%, transparent);
   }
 
   .clkr-section-html ol {
@@ -574,12 +628,12 @@ html.dark {
 }
 
 html.dark .dashboard-theme .btn-primary {
-  background-color: var(--foreground);
-  color: var(--background);
+  background-color: #f0cd3a;
+  color: #1c1f24;
 }
 
 html.dark .dashboard-theme .btn-primary:hover {
-  background-color: oklch(0.86 0 0);
+  background-color: #e4bb00;
 }
 
 .btn-secondary {

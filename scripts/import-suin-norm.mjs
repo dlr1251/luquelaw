@@ -105,6 +105,15 @@ const NORMS = {
     overviewEn:
       "Law 84 of 1873 — Civil Code of the United States of Colombia (in force as the Colombian Civil Code, as amended). Official Spanish text from SUIN-Juriscol.",
   },
+  "estatuto-tributario": {
+    slug: "estatuto-tributario",
+    suinUrl:
+      "https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=6533",
+    overviewEs:
+      "Decreto 624 de 1989 — Estatuto Tributario de los impuestos administrados por la DIAN. Texto oficial tomado del Gestor Normativo de Función Pública (compilación vigente). No es asesoría; confirma el Diario Oficial para tu caso.",
+    overviewEn:
+      "Decree 624 of 1989 — Tax Statute for taxes administered by DIAN. Official Spanish text from Función Pública’s normative digest (compiled, in force). Not legal advice; confirm the Official Gazette for your case.",
+  },
 };
 
 const TITLE_EN = {
@@ -187,17 +196,28 @@ function slugifyKey(prefix, label) {
   return `${prefix}-${base || "x"}`;
 }
 
+function articleNumKey(num) {
+  const s = String(num ?? "").trim();
+  return /^\d+(-\d+)?$/.test(s) ? s : null;
+}
+
+function articleNumSort(a, b) {
+  const pa = String(a.num).split("-").map(Number);
+  const pb = String(b.num).split("-").map(Number);
+  return (pa[0] - pb[0]) || ((pa[1] || 0) - (pb[1] || 0)) || a.index - b.index;
+}
+
 function dedupeArticles(articles) {
   const by = new Map();
   for (const a of articles) {
-    const n = Number(a.num);
-    if (!Number.isFinite(n)) continue;
+    const n = articleNumKey(a.num);
+    if (!n) continue;
     const prev = by.get(n);
     if (!prev || String(a.body || "").length > String(prev.body || "").length) {
       by.set(n, { ...a, num: n });
     }
   }
-  return [...by.values()].sort((a, b) => a.num - b.num || a.index - b.index);
+  return [...by.values()].sort(articleNumSort);
 }
 
 function containerLabel(roman) {
@@ -520,19 +540,25 @@ async function replaceSections(supabase, normId, sections) {
 
   // Parent updates in batches via individual updates (PostgREST has no multi-row CASE easily)
   const withParent = sections.filter((s) => s.parent_section_key);
-  for (const section of withParent) {
-    const sectionId = idByKey.get(section.section_key);
-    const parentId = idByKey.get(section.parent_section_key);
-    if (!sectionId || !parentId) {
-      throw new Error(
-        `Missing parent ${section.parent_section_key} for ${section.section_key}`,
-      );
-    }
-    const { error } = await supabase
-      .from("norm_sections")
-      .update({ parent_id: parentId })
-      .eq("id", sectionId);
-    if (error) throw error;
+  const chunk = 25;
+  for (let i = 0; i < withParent.length; i += chunk) {
+    const slice = withParent.slice(i, i + chunk);
+    await Promise.all(
+      slice.map(async (section) => {
+        const sectionId = idByKey.get(section.section_key);
+        const parentId = idByKey.get(section.parent_section_key);
+        if (!sectionId || !parentId) {
+          throw new Error(
+            `Missing parent ${section.parent_section_key} for ${section.section_key}`,
+          );
+        }
+        const { error } = await supabase
+          .from("norm_sections")
+          .update({ parent_id: parentId })
+          .eq("id", sectionId);
+        if (error) throw error;
+      }),
+    );
   }
 }
 

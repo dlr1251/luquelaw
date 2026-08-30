@@ -35,16 +35,11 @@ export const portalNavGroups = (): DashboardNavGroup[] => [
   {
     label: "Workspace",
     items: [
+      { href: "/portal", label: "Home", icon: "home" },
       { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
       { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
       { href: "/portal/saved", label: "Saved", icon: "bookmark" },
-    ],
-  },
-  {
-    label: "Account",
-    items: [
       { href: "/portal/settings", label: "Settings", icon: "settings" },
-      { href: "/pricing", label: "Plans & billing", icon: "credit-card", external: true },
     ],
   },
 ];
@@ -70,7 +65,6 @@ export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "Legal AI",
     items: [
-      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
       { href: "/admin/agents", label: "Agents", icon: "bot" },
       { href: "/admin/prompts", label: "Prompts Arena", icon: "scroll-text" },
     ],
@@ -78,13 +72,6 @@ export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "Operations",
     items: [{ href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" }],
-  },
-  {
-    label: "App",
-    items: [
-      { href: "/portal", label: "Portal", icon: "layout-dashboard" },
-      { href: "/", label: "Public site", icon: "home", external: true },
-    ],
   },
 ];
 

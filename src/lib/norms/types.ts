@@ -8,7 +8,8 @@ export type NormCategory =
   | "labor"
   | "commercial"
   | "administrative"
-  | "procedural";
+  | "procedural"
+  | "tax";
 
 export type NormStatus = "draft" | "published" | "archived";
 
@@ -70,6 +71,7 @@ export const NORM_CATEGORIES: NormCategory[] = [
   "commercial",
   "administrative",
   "procedural",
+  "tax",
 ];
 
 export const NORM_TYPES: NormType[] = ["constitution", "resolution", "code", "law"];
@@ -84,6 +86,7 @@ export function normCategoryLabel(category: NormCategory, locale: "en" | "es"): 
     commercial: { en: "Commercial", es: "Mercantil" },
     administrative: { en: "Administrative", es: "Administrativo" },
     procedural: { en: "Procedural", es: "Procesal" },
+    tax: { en: "Tax", es: "Tributario" },
   };
   return labels[category][locale];
 }

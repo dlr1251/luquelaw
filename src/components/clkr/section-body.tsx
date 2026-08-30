@@ -1,10 +1,12 @@
+import { prepareClkrSectionHtml } from "@/lib/clkr/framework-html";
 import type { ClkrSection } from "@/lib/clkr/types";
 
 type Props = {
   sections: ClkrSection[];
+  locale?: "en" | "es";
 };
 
-export function ClkrSectionBody({ sections }: Props) {
+export function ClkrSectionBody({ sections, locale = "en" }: Props) {
   return (
     <>
       {sections.map((section) => (
@@ -13,7 +15,12 @@ export function ClkrSectionBody({ sections }: Props) {
           {section.html ? (
             <div
               className="clkr-section-html"
-              dangerouslySetInnerHTML={{ __html: section.html }}
+              dangerouslySetInnerHTML={{
+                __html: prepareClkrSectionHtml(section.html, {
+                  locale,
+                  sectionId: section.id,
+                }),
+              }}
             />
           ) : null}
         </div>

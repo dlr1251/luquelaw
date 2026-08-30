@@ -36,7 +36,7 @@ export function LucyWalletChip({ balanceCents }: { balanceCents: number }) {
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1.5 text-sm font-medium shadow-sm"
+        className="inline-flex items-center gap-2 border border-border bg-card px-3 py-1.5 font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] text-[color:var(--forest)]"
       >
         <span className="text-muted-foreground">Lucy AI credits</span>
         <span>{formatUsdCents(balanceCents)}</span>
@@ -44,7 +44,7 @@ export function LucyWalletChip({ balanceCents }: { balanceCents: number }) {
       </button>
 
       {open ? (
-        <div className="absolute right-0 z-20 mt-2 w-64 rounded-lg border bg-background p-3 shadow-lg">
+        <div className="absolute right-0 z-20 mt-2 w-64 border border-border bg-card p-4 shadow-sm">
           <p className="mb-2 text-xs text-muted-foreground">
             Prepaid wallet for Lucy AI chats. New accounts start with USD 10. Lawyer review unlock
             is billed separately.
@@ -56,7 +56,7 @@ export function LucyWalletChip({ balanceCents }: { balanceCents: number }) {
                 type="button"
                 disabled={Boolean(loading)}
                 onClick={() => topUp(pack.id)}
-                className="flex w-full items-center justify-between rounded border px-3 py-2 text-sm hover:bg-muted/40"
+                className="flex w-full items-center justify-between border border-border px-3 py-2 text-sm hover:bg-surface"
               >
                 <span>{pack.label}</span>
                 <span className="text-muted-foreground">

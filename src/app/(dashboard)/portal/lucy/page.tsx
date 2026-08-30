@@ -50,7 +50,9 @@ export default async function LucyProjectsPage({
   return (
     <div className="mx-auto w-full max-w-4xl space-y-6">
       <div>
-        <h1 className="font-serif text-2xl text-[var(--forest)]">{LUCY_AI_NAME}</h1>
+        <h1 className="font-display text-2xl font-normal tracking-tight text-[color:var(--forest)]">
+          {LUCY_AI_NAME}
+        </h1>
         <p className="text-sm text-muted-foreground">
           AI immigration consultations — projects, files, and lawyer review unlock. New accounts
           start with USD 10.

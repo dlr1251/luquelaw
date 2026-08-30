@@ -81,7 +81,7 @@ export function AboutPage({ locale }: Props) {
             ))}
             <div className="flex flex-wrap gap-3 pt-2">
               <a
-                href={locale === "es" ? "/login?next=/portal" : "/login?next=/portal"}
+                href={locale === "es" ? "/es/login?next=/portal" : "/login?next=/portal"}
                 className="btn-primary btn-primary-lg"
               >
                 {c.createAccountCta}

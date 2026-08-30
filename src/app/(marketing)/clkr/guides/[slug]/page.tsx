@@ -70,7 +70,7 @@ export default async function ClkrArticlePage({ params }: Props) {
           />
         }
       >
-        <ClkrSectionBody sections={article.sections} />
+        <ClkrSectionBody sections={article.sections} locale={locale} />
       </ClkrArticleLayout>
     </>
   );
