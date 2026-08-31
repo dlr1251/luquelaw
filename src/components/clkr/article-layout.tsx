@@ -3,11 +3,15 @@ import type { ReactNode } from "react";
 
 import { ArticleDesktopToc, ArticleMobileToc } from "@/components/clkr/article-toc";
 import { ArticleNavigation } from "@/components/clkr/article-navigation";
+import {
+  ArticleRepoMobileNav,
+  ArticleRepoSidebar,
+} from "@/components/clkr/article-repo-nav";
 import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { Container } from "@/components/container";
 import { Prose } from "@/components/prose";
-import type { ClkrArticle } from "@/lib/clkr/types";
+import type { ClkrArticle, ClkrArticleNavItem, ClkrCategory } from "@/lib/clkr/types";
 
 export type ArticleSection = {
   id: string;
@@ -25,6 +29,7 @@ type Props = {
   currentSlug?: string;
   articleSlugKey?: string;
   relatedArticles?: ClkrArticle[];
+  navArticles?: ClkrArticleNavItem[];
   prerequisites?: ClkrArticle[];
   nextSteps?: ClkrArticle[];
   studyPaths?: Array<{ id: string; slug: string; title: string }>;
@@ -42,8 +47,9 @@ export function ClkrArticleLayout({
   children,
   locale = "en",
   currentSlug,
-  articleSlugKey: _articleSlugKey,
+  articleSlugKey,
   relatedArticles = [],
+  navArticles = [],
   prerequisites = [],
   nextSteps = [],
   studyPaths = [],
@@ -100,9 +106,18 @@ export function ClkrArticleLayout({
         };
 
   const related = relatedArticles;
+  const slugKey = articleSlugKey ?? currentSlug ?? "";
+  const showRepoNav = navArticles.length > 0 && Boolean(slugKey);
+  const currentCategory = category as ClkrCategory;
 
   return (
-    <main className="flex-1">
+    <main
+      className={
+        showRepoNav
+          ? "flex-1 pb-[calc(4.75rem+env(safe-area-inset-bottom,0px))] lg:pb-0"
+          : "flex-1"
+      }
+    >
       <section className="border-b border-[color:var(--moss)]/25 bg-[color:var(--background)]">
         <Container className="py-12 sm:py-14">
           <nav aria-label="Breadcrumb" className="mb-4">
@@ -158,6 +173,16 @@ export function ClkrArticleLayout({
         </Container>
       </section>
 
+      {showRepoNav ? (
+        <ArticleRepoMobileNav
+          key={slugKey}
+          locale={locale}
+          currentSlugKey={slugKey}
+          articles={navArticles}
+          currentCategory={currentCategory}
+        />
+      ) : null}
+
       <Container className="py-10 sm:py-14">
         <ArticleMobileToc
           sections={sections}
@@ -166,8 +191,17 @@ export function ClkrArticleLayout({
         />
         <div className="grid gap-10 lg:grid-cols-12">
           <aside className="hidden lg:col-span-3 lg:block">
-            <div className="lg:sticky lg:top-24">
+            <div className="lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto lg:pr-1">
               <ArticleDesktopToc sections={sections} label={copy.contents} />
+              {showRepoNav ? (
+                <ArticleRepoSidebar
+                  key={slugKey}
+                  locale={locale}
+                  currentSlugKey={slugKey}
+                  articles={navArticles}
+                  currentCategory={currentCategory}
+                />
+              ) : null}
             </div>
           </aside>
 

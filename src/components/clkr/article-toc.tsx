@@ -112,7 +112,7 @@ export function ArticleDesktopToc({
       <div className="text-[11px] font-bold uppercase tracking-[0.22em] text-[color:var(--moss)]">
         {label}
       </div>
-      <div className="mt-4">
+      <div className="mt-4 max-h-[min(36vh,18rem)] overflow-y-auto">
         <TocLinks sections={sections} activeId={activeId} />
       </div>
     </div>

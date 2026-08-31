@@ -8,8 +8,10 @@ import {
 } from "./static-articles";
 import {
   type ClkrArticle,
+  type ClkrArticleNavItem,
   type ClkrArticleRecord,
   type ClkrCategory,
+  clkrPublicPath,
   parseSections,
   recordToHubArticle,
 } from "./types";
@@ -62,9 +64,16 @@ export type ClkrArticleSort = "sort_order" | "title" | "published_at";
 
 export type ClkrArticleSearchFilters = {
   category?: ClkrCategory;
+  categories?: ClkrCategory[];
   sort?: ClkrArticleSort;
   limit?: number;
 };
+
+function resolveCategories(filters: ClkrArticleSearchFilters): ClkrCategory[] {
+  const fromList = filters.categories ?? [];
+  const fromSingle = filters.category ? [filters.category] : [];
+  return [...new Set([...fromList, ...fromSingle])];
+}
 
 export async function searchHubArticles(
   query: string,
@@ -74,10 +83,11 @@ export async function searchHubArticles(
   const q = query.trim();
   const limit = filters.limit ?? 200;
   const sort = filters.sort ?? "sort_order";
+  const categories = resolveCategories(filters);
 
   if (!isSupabaseConfigured()) {
     const all = getStaticPublishedArticles(locale).map(recordToHubArticle);
-    return filterAndSortArticles(all, q, filters.category, sort).slice(0, limit);
+    return filterAndSortArticles(all, q, categories, sort).slice(0, limit);
   }
 
   try {
@@ -88,8 +98,10 @@ export async function searchHubArticles(
       .eq("locale", locale)
       .eq("status", "published");
 
-    if (filters.category) {
-      dbQuery = dbQuery.eq("category", filters.category);
+    if (categories.length === 1) {
+      dbQuery = dbQuery.eq("category", categories[0]);
+    } else if (categories.length > 1) {
+      dbQuery = dbQuery.in("category", categories);
     }
 
     if (q) {
@@ -113,25 +125,26 @@ export async function searchHubArticles(
 
     if (error || !data?.length) {
       const all = await getHubArticles(locale);
-      return filterAndSortArticles(all, q, filters.category, sort).slice(0, limit);
+      return filterAndSortArticles(all, q, categories, sort).slice(0, limit);
     }
 
     return data.map((row) => recordToHubArticle(mapRow(row)));
   } catch {
     const all = await getHubArticles(locale);
-    return filterAndSortArticles(all, q, filters.category, sort).slice(0, limit);
+    return filterAndSortArticles(all, q, categories, sort).slice(0, limit);
   }
 }
 
 function filterAndSortArticles(
   articles: ClkrArticle[],
   query: string,
-  category: ClkrCategory | undefined,
+  categories: ClkrCategory[],
   sort: ClkrArticleSort,
 ): ClkrArticle[] {
   const q = query.trim().toLowerCase();
+  const categorySet = categories.length > 0 ? new Set(categories) : null;
   let result = articles.filter((a) => {
-    if (category && a.category !== category) return false;
+    if (categorySet && !categorySet.has(a.category)) return false;
     if (!q) return true;
     return (
       a.title.toLowerCase().includes(q) ||
@@ -247,6 +260,63 @@ export async function getHubArticles(locale: "en" | "es"): Promise<ClkrArticle[]
     return data.map((row) => recordToHubArticle(mapRow(row)));
   } catch {
     return fallbackHub(locale);
+  }
+}
+
+function toNavItem(row: {
+  slug_key: string;
+  title: string;
+  category: ClkrCategory;
+  locale: "en" | "es";
+}): ClkrArticleNavItem {
+  return {
+    slugKey: row.slug_key,
+    slug: clkrPublicPath(row.slug_key, row.locale),
+    title: row.title,
+    category: row.category,
+  };
+}
+
+function fallbackNavItems(locale: "en" | "es"): ClkrArticleNavItem[] {
+  return getStaticPublishedArticles(locale).map((article) =>
+    toNavItem({
+      slug_key: article.slug_key,
+      title: article.title,
+      category: article.category,
+      locale: article.locale,
+    }),
+  );
+}
+
+/** Lightweight published-article list for in-article repository navigation. */
+export async function getArticleNavItems(locale: "en" | "es"): Promise<ClkrArticleNavItem[]> {
+  if (!isSupabaseConfigured()) {
+    return fallbackNavItems(locale);
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("clkr_articles")
+      .select("slug_key, title, category, sort_order")
+      .eq("locale", locale)
+      .eq("status", "published")
+      .order("sort_order", { ascending: true });
+
+    if (error || !data?.length) {
+      return fallbackNavItems(locale);
+    }
+
+    return data.map((row) =>
+      toNavItem({
+        slug_key: String(row.slug_key),
+        title: String(row.title),
+        category: row.category as ClkrCategory,
+        locale,
+      }),
+    );
+  } catch {
+    return fallbackNavItems(locale);
   }
 }
 

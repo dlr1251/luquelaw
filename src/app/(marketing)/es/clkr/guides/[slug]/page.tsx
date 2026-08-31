@@ -5,6 +5,7 @@ import { ClkrArticleLayout } from "@/components/clkr/article-layout";
 import { ClkrSectionBody } from "@/components/clkr/section-body";
 import { SaveButton } from "@/components/saves/save-button";
 import {
+  getArticleNavItems,
   getPublishedArticle,
   getRelatedArticlesForArticle,
   getTranslationSlugKey,
@@ -13,8 +14,7 @@ import {
   getPublishedPromptsByArticle,
   getPublishedSkillsByArticle,
 } from "@/lib/agents/get-agents";
-import { getArticleRelations, getArticleStudyPaths } from "@/lib/clkr/get-study-paths";
-import { clkrPublicPath } from "@/lib/clkr/types";
+import { getArticleStudyPaths, getArticleRelations } from "@/lib/clkr/get-study-paths";
 import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildClkrArticleMetadata } from "@/lib/seo/metadata";
@@ -48,7 +48,7 @@ export default async function ClkrArticleEsPage({ params }: Props) {
     notFound();
   }
 
-  const [related, prerequisites, nextSteps, studyPaths, linkedPrompts, linkedSkills, saved] =
+  const [related, prerequisites, nextSteps, studyPaths, linkedPrompts, linkedSkills, saved, navArticles] =
     await Promise.all([
       getRelatedArticlesForArticle(article.id, slug, locale),
       getArticleRelations(article.id, "prerequisite"),
@@ -57,6 +57,7 @@ export default async function ClkrArticleEsPage({ params }: Props) {
       getPublishedPromptsByArticle(slug, locale),
       getPublishedSkillsByArticle(slug, locale),
       isSaved("guide", slug, locale),
+      getArticleNavItems(locale),
     ]);
 
   const sections = article.sections.map((s) => ({ id: s.id, title: s.title }));
@@ -66,7 +67,7 @@ export default async function ClkrArticleEsPage({ params }: Props) {
       <JsonLd data={clkrArticleJsonLd(article)} />
       <ClkrArticleLayout
         locale={locale}
-        currentSlug={clkrPublicPath(slug, locale)}
+        currentSlug={slug}
         articleSlugKey={slug}
         title={article.title}
         category={article.category}
@@ -74,6 +75,7 @@ export default async function ClkrArticleEsPage({ params }: Props) {
         description={article.description}
         sections={sections}
         relatedArticles={related}
+        navArticles={navArticles}
         prerequisites={prerequisites.map((rel) => rel.to_article)}
         nextSteps={nextSteps.map((rel) => rel.to_article)}
         studyPaths={studyPaths.map((path) => ({

@@ -49,6 +49,14 @@ export type ClkrArticle = {
   publishedAt: string | null;
 };
 
+/** Slim nav item for article-to-article repository browsing (no body). */
+export type ClkrArticleNavItem = {
+  slugKey: string;
+  slug: string;
+  title: string;
+  category: ClkrCategory;
+};
+
 export const CLKR_CATEGORIES: ClkrCategory[] = [
   "Immigration",
   "Real Estate",
