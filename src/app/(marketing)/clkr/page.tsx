@@ -1,5 +1,6 @@
 import { ClkrLegalAiHub } from "@/components/clkr/clkr-legalai-hub";
 import { getSignedInFlag } from "@/lib/auth/signed-in";
+import { getHubArticles } from "@/lib/clkr/get-hub-articles";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { PAGE_SEO } from "@/lib/seo/config";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -13,12 +14,15 @@ export const metadata = buildPageMetadata({
 });
 
 export default async function ClkrHubPage() {
-  const signedIn = await getSignedInFlag();
+  const [signedIn, articles] = await Promise.all([
+    getSignedInFlag(),
+    getHubArticles("en"),
+  ]);
 
   return (
     <>
       <JsonLd data={clkrHubJsonLd("en")} />
-      <ClkrLegalAiHub locale="en" signedIn={signedIn} />
+      <ClkrLegalAiHub locale="en" signedIn={signedIn} articles={articles} />
     </>
   );
 }
