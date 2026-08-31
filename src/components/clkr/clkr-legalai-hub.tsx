@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { ArrowRight, BookOpen, Bot, Library, Scale, Sparkles } from "lucide-react";
 
+import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { loginHref } from "@/lib/auth/safe-next";
+import type { ClkrArticle, ClkrCategory } from "@/lib/clkr/articles";
 import {
   clkrLegalAiHubContent,
   type ClkrHubLocale,
@@ -14,7 +16,10 @@ import { cn } from "@/lib/utils";
 type Props = {
   locale?: ClkrHubLocale;
   signedIn?: boolean;
+  articles?: ClkrArticle[];
 };
+
+const HUB_ARTICLE_LIMIT = 9;
 
 const moduleMeta = [
   {
@@ -43,12 +48,18 @@ const moduleMeta = [
   },
 ];
 
-export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
+export function ClkrLegalAiHub({
+  locale = "en",
+  signedIn = false,
+  articles = [],
+}: Props) {
   const copy = clkrLegalAiHubContent[locale];
   const prefix = locale === "es" ? "/es" : "";
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
   const lucyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy", locale);
   const guidesHref = `${prefix}/clkr/guides`;
+  const listedArticles = articles.slice(0, HUB_ARTICLE_LIMIT);
+  const categoryLabels = copy.articleCategories as Record<ClkrCategory, string>;
 
   return (
     <main className="flex-1">
@@ -153,7 +164,44 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-[color:var(--surface)]">
+      {listedArticles.length > 0 ? (
+        <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--surface)]">
+          <Container className="py-14 sm:py-16 lg:py-20">
+            <div className="mb-10 max-w-2xl animate-[fade-up_0.7s_ease-out_0.08s_both]">
+              <h2 className="marketing-title text-[color:var(--forest)]">{copy.articlesTitle}</h2>
+              <p className="marketing-body mt-2 text-sm sm:text-base">{copy.articlesSubtitle}</p>
+            </div>
+
+            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {listedArticles.map((article, index) => (
+                <li
+                  key={article.slugKey}
+                  className="animate-[fade-up_0.65s_ease-out_both]"
+                  style={{ animationDelay: `${0.1 + index * 0.04}s` }}
+                >
+                  <ClkrArticleCard
+                    article={article}
+                    readLabel={copy.articlesRead}
+                    categoryLabel={categoryLabels[article.category]}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-8">
+              <Link
+                href={guidesHref}
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[color:var(--forest)] underline-offset-4 hover:underline"
+              >
+                {copy.articlesBrowseAll}
+                <ArrowRight className="size-3.5" aria-hidden />
+              </Link>
+            </p>
+          </Container>
+        </section>
+      ) : null}
+
+      <section className="relative overflow-hidden bg-[color:var(--background)]">
         <div
           aria-hidden
           className="pointer-events-none absolute -right-16 top-1/2 size-64 -translate-y-1/2 rounded-full bg-[color:var(--moss)]/15 blur-3xl"

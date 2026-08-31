@@ -1,9 +1,11 @@
 import type { ClkrArticleRecord } from "./types";
+import commonLawUnionRecords from "./generated/common-law-union.json";
 
 const PUBLISHED_AT = "2026-05-26T12:00:00.000Z";
 
 /** Full article bodies used when Supabase is unavailable or has no published rows yet. */
 export const staticClkrArticleRecords: ClkrArticleRecord[] = [
+  ...(commonLawUnionRecords as ClkrArticleRecord[]),
   {
     id: "static-investor-visa-en",
     slug_key: "investor-visa",
