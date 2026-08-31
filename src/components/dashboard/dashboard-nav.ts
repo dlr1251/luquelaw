@@ -67,6 +67,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
     items: [
       { href: "/admin/agents", label: "Agents", icon: "bot" },
       { href: "/admin/prompts", label: "Prompts Arena", icon: "scroll-text" },
+      { href: "/admin/skills", label: "Skills", icon: "sparkles" },
     ],
   },
   {
@@ -136,7 +137,13 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/prompts")) {
     return {
       title: "Prompts Arena",
-      description: "Curated prompts for the LegalAI hub",
+      description: "Curated prompts for the public library",
+    };
+  }
+  if (pathname.startsWith("/admin/skills")) {
+    return {
+      title: "Skills",
+      description: "Multi-step skills for the public library",
     };
   }
   if (pathname.startsWith("/admin/posts")) {

@@ -1,5 +1,7 @@
 import { BookOpen, Layers } from "lucide-react";
 
+import { Suspense } from "react";
+
 import { ClkrBrowser } from "@/components/clkr/clkr-browser";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
@@ -99,7 +101,9 @@ export function ClkrHub({
           <p className="marketing-body text-sm">{copy.browseSubtitle}</p>
         </div>
 
-        <ClkrBrowser articles={articles} locale={locale} />
+        <Suspense fallback={<p className="text-sm text-muted-foreground">…</p>}>
+          <ClkrBrowser articles={articles} locale={locale} />
+        </Suspense>
 
         <ClkrDisclaimer text={copy.disclaimer} className="mt-12" />
       </Container>

@@ -1,5 +1,6 @@
 import { getAllPublishedArticles } from "@/lib/clkr/get-articles";
-import { clkrGuidesHubPath, clkrPublicPath } from "@/lib/clkr/types";
+import { clkrGuidesHubPath, clkrLibraryPath, clkrLibraryPromptPath, clkrLibrarySkillPath, clkrPublicPath } from "@/lib/clkr/types";
+import { getPublishedPrompts, getPublishedSkills } from "@/lib/agents/get-agents";
 import { getAllPublishedNorms } from "@/lib/norms/get-norms";
 import { normPublicPath, normsHubPath } from "@/lib/norms/types";
 import { getAllPublishedPosts } from "@/lib/posts/get-posts";
@@ -12,10 +13,11 @@ import type { SearchLocale, SiteSearchItem } from "./types";
 
 const PAGE_TITLES: Record<string, { en: string; es: string }> = {
   "/": { en: "Home", es: "Inicio" },
-  "/clkr": { en: "CLKR LegalAI hub", es: "Hub CLKR LegalAI" },
-  "/clkr/guides": { en: "Articles", es: "Artículos" },
-  "/clkr/norms": { en: "Norms", es: "Normas" },
-  "/clkr/agents": { en: "Agents & prompts", es: "Agentes y prompts" },
+  "/clkr": { en: "Legal resources", es: "Recursos legales" },
+  "/clkr/guides": { en: "CLKR articles", es: "Artículos CLKR" },
+  "/clkr/norms": { en: "Norms catalog", es: "Normograma" },
+  "/clkr/library": { en: "Skills & prompts", es: "Skills y prompts" },
+  "/clkr/agents": { en: "Agents", es: "Agentes" },
   "/posts": { en: "Blog", es: "Blog" },
   "/pricing": { en: "Pricing", es: "Planes" },
   "/privacy": { en: "Privacy", es: "Privacidad" },
@@ -29,6 +31,7 @@ function pageSeoDescription(enPath: string, locale: SearchLocale): string {
     "/clkr": "clkrHub",
     "/clkr/guides": "clkrGuides",
     "/clkr/norms": "normsHub",
+    "/clkr/library": "clkrLibrary",
     "/posts": "postsHub",
     "/pricing": "pricing",
     "/privacy": "privacy",
@@ -44,10 +47,14 @@ function pageSeoDescription(enPath: string, locale: SearchLocale): string {
 }
 
 export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
-  const [articles, posts, norms] = await Promise.all([
+  const [articles, posts, norms, promptsEn, promptsEs, skillsEn, skillsEs] = await Promise.all([
     getAllPublishedArticles(),
     getAllPublishedPosts(),
     getAllPublishedNorms(),
+    getPublishedPrompts("en"),
+    getPublishedPrompts("es"),
+    getPublishedSkills("en"),
+    getPublishedSkills("es"),
   ]);
 
   const items: SiteSearchItem[] = [];
@@ -88,12 +95,23 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       locale,
     });
     items.push({
-      id: `hub:norms:${locale}`,
-      title: locale === "es" ? "Normas" : "Norms",
+      id: `hub:library:${locale}`,
+      title: locale === "es" ? "Skills y prompts" : "Skills & prompts",
       description:
         locale === "es"
-          ? "Biblioteca normativa colombiana"
-          : "Colombian normative library",
+          ? "Biblioteca pública de prompts jurídicos"
+          : "Public library of legal AI prompts",
+      href: clkrLibraryPath(locale),
+      type: "page",
+      locale,
+    });
+    items.push({
+      id: `hub:norms:${locale}`,
+      title: locale === "es" ? "Normograma" : "Norms catalog",
+      description:
+        locale === "es"
+          ? "Navegador de normas colombianas"
+          : "Colombian statute browser",
       href: normsHubPath(locale),
       type: "norm",
       locale,
@@ -147,6 +165,30 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       type: "norm",
       locale: norm.locale,
       category: norm.category,
+    });
+  }
+
+  for (const prompt of [...promptsEn, ...promptsEs]) {
+    items.push({
+      id: `prompt:${prompt.locale}:${prompt.slug_key}`,
+      title: prompt.title,
+      description: prompt.description,
+      href: clkrLibraryPromptPath(prompt.slug_key, prompt.locale),
+      type: "page",
+      locale: prompt.locale,
+      category: prompt.category,
+    });
+  }
+
+  for (const skill of [...skillsEn, ...skillsEs]) {
+    items.push({
+      id: `skill:${skill.locale}:${skill.slug_key}`,
+      title: skill.title,
+      description: skill.description,
+      href: clkrLibrarySkillPath(skill.slug_key, skill.locale),
+      type: "page",
+      locale: skill.locale,
+      category: skill.category,
     });
   }
 

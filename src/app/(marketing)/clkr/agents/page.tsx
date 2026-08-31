@@ -1,35 +1,42 @@
+import Link from "next/link";
+
 import { AgentsLibrary } from "@/components/agents/agents-library";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleGate } from "@/components/clkr/clkr-module-gate";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
-import {
-  getPublishedAgents,
-  getPublishedPrompts,
-  getPublishedSkills,
-} from "@/lib/agents/get-agents";
+import { getPublishedAgents } from "@/lib/agents/get-agents";
 import { requireEntitlement } from "@/lib/billing/entitlements";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata = buildPageMetadata({
-  title: "Agents & prompts — CLKR",
-  description: "Curated LegalAI agents, skills, and prompts for Colombian legal work.",
+  title: "Agents — CLKR Professional",
+  description: "Configurable LegalAI agents for Colombian legal work. Requires Professional plan.",
   path: "/clkr/agents",
   locale: "en",
 });
 
 export default async function ClkrAgentsPage() {
   const access = await requireEntitlement("agents");
-  if (!access.ok) {
-    return <ClkrModuleGate locale="en" lockedReason={access.reason} />;
-  }
+  const agents = access.ok ? await getPublishedAgents("en") : [];
 
-  const [agents, prompts, skills] = await Promise.all([
-    getPublishedAgents("en"),
-    getPublishedPrompts("en"),
-    getPublishedSkills("en"),
-  ]);
+  if (!access.ok) {
+    return (
+      <>
+        <ClkrModuleGate locale="en" lockedReason={access.reason} />
+        <Container className="pb-12">
+          <p className="text-center text-sm text-muted-foreground">
+            Prompts and skills are public in the{" "}
+            <Link href="/clkr/library" className="font-semibold text-[color:var(--forest)] underline">
+              library
+            </Link>
+            .
+          </p>
+        </Container>
+      </>
+    );
+  }
 
   return (
     <main className="flex-1">
@@ -37,14 +44,14 @@ export default async function ClkrAgentsPage() {
       <ClkrModuleHero
         locale="en"
         eyebrow="CLKR · Agents"
-        title="Agents, skills & prompts"
-        subtitle="Copy prompts into your AI tools. Always verify outputs against primary sources."
-        contactCta="Need a guided consultation?"
-        contactLink="Meet Lucy AI"
-        contactHref="/portal/lucy"
+        title="Configurable agents"
+        subtitle="Professional-plan agents for structured legal workflows. Copy prompts from the public library or run guided consultations in Lucy AI."
+        contactCta="Open prompt library"
+        contactLink="Browse library"
+        contactHref="/clkr/library"
       />
       <Container className="py-12 sm:py-14">
-        <AgentsLibrary agents={agents} prompts={prompts} skills={skills} locale="en" />
+        <AgentsLibrary agents={agents} locale="en" />
         <ClkrDisclaimer
           className="mt-12"
           text="Informational tools only. Not legal advice. You remain responsible for professional judgment."

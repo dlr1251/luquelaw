@@ -2,6 +2,8 @@ import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
+import { Suspense } from "react";
+
 import { NormsBrowser } from "@/components/norms/norms-browser";
 import type { NormCatalogItem } from "@/lib/norms/types";
 import { normsHubContent, type NormsHubLocale } from "@/lib/norms/hub-content";
@@ -38,7 +40,9 @@ export function NormsHub({ norms, locale = "en", signedIn = false }: Props) {
           </p>
         </div>
 
-        <NormsBrowser norms={norms} locale={locale} />
+        <Suspense fallback={<p className="text-sm text-muted-foreground">…</p>}>
+          <NormsBrowser norms={norms} locale={locale} />
+        </Suspense>
 
         <ClkrDisclaimer text={copy.disclaimer} className="mt-12" />
       </Container>

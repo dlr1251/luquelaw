@@ -12,6 +12,8 @@ import { NormReaderBar } from "@/components/norms/norm-reader-bar";
 import { NormToc } from "@/components/norms/norm-toc";
 import { Prose } from "@/components/prose";
 import { findAdjacentContent, type TocNode } from "@/lib/norms/tree";
+import type { ClkrArticle } from "@/lib/clkr/articles";
+import { normsHubContent } from "@/lib/norms/hub-content";
 import type { NormCategory, NormType } from "@/lib/norms/types";
 import { normCategoryLabel, normTypeLabel } from "@/lib/norms/types";
 
@@ -31,6 +33,7 @@ type Props = {
   toc: TocNode[];
   children: ReactNode;
   headerAction?: ReactNode;
+  relatedArticles?: ClkrArticle[];
 };
 
 export function NormLayout({
@@ -49,7 +52,9 @@ export function NormLayout({
   toc,
   children,
   headerAction,
+  relatedArticles = [],
 }: Props) {
+  const hubCopy = normsHubContent[locale];
   const prefix = locale === "es" ? "/es" : "";
   const normsHref = `${prefix}/clkr/norms`;
 
@@ -218,6 +223,35 @@ export function NormLayout({
                 </Prose>
                 {children}
               </article>
+
+              {relatedArticles.length > 0 ? (
+                <section className="mt-10 border-t border-[color:var(--moss)]/20 pt-8">
+                  <h2 className="font-display text-lg text-[color:var(--forest)]">
+                    {hubCopy.relatedArticles}
+                  </h2>
+                  <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+                    {relatedArticles.map((article) => (
+                      <li key={article.slug}>
+                        <Link
+                          href={article.slug}
+                          className="block border border-[color:var(--moss)]/30 bg-[color:var(--card)] p-4 transition hover:border-[color:var(--moss)]/55"
+                        >
+                          <h3 className="text-sm font-semibold text-[color:var(--forest)]">
+                            {article.title}
+                          </h3>
+                          <p className="mt-1 text-xs text-muted-foreground line-clamp-2">
+                            {article.description}
+                          </p>
+                          <span className="mt-2 inline-block text-xs font-bold text-[color:var(--forest)]">
+                            {hubCopy.readArticle} →
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              ) : null}
+
               <ClkrDisclaimer text={copy.disclaimer} className="mt-10" />
             </div>
           </div>

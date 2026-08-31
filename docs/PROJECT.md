@@ -16,13 +16,14 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 | **Properties** *(future)* | Promote rental and sale listings | Everyone |
 | **Blog** | Shorter posts (`/posts`) | Public |
 
-**CLKR** is the **LegalAI hub** for learning and practicing Colombian law, with three modules:
+**CLKR** is the **LegalAI hub** for learning and practicing Colombian law:
 
 | Module | Route | Access |
 |--------|-------|--------|
-| **Normas** | `/clkr/norms` | Public read; annotations → Professional |
-| **Repositorio (guides)** | `/clkr/guides` | Public (SEO + trust) |
-| **Agentes** | `/clkr/agents` | Subscriber (Professional) |
+| **CLKR (Articles)** | `/clkr/guides` | Public — searchable article explorer |
+| **Norms catalog** | `/clkr/norms` | Public read |
+| **Skills & prompts** | `/clkr/library` | Public — copy-ready library linked to articles |
+| **Agents** | `/clkr/agents` | Professional plan |
 
 **Not in scope:** case/matter management, client file storage, legal deliverables workflow in the portal.
 

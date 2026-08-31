@@ -321,6 +321,89 @@ export const SERVICE_AREA_IDS: ServiceAreaId[] = [
   "labour-law",
 ];
 
+export type ServiceAreaWithClkr = Exclude<ServiceAreaId, "immigration" | "real-estate">;
+
+export type ServiceAreaClkrCopy = {
+  eyebrow: string;
+  title: string;
+  body: string;
+  readLabel: string;
+  browseAll: string;
+};
+
+export const serviceAreaClkrContent: Record<
+  ServicesLocale,
+  Record<ServiceAreaWithClkr, ServiceAreaClkrCopy>
+> = {
+  en: {
+    "labour-law": {
+      eyebrow: "CLKR",
+      title: "Related articles",
+      body: "Guides on employment contracts, termination, remote work, and subordination under Colombian labour law.",
+      readLabel: "Read guide",
+      browseAll: "Browse all articles",
+    },
+    "corporate-law": {
+      eyebrow: "CLKR",
+      title: "Related articles",
+      body: "Guides on company formation, SAS, shareholders' agreements, and corporate governance in Colombia.",
+      readLabel: "Read guide",
+      browseAll: "Browse all articles",
+    },
+    taxes: {
+      eyebrow: "CLKR",
+      title: "Related articles",
+      body: "Guides on tax residency, corporate income tax, VAT, and foreign-exchange rules for clients in Colombia.",
+      readLabel: "Read guide",
+      browseAll: "Browse all articles",
+    },
+    "family-law": {
+      eyebrow: "CLKR",
+      title: "Related articles",
+      body: "Guides on marriage, divorce, common-law unions, custody, and civil contracts under Colombian law.",
+      readLabel: "Read guide",
+      browseAll: "Browse all articles",
+    },
+  },
+  es: {
+    "labour-law": {
+      eyebrow: "CLKR",
+      title: "Artículos relacionados",
+      body: "Guías sobre contratos de trabajo, terminación, teletrabajo y subordinación en el derecho laboral colombiano.",
+      readLabel: "Leer guía",
+      browseAll: "Ver todos los artículos",
+    },
+    "corporate-law": {
+      eyebrow: "CLKR",
+      title: "Artículos relacionados",
+      body: "Guías sobre constitución de sociedades, SAS, pactos de accionistas y gobierno corporativo en Colombia.",
+      readLabel: "Leer guía",
+      browseAll: "Ver todos los artículos",
+    },
+    taxes: {
+      eyebrow: "CLKR",
+      title: "Artículos relacionados",
+      body: "Guías sobre residencia fiscal, renta corporativa, IVA y regulación cambiaria para clientes en Colombia.",
+      readLabel: "Leer guía",
+      browseAll: "Ver todos los artículos",
+    },
+    "family-law": {
+      eyebrow: "CLKR",
+      title: "Artículos relacionados",
+      body: "Guías sobre matrimonio, divorcio, unión marital de hecho, custodia y contratos civiles en Colombia.",
+      readLabel: "Leer guía",
+      browseAll: "Ver todos los artículos",
+    },
+  },
+};
+
+export function getServiceAreaClkrCopy(
+  areaId: ServiceAreaWithClkr,
+  locale: ServicesLocale,
+): ServiceAreaClkrCopy {
+  return serviceAreaClkrContent[locale][areaId];
+}
+
 /** Non-immigration MVP area ids (have dedicated simple pages). */
 export const MVP_SERVICE_AREA_IDS: Exclude<ServiceAreaId, "immigration">[] = [
   "real-estate",

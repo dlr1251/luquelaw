@@ -17,7 +17,8 @@ import {
 import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { getSessionUserId } from "@/lib/billing/entitlements";
 import { listCommentsForSection } from "@/lib/comments/queries";
-import { normPublicPath } from "@/lib/norms/types";
+import { getHubArticlesByClkrCategories } from "@/lib/clkr/get-articles";
+import { normCategoryToClkrCategories, normPublicPath } from "@/lib/norms/types";
 import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildNormMetadata } from "@/lib/seo/metadata";
@@ -81,11 +82,12 @@ export default async function NormPageEs({ params }: Props) {
   }
 
   const toc = buildTocTree(tree, slug, locale, canonicalPath);
-  const [signedIn, viewerUserId, doctrinal, saved] = await Promise.all([
+  const [signedIn, viewerUserId, doctrinal, saved, relatedArticles] = await Promise.all([
     getSignedInFlag(),
     getSessionUserId(),
     getPublishedCommentariesForSection(active.id),
     isSaved("norm", slug, locale),
+    getHubArticlesByClkrCategories(normCategoryToClkrCategories(norm.category), locale, 6),
   ]);
   const comments = await listCommentsForSection(active.id, viewerUserId);
   const currentPath = normPublicPath(slug, locale, canonicalPath);
@@ -118,6 +120,7 @@ export default async function NormPageEs({ params }: Props) {
             tone="inverse"
           />
         }
+        relatedArticles={relatedArticles}
       >
         <NormDoctrinalCommentaries
           commentaries={doctrinal}

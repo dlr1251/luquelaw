@@ -10,6 +10,7 @@ type Props = {
   categoryLabel?: string;
   featured?: boolean;
   className?: string;
+  titleOverride?: React.ReactNode;
 };
 
 export function ClkrArticleCard({
@@ -18,6 +19,7 @@ export function ClkrArticleCard({
   categoryLabel,
   featured = false,
   className,
+  titleOverride,
 }: Props) {
   return (
     <Link
@@ -46,7 +48,7 @@ export function ClkrArticleCard({
           featured ? "text-2xl sm:text-[1.75rem]" : "text-xl",
         )}
       >
-        {article.title}
+        {titleOverride ?? article.title}
       </h3>
       <p
         className={cn(

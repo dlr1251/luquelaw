@@ -6,10 +6,15 @@ import { ClkrSectionBody } from "@/components/clkr/section-body";
 import { SaveButton } from "@/components/saves/save-button";
 import {
   getPublishedArticle,
-  getRelatedPublishedArticles,
+  getRelatedArticlesForArticle,
   getTranslationSlugKey,
 } from "@/lib/clkr/get-articles";
-import { clkrPublicPath, recordToHubArticle } from "@/lib/clkr/types";
+import {
+  getPublishedPromptsByArticle,
+  getPublishedSkillsByArticle,
+} from "@/lib/agents/get-agents";
+import { getArticleRelations, getArticleStudyPaths } from "@/lib/clkr/get-study-paths";
+import { clkrPublicPath } from "@/lib/clkr/types";
 import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildClkrArticleMetadata } from "@/lib/seo/metadata";
@@ -43,9 +48,18 @@ export default async function ClkrArticleEsPage({ params }: Props) {
     notFound();
   }
 
-  const related = await getRelatedPublishedArticles(slug, locale);
+  const [related, prerequisites, nextSteps, studyPaths, linkedPrompts, linkedSkills, saved] =
+    await Promise.all([
+      getRelatedArticlesForArticle(article.id, slug, locale),
+      getArticleRelations(article.id, "prerequisite"),
+      getArticleRelations(article.id, "next_step"),
+      getArticleStudyPaths(article.id, locale),
+      getPublishedPromptsByArticle(slug, locale),
+      getPublishedSkillsByArticle(slug, locale),
+      isSaved("guide", slug, locale),
+    ]);
+
   const sections = article.sections.map((s) => ({ id: s.id, title: s.title }));
-  const saved = await isSaved("guide", slug, locale);
 
   return (
     <>
@@ -53,12 +67,22 @@ export default async function ClkrArticleEsPage({ params }: Props) {
       <ClkrArticleLayout
         locale={locale}
         currentSlug={clkrPublicPath(slug, locale)}
+        articleSlugKey={slug}
         title={article.title}
         category={article.category}
         readingTime={article.reading_time}
         description={article.description}
         sections={sections}
-        relatedArticles={related.map(recordToHubArticle)}
+        relatedArticles={related}
+        prerequisites={prerequisites.map((rel) => rel.to_article)}
+        nextSteps={nextSteps.map((rel) => rel.to_article)}
+        studyPaths={studyPaths.map((path) => ({
+          id: path.id,
+          slug: path.slug,
+          title: path.title,
+        }))}
+        linkedPrompts={linkedPrompts}
+        linkedSkills={linkedSkills}
         headerAction={
           <SaveButton
             targetType="guide"

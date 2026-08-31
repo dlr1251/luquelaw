@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 import { ArticleDesktopToc, ArticleMobileToc } from "@/components/clkr/article-toc";
+import { ArticleNavigation } from "@/components/clkr/article-navigation";
 import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { Container } from "@/components/container";
@@ -22,7 +23,13 @@ type Props = {
   children: ReactNode;
   locale?: "en" | "es";
   currentSlug?: string;
+  articleSlugKey?: string;
   relatedArticles?: ClkrArticle[];
+  prerequisites?: ClkrArticle[];
+  nextSteps?: ClkrArticle[];
+  studyPaths?: Array<{ id: string; slug: string; title: string }>;
+  linkedPrompts?: Array<{ slug: string; title: string; description: string; useCase?: string | null }>;
+  linkedSkills?: Array<{ slug: string; title: string; description: string }>;
   headerAction?: ReactNode;
 };
 
@@ -35,13 +42,20 @@ export function ClkrArticleLayout({
   children,
   locale = "en",
   currentSlug,
+  articleSlugKey: _articleSlugKey,
   relatedArticles = [],
+  prerequisites = [],
+  nextSteps = [],
+  studyPaths = [],
+  linkedPrompts = [],
+  linkedSkills = [],
   headerAction,
 }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
   const clkrHref = `${prefix}/clkr`;
   const guidesHref = `${prefix}/clkr/guides`;
+  const libraryHref = `${prefix}/clkr/library`;
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
 
   const copy =
@@ -54,6 +68,10 @@ export function ClkrArticleLayout({
           mobileContents: "Tabla de contenido",
           related: "Otros artículos",
           read: "Leer artículo",
+          prompts: "Prompts y skills",
+          viewPrompt: "Ver prompt",
+          viewSkill: "Ver skill",
+          library: "Abrir biblioteca",
           ctaTitle: "¿Consulta sobre hechos concretos?",
           ctaBody:
             "Escríbenos con los hechos. Tras la consulta inicial, recibes un concepto jurídico escrito y una cotización dentro de 3 días hábiles.",
@@ -69,6 +87,10 @@ export function ClkrArticleLayout({
           mobileContents: "Table of contents",
           related: "More articles",
           read: "Read article",
+          prompts: "Prompts & skills",
+          viewPrompt: "View prompt",
+          viewSkill: "View skill",
+          library: "Open library",
           ctaTitle: "A question about your facts?",
           ctaBody:
             "Write us with the facts. After the initial consultation, you get a written legal concept (Concepto Jurídico) and a quotation within 3 business days.",
@@ -167,6 +189,69 @@ export function ClkrArticleLayout({
                 </div>
               </div>
             </div>
+
+            <ArticleNavigation
+              prerequisites={prerequisites}
+              nextSteps={nextSteps}
+              studyPaths={studyPaths}
+              locale={locale}
+            />
+
+            {linkedPrompts.length > 0 || linkedSkills.length > 0 ? (
+              <section className="mt-12 border-t border-[color:var(--moss)]/25 pt-10">
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                  <h2 className="font-display text-xl font-normal tracking-tight text-[color:var(--forest)]">
+                    {copy.prompts}
+                  </h2>
+                  <Link
+                    href={libraryHref}
+                    className="text-sm font-semibold text-[color:var(--forest)] hover:underline"
+                  >
+                    {copy.library} →
+                  </Link>
+                </div>
+                <ul className="mt-5 grid gap-4 sm:grid-cols-2">
+                  {linkedPrompts.map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={p.slug}
+                        className="flex h-full flex-col border border-[color:var(--moss)]/30 bg-[color:var(--card)] p-5 transition hover:border-[color:var(--moss)]/55"
+                      >
+                        <span className="font-[family-name:var(--font-ui)] text-[0.625rem] uppercase tracking-[0.14em] text-[color:var(--moss)]">
+                          Prompt
+                        </span>
+                        <h3 className="mt-2 font-[family-name:var(--font-ui)] text-[0.9375rem] font-semibold text-[color:var(--forest)]">
+                          {p.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-muted-foreground">{p.description}</p>
+                        <span className="mt-auto pt-4 text-sm font-bold text-[color:var(--forest)]">
+                          {copy.viewPrompt} →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                  {linkedSkills.map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        href={s.slug}
+                        className="flex h-full flex-col border border-[color:var(--moss)]/30 bg-[color:var(--card)] p-5 transition hover:border-[color:var(--moss)]/55"
+                      >
+                        <span className="font-[family-name:var(--font-ui)] text-[0.625rem] uppercase tracking-[0.14em] text-[color:var(--moss)]">
+                          Skill
+                        </span>
+                        <h3 className="mt-2 font-[family-name:var(--font-ui)] text-[0.9375rem] font-semibold text-[color:var(--forest)]">
+                          {s.title}
+                        </h3>
+                        <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
+                        <span className="mt-auto pt-4 text-sm font-bold text-[color:var(--forest)]">
+                          {copy.viewSkill} →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
 
             {related.length > 0 ? (
               <section className="mt-12">

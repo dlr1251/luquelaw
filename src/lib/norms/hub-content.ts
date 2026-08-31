@@ -2,10 +2,10 @@ export type NormsHubLocale = "en" | "es";
 
 export const normsHubContent = {
   en: {
-    eyebrow: "Norms · Reference library",
-    title: "Colombian legal norms",
+    eyebrow: "Norms catalog",
+    title: "Colombian statute browser",
     subtitle:
-      "Primary statutes, codes, and regulations in Spanish and English — for reference and navigation. Not legal advice; verify the official gazette for your case.",
+      "Constitution, codes, laws, and resolutions in Spanish and English — structured navigation with official references. Not legal advice; verify the official gazette for your case.",
     normCountLabel: "Norms",
     categoryLabel: "Areas of law",
     browseTitle: "Browse norms",
@@ -26,12 +26,14 @@ export const normsHubContent = {
     mobileContents: "Contents",
     officialSource: "Official reference",
     relatedNorms: "Related norms",
+    relatedArticles: "Related CLKR articles",
+    readArticle: "Read article",
   },
   es: {
-    eyebrow: "Normas · Biblioteca de referencia",
-    title: "Normas jurídicas colombianas",
+    eyebrow: "Normograma",
+    title: "Navegador de normas colombianas",
     subtitle:
-      "Estatutos, códigos y reglamentos en español e inglés — para consulta y navegación. No es asesoría jurídica; verifica la norma oficial vigente.",
+      "Constitución, códigos, leyes y resoluciones en español e inglés — navegación estructurada con referencias oficiales. No es asesoría jurídica; verifica la norma oficial vigente.",
     normCountLabel: "Normas",
     categoryLabel: "Ramas del derecho",
     browseTitle: "Explorar normas",
@@ -52,5 +54,7 @@ export const normsHubContent = {
     mobileContents: "Contenido",
     officialSource: "Referencia oficial",
     relatedNorms: "Normas relacionadas",
+    relatedArticles: "Artículos CLKR relacionados",
+    readArticle: "Leer artículo",
   },
 } as const;

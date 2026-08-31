@@ -1,3 +1,5 @@
+import type { ClkrCategory } from "@/lib/clkr/types";
+
 export type NormType = "constitution" | "resolution" | "code" | "law";
 
 export type NormCategory =
@@ -126,6 +128,21 @@ export function recordToCatalogItem(row: NormRecord): NormCatalogItem {
     category: row.category,
     officialReference: row.official_reference,
   };
+}
+
+export function normCategoryToClkrCategories(category: NormCategory): ClkrCategory[] {
+  const map: Record<NormCategory, ClkrCategory[]> = {
+    constitutional: ["Administrative"],
+    immigration: ["Immigration"],
+    civil: ["Civil", "Family"],
+    criminal: ["Criminal"],
+    labor: ["Labor"],
+    commercial: ["Corporate"],
+    administrative: ["Administrative"],
+    procedural: ["Administrative"],
+    tax: ["Tax"],
+  };
+  return map[category] ?? [];
 }
 
 export function slugKeyFromInput(input: string): string {

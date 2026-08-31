@@ -2,12 +2,12 @@ export type ClkrHubLocale = "en" | "es";
 
 export const clkrLegalAiHubContent = {
   en: {
-    eyebrow: "CLKR · LegalAI hub",
-    title: "Colombian Legal Knowledge Repository",
+    eyebrow: "Legal resources",
+    title: "Colombian law — open, navigable, citable",
     subtitle:
-      "Norms you can navigate, guides you can cite, and Lucy AI for guided immigration questions in the portal. Study tools — not legal advice.",
-    modulesTitle: "Modules",
-    modulesSubtitle: "Public libraries first. Agents unlock with a Professional plan.",
+      "CLKR articles, the norms catalog, and a public library of skills and prompts. Lucy AI and configurable agents live in the portal. Study tools — not legal advice.",
+    modulesTitle: "Resources",
+    modulesSubtitle: "Articles, norms, and prompts are public. Agents require a Professional plan.",
     contactCta: "Questions about your situation?",
     contactLink: "Get in touch",
     lucyEyebrow: "AI consultation",
@@ -20,33 +20,41 @@ export const clkrLegalAiHubContent = {
     disclaimer:
       "Informational only. Colombian law changes; confirm the current rules for your case.",
     modules: {
-      norms: {
-        title: "Norms",
-        description: "Constitutions, codes, laws, and resolutions with structured navigation.",
-        cta: "Open norms",
+      guides: {
+        title: "CLKR",
+        description:
+          "238+ practical articles on Colombian law — searchable, categorized, and linked to norms and prompts.",
+        cta: "Browse CLKR",
         badge: "Public",
       },
-      guides: {
-        title: "Articles",
-        description: "Practical articles on immigration, property, corporate, and more.",
-        cta: "Browse articles",
+      norms: {
+        title: "Norms catalog",
+        description: "Constitutions, codes, laws, and resolutions with structured navigation.",
+        cta: "Open norms catalog",
+        badge: "Public",
+      },
+      library: {
+        title: "Skills & prompts",
+        description:
+          "Copy-ready prompts for migration letters, contract review, labor agreements, and more.",
+        cta: "Open library",
         badge: "Public",
       },
       agents: {
-        title: "Agents & prompts",
-        description: "Skills and prompts for day-to-day legal work with AI tools.",
+        title: "Agents",
+        description: "Configurable LegalAI agents for day-to-day legal work in the portal.",
         cta: "View agents",
-        badge: "Subscriber",
+        badge: "Professional",
       },
     },
   },
   es: {
-    eyebrow: "CLKR · Hub LegalAI",
-    title: "Repositorio de Conocimiento Jurídico Colombiano",
+    eyebrow: "Recursos legales",
+    title: "Derecho colombiano — abierto, navegable, citable",
     subtitle:
-      "Normas navegables, guías citables y Lucy AI para preguntas guiadas de migración en el portal. Herramientas de estudio — no asesoría jurídica.",
-    modulesTitle: "Módulos",
-    modulesSubtitle: "Primero las bibliotecas públicas. Los agentes se desbloquean con el plan Profesional.",
+      "Artículos CLKR, normograma y una biblioteca pública de skills y prompts. Lucy AI y agentes configurables viven en el portal. Herramientas de estudio — no asesoría jurídica.",
+    modulesTitle: "Recursos",
+    modulesSubtitle: "Artículos, normas y prompts son públicos. Los agentes requieren plan Profesional.",
     contactCta: "¿Preguntas sobre tu caso?",
     contactLink: "Escríbenos",
     lucyEyebrow: "Consulta con IA",
@@ -59,25 +67,72 @@ export const clkrLegalAiHubContent = {
     disclaimer:
       "Solo informativo. La ley colombiana cambia; confirma las reglas vigentes para tu caso.",
     modules: {
-      norms: {
-        title: "Normas",
-        description: "Constituciones, códigos, leyes y resoluciones con navegación estructurada.",
-        cta: "Abrir normas",
+      guides: {
+        title: "CLKR",
+        description:
+          "238+ artículos prácticos sobre derecho colombiano — buscables, categorizados y enlazados a normas y prompts.",
+        cta: "Explorar CLKR",
         badge: "Público",
       },
-      guides: {
-        title: "Artículos",
-        description: "Artículos prácticos sobre migración, inmuebles, societario y más.",
-        cta: "Ver artículos",
+      norms: {
+        title: "Normograma",
+        description: "Constituciones, códigos, leyes y resoluciones con navegación estructurada.",
+        cta: "Abrir normograma",
+        badge: "Público",
+      },
+      library: {
+        title: "Skills y prompts",
+        description:
+          "Prompts listos para cartas migratorias, revisión de contratos, acuerdos laborales y más.",
+        cta: "Abrir biblioteca",
         badge: "Público",
       },
       agents: {
-        title: "Agentes y prompts",
-        description: "Skills y prompts para el trabajo jurídico diario con herramientas de IA.",
+        title: "Agentes",
+        description: "Agentes LegalAI configurables para el trabajo jurídico diario en el portal.",
         cta: "Ver agentes",
-        badge: "Suscriptor",
+        badge: "Profesional",
       },
     },
+  },
+} as const;
+
+export const clkrLibraryHubContent = {
+  en: {
+    eyebrow: "Skills & prompts",
+    title: "Legal AI prompt library",
+    subtitle:
+      "Copy prompts into Claude, ChatGPT, or your preferred tool. Each prompt links to a CLKR article for context. Verify outputs against primary sources.",
+    searchPlaceholder: "Search prompts and skills…",
+    tabPrompts: "Prompts",
+    tabSkills: "Skills",
+    readGuide: "Read CLKR article",
+    copy: "Copy",
+    copied: "Copied",
+    empty: "No matches. Try another search or category.",
+    filter: "Practice area",
+    all: "All",
+    browseClkr: "Browse CLKR articles",
+    disclaimer:
+      "Informational tools only. Not legal advice. You remain responsible for professional judgment.",
+  },
+  es: {
+    eyebrow: "Skills y prompts",
+    title: "Biblioteca de prompts jurídicos",
+    subtitle:
+      "Copia prompts en Claude, ChatGPT o tu herramienta preferida. Cada prompt enlaza a un artículo CLKR para contexto. Verifica los resultados contra fuentes primarias.",
+    searchPlaceholder: "Buscar prompts y skills…",
+    tabPrompts: "Prompts",
+    tabSkills: "Skills",
+    readGuide: "Leer artículo CLKR",
+    copy: "Copiar",
+    copied: "Copiado",
+    empty: "Sin resultados. Prueba otra búsqueda o categoría.",
+    filter: "Área",
+    all: "Todas",
+    browseClkr: "Explorar artículos CLKR",
+    disclaimer:
+      "Solo herramientas informativas. No es asesoría jurídica. Tú sigues siendo responsable del criterio profesional.",
   },
 } as const;
 

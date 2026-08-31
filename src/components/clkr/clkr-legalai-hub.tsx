@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Bot, Scale, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Bot, Library, Scale, Sparkles } from "lucide-react";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
@@ -18,16 +18,22 @@ type Props = {
 
 const moduleMeta = [
   {
+    key: "guides" as const,
+    href: (prefix: string) => `${prefix}/clkr/guides`,
+    icon: BookOpen,
+    tone: "from-[color:var(--moss)]/15 to-transparent",
+  },
+  {
     key: "norms" as const,
     href: (prefix: string) => `${prefix}/clkr/norms`,
     icon: Scale,
     tone: "from-[color:var(--forest)]/12 to-transparent",
   },
   {
-    key: "guides" as const,
-    href: (prefix: string) => `${prefix}/clkr/guides`,
-    icon: BookOpen,
-    tone: "from-[color:var(--moss)]/15 to-transparent",
+    key: "library" as const,
+    href: (prefix: string) => `${prefix}/clkr/library`,
+    icon: Library,
+    tone: "from-[color:var(--moss)]/10 to-transparent",
   },
   {
     key: "agents" as const,
@@ -42,13 +48,12 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
   const prefix = locale === "es" ? "/es" : "";
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
   const lucyHref = signedIn ? "/portal/lucy" : loginHref("/portal/lucy", locale);
-  const normsHref = `${prefix}/clkr/norms`;
+  const guidesHref = `${prefix}/clkr/guides`;
 
   return (
     <main className="flex-1">
       <ClkrProductNav locale={locale} signedIn={signedIn} />
 
-      {/* Hero — one composition, brand-first */}
       <section className="relative overflow-hidden bg-hero text-hero-foreground">
         <div
           aria-hidden
@@ -70,18 +75,15 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
         <Container className="relative py-16 sm:py-20 lg:py-24">
           <div className="max-w-3xl animate-[fade-up_0.7s_ease-out_both]">
             <p className="marketing-eyebrow marketing-eyebrow-on-hero">{copy.eyebrow}</p>
-            <p className="mt-4 font-display text-[clamp(2.75rem,8vw,4.5rem)] leading-[0.95] tracking-tight text-hero-foreground">
-              CLKR
-            </p>
-            <h1 className="mt-4 max-w-2xl font-display text-[clamp(1.35rem,3.2vw,1.85rem)] font-normal leading-snug text-hero-foreground/90">
+            <h1 className="mt-4 max-w-2xl font-display text-[clamp(1.75rem,4vw,2.75rem)] font-normal leading-snug text-hero-foreground">
               {copy.title}
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-hero-muted sm:text-lg">
               {copy.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Link href={normsHref} className="btn-primary-inverted inline-flex items-center gap-2">
-                {copy.modules.norms.cta}
+              <Link href={guidesHref} className="btn-primary-inverted inline-flex items-center gap-2">
+                {copy.modules.guides.cta}
                 <ArrowRight className="size-4" aria-hidden />
               </Link>
               <Link
@@ -96,7 +98,6 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
         </Container>
       </section>
 
-      {/* Modules — one job */}
       <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--background)]">
         <Container className="py-14 sm:py-16 lg:py-20">
           <div className="mb-10 max-w-2xl animate-[fade-up_0.7s_ease-out_0.08s_both]">
@@ -152,7 +153,6 @@ export function ClkrLegalAiHub({ locale = "en", signedIn = false }: Props) {
         </Container>
       </section>
 
-      {/* Lucy AI */}
       <section className="relative overflow-hidden bg-[color:var(--surface)]">
         <div
           aria-hidden

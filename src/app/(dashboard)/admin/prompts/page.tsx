@@ -24,8 +24,8 @@ export default async function AdminPromptsPage({
         <h2 className="text-lg font-semibold">Prompts Arena</h2>
         <p className="mt-1 text-sm text-muted-foreground">
           Create and edit prompts stored in Supabase. Published prompts appear on{" "}
-          <Link href="/clkr/agents" className="font-medium text-foreground underline-offset-4 hover:underline">
-            /clkr/agents
+          <Link href="/clkr/library" className="font-medium text-foreground underline-offset-4 hover:underline">
+            /clkr/library
           </Link>
           .
         </p>
@@ -66,7 +66,9 @@ export default async function AdminPromptsPage({
               className="rounded border px-3 py-2 text-sm sm:col-span-2"
               rows={6}
             />
-            <input name="category" placeholder="category" defaultValue="general" className="rounded border px-3 py-2 text-sm" />
+            <input name="category" placeholder="category" defaultValue="Immigration" className="rounded border px-3 py-2 text-sm" />
+            <input name="article_slug_key" placeholder="article_slug_key" className="rounded border px-3 py-2 text-sm" />
+            <input name="use_case" placeholder="use_case (draft|review|checklist)" className="rounded border px-3 py-2 text-sm" />
             <select name="status" className="rounded border px-3 py-2 text-sm" defaultValue="draft">
               <option value="draft">draft</option>
               <option value="published">published</option>

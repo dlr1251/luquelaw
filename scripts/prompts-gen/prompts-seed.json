@@ -1,0 +1,954 @@
+[
+  {
+    "slug_key": "immigration-support-letter-draft",
+    "category": "Immigration",
+    "article_slug_key": "visas-ground-rules",
+    "use_case": "draft",
+    "sort_order": 10,
+    "as_skill": true,
+    "en": {
+      "title": "Draft immigration support letter",
+      "description": "Letter template for visa or migratory procedures before Migración Colombia.",
+      "prompt_text": "You are assisting a Colombian immigration lawyer. Draft a support letter for a migratory procedure in Colombia.\n\nContext to include from the user:\n- Applicant full name, nationality, passport number\n- Current visa or permit status\n- Purpose of the letter (visa application, visa correction, prórroga, etc.)\n- Relationship between signatory and applicant (employer, family, landlord, etc.)\n\nRequirements:\n- Formal Spanish suitable for Cancillería or Migración Colombia\n- Reference applicable Resolution 5477 of 2022 categories where relevant\n- State facts only; do not invent legal conclusions\n- Include place for notarization if required\n- End with a disclaimer that this is a draft for lawyer review\n\nOutput: full letter text in Spanish with bracketed placeholders for missing facts."
+    },
+    "es": {
+      "title": "Redactar carta de soporte migratorio",
+      "description": "Plantilla de carta para trámites ante Migración Colombia o Cancillería.",
+      "prompt_text": "Actúas como apoyo a un abogado colombiano de migración. Redacta una carta de soporte para un trámite migratorio en Colombia.\n\nContexto que debe pedir al usuario:\n- Nombre completo, nacionalidad y pasaporte del solicitante\n- Estado migratorio actual\n- Objeto de la carta (visa, corrección, prórroga, etc.)\n- Vínculo entre quien firma y el solicitante\n\nRequisitos:\n- Español formal, apto para Cancillería o Migración Colombia\n- Mencionar la Resolución 5477 de 2022 cuando aplique\n- Solo hechos verificables; sin conclusiones jurídicas inventadas\n- Espacio para notarización si procede\n- Cierre indicando que es borrador para revisión del abogado\n\nEntrega: texto completo en español con corchetes para datos faltantes."
+    }
+  },
+  {
+    "slug_key": "visa-m-error-review",
+    "category": "Immigration",
+    "article_slug_key": "migrant-visa-type-m-categories-requirements",
+    "use_case": "review",
+    "sort_order": 20,
+    "en": {
+      "title": "Review Visa M refusal or error",
+      "description": "Analyze a Visa M denial, annotation error, or category mismatch.",
+      "prompt_text": "Review a Colombian Visa M (migrante) issue. The user will provide refusal text, passport stamps, or Migración records.\n\nAnalyze:\n1. Stated legal basis (Resolution 5477/2022, Decreto 1067/2015)\n2. Whether the applied category matches the facts (worker, investor, pensioner, etc.)\n3. Procedural defects (missing documents, form errors, timing)\n4. Available remedies: reconsideración, correction before Migración, new application, tutela if applicable\n5. Risk of overstaying or accrual of fines\n\nOutput structure:\n- Summary of facts\n- Likely cause of error or denial\n- Recommended next steps in order of preference\n- Documents to gather\n- Flags requiring in-person legal review"
+    },
+    "es": {
+      "title": "Revisar negativa o error en Visa M",
+      "description": "Analiza negación, error de anotación o categoría incorrecta en Visa M.",
+      "prompt_text": "Revisa un problema con Visa M (migrante) en Colombia. El usuario aportará negativa, sellos o registros de Migración.\n\nAnaliza:\n1. Fundamento normativo citado (Res. 5477/2022, Decreto 1067/2015)\n2. Si la categoría aplicada coincide con los hechos\n3. Vicios procedimentales\n4. Remedios: reconsideración, corrección, nueva solicitud, tutela si aplica\n5. Riesgo de permanencia irregular o multas\n\nEntrega: hechos, causa probable, pasos recomendados, documentos y alertas para revisión presencial."
+    }
+  },
+  {
+    "slug_key": "cancilleria-right-of-petition-draft",
+    "category": "Immigration",
+    "article_slug_key": "visas-ground-rules",
+    "use_case": "draft",
+    "sort_order": 30,
+    "as_skill": true,
+    "en": {
+      "title": "Draft right of petition to Cancillería",
+      "description": "Derecho de petición for visa delays, errors, or document requests.",
+      "prompt_text": "Draft a derecho de petición addressed to the Ministry of Foreign Affairs (Cancillería) or its visa unit.\n\nInclude:\n- Petitioner identification and contact\n- Clear factual narrative with dates\n- Specific petition (status update, correction, copy of file, explanation of delay)\n- Legal basis: Constitución art. 23, Ley 1755/2015\n- Annex list\n- Request for written response within legal term\n\nTone: respectful, precise, non-adversarial unless facts require it.\nLanguage: Spanish.\nMark placeholders for facts not provided."
+    },
+    "es": {
+      "title": "Redactar derecho de petición a Cancillería",
+      "description": "Derecho de petición por demoras, errores o solicitud de información visa.",
+      "prompt_text": "Redacta un derecho de petición dirigido al Ministerio de Relaciones Exteriores (Cancillería) o unidad de visas.\n\nIncluye:\n- Identificación y contacto del peticionario\n- Narrativa cronológica de hechos\n- Petición concreta (estado, corrección, copia del expediente, explicación de demora)\n- Fundamentos: Constitución art. 23, Ley 1755/2015\n- Anexos\n- Solicitud de respuesta escrita en término legal\n\nTono formal y preciso. Español. Corchetes para datos faltantes."
+    }
+  },
+  {
+    "slug_key": "tourism-stay-checklist",
+    "category": "Immigration",
+    "article_slug_key": "visitor-visa-type-v",
+    "use_case": "checklist",
+    "sort_order": 40,
+    "en": {
+      "title": "Tourism stay compliance checklist",
+      "description": "Verify lawful stay limits and next steps for visitors in Colombia.",
+      "prompt_text": "Create a compliance checklist for a foreign national visiting Colombia on permitted entry (visa exempt, Visa V, or permiso de ingreso).\n\nCover:\n- Maximum stay allowed under their nationality/category\n- Migratory check-in (if applicable)\n- Extensions (prórroga) eligibility and timing\n- Transition options to Visa M if planning longer stay\n- Overstay fines and exit requirements\n- Documents to keep while in country\n\nFormat as numbered checklist with Yes/No/N/A columns and notes column."
+    },
+    "es": {
+      "title": "Checklist de permanencia turística",
+      "description": "Verifica límites de estadía y opciones para visitantes en Colombia.",
+      "prompt_text": "Arma un checklist de cumplimiento para extranjero en Colombia con ingreso permitido (exento, Visa V o permiso).\n\nCubre:\n- Tiempo máximo de permanencia según nacionalidad/categoría\n- Check-in migratorio si aplica\n- Prórroga: requisitos y plazos\n- Opciones de transición a Visa M\n- Multas por permanencia y salida\n- Documentos a conservar\n\nFormato: lista numerada con columnas Sí/No/N/A y notas."
+    }
+  },
+  {
+    "slug_key": "investor-visa-checklist",
+    "category": "Immigration",
+    "article_slug_key": "investor-visa",
+    "use_case": "checklist",
+    "sort_order": 50,
+    "as_skill": true,
+    "en": {
+      "title": "Investor visa (Visa M) document checklist",
+      "description": "Step-by-step checklist for foreign direct investment visa applications.",
+      "prompt_text": "Build a document and compliance checklist for a Colombian Visa M — Investor category under Resolution 5477/2022.\n\nSteps:\n1. Confirm investment vehicle (SAS, branch, portfolio) and minimum thresholds\n2. Banco de la República foreign investment registration (if applicable)\n3. Corporate documents (certificado de existencia, RUT, estados financieros)\n4. Proof of funds and lawful source\n5. Passport, photos, insurance, background checks\n6. Cancillería online application workflow\n7. Post-approval: cédula de extranjería timeline\n8. Common refusal points\n\nOutput: phased checklist (pre-application, application, post-approval) with responsible party column."
+    },
+    "es": {
+      "title": "Checklist documental visa inversionista",
+      "description": "Lista paso a paso para Visa M inversionista e inversión extranjera.",
+      "prompt_text": "Arma checklist documental para Visa M — Inversionista (Res. 5477/2022).\n\nPasos:\n1. Confirmar vehículo de inversión y montos mínimos\n2. Registro ante Banco de la República si aplica\n3. Documentos societarios y financieros\n4. Prueba de fondos y origen lícito\n5. Pasaporte, seguro, antecedentes\n6. Trámite en plataforma Cancillería\n7. Post-aprobación: cédula de extranjería\n8. Causas frecuentes de negativa\n\nEntrega: checklist por fases con columna de responsable."
+    }
+  },
+  {
+    "slug_key": "migratory-check-in-review",
+    "category": "Immigration",
+    "article_slug_key": "migratory-check-in",
+    "use_case": "review",
+    "sort_order": 60,
+    "en": {
+      "title": "Review migratory check-in obligation",
+      "description": "Assess whether check-in is required and consequences of non-compliance.",
+      "prompt_text": "Review migratory check-in (Registro de Extranjeros / check-in) obligations for the user's facts.\n\nAnalyze nationality, port of entry, visa status, and dates.\nIdentify if check-in was required, deadline, and evidence of completion.\nNote fines under Resolución 1067 and corrective steps.\nRecommend documentation for future visa renewals."
+    },
+    "es": {
+      "title": "Revisar obligación de check-in migratorio",
+      "description": "Evalúa si aplica check-in y consecuencias de incumplimiento.",
+      "prompt_text": "Revisa la obligación de check-in migratorio según los hechos del usuario.\n\nAnaliza nacionalidad, ingreso, visa y fechas.\nIndica si era obligatorio, plazo y prueba de cumplimiento.\nSeñala multas (Decreto 1067) y pasos correctivos.\nRecomienda documentación para futuras renovaciones."
+    }
+  },
+  {
+    "slug_key": "cedula-extranjeria-checklist",
+    "category": "Immigration",
+    "article_slug_key": "cedula-de-extranjeria-foreigner-id",
+    "use_case": "checklist",
+    "sort_order": 70,
+    "en": {
+      "title": "Cédula de extranjería application checklist",
+      "description": "Documents and steps after visa approval for foreigner ID card.",
+      "prompt_text": "Checklist for cédula de extranjería application after visa approval.\n\nInclude: appointment with Migración Colombia, form, visa stamp, photos, fingerprinting, payment, pickup timeline, and address registration requirements."
+    },
+    "es": {
+      "title": "Checklist cédula de extranjería",
+      "description": "Documentos y pasos para cédula después de aprobar la visa.",
+      "prompt_text": "Checklist para solicitar cédula de extranjería tras aprobar visa.\n\nIncluye: cita Migración Colombia, formulario, visa, fotos, huellas, pago, retiro y registro de dirección."
+    }
+  },
+  {
+    "slug_key": "resident-visa-r-checklist",
+    "category": "Immigration",
+    "article_slug_key": "resident-visa-type-r",
+    "use_case": "checklist",
+    "sort_order": 80,
+    "en": {
+      "title": "Resident visa (Type R) eligibility checklist",
+      "description": "Verify pathways to Visa R after qualifying residence period.",
+      "prompt_text": "Checklist for Visa R (residente) eligibility under Resolution 5477/2022.\n\nCover time in M status, continuous residence, financial solvency, clean record, and documentary evidence for each pathway (accumulated time, Colombian spouse, investment, etc.)."
+    },
+    "es": {
+      "title": "Checklist elegibilidad Visa R",
+      "description": "Verifica requisitos para visa residente tras tiempo calificado.",
+      "prompt_text": "Checklist de elegibilidad para Visa R (Res. 5477/2022).\n\nCubre tiempo en M, residencia continua, solvencia, antecedentes y soportes por vía (tiempo acumulado, cónyuge colombiano, inversión, etc.)."
+    }
+  },
+  {
+    "slug_key": "digital-nomad-visa-review",
+    "category": "Immigration",
+    "article_slug_key": "digital-nomad-visa-type-m",
+    "use_case": "review",
+    "sort_order": 90,
+    "en": {
+      "title": "Review digital nomad visa application",
+      "description": "Check remote-work visa requirements and common gaps.",
+      "prompt_text": "Review a Visa M digital nomad application package.\n\nVerify: remote employment or freelance proof, minimum income threshold, health insurance, passport validity, and that activity is performed abroad for foreign clients/employer.\n\nFlag misclassification risks if work is tied to Colombian employer."
+    },
+    "es": {
+      "title": "Revisar solicitud visa nómada digital",
+      "description": "Verifica requisitos de visa para teletrabajo y vacíos frecuentes.",
+      "prompt_text": "Revisa paquete de Visa M nómada digital.\n\nVerifica: contrato o independiente remoto, ingreso mínimo, seguro, pasaporte, que el trabajo sea para cliente/exterior extranjero.\n\nSeñala riesgo de reclasificación si hay empleador colombiano."
+    }
+  },
+  {
+    "slug_key": "deportation-sanctions-review",
+    "category": "Immigration",
+    "article_slug_key": "deportation-and-migratory-sanctions",
+    "use_case": "review",
+    "sort_order": 100,
+    "en": {
+      "title": "Review deportation or migratory sanction",
+      "description": "Analyze expulsion orders, fines, and admissibility bars.",
+      "prompt_text": "Review deportation, expulsion, or migratory sanction notice.\n\nIdentify legal basis, appeal windows, fine amounts, re-entry bars, and whether administrative or judicial remedy applies."
+    },
+    "es": {
+      "title": "Revisar deportación o sanción migratoria",
+      "description": "Analiza expulsión, multas e inadmisión.",
+      "prompt_text": "Revisa auto de deportación, expulsión o sanción migratoria.\n\nIdentifica fundamento, recursos, multas, barreras de reingreso y vía administrativa o judicial."
+    }
+  },
+  {
+    "slug_key": "urban-lease-review",
+    "category": "Real Estate",
+    "article_slug_key": "lease-agreement",
+    "use_case": "review",
+    "sort_order": 110,
+    "as_skill": true,
+    "en": {
+      "title": "Review urban lease agreement",
+      "description": "Clause-by-clause review of residential lease under Ley 820/2003.",
+      "prompt_text": "Review an urban residential lease in Colombia (Ley 820/2003).\n\nAnalyze: term, rent adjustment index (IPC), deposit (depósito), maintenance fees (administración), sublease, termination notice, inventory (inventario), guarantor (codeudor), and registration with cámara de comercio if commercial use.\n\nOutput:\n- Summary of parties and property\n- Risk clauses highlighted\n- Missing mandatory provisions\n- Suggested redlines (without rewriting entire contract)"
+    },
+    "es": {
+      "title": "Revisar contrato de arrendamiento urbano",
+      "description": "Revisión por cláusulas bajo Ley 820/2003.",
+      "prompt_text": "Revisa contrato de arrendamiento urbano (Ley 820/2003).\n\nAnaliza: plazo, incremento (IPC), depósito, administración, subarriendo, preaviso, inventario, codeudor y registro en cámara si hay uso comercial.\n\nEntrega: resumen, cláusulas de riesgo, faltantes legales y redlines sugeridas."
+    }
+  },
+  {
+    "slug_key": "purchase-promise-draft",
+    "category": "Real Estate",
+    "article_slug_key": "promise-to-purchase-agreement",
+    "use_case": "draft",
+    "sort_order": 120,
+    "as_skill": true,
+    "en": {
+      "title": "Draft promise to purchase (promesa de compraventa)",
+      "description": "Outline key terms for real estate purchase promise.",
+      "prompt_text": "Draft outline for a promesa de compraventa of real property in Colombia.\n\nInclude: parties, property description (matrícula, linderos), price, payment schedule, earnest money (arras), conditions precedent (title study, liens, permits), closing date, penalty clause, broker commission, governing law, and notarization note.\n\nUse placeholders; flag need for lawyer and notary review."
+    },
+    "es": {
+      "title": "Redactar promesa de compraventa",
+      "description": "Estructura de promesa de compraventa inmobiliaria.",
+      "prompt_text": "Redacta esquema de promesa de compraventa inmobiliaria en Colombia.\n\nIncluye: partes, inmueble (matrícula, linderos), precio, pagos, arras, condiciones (estudio de títulos, gravámenes), cierre, cláusula penal, comisión, ley aplicable y nota de revisión notarial.\n\nUsa corchetes; advierte revisión de abogado y notaría."
+    }
+  },
+  {
+    "slug_key": "real-estate-guarantees-checklist",
+    "category": "Real Estate",
+    "article_slug_key": "real-estate-transactions",
+    "use_case": "checklist",
+    "sort_order": 130,
+    "en": {
+      "title": "Real estate guarantees checklist",
+      "description": "Verify mortgages, liens, and encumbrances before closing.",
+      "prompt_text": "Checklist of guarantees and encumbrances for Colombian real estate due diligence.\n\nCover: certificado de tradición y libertad, hipotecas, embargos, servidumbres, urbanistic licenses, property tax (predial) status, horizontal property debts, and seller authorization if entity."
+    },
+    "es": {
+      "title": "Checklist de garantías inmobiliarias",
+      "description": "Verifica hipotecas, gravámenes y limitaciones al dominio.",
+      "prompt_text": "Checklist de garantías y gravámenes en due diligence inmobiliario.\n\nCubre: tradición y libertad, hipotecas, embargos, servidumbres, licencias, predial, deudas de propiedad horizontal y facultades del vendedor."
+    }
+  },
+  {
+    "slug_key": "real-estate-due-diligence-checklist",
+    "category": "Real Estate",
+    "article_slug_key": "real-estate-transactions",
+    "use_case": "checklist",
+    "sort_order": 140,
+    "as_skill": true,
+    "en": {
+      "title": "Real estate due diligence checklist",
+      "description": "Full pre-closing diligence for property purchases.",
+      "prompt_text": "Full due diligence checklist for purchasing real property in Colombia.\n\nPhases:\n1. Title and ownership chain\n2. Urban/rural zoning and estrato\n3. Lease or occupation status\n4. Tax and utility certificates\n5. Entity seller compliance\n6. Foreign buyer FX registration if applicable\n7. Closing documents (escritura, registro)\n\nInclude responsible professional for each item."
+    },
+    "es": {
+      "title": "Checklist due diligence inmobiliario",
+      "description": "Diligencia completa previa al cierre de compraventa.",
+      "prompt_text": "Checklist integral de due diligence para compra inmobiliaria.\n\nFases: título, zonificación, arrendamiento/ocupación, impuestos y servicios, vendedor persona jurídica, registro cambiario comprador extranjero, documentos de cierre.\n\nIndica responsable profesional por ítem."
+    }
+  },
+  {
+    "slug_key": "horizontal-property-review",
+    "category": "Real Estate",
+    "article_slug_key": "horizontal-property-regime",
+    "use_case": "review",
+    "sort_order": 150,
+    "en": {
+      "title": "Review horizontal property regime compliance",
+      "description": "Assess PH regulations, bylaws, and administrator obligations.",
+      "prompt_text": "Review horizontal property (propiedad horizontal) issues for a unit purchase or lease.\n\nCheck reglamento de propiedad horizontal, assembly minutes, administrator contracts, common expense arrears, and parking/storage coefficient assignments."
+    },
+    "es": {
+      "title": "Revisar régimen de propiedad horizontal",
+      "description": "Evalúa reglamento, cuotas y obligaciones del administrador.",
+      "prompt_text": "Revisa propiedad horizontal para compra o arriendo.\n\nVerifica reglamento, actas, contrato de administración, mora en expensas y coeficientes de parqueadero/bodega."
+    }
+  },
+  {
+    "slug_key": "closing-costs-checklist",
+    "category": "Real Estate",
+    "article_slug_key": "real-estate-purchase-closing-costs",
+    "use_case": "checklist",
+    "sort_order": 160,
+    "en": {
+      "title": "Real estate closing costs checklist",
+      "description": "Estimate notary, registration, and tax costs at closing.",
+      "prompt_text": "Checklist of closing costs for Colombian real estate purchase.\n\nInclude: notary fees, registration (registro), beneficiary participation tax (beneficencia) if applicable, withholding (retención en la fuente) for sellers, broker fees, and FX settlement steps for foreign buyers."
+    },
+    "es": {
+      "title": "Checklist costos de cierre inmobiliario",
+      "description": "Estima notaría, registro e impuestos al cierre.",
+      "prompt_text": "Checklist de costos de cierre en compraventa inmobiliaria.\n\nIncluye: notaría, registro, beneficencia si aplica, retención al vendedor, comisión de corretaje y liquidación cambiaria para comprador extranjero."
+    }
+  },
+  {
+    "slug_key": "property-title-review",
+    "category": "Real Estate",
+    "article_slug_key": "real-property-rights",
+    "use_case": "review",
+    "sort_order": 170,
+    "en": {
+      "title": "Review property title certificate",
+      "description": "Analyze certificado de tradición y libertad findings.",
+      "prompt_text": "Review findings from a certificado de tradición y libertad.\n\nSummarize ownership chain, annotations, pending registrations, and red flags (embargos, pending lawsuits, gaps in chain). Recommend further certificates or notary queries."
+    },
+    "es": {
+      "title": "Revisar certificado de tradición",
+      "description": "Analiza hallazgos del certificado de tradición y libertad.",
+      "prompt_text": "Revisa certificado de tradición y libertad.\n\nResume cadena de dominio, anotaciones, registros pendientes y alertas (embargos, litigios, saltos en la cadena). Recomienda certificados adicionales."
+    }
+  },
+  {
+    "slug_key": "employment-contract-draft",
+    "category": "Labor",
+    "article_slug_key": "employment-contract",
+    "use_case": "draft",
+    "sort_order": 210,
+    "as_skill": true,
+    "en": {
+      "title": "Draft employment contract",
+      "description": "Colombian individual employment contract under Código Sustantivo del Trabajo.",
+      "prompt_text": "Draft an individual employment contract under Colombian labor law (CST).\n\nInclude: parties, role, salary and benefits, work location, term (indefinido/fijo/obra), schedule, probation period within legal limits, confidentiality, IP assignment, termination grounds reference, and social security obligations.\n\nDo not include illegal clauses (e.g., waiving mandatory benefits).\nLanguage per user request (Spanish default).\nMark placeholders."
+    },
+    "es": {
+      "title": "Redactar contrato de trabajo",
+      "description": "Contrato individual de trabajo bajo CST colombiano.",
+      "prompt_text": "Redacta contrato individual de trabajo (CST).\n\nIncluye: partes, cargo, salario y prestaciones, lugar, término, horario, periodo de prueba legal, confidencialidad, cesión de PI, remisión a justas causas, seguridad social.\n\nSin cláusulas ilegales. Español por defecto. Corchetes para datos."
+    }
+  },
+  {
+    "slug_key": "termination-review",
+    "category": "Labor",
+    "article_slug_key": "termination-of-employment-contract",
+    "use_case": "review",
+    "sort_order": 220,
+    "as_skill": true,
+    "en": {
+      "title": "Review employment termination",
+      "description": "Assess just cause, notice, and severance exposure.",
+      "prompt_text": "Review a Colombian employment termination scenario.\n\nAnalyze: contract type, cause invoked (justa causa vs. unilateral), preaviso, cesantías/intereses, prima, vacaciones, fines under CST, and risk of reinstatement or labor inspection claims.\n\nOutput: exposure summary and safer alternative paths if termination is weak."
+    },
+    "es": {
+      "title": "Revisar terminación laboral",
+      "description": "Evalúa justa causa, preaviso e indemnizaciones.",
+      "prompt_text": "Revisa terminación de contrato de trabajo en Colombia.\n\nAnaliza: tipo de contrato, causa, preaviso, cesantías, prima, vacaciones, sanciones y riesgo de reintegro o reclamación.\n\nEntrega: exposición y alternativas más seguras si la causa es débil."
+    }
+  },
+  {
+    "slug_key": "subordination-analysis",
+    "category": "Labor",
+    "article_slug_key": "subordination-in-employment",
+    "use_case": "review",
+    "sort_order": 230,
+    "en": {
+      "title": "Analyze subordination vs. independent contractor",
+      "description": "Detect labor misclassification risk in service contracts.",
+      "prompt_text": "Analyze whether a working relationship is employment (subordinación) or legitimate independent services under Colombian law.\n\nReview: schedule control, exclusivity, tools, payment method, benefits, and contract labels.\n\nConclude misclassification risk level and suggest structural changes."
+    },
+    "es": {
+      "title": "Analizar subordinación vs. prestación de servicios",
+      "description": "Detecta riesgo de contrato laboral encubierto.",
+      "prompt_text": "Analiza si la relación es laboral (subordinación) o prestación de servicios legítima.\n\nRevisa: horario, exclusividad, herramientas, pago, prestaciones y etiquetas contractuales.\n\nConcluye nivel de riesgo y ajustes sugeridos."
+    }
+  },
+  {
+    "slug_key": "remote-work-policy-draft",
+    "category": "Labor",
+    "article_slug_key": "remote-work",
+    "use_case": "draft",
+    "sort_order": 240,
+    "en": {
+      "title": "Draft remote work policy",
+      "description": "Internal policy aligned with teletrabajo rules in Colombia.",
+      "prompt_text": "Draft a remote work (teletrabajo) policy for a Colombian employer.\n\nCover: eligibility, equipment, ergonomics, data security, working hours, expense reimbursement, occupational health, and hybrid office rules per Ley 1221/2008 and recent regulation.\n\nFor internal HR use; lawyer review required."
+    },
+    "es": {
+      "title": "Redactar política de teletrabajo",
+      "description": "Política interna alineada con teletrabajo en Colombia.",
+      "prompt_text": "Redacta política de teletrabajo para empleador colombiano.\n\nCubre: elegibilidad, equipos, ergonomía, datos, horario, reembolsos, salud ocupacional e híbrido según Ley 1221/2008.\n\nUso interno; requiere revisión jurídica."
+    }
+  },
+  {
+    "slug_key": "service-contract-vs-employment",
+    "category": "Labor",
+    "article_slug_key": "service-provision-contract",
+    "use_case": "review",
+    "sort_order": 250,
+    "en": {
+      "title": "Review service provision contract",
+      "description": "Check independent contractor agreement for labor law compliance.",
+      "prompt_text": "Review a prestación de servicios contract for labor misclassification and tax withholding obligations.\n\nFlag clauses implying subordination; note retención en la fuente and invoice requirements."
+    },
+    "es": {
+      "title": "Revisar contrato de prestación de servicios",
+      "description": "Verifica encubrimiento laboral y retenciones.",
+      "prompt_text": "Revisa contrato de prestación de servicios.\n\nSeñala subordinación encubierta; indica retención en la fuente y facturación."
+    }
+  },
+  {
+    "slug_key": "severance-calculation-checklist",
+    "category": "Labor",
+    "article_slug_key": "severance-pay",
+    "use_case": "checklist",
+    "sort_order": 260,
+    "en": {
+      "title": "Severance calculation checklist",
+      "description": "Verify cesantías, interest, prima, and vacation payouts.",
+      "prompt_text": "Checklist to calculate Colombian termination payouts.\n\nItems: salario base, auxilio de transporte, average commissions, cesantías, intereses cesantías, prima semestral, vacaciones, indemnización if applicable, and parcialidades timing."
+    },
+    "es": {
+      "title": "Checklist cálculo de liquidación",
+      "description": "Verifica cesantías, intereses, prima y vacaciones.",
+      "prompt_text": "Checklist para liquidación laboral.\n\nÍtems: salario, auxilio transporte, comisiones, cesantías, intereses, prima, vacaciones, indemnización y plazos de pago."
+    }
+  },
+  {
+    "slug_key": "probation-period-review",
+    "category": "Labor",
+    "article_slug_key": "probation-period",
+    "use_case": "review",
+    "sort_order": 270,
+    "en": {
+      "title": "Review probation period clause",
+      "description": "Validate periodo de prueba duration and termination rules.",
+      "prompt_text": "Review periodo de prueba clause in employment contract.\n\nVerify duration limits under CST, termination without cause during trial, and conversion to indefinite term."
+    },
+    "es": {
+      "title": "Revisar periodo de prueba",
+      "description": "Valida duración y terminación en periodo de prueba.",
+      "prompt_text": "Revisa cláusula de periodo de prueba.\n\nVerifica límites legales, terminación sin justa causa en prueba y conversión a término indefinido."
+    }
+  },
+  {
+    "slug_key": "notice-requirements-checklist",
+    "category": "Labor",
+    "article_slug_key": "notice-requirements",
+    "use_case": "checklist",
+    "sort_order": 280,
+    "en": {
+      "title": "Labor notice (preaviso) checklist",
+      "description": "Confirm preaviso length and written requirements.",
+      "prompt_text": "Checklist for preaviso compliance on Colombian employment termination.\n\nInclude salary threshold rules, written notice, payment in lieu option, and interaction with just cause terminations."
+    },
+    "es": {
+      "title": "Checklist de preaviso laboral",
+      "description": "Confirma duración y requisitos de preaviso.",
+      "prompt_text": "Checklist de preaviso en terminación laboral.\n\nIncluye reglas por salario, aviso escrito, pago en lugar de preaviso e interacción con justa causa."
+    }
+  },
+  {
+    "slug_key": "sas-incorporation-checklist",
+    "category": "Corporate",
+    "article_slug_key": "sas-simplified-stock-company",
+    "use_case": "checklist",
+    "sort_order": 310,
+    "as_skill": true,
+    "en": {
+      "title": "SAS incorporation checklist",
+      "description": "Steps to incorporate a Simplified Stock Company in Colombia.",
+      "prompt_text": "Checklist to incorporate a SAS in Colombia (Ley 1258/2008).\n\nPhases:\n1. Name availability (cámara de comercio)\n2. Bylaws (estatutos) and shareholder decisions\n3. Legal representative appointment\n4. Registration and NIT/RUT\n5. Bank account and capital payment\n6. Books and corporate governance baseline\n7. Foreign investment registration if foreign shareholder\n\nAssign typical professional for each step."
+    },
+    "es": {
+      "title": "Checklist constitución SAS",
+      "description": "Pasos para constituir una SAS en Colombia.",
+      "prompt_text": "Checklist de constitución de SAS (Ley 1258/2008).\n\nFases: nombre, estatutos, representante legal, registro y RUT, cuenta bancaria y capital, libros, registro de inversión extranjera si aplica.\n\nAsigna profesional típico por paso."
+    }
+  },
+  {
+    "slug_key": "shareholders-agreement-draft",
+    "category": "Corporate",
+    "article_slug_key": "shareholders-agreement",
+    "use_case": "draft",
+    "sort_order": 320,
+    "as_skill": true,
+    "en": {
+      "title": "Draft shareholders agreement (SAS)",
+      "description": "Outline accionistas agreement for Colombian SAS.",
+      "prompt_text": "Draft outline for a shareholders agreement among SAS quotaholders.\n\nInclude: governance, reserved matters, transfer restrictions (ROFR/tag/drag), deadlock, non-compete limits under Colombian law, dividend policy, and dispute resolution (arbitration clause outline).\n\nNote interaction with estatutos and need for notarized forms where required."
+    },
+    "es": {
+      "title": "Redactar acuerdo de accionistas SAS",
+      "description": "Estructura de acuerdo entre accionistas en SAS.",
+      "prompt_text": "Redacta esquema de acuerdo de accionistas en SAS.\n\nIncluye: gobierno, materias reservadas, restricciones de transferencia, deadlock, no competencia dentro de límites legales, dividendos y arbitraje.\n\nNota interacción con estatutos y formalidades."
+    }
+  },
+  {
+    "slug_key": "powers-of-attorney-corporate-draft",
+    "category": "Corporate",
+    "article_slug_key": "power-of-attorney",
+    "use_case": "draft",
+    "sort_order": 330,
+    "en": {
+      "title": "Draft corporate power of attorney",
+      "description": "Poder for legal representative or special attorney-in-fact.",
+      "prompt_text": "Draft outline for a corporate poder (special or general) under Colombian law.\n\nSpecify grantor entity, attorney powers (litigation, contracts, banking, administrative), limits, substitution, term, and notarization requirements."
+    },
+    "es": {
+      "title": "Redactar poder societario",
+      "description": "Poder del representante legal o apoderado especial.",
+      "prompt_text": "Redacta esquema de poder societario (general o especial).\n\nIndica otorgante, facultades (litigio, contratos, banca, administrativo), límites, sustitución, término y notarización."
+    }
+  },
+  {
+    "slug_key": "board-minutes-draft",
+    "category": "Corporate",
+    "article_slug_key": "sas-general-assembly-s-acts",
+    "use_case": "draft",
+    "sort_order": 340,
+    "as_skill": true,
+    "en": {
+      "title": "Draft SAS assembly minutes",
+      "description": "Acta de asamblea de accionistas for ordinary or extraordinary decisions.",
+      "prompt_text": "Draft minutes (acta) for a SAS shareholders assembly.\n\nInclude: quorum, agenda, decisions (capital, manager appointment, financial statements approval, dividend declaration), voting record, and signatures.\n\nFollow Ley 1258 formalities; mark placeholders for dates and names."
+    },
+    "es": {
+      "title": "Redactar acta de asamblea SAS",
+      "description": "Acta de asamblea ordinaria o extraordinaria.",
+      "prompt_text": "Redacta acta de asamblea de accionistas SAS.\n\nIncluye: quórum, orden del día, decisiones (capital, gerente, estados, dividendos), votación y firmas.\n\nFormalidades Ley 1258; corchetes para fechas y nombres."
+    }
+  },
+  {
+    "slug_key": "legal-representative-review",
+    "category": "Corporate",
+    "article_slug_key": "legal-representative-in-sas",
+    "use_case": "review",
+    "sort_order": 350,
+    "en": {
+      "title": "Review legal representative appointment",
+      "description": "Verify representante legal authority and registration.",
+      "prompt_text": "Review appointment and powers of SAS legal representative.\n\nCheck estatutos, registration with cámara, joint signature rules, and liability exposure for unauthorized acts."
+    },
+    "es": {
+      "title": "Revisar nombramiento representante legal",
+      "description": "Verifica facultades y registro del representante legal.",
+      "prompt_text": "Revisa nombramiento del representante legal SAS.\n\nVerifica estatutos, registro en cámara, firma conjunta y responsabilidad por actos no autorizados."
+    }
+  },
+  {
+    "slug_key": "sas-dissolution-checklist",
+    "category": "Corporate",
+    "article_slug_key": "dissolution-and-liquidation-of-sas",
+    "use_case": "checklist",
+    "sort_order": 360,
+    "en": {
+      "title": "SAS dissolution and liquidation checklist",
+      "description": "Steps to dissolve and liquidate a SAS.",
+      "prompt_text": "Checklist for SAS dissolution and liquidation.\n\nCover shareholder resolution, liquidator appointment, creditor notice, DIAN filings, final balance, and registry cancellation."
+    },
+    "es": {
+      "title": "Checklist disolución y liquidación SAS",
+      "description": "Pasos para disolver y liquidar una SAS.",
+      "prompt_text": "Checklist de disolución y liquidación SAS.\n\nIncluye acuerdo de accionistas, liquidador, aviso a acreedores, DIAN, balance final y cancelación registral."
+    }
+  },
+  {
+    "slug_key": "company-formation-comparison",
+    "category": "Corporate",
+    "article_slug_key": "company-formation-types-of-legal-entities",
+    "use_case": "checklist",
+    "sort_order": 370,
+    "en": {
+      "title": "Compare legal entity types",
+      "description": "SAS vs S.A. vs Ltda. for foreign investors.",
+      "prompt_text": "Comparison checklist: SAS, S.A., and Ltda. for a foreign investor entering Colombia.\n\nCompare liability, capital, governance flexibility, transfer of shares, tax treatment overview, and typical use cases."
+    },
+    "es": {
+      "title": "Comparar tipos societarios",
+      "description": "SAS vs S.A. vs Ltda. para inversionistas extranjeros.",
+      "prompt_text": "Cuadro comparativo SAS, S.A. y Ltda. para inversionista extranjero.\n\nCompara responsabilidad, capital, gobierno, transferencia de cuotas/acciones, tratamiento tributario general y casos típicos."
+    }
+  },
+  {
+    "slug_key": "franchise-agreement-review",
+    "category": "Corporate",
+    "article_slug_key": "franchise-agreement",
+    "use_case": "review",
+    "sort_order": 380,
+    "en": {
+      "title": "Review franchise agreement",
+      "description": "Key clauses for franchisor/franchisee under Colombian commercial law.",
+      "prompt_text": "Review franchise contract under Colombian law.\n\nFocus: IP license, territory, fees, exclusivity, termination, non-compete, supply obligations, and dispute forum."
+    },
+    "es": {
+      "title": "Revisar contrato de franquicia",
+      "description": "Cláusulas clave para franquiciante y franquiciado.",
+      "prompt_text": "Revisa contrato de franquicia.\n\nEnfócate en licencia de PI, territorio, tarifas, exclusividad, terminación, no competencia, suministros y foro."
+    }
+  },
+  {
+    "slug_key": "tax-residency-checklist",
+    "category": "Tax",
+    "article_slug_key": "tax-residency-in-colombia",
+    "use_case": "checklist",
+    "sort_order": 410,
+    "as_skill": true,
+    "en": {
+      "title": "Tax residency determination checklist",
+      "description": "183-day rule and ties test for Colombian tax residency.",
+      "prompt_text": "Checklist to assess Colombian tax residency (Estatuto Tributario).\n\nCover 183-day presence, core of vital interests, permanent home, center of economic interests, and treaty tie-breaker if dual residency risk.\n\nNote filing obligations and foreign asset reporting triggers."
+    },
+    "es": {
+      "title": "Checklist residencia fiscal",
+      "description": "Regla 183 días y prueba de vínculos en Colombia.",
+      "prompt_text": "Checklist de residencia fiscal colombiana.\n\nCubre 183 días, intereses vitales, hogar permanente, centro de intereses económicos y convenio si hay doble residencia.\n\nIndica obligaciones declarativas y activos en el exterior."
+    }
+  },
+  {
+    "slug_key": "fx-regulations-review",
+    "category": "Tax",
+    "article_slug_key": "foreign-exchange-regulations",
+    "use_case": "review",
+    "sort_order": 420,
+    "as_skill": true,
+    "en": {
+      "title": "Review foreign exchange compliance",
+      "description": "Banco de la República registration and channel requirements.",
+      "prompt_text": "Review FX compliance for a transaction involving Colombia.\n\nAnalyze: registration of foreign investment, import/export documentation, loan registration, dividend remittance, and applicable Exchange Regime (Régimen Cambiario) violations risk.\n\nCite relevant Banco de la República resolutions conceptually; user must verify current circulars."
+    },
+    "es": {
+      "title": "Revisar cumplimiento cambiario",
+      "description": "Registro ante BanRep y canalización de divisas.",
+      "prompt_text": "Revisa cumplimiento cambiario en operación con Colombia.\n\nAnaliza: registro de inversión, import/export, registro de crédito, remesa de dividendos y riesgo de infracción al Régimen Cambiario.\n\nReferencia normativa BanRep; verificar circulares vigentes."
+    }
+  },
+  {
+    "slug_key": "corporate-income-tax-review",
+    "category": "Tax",
+    "article_slug_key": "corporate-income-tax",
+    "use_case": "review",
+    "sort_order": 430,
+    "en": {
+      "title": "Review corporate income tax position",
+      "description": "High-level CIT review for Colombian entity.",
+      "prompt_text": "Review corporate income tax considerations for a Colombian company.\n\nCover taxable income concepts, non-deductibles, thin capitalization note, transfer pricing flag, and filing calendar with DIAN."
+    },
+    "es": {
+      "title": "Revisar renta corporativa",
+      "description": "Revisión general de impuesto de renta societario.",
+      "prompt_text": "Revisa impuesto de renta de sociedad colombiana.\n\nCubre ingreso gravable, no deducibles, endeudamiento, precios de transferencia y calendario DIAN."
+    }
+  },
+  {
+    "slug_key": "vat-compliance-checklist",
+    "category": "Tax",
+    "article_slug_key": "vat-in-colombia",
+    "use_case": "checklist",
+    "sort_order": 440,
+    "en": {
+      "title": "VAT compliance checklist",
+      "description": "IVA registration, invoicing, and filing obligations.",
+      "prompt_text": "VAT (IVA) compliance checklist for Colombian business.\n\nInclude RUT IVA responsibility, electronic invoicing (facturación electrónica), rates, excluded services, withholding IVA, and bimonthly filing."
+    },
+    "es": {
+      "title": "Checklist cumplimiento IVA",
+      "description": "Registro, facturación electrónica y declaraciones.",
+      "prompt_text": "Checklist de IVA en Colombia.\n\nIncluye responsabilidad en RUT, facturación electrónica, tarifas, exclusiones, retención de IVA y declaración bimestral."
+    }
+  },
+  {
+    "slug_key": "withholding-tax-review",
+    "category": "Tax",
+    "article_slug_key": "withholding-tax-on-foreign-payments",
+    "use_case": "review",
+    "sort_order": 450,
+    "en": {
+      "title": "Review withholding on foreign payments",
+      "description": "Retención en la fuente on cross-border services and royalties.",
+      "prompt_text": "Review withholding tax on payments abroad from Colombia.\n\nIdentify service type, treaty relief, certificate requirements, and declaratory duties of local payer."
+    },
+    "es": {
+      "title": "Revisar retención en pagos al exterior",
+      "description": "Retención en servicios y regalías transfronterizas.",
+      "prompt_text": "Revisa retención en pagos al exterior desde Colombia.\n\nIdentifica tipo de servicio, beneficio en convenio, certificados y obligaciones del pagador local."
+    }
+  },
+  {
+    "slug_key": "tax-year-filing-checklist",
+    "category": "Tax",
+    "article_slug_key": "tax-year-and-filing",
+    "use_case": "checklist",
+    "sort_order": 460,
+    "en": {
+      "title": "Annual income tax filing checklist",
+      "description": "Declaración de renta preparation for individuals or companies.",
+      "prompt_text": "Checklist to prepare declaración de renta in Colombia.\n\nGather financial statements, supporting schedules, foreign asset form if applicable, previous year carryforwards, and DIAN submission window."
+    },
+    "es": {
+      "title": "Checklist declaración de renta",
+      "description": "Preparación de renta para persona natural o jurídica.",
+      "prompt_text": "Checklist para declaración de renta.\n\nReúne estados financieros, anexos, activos en el exterior si aplica, pérdidas arrastrables y ventana DIAN."
+    }
+  },
+  {
+    "slug_key": "permanent-establishment-analysis",
+    "category": "Tax",
+    "article_slug_key": "permanent-establishment",
+    "use_case": "review",
+    "sort_order": 470,
+    "en": {
+      "title": "Permanent establishment risk analysis",
+      "description": "PE exposure for foreign company operating in Colombia.",
+      "prompt_text": "Analyze permanent establishment (establecimiento permanente) risk for foreign entity activity in Colombia.\n\nReview fixed place, dependent agent, construction PE, and service PE concepts; suggest structural mitigations."
+    },
+    "es": {
+      "title": "Análisis riesgo establecimiento permanente",
+      "description": "EP por actividad de empresa extranjera en Colombia.",
+      "prompt_text": "Analiza riesgo de establecimiento permanente de empresa extranjera.\n\nRevisa lugar fijo, agente dependiente, obra y servicios; sugiere mitigaciones."
+    }
+  },
+  {
+    "slug_key": "dividend-distribution-review",
+    "category": "Tax",
+    "article_slug_key": "dividend-distribution",
+    "use_case": "review",
+    "sort_order": 480,
+    "en": {
+      "title": "Review dividend distribution",
+      "description": "Tax and corporate steps to pay dividends to shareholders.",
+      "prompt_text": "Review dividend distribution from Colombian company.\n\nCover shareholder approval, fiscal transparency, withholding on dividends to foreigners, FX remittance, and accounting entries."
+    },
+    "es": {
+      "title": "Revisar distribución de dividendos",
+      "description": "Pasos societarios y tributarios para pagar dividendos.",
+      "prompt_text": "Revisa distribución de dividendos.\n\nIncluye acuerdo social, transparencia fiscal, retención a extranjeros, remesa cambiaria y contabilidad."
+    }
+  },
+  {
+    "slug_key": "civil-marriage-checklist",
+    "category": "Family",
+    "article_slug_key": "civil-marriage-in-colombia",
+    "use_case": "checklist",
+    "sort_order": 510,
+    "as_skill": true,
+    "en": {
+      "title": "Civil marriage requirements checklist",
+      "description": "Notary marriage requirements for nationals and foreigners.",
+      "prompt_text": "Checklist for civil marriage before Colombian notary.\n\nDocuments for nationals/foreigners, prior marital status certificates, apostille/translation, publication of bans if required, and patrimonial regime choice (sociedad conyugal vs. separación)."
+    },
+    "es": {
+      "title": "Checklist matrimonio civil",
+      "description": "Requisitos notariales para nacionales y extranjeros.",
+      "prompt_text": "Checklist de matrimonio civil ante notaría.\n\nDocumentos, soltería, apostilla/traducción, publicación de edictos si aplica y régimen patrimonial."
+    }
+  },
+  {
+    "slug_key": "divorce-grounds-review",
+    "category": "Family",
+    "article_slug_key": "divorce-grounds",
+    "use_case": "review",
+    "sort_order": 520,
+    "en": {
+      "title": "Review divorce grounds and process",
+      "description": "Causal and procedural path for divorce in Colombia.",
+      "prompt_text": "Review divorce strategy under Colombian family law.\n\nIdentify applicable causal (mutual consent, breach, etc.), property regime implications, alimony preview, and court vs. notary route."
+    },
+    "es": {
+      "title": "Revisar causales y proceso de divorcio",
+      "description": "Vía procesal y patrimonial del divorcio.",
+      "prompt_text": "Revisa estrategia de divorcio.\n\nIdentifica causal, régimen patrimonial, alimentos y ruta notarial o judicial."
+    }
+  },
+  {
+    "slug_key": "common-law-union-checklist",
+    "category": "Family",
+    "article_slug_key": "common-law-union",
+    "use_case": "checklist",
+    "sort_order": 530,
+    "en": {
+      "title": "Common-law union (UMH) proof checklist",
+      "description": "Documentary evidence for marital union of hecho.",
+      "prompt_text": "Checklist to prove unión marital de hecho in Colombia.\n\nEvidence of cohabitation, community of life, duration, joint assets, public reputation; notarial declaration or judicial process options."
+    },
+    "es": {
+      "title": "Checklist prueba unión marital de hecho",
+      "description": "Soportes para UMH y declaración notarial o judicial.",
+      "prompt_text": "Checklist para probar unión marital de hecho.\n\nConvivencia, comunidad de vida, tiempo, bienes comunes, reputación; vía notarial o judicial."
+    }
+  },
+  {
+    "slug_key": "custody-agreement-draft",
+    "category": "Family",
+    "article_slug_key": "custody",
+    "use_case": "draft",
+    "sort_order": 540,
+    "as_skill": true,
+    "en": {
+      "title": "Draft custody and visitation arrangement",
+      "description": "Outline cuidado personal and visitation schedule.",
+      "prompt_text": "Draft outline for child custody (cuidado personal) and visitation (regimen de visitas) in Colombia.\n\nPrioritize best interest of child; include decision-making, schedule, holidays, travel abroad consent, and modification mechanism.\n\nFor lawyer review; do not assume specific court outcome."
+    },
+    "es": {
+      "title": "Redactar acuerdo de custodia y visitas",
+      "description": "Esquema de cuidado personal y régimen de visitas.",
+      "prompt_text": "Redacta esquema de cuidado personal y visitas.\n\nPrioriza interés superior del menor; incluye decisiones, calendario, vacaciones, viajes al exterior y modificación.\n\nPara revisión del abogado."
+    }
+  },
+  {
+    "slug_key": "general-power-of-attorney-draft",
+    "category": "Civil",
+    "article_slug_key": "power-of-attorney",
+    "use_case": "draft",
+    "sort_order": 610,
+    "as_skill": true,
+    "en": {
+      "title": "Draft general power of attorney",
+      "description": "General poder for personal or property matters.",
+      "prompt_text": "Draft outline for general power of attorney (poder general) under Colombian civil law.\n\nDefine grantor, attorney-in-fact, general vs. special powers (administration, litigation), term, revocation, and notarization.\n\nWarn about fraud risks with broad powers."
+    },
+    "es": {
+      "title": "Redactar poder general",
+      "description": "Poder general para actos personales o patrimoniales.",
+      "prompt_text": "Redacta esquema de poder general (Código Civil).\n\nOtorgante, apoderado, facultades generales o especiales, término, revocatoria y notarización.\n\nAdvierte riesgos de fraude con facultades amplias."
+    }
+  },
+  {
+    "slug_key": "sale-contract-draft",
+    "category": "Civil",
+    "article_slug_key": "sale-contract",
+    "use_case": "draft",
+    "sort_order": 620,
+    "as_skill": true,
+    "en": {
+      "title": "Draft movable or immovable sale contract",
+      "description": "Compraventa outline with delivery and warranty clauses.",
+      "prompt_text": "Draft outline for compraventa under Colombian civil/commercial law.\n\nInclude: object description, price, payment, delivery, warranties (eviction and hidden defects), conditions, and dispute resolution.\n\nSpecify if movable vs. real property (note notary/registration for real property)."
+    },
+    "es": {
+      "title": "Redactar contrato de compraventa",
+      "description": "Esquema con entrega y saneamiento.",
+      "prompt_text": "Redacta esquema de compraventa.\n\nObjeto, precio, pago, entrega, saneamiento por evicción y vicios ocultos, condiciones y solución de controversias.\n\nDiferencia mueble vs. inmueble (notaría/registro)."
+    }
+  },
+  {
+    "slug_key": "prenuptial-agreement-review",
+    "category": "Family",
+    "article_slug_key": "prenuptial-agreement",
+    "use_case": "review",
+    "sort_order": 550,
+    "en": {
+      "title": "Review prenuptial agreement (capitulaciones)",
+      "description": "Capitulaciones matrimoniales and patrimonial regime.",
+      "prompt_text": "Review capitulaciones matrimoniales or prenuptial agreement.\n\nCheck patrimonial regime choice, asset lists, future acquisitions, notarization, and registration requirements."
+    },
+    "es": {
+      "title": "Revisar capitulaciones matrimoniales",
+      "description": "Régimen patrimonial y formalidades.",
+      "prompt_text": "Revisa capitulaciones matrimoniales.\n\nVerifica régimen, inventario de bienes, adquisiciones futuras, notaría y registro."
+    }
+  },
+  {
+    "slug_key": "alimony-calculation-review",
+    "category": "Family",
+    "article_slug_key": "alimony",
+    "use_case": "review",
+    "sort_order": 560,
+    "en": {
+      "title": "Review alimony (cuota alimentaria) estimate",
+      "description": "Factors for food allowance under Colombian family law.",
+      "prompt_text": "Review alimony estimate for spouse or child.\n\nApply needs vs. capacity analysis, income evidence, and provisional vs. definitive cuota; note judicial discretion."
+    },
+    "es": {
+      "title": "Revisar cuota alimentaria",
+      "description": "Factores de necesidad y capacidad.",
+      "prompt_text": "Revisa estimación de cuota alimentaria.\n\nContrasta necesidad y capacidad, prueba de ingresos y cuota provisional vs. definitiva."
+    }
+  },
+  {
+    "slug_key": "marital-partnership-liquidation",
+    "category": "Family",
+    "article_slug_key": "liquidation-of-marital-partnership",
+    "use_case": "checklist",
+    "sort_order": 570,
+    "en": {
+      "title": "Marital partnership liquidation checklist",
+      "description": "Liquidación sociedad conyugal after divorce or death.",
+      "prompt_text": "Checklist to liquidate sociedad conyugal.\n\nInventory assets/debts, active/passive allocation, compensations, and notarial or judicial approval path."
+    },
+    "es": {
+      "title": "Checklist liquidación sociedad conyugal",
+      "description": "Inventario y adjudicación tras divorcio o muerte.",
+      "prompt_text": "Checklist de liquidación de sociedad conyugal.\n\nInventario, activos/pasivos, compensaciones y vía notarial o judicial."
+    }
+  },
+  {
+    "slug_key": "succession-planning-checklist",
+    "category": "Family",
+    "article_slug_key": "succession-and-inheritance-law",
+    "use_case": "checklist",
+    "sort_order": 580,
+    "en": {
+      "title": "Succession planning checklist",
+      "description": "Wills, forced heirship, and estate administration basics.",
+      "prompt_text": "Checklist for succession planning in Colombia.\n\nCover legitimate portions (legítima), will types, foreign assets, life insurance beneficiaries, and matrimonial property interaction."
+    },
+    "es": {
+      "title": "Checklist planificación sucesoral",
+      "description": "Testamento, legítima y administración de herencia.",
+      "prompt_text": "Checklist de sucesión en Colombia.\n\nLegítima, tipos de testamento, bienes en el exterior, seguros y régimen patrimonial."
+    }
+  },
+  {
+    "slug_key": "foreign-investment-registration-checklist",
+    "category": "Immigration",
+    "article_slug_key": "foreign-investment-registration",
+    "use_case": "checklist",
+    "sort_order": 105,
+    "en": {
+      "title": "Foreign investment registration checklist",
+      "description": "BanRep Form 4 and FX registration for inbound investment.",
+      "prompt_text": "Checklist for foreign direct investment registration with Banco de la República.\n\nIdentify Form 4 timing, supporting documents, capital contributions vs. portfolio, and link to investor visa if applicable."
+    },
+    "es": {
+      "title": "Checklist registro inversión extranjera",
+      "description": "Formulario 4 BanRep para inversión entrante.",
+      "prompt_text": "Checklist de registro de inversión extranjera ante BanRep.\n\nFormulario 4, soportes, aporte vs. cartera y vínculo con visa inversionista."
+    }
+  },
+  {
+    "slug_key": "lease-deposit-review",
+    "category": "Real Estate",
+    "article_slug_key": "lease-agreement",
+    "use_case": "review",
+    "sort_order": 175,
+    "en": {
+      "title": "Review lease deposit (depósito) terms",
+      "description": "Validate deposit amount and return conditions.",
+      "prompt_text": "Review depósito (security deposit) clauses in Colombian lease.\n\nCheck maximum amounts under Ley 820, interest, deductions allowed, return timeline, and inventory linkage."
+    },
+    "es": {
+      "title": "Revisar depósito en arrendamiento",
+      "description": "Monto, deducciones y devolución del depósito.",
+      "prompt_text": "Revisa cláusulas de depósito en arrendamiento.\n\nVerifica topes Ley 820, intereses, deducciones, plazo de devolución e inventario."
+    }
+  },
+  {
+    "slug_key": "social-security-labor-checklist",
+    "category": "Labor",
+    "article_slug_key": "social-security-contributions",
+    "use_case": "checklist",
+    "sort_order": 285,
+    "en": {
+      "title": "Employer social security checklist",
+      "description": "EPS, pension, ARL, and parafiscales enrollment.",
+      "prompt_text": "Checklist for employer social security compliance in Colombia.\n\nRegister employees with EPS, pension, ARL risk class, caja de compensación, SENA, ICBF, and monthly PILA payment."
+    },
+    "es": {
+      "title": "Checklist seguridad social empleador",
+      "description": "Afiliaciones EPS, pensión, ARL y parafiscales.",
+      "prompt_text": "Checklist de seguridad social del empleador.\n\nAfiliación EPS, pensión, ARL, caja, SENA, ICBF y PILA mensual."
+    }
+  },
+  {
+    "slug_key": "double-taxation-treaty-review",
+    "category": "Tax",
+    "article_slug_key": "double-taxation-treaties",
+    "use_case": "review",
+    "sort_order": 485,
+    "en": {
+      "title": "Review double taxation treaty benefit",
+      "description": "Treaty relief on cross-border income flows.",
+      "prompt_text": "Review whether a tax treaty reduces withholding on payment between treaty countries and Colombia.\n\nIdentify article, limitation on benefits, certificate of residency, and domestic law interaction."
+    },
+    "es": {
+      "title": "Revisar beneficio de convenio tributario",
+      "description": "Alivio de doble imposición en pagos transfronterizos.",
+      "prompt_text": "Revisa si un convenio reduce retención en pago entre Colombia y otro Estado.\n\nIdentifica artículo, limitación de beneficios, certificado de residencia e interacción con ley interna."
+    }
+  }
+]

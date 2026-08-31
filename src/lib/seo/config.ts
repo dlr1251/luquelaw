@@ -41,38 +41,50 @@ export const PAGE_SEO = {
   },
   clkrHub: {
     en: {
-      title: "CLKR — LegalAI hub for Colombian law",
+      title: "Legal resources — Colombian law",
       description:
-        "Norms, practical guides, and Lucy AI — open Colombian legal knowledge you can navigate and cite.",
+        "CLKR articles, norms catalog, and a public prompt library — plus Lucy AI and agents in the portal.",
     },
     es: {
-      title: "CLKR — Hub LegalAI de derecho colombiano",
+      title: "Recursos legales — derecho colombiano",
       description:
-        "Normas, guías prácticas y Lucy AI — conocimiento jurídico colombiano abierto, navegable y citable.",
+        "Artículos CLKR, normograma y biblioteca pública de prompts — más Lucy AI y agentes en el portal.",
     },
   },
   clkrGuides: {
     en: {
-      title: "Legal guides — CLKR",
+      title: "CLKR — Colombian legal articles",
       description:
-        "Plain-language guides on Colombian immigration, real estate, corporate, labour, and civil law.",
+        "Searchable articles on immigration, real estate, corporate, labour, tax, and family law in Colombia.",
     },
     es: {
-      title: "Guías jurídicas — CLKR",
+      title: "CLKR — Artículos jurídicos colombianos",
       description:
-        "Guías en lenguaje claro sobre migración, inmobiliario, corporativo, laboral y civil en Colombia.",
+        "Artículos buscables sobre migración, inmobiliario, corporativo, laboral, tributario y familia en Colombia.",
+    },
+  },
+  clkrLibrary: {
+    en: {
+      title: "Skills & prompts — legal AI library",
+      description:
+        "Copy-ready prompts for migration letters, contract review, labor agreements, and Colombian legal tasks.",
+    },
+    es: {
+      title: "Skills y prompts — biblioteca LegalAI",
+      description:
+        "Prompts listos para cartas migratorias, revisión de contratos, acuerdos laborales y tareas jurídicas en Colombia.",
     },
   },
   normsHub: {
     en: {
-      title: "Norms — CLKR legal reference library",
+      title: "Norms catalog — Colombian statute browser",
       description:
-        "Constitution, codes, laws, and resolutions in Spanish and English — for reference and navigation.",
+        "Constitution, codes, laws, and resolutions in Spanish and English — structured navigation and official references.",
     },
     es: {
-      title: "Normas — Biblioteca de referencia CLKR",
+      title: "Normograma — navegador de normas colombianas",
       description:
-        "Constitución, códigos, leyes y resoluciones en español e inglés — para consulta y navegación.",
+        "Constitución, códigos, leyes y resoluciones en español e inglés — navegación estructurada y referencias oficiales.",
     },
   },
   pricing: {

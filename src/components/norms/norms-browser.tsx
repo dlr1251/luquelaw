@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { ArrowRight, Search, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import type { NormCatalogItem, NormCategory, NormType } from "@/lib/norms/types";
 import {
@@ -19,9 +20,15 @@ type Props = {
 };
 
 export function NormsBrowser({ norms, locale = "en" }: Props) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<NormCategory | "All">("All");
-  const [normType, setNormType] = useState<NormType | "All">("All");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const [category, setCategory] = useState<NormCategory | "All">(
+    (searchParams.get("category") as NormCategory) || "All",
+  );
+  const [normType, setNormType] = useState<NormType | "All">(
+    (searchParams.get("type") as NormType) || "All",
+  );
 
   const copy =
     locale === "es"
@@ -41,6 +48,19 @@ export function NormsBrowser({ norms, locale = "en" }: Props) {
           empty: "No matches.",
           clear: "Clear",
         };
+
+  const syncUrl = useCallback(() => {
+    const params = new URLSearchParams();
+    if (query.trim()) params.set("q", query.trim());
+    if (category !== "All") params.set("category", category);
+    if (normType !== "All") params.set("type", normType);
+    const qs = params.toString();
+    router.replace(qs ? `?${qs}` : "?", { scroll: false });
+  }, [router, query, category, normType]);
+
+  useEffect(() => {
+    syncUrl();
+  }, [syncUrl]);
 
   const availableCategories = useMemo(() => {
     const set = new Set(norms.map((n) => n.category));

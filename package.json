@@ -9,6 +9,7 @@
     "lint": "eslint",
     "resend:test": "bash scripts/with-node24.sh node scripts/test-resend.mjs",
     "seed:norms": "bash scripts/with-node24.sh node scripts/seed-norms-content.mjs",
+    "seed:prompts": "bash scripts/with-node24.sh node scripts/seed-prompts.mjs",
     "index:lucy-rag": "bash scripts/with-node24.sh node scripts/index-lucy-rag.mjs",
     "import:suin-5477": "bash scripts/with-node24.sh node scripts/import-suin-5477.mjs",
     "import:suin-norm": "bash scripts/with-node24.sh node scripts/import-suin-norm.mjs",
@@ -53,6 +54,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.3",
+    "opentype.js": "^2.0.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

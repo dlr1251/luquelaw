@@ -14,12 +14,20 @@ async function requireAdmin() {
   return supabase;
 }
 
+function revalidateLibrary() {
+  revalidatePath("/clkr/library");
+  revalidatePath("/es/clkr/library");
+  revalidatePath("/clkr/agents");
+  revalidatePath("/es/clkr/agents");
+}
+
 export async function savePrompt(formData: FormData) {
   const supabase = await requireAdmin();
   const id = String(formData.get("id") ?? "").trim();
   const locale = String(formData.get("locale") ?? "");
   if (locale !== "en" && locale !== "es") redirect("/admin/prompts?error=Invalid+locale");
 
+  const articleSlug = String(formData.get("article_slug_key") ?? "").trim();
   const payload = {
     slug_key: String(formData.get("slug_key") ?? "")
       .trim()
@@ -31,6 +39,8 @@ export async function savePrompt(formData: FormData) {
     description: String(formData.get("description") ?? "").trim(),
     category: String(formData.get("category") ?? "general").trim() || "general",
     prompt_text: String(formData.get("prompt_text") ?? ""),
+    article_slug_key: articleSlug || null,
+    use_case: String(formData.get("use_case") ?? "").trim() || null,
     access_tier: "professional",
     status: String(formData.get("status") ?? "draft"),
     sort_order: Number(formData.get("sort_order") ?? 0) || 0,
@@ -48,8 +58,7 @@ export async function savePrompt(formData: FormData) {
     if (error) redirect(`/admin/prompts?error=${encodeURIComponent(error.message)}`);
   }
 
-  revalidatePath("/clkr/agents");
-  revalidatePath("/es/clkr/agents");
+  revalidateLibrary();
   revalidatePath("/admin/prompts");
   redirect("/admin/prompts?saved=1");
 }
@@ -59,8 +68,7 @@ export async function deletePrompt(formData: FormData) {
   const id = String(formData.get("id") ?? "").trim();
   if (!id) redirect("/admin/prompts?error=Missing+id");
   await supabase.from("clkr_prompts").delete().eq("id", id);
-  revalidatePath("/clkr/agents");
-  revalidatePath("/es/clkr/agents");
+  revalidateLibrary();
   revalidatePath("/admin/prompts");
   redirect("/admin/prompts?deleted=1");
 }

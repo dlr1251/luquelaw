@@ -1,22 +1,53 @@
 "use client";
 
-import { ChevronLeft, ChevronRight, Search } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { ChevronLeft, ChevronRight, Search, SlidersHorizontal, X } from "lucide-react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { ClkrArticleCard } from "@/components/clkr/clkr-article-card";
 import type { ClkrArticle, ClkrCategory } from "@/lib/clkr/articles";
+import { CLKR_CATEGORIES } from "@/lib/clkr/types";
 
 const PAGE_SIZE = 12;
+
+type SortMode = "sort_order" | "title" | "published_at";
 
 type Props = {
   articles: ClkrArticle[];
   locale?: "en" | "es";
 };
 
+function highlightText(text: string, query: string) {
+  if (!query.trim()) return text;
+  const parts = text.split(new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")})`, "gi"));
+  return parts.map((part, i) =>
+    part.toLowerCase() === query.toLowerCase() ? (
+      <mark key={i} className="bg-[color:var(--moss)]/25 text-inherit">
+        {part}
+      </mark>
+    ) : (
+      part
+    ),
+  );
+}
+
 export function ClkrBrowser({ articles, locale = "en" }: Props) {
-  const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<ClkrCategory | "All">("All");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const [query, setQuery] = useState(searchParams.get("q") ?? "");
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+  const [category, setCategory] = useState<ClkrCategory | "All">(
+    (searchParams.get("category") as ClkrCategory) || "All",
+  );
+  const [sort, setSort] = useState<SortMode>(
+    (searchParams.get("sort") as SortMode) || "sort_order",
+  );
+  const [readingTime, setReadingTime] = useState<"all" | "short" | "long">("all");
+  const [showAdvanced, setShowAdvanced] = useState(false);
   const [page, setPage] = useState(1);
+  const [remoteArticles, setRemoteArticles] = useState<ClkrArticle[] | null>(null);
+  const [searching, setSearching] = useState(false);
 
   const copy =
     locale === "es"
@@ -34,7 +65,17 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
           prev: "Anterior",
           next: "Siguiente",
           page: "Página",
-          jumpTop: "Volver al listado",
+          sort: "Orden",
+          sortOrder: "Recomendado",
+          sortTitle: "A–Z",
+          sortDate: "Más recientes",
+          readingTime: "Lectura",
+          readingAll: "Cualquiera",
+          readingShort: "≤ 10 min",
+          readingLong: "> 10 min",
+          advanced: "Filtros",
+          clear: "Limpiar filtros",
+          searching: "Buscando…",
           categories: {
             Immigration: "Inmigración",
             "Real Estate": "Inmobiliario",
@@ -64,7 +105,17 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
           prev: "Previous",
           next: "Next",
           page: "Page",
-          jumpTop: "Back to list",
+          sort: "Sort",
+          sortOrder: "Recommended",
+          sortTitle: "A–Z",
+          sortDate: "Newest",
+          readingTime: "Reading time",
+          readingAll: "Any",
+          readingShort: "≤ 10 min",
+          readingLong: "> 10 min",
+          advanced: "Filters",
+          clear: "Clear filters",
+          searching: "Searching…",
           categories: {
             Immigration: "Immigration",
             "Real Estate": "Real Estate",
@@ -81,6 +132,62 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
           } as Record<ClkrCategory, string>,
         };
 
+  const syncUrl = useCallback(
+    (next: { q?: string; category?: string; sort?: string }) => {
+      const params = new URLSearchParams();
+      const qVal = next.q ?? debouncedQuery;
+      const catVal = next.category ?? (category === "All" ? "" : category);
+      const sortVal = next.sort ?? sort;
+      if (qVal.trim()) params.set("q", qVal.trim());
+      if (catVal) params.set("category", catVal);
+      if (sortVal && sortVal !== "sort_order") params.set("sort", sortVal);
+      const qs = params.toString();
+      router.replace(qs ? `?${qs}` : "?", { scroll: false });
+    },
+    [router, debouncedQuery, category, sort],
+  );
+
+  useEffect(() => {
+    const t = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(t);
+  }, [query]);
+
+  useEffect(() => {
+    syncUrl({});
+  }, [debouncedQuery, category, sort, syncUrl]);
+
+  useEffect(() => {
+    if (!debouncedQuery.trim() && category === "All" && sort === "sort_order") {
+      setRemoteArticles(null);
+      return;
+    }
+
+    let cancelled = false;
+    setSearching(true);
+
+    const params = new URLSearchParams({ locale, sort });
+    if (debouncedQuery.trim()) params.set("q", debouncedQuery.trim());
+    if (category !== "All") params.set("category", category);
+
+    fetch(`/api/clkr/search?${params}`)
+      .then((res) => res.json())
+      .then((data: { articles: ClkrArticle[] }) => {
+        if (!cancelled) setRemoteArticles(data.articles ?? []);
+      })
+      .catch(() => {
+        if (!cancelled) setRemoteArticles(null);
+      })
+      .finally(() => {
+        if (!cancelled) setSearching(false);
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [debouncedQuery, category, sort, locale]);
+
+  const sourceArticles = remoteArticles ?? articles;
+
   const categoryCounts = useMemo(() => {
     const map = new Map<ClkrCategory, number>();
     for (const a of articles) {
@@ -90,29 +197,38 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
   }, [articles]);
 
   const availableCategories = useMemo(() => {
-    return Array.from(categoryCounts.keys()).sort((a, b) =>
+    return CLKR_CATEGORIES.filter((c) => categoryCounts.has(c)).sort((a, b) =>
       copy.categories[a].localeCompare(copy.categories[b], locale),
     );
   }, [categoryCounts, copy.categories, locale]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    return articles
-      .filter((a) => {
-        if (category !== "All" && a.category !== category) return false;
-        if (!q) return true;
-        const catLabel = copy.categories[a.category] ?? a.category;
-        return (
-          a.title.toLowerCase().includes(q) ||
-          a.description.toLowerCase().includes(q) ||
-          a.category.toLowerCase().includes(q) ||
-          catLabel.toLowerCase().includes(q)
-        );
-      })
-      .sort((a, b) => a.title.localeCompare(b.title, locale));
-  }, [articles, category, query, copy.categories, locale]);
+  const parseMinutes = (rt: string) => {
+    const m = rt.match(/(\d+)/);
+    return m ? Number(m[1]) : 0;
+  };
 
-  const showFeatured = filtered.length > 0 && !query && category === "All";
+  const filtered = useMemo(() => {
+    let list = [...sourceArticles];
+    if (readingTime === "short") {
+      list = list.filter((a) => parseMinutes(a.readingTime) <= 10);
+    } else if (readingTime === "long") {
+      list = list.filter((a) => parseMinutes(a.readingTime) > 10);
+    }
+    if (sort === "title") {
+      list.sort((a, b) => a.title.localeCompare(b.title, locale));
+    } else if (sort === "published_at") {
+      list.sort((a, b) => {
+        const da = a.publishedAt ? Date.parse(a.publishedAt) : 0;
+        const db = b.publishedAt ? Date.parse(b.publishedAt) : 0;
+        return db - da;
+      });
+    } else {
+      list.sort((a, b) => a.sortOrder - b.sortOrder);
+    }
+    return list;
+  }, [sourceArticles, readingTime, sort, locale]);
+
+  const showFeatured = filtered.length > 0 && !debouncedQuery && category === "All";
   const featured = showFeatured ? filtered[0] : null;
   const list = showFeatured ? filtered.slice(1) : filtered;
 
@@ -125,7 +241,7 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
 
   useEffect(() => {
     setPage(1);
-  }, [query, category]);
+  }, [debouncedQuery, category, sort, readingTime]);
 
   useEffect(() => {
     if (page > totalPages) setPage(totalPages);
@@ -139,6 +255,22 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
       block: "start",
     });
   }
+
+  function clearFilters() {
+    setQuery("");
+    setDebouncedQuery("");
+    setCategory("All");
+    setSort("sort_order");
+    setReadingTime("all");
+    setRemoteArticles(null);
+    router.replace("?", { scroll: false });
+  }
+
+  const hasActiveFilters =
+    debouncedQuery.trim() !== "" ||
+    category !== "All" ||
+    sort !== "sort_order" ||
+    readingTime !== "all";
 
   const pageNumbers = useMemo(() => {
     if (totalPages <= 7) {
@@ -187,45 +319,107 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--moss)]">
-              {copy.filter}
-            </div>
-            <div className="mt-2 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]">
+          <div className="flex flex-wrap items-end gap-3 lg:col-span-7 lg:justify-end">
+            <button
+              type="button"
+              onClick={() => setShowAdvanced((v) => !v)}
+              className="inline-flex h-11 items-center gap-2 border border-[color:var(--moss)]/35 bg-[color:var(--card)] px-4 text-[0.75rem] font-medium uppercase tracking-[0.06em] text-[color:var(--forest)]"
+            >
+              <SlidersHorizontal className="h-4 w-4" strokeWidth={1.75} />
+              {copy.advanced}
+            </button>
+            {hasActiveFilters ? (
               <button
                 type="button"
-                onClick={() => setCategory("All")}
+                onClick={clearFilters}
+                className="inline-flex h-11 items-center gap-1.5 px-2 text-[0.75rem] font-medium text-muted-foreground hover:text-[color:var(--forest)]"
+              >
+                <X className="h-4 w-4" strokeWidth={1.75} />
+                {copy.clear}
+              </button>
+            ) : null}
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <div className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--moss)]">
+            {copy.filter}
+          </div>
+          <div className="mt-2 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 [scrollbar-width:thin]">
+            <button
+              type="button"
+              onClick={() => setCategory("All")}
+              className={[
+                "h-9 shrink-0 border px-3 font-[family-name:var(--font-ui)] text-[0.7rem] font-medium uppercase tracking-[0.06em] transition sm:px-3.5 sm:text-[0.75rem]",
+                category === "All"
+                  ? "border-[color:var(--forest)] bg-[color:var(--forest)] text-[color:var(--parchment)]"
+                  : "border-[color:var(--moss)]/35 bg-[color:var(--card)] text-[color:var(--ink)] hover:border-[color:var(--moss)]",
+              ].join(" ")}
+            >
+              {copy.all}
+              <span className="ml-1.5 tabular-nums opacity-70">{articles.length}</span>
+            </button>
+            {availableCategories.map((c) => (
+              <button
+                key={c}
+                type="button"
+                onClick={() => setCategory(c)}
                 className={[
                   "h-9 shrink-0 border px-3 font-[family-name:var(--font-ui)] text-[0.7rem] font-medium uppercase tracking-[0.06em] transition sm:px-3.5 sm:text-[0.75rem]",
-                  category === "All"
+                  category === c
                     ? "border-[color:var(--forest)] bg-[color:var(--forest)] text-[color:var(--parchment)]"
                     : "border-[color:var(--moss)]/35 bg-[color:var(--card)] text-[color:var(--ink)] hover:border-[color:var(--moss)]",
                 ].join(" ")}
               >
-                {copy.all}
-                <span className="ml-1.5 tabular-nums opacity-70">{articles.length}</span>
+                {copy.categories[c]}
+                <span className="ml-1.5 tabular-nums opacity-70">
+                  {categoryCounts.get(c) ?? 0}
+                </span>
               </button>
-              {availableCategories.map((c) => (
-                <button
-                  key={c}
-                  type="button"
-                  onClick={() => setCategory(c)}
-                  className={[
-                    "h-9 shrink-0 border px-3 font-[family-name:var(--font-ui)] text-[0.7rem] font-medium uppercase tracking-[0.06em] transition sm:px-3.5 sm:text-[0.75rem]",
-                    category === c
-                      ? "border-[color:var(--forest)] bg-[color:var(--forest)] text-[color:var(--parchment)]"
-                      : "border-[color:var(--moss)]/35 bg-[color:var(--card)] text-[color:var(--ink)] hover:border-[color:var(--moss)]",
-                  ].join(" ")}
-                >
-                  {copy.categories[c]}
-                  <span className="ml-1.5 tabular-nums opacity-70">
-                    {categoryCounts.get(c) ?? 0}
-                  </span>
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
+
+        {showAdvanced ? (
+          <div className="mt-4 grid gap-4 border-t border-[color:var(--moss)]/15 pt-4 sm:grid-cols-2">
+            <div>
+              <label
+                htmlFor="clkr-sort"
+                className="block font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--moss)]"
+              >
+                {copy.sort}
+              </label>
+              <select
+                id="clkr-sort"
+                value={sort}
+                onChange={(e) => setSort(e.target.value as SortMode)}
+                className="mt-2 h-10 w-full border border-[color:var(--moss)]/35 bg-[color:var(--card)] px-3 text-sm"
+              >
+                <option value="sort_order">{copy.sortOrder}</option>
+                <option value="title">{copy.sortTitle}</option>
+                <option value="published_at">{copy.sortDate}</option>
+              </select>
+            </div>
+            <div>
+              <label
+                htmlFor="clkr-reading"
+                className="block font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--moss)]"
+              >
+                {copy.readingTime}
+              </label>
+              <select
+                id="clkr-reading"
+                value={readingTime}
+                onChange={(e) => setReadingTime(e.target.value as "all" | "short" | "long")}
+                className="mt-2 h-10 w-full border border-[color:var(--moss)]/35 bg-[color:var(--card)] px-3 text-sm"
+              >
+                <option value="all">{copy.readingAll}</option>
+                <option value="short">{copy.readingShort}</option>
+                <option value="long">{copy.readingLong}</option>
+              </select>
+            </div>
+          </div>
+        ) : null}
       </div>
 
       <div
@@ -233,20 +427,26 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
         className="flex flex-wrap items-end justify-between gap-3 scroll-mt-36"
       >
         <p className="font-[family-name:var(--font-ui)] text-sm text-muted-foreground">
-          <span className="font-medium tabular-nums text-[color:var(--forest)]">
-            {filtered.length}
-          </span>{" "}
-          {copy.results}
-          {list.length > 0 ? (
+          {searching ? (
+            copy.searching
+          ) : (
             <>
-              {" · "}
-              {copy.showing}{" "}
-              <span className="tabular-nums">
-                {from}–{to}
+              <span className="font-medium tabular-nums text-[color:var(--forest)]">
+                {filtered.length}
               </span>{" "}
-              {copy.of} <span className="tabular-nums">{list.length}</span>
+              {copy.results}
+              {list.length > 0 ? (
+                <>
+                  {" · "}
+                  {copy.showing}{" "}
+                  <span className="tabular-nums">
+                    {from}–{to}
+                  </span>{" "}
+                  {copy.of} <span className="tabular-nums">{list.length}</span>
+                </>
+              ) : null}
             </>
-          ) : null}
+          )}
         </p>
       </div>
 
@@ -260,19 +460,25 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
             readLabel={copy.read}
             categoryLabel={copy.categories[featured.category]}
             featured
+            titleOverride={
+              debouncedQuery ? highlightText(featured.title, debouncedQuery) : undefined
+            }
           />
         </section>
       ) : null}
 
       {pageItems.length > 0 ? (
         <section>
-          <ul className="grid gap-5 md:grid-cols-2">
+          <ul className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {pageItems.map((a) => (
               <li key={a.slug}>
                 <ClkrArticleCard
                   article={a}
                   readLabel={copy.read}
                   categoryLabel={copy.categories[a.category]}
+                  titleOverride={
+                    debouncedQuery ? highlightText(a.title, debouncedQuery) : undefined
+                  }
                 />
               </li>
             ))}
@@ -280,7 +486,7 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
         </section>
       ) : null}
 
-      {filtered.length === 0 ? (
+      {filtered.length === 0 && !searching ? (
         <div className="border border-[color:var(--moss)]/30 bg-[color:var(--surface)] p-8 text-center">
           <p className="text-sm text-muted-foreground">{copy.empty}</p>
         </div>

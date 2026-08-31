@@ -1,40 +1,54 @@
+import {
+  LL_MARK_DOT,
+  LL_MARK_FONT_SIZE,
+  LL_MARK_LEFT,
+  LL_MARK_RIGHT,
+  LL_MARK_VIEW_SIZE,
+} from "@/lib/brand/ll-mark";
+
 type Props = {
   size?: number;
   className?: string;
 };
 
-/** Slate LL mark — matches app favicon / apple-icon. */
+/** Luque • Law wordmark — matches app favicon / apple-icon. */
 export function DlrMonogram({ size = 36, className }: Props) {
   return (
     <svg
       width={size}
       height={size}
-      viewBox="0 0 32 32"
+      viewBox={`0 0 ${LL_MARK_VIEW_SIZE} ${LL_MARK_VIEW_SIZE}`}
       className={className}
       role="img"
       aria-label="Luque Law"
     >
-      <rect width="32" height="32" fill="#1c1f24" />
-      <rect
-        x="3.8"
-        y="3.8"
-        width="24.4"
-        height="24.4"
-        fill="none"
-        stroke="#45617d"
-        strokeWidth="1.1"
-      />
-      {/* Back L */}
-      <path
-        d="M8.2 8.5H11.4V20.3H20.5V23.5H8.2Z"
+      <rect width={LL_MARK_VIEW_SIZE} height={LL_MARK_VIEW_SIZE} fill="#1c1f24" />
+      <text
+        x={LL_MARK_LEFT.x}
+        y={LL_MARK_LEFT.y}
         fill="#f5f6f7"
+        fontFamily="var(--font-display), Arbutus Slab, Georgia, serif"
+        fontSize={LL_MARK_FONT_SIZE}
+        fontWeight={400}
+      >
+        {LL_MARK_LEFT.text}
+      </text>
+      <circle
+        cx={LL_MARK_DOT.cx}
+        cy={LL_MARK_DOT.cy}
+        r={LL_MARK_DOT.r}
+        fill="#f0cd3a"
       />
-      {/* Front L */}
-      <path
-        d="M12.6 10.3H15.8V22.1H24.9V25.3H12.6Z"
-        fill="#8fb2d4"
-        fillOpacity="0.92"
-      />
+      <text
+        x={LL_MARK_RIGHT.x}
+        y={LL_MARK_RIGHT.y}
+        fill="#f5f6f7"
+        fontFamily="var(--font-display), Arbutus Slab, Georgia, serif"
+        fontSize={LL_MARK_FONT_SIZE}
+        fontWeight={400}
+      >
+        {LL_MARK_RIGHT.text}
+      </text>
     </svg>
   );
 }

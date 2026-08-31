@@ -40,10 +40,13 @@ export type ClkrArticleRecord = {
 /** Hub card + link shape (public) */
 export type ClkrArticle = {
   slug: string;
+  slugKey: string;
   title: string;
   category: ClkrCategory;
   readingTime: string;
   description: string;
+  sortOrder: number;
+  publishedAt: string | null;
 };
 
 export const CLKR_CATEGORIES: ClkrCategory[] = [
@@ -85,13 +88,32 @@ export function clkrPublicPath(slugKey: string, locale: "en" | "es"): string {
   return locale === "es" ? `/es/clkr/guides/${slugKey}` : `/clkr/guides/${slugKey}`;
 }
 
+export function clkrLibraryPath(locale: "en" | "es"): string {
+  return locale === "es" ? "/es/clkr/library" : "/clkr/library";
+}
+
+export function clkrLibraryPromptPath(slugKey: string, locale: "en" | "es"): string {
+  return locale === "es"
+    ? `/es/clkr/library/prompts/${slugKey}`
+    : `/clkr/library/prompts/${slugKey}`;
+}
+
+export function clkrLibrarySkillPath(slugKey: string, locale: "en" | "es"): string {
+  return locale === "es"
+    ? `/es/clkr/library/skills/${slugKey}`
+    : `/clkr/library/skills/${slugKey}`;
+}
+
 export function recordToHubArticle(row: ClkrArticleRecord): ClkrArticle {
   return {
     slug: clkrPublicPath(row.slug_key, row.locale),
+    slugKey: row.slug_key,
     title: row.title,
     category: row.category,
     readingTime: row.reading_time,
     description: row.description,
+    sortOrder: row.sort_order,
+    publishedAt: row.published_at,
   };
 }
 
