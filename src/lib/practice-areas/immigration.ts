@@ -142,7 +142,7 @@ const contentEn: ImmigrationContent = {
   guidesLabel: "Guides",
   guidesTitle: "Start with the ground rules",
   guidesBody:
-    "CLKR guides on tourism days, visa process under Resolución 5477, and the investor (M) pathway.",
+    "CLKR guides on tourism days and the visa process under Resolución 5477 — visa types live in the visas catalog.",
   featuredArticles: [
     {
       slugKey: "last-legal-day",
@@ -159,11 +159,11 @@ const contentEn: ImmigrationContent = {
       href: clkrPublicPath("visas-ground-rules", "en"),
     },
     {
-      slugKey: "investor-visa",
-      title: "Investor Visa (Tipo M)",
+      slugKey: "visas-catalog",
+      title: "Visa types & categories",
       description:
-        "Eligibility, investment thresholds, FIEM registration, timelines, and common pitfalls.",
-      href: clkrPublicPath("investor-visa", "en"),
+        "Browse Visitante (V), Migrante (M), and Residente (R) categories under Resolución 5477.",
+      href: immigrationPath("/visas", "en"),
     },
   ],
   hubLabel: "Explore",
@@ -281,7 +281,7 @@ const contentEs: ImmigrationContent = {
   guidesLabel: "Guías",
   guidesTitle: "Empieza por las reglas base",
   guidesBody:
-    "Guías CLKR sobre días de turismo, proceso de visa bajo la Resolución 5477 y la vía de inversionista (M).",
+    "Guías CLKR sobre días de turismo y el proceso de visa bajo la Resolución 5477 — los tipos de visa están en el catálogo de visas.",
   featuredArticles: [
     {
       slugKey: "last-legal-day",
@@ -298,11 +298,11 @@ const contentEs: ImmigrationContent = {
       href: clkrPublicPath("visas-ground-rules", "es"),
     },
     {
-      slugKey: "investor-visa",
-      title: "Visa de Inversionista (Tipo M)",
+      slugKey: "visas-catalog",
+      title: "Tipos y categorías de visa",
       description:
-        "Requisitos, umbral de inversión, registro FIEM, tiempos y errores frecuentes.",
-      href: clkrPublicPath("investor-visa", "es"),
+        "Explora Visitante (V), Migrante (M) y Residente (R) bajo la Resolución 5477.",
+      href: immigrationPath("/visas", "es"),
     },
   ],
   hubLabel: "Explorar",

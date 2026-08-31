@@ -1712,7 +1712,7 @@ export const VISAS_CATALOG: VisaCatalogEntry[] = [
     },
     "workPermit": "Linked to investment activity — confirm scope with counsel.",
     "beneficiaries": "Often available subject to requirements.",
-    "relatedGuideSlug": "investor-visa"
+    "relatedGuideSlug": null
   },
   {
     "slug": "renuncia-a-nacionalidad-colombiana",
