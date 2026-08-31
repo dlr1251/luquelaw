@@ -2,11 +2,41 @@ import { createClient } from "@/lib/supabase/server";
 import type {
   StudyPath,
   StudyPathRecord,
-  StudyPathStep,
   StudyPathWithSteps,
   ClkrArticleRecord,
 } from "./types";
 import { recordToStudyPath, recordToHubArticle } from "./types";
+
+type PostgrestLikeError = {
+  code?: string;
+  message?: string;
+  details?: string | null;
+  hint?: string | null;
+};
+
+function formatSupabaseError(error: unknown): Record<string, string | null | undefined> {
+  if (!error || typeof error !== "object") {
+    return { message: String(error) };
+  }
+  const e = error as PostgrestLikeError;
+  return {
+    code: e.code,
+    message: e.message,
+    details: e.details ?? null,
+    hint: e.hint ?? null,
+  };
+}
+
+/** Schema-cache miss: table not applied yet — quiet empty fallback. */
+function isMissingRelation(error: unknown): boolean {
+  const code = (error as PostgrestLikeError | null)?.code;
+  return code === "PGRST205" || code === "42P01";
+}
+
+function logStudyPathError(label: string, error: unknown) {
+  if (isMissingRelation(error)) return;
+  console.error(label, formatSupabaseError(error));
+}
 
 /**
  * Get all published study paths for the hub
@@ -27,7 +57,7 @@ export async function getStudyPaths(locale: "en" | "es"): Promise<StudyPath[]> {
     .order("sort_order", { ascending: true });
 
   if (error) {
-    console.error("[getStudyPaths] Supabase error:", error);
+    logStudyPathError("[getStudyPaths] Supabase error:", error);
     return [];
   }
 
@@ -58,7 +88,7 @@ export async function getStudyPathWithSteps(
     .single();
 
   if (pathError || !pathData) {
-    console.error("[getStudyPathWithSteps] Path not found:", pathError);
+    logStudyPathError("[getStudyPathWithSteps] Path not found:", pathError);
     return null;
   }
 
@@ -75,7 +105,7 @@ export async function getStudyPathWithSteps(
     .order("step_order", { ascending: true });
 
   if (stepsError) {
-    console.error("[getStudyPathWithSteps] Steps error:", stepsError);
+    logStudyPathError("[getStudyPathWithSteps] Steps error:", stepsError);
     return null;
   }
 
@@ -125,7 +155,7 @@ export async function getArticleRelations(
   const { data, error } = await query;
 
   if (error) {
-    console.error("[getArticleRelations] Error:", error);
+    logStudyPathError("[getArticleRelations] Error:", error);
     return [];
   }
 
@@ -155,7 +185,7 @@ export async function getArticleStudyPaths(articleId: string, locale: "en" | "es
     .eq("article_id", articleId);
 
   if (error) {
-    console.error("[getArticleStudyPaths] Error:", error);
+    logStudyPathError("[getArticleStudyPaths] Error:", error);
     return [];
   }
 
