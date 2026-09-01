@@ -15,6 +15,7 @@ type Props = {
   groups: DashboardNavGroup[];
   headerAction?: React.ReactNode;
   contentClassName?: string;
+  compactSidebar?: boolean;
   children: React.ReactNode;
 };
 
@@ -27,6 +28,7 @@ export function DashboardShell({
   groups,
   headerAction,
   contentClassName,
+  compactSidebar = false,
   children,
 }: Props) {
   return (
@@ -36,9 +38,10 @@ export function DashboardShell({
         productName={productName}
         productTagline={productTagline}
         groups={groups}
+        compact={compactSidebar}
       />
-      <SidebarInset>
-        <header className="sticky top-0 z-10 flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background px-4">
+      <SidebarInset className="min-h-0 overflow-hidden">
+        <header className="z-10 flex h-16 shrink-0 items-center gap-3 border-b border-border bg-background px-4">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-1 h-4" />
           <div className="min-w-0 flex-1">
@@ -51,7 +54,7 @@ export function DashboardShell({
           </div>
           {headerAction ? <div className="shrink-0">{headerAction}</div> : null}
         </header>
-        <div className={cn("flex min-h-0 flex-1 flex-col p-4 md:p-6", contentClassName)}>
+        <div className={cn("flex min-h-0 flex-1 flex-col overflow-y-auto p-4 md:p-6", contentClassName)}>
           {children}
         </div>
       </SidebarInset>

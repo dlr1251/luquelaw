@@ -360,7 +360,7 @@ export function ClkrBrowser({ articles, locale = "en" }: Props) {
 
   return (
     <div className="space-y-10">
-      <div className="sticky top-[calc(6.75rem+env(safe-area-inset-top,0px))] z-10 -mx-1 border-b border-[color:var(--moss)]/20 bg-[color:var(--background)]/95 px-1 py-2 backdrop-blur-sm">
+      <div className="sticky top-[calc(4rem+env(safe-area-inset-top,0px))] z-10 -mx-1 border-b border-[color:var(--moss)]/20 bg-[color:var(--background)]/95 px-1 py-2 backdrop-blur-sm">
         <div className="flex flex-col gap-2 lg:flex-row lg:items-center">
           <div className="relative min-w-0 flex-1">
             <label htmlFor="clkr-guides-search" className="sr-only">

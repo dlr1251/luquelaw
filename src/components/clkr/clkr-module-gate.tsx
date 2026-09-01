@@ -2,7 +2,6 @@ import Link from "next/link";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { loginHref } from "@/lib/auth/safe-next";
 import type { ClkrHubLocale } from "@/lib/clkr/hub-content";
@@ -45,7 +44,6 @@ export function ClkrModuleGate({ locale = "en", lockedReason = "auth" }: Props) 
 
   return (
     <main className="flex-1">
-      <ClkrProductNav locale={locale} signedIn={lockedReason !== "auth"} />
       <ClkrModuleHero
         locale={locale}
         eyebrow={t.eyebrow}

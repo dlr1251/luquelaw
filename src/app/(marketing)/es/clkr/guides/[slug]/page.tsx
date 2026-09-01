@@ -14,7 +14,7 @@ import {
   getPublishedPromptsByArticle,
   getPublishedSkillsByArticle,
 } from "@/lib/agents/get-agents";
-import { getArticleStudyPaths, getArticleRelations } from "@/lib/clkr/get-study-paths";
+import { getArticleRelations } from "@/lib/clkr/get-study-paths";
 import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildClkrArticleMetadata } from "@/lib/seo/metadata";
@@ -48,12 +48,11 @@ export default async function ClkrArticleEsPage({ params }: Props) {
     notFound();
   }
 
-  const [related, prerequisites, nextSteps, studyPaths, linkedPrompts, linkedSkills, saved, navArticles] =
+  const [related, prerequisites, nextSteps, linkedPrompts, linkedSkills, saved, navArticles] =
     await Promise.all([
       getRelatedArticlesForArticle(article.id, slug, locale),
       getArticleRelations(article.id, "prerequisite"),
       getArticleRelations(article.id, "next_step"),
-      getArticleStudyPaths(article.id, locale),
       getPublishedPromptsByArticle(slug, locale),
       getPublishedSkillsByArticle(slug, locale),
       isSaved("guide", slug, locale),
@@ -78,11 +77,6 @@ export default async function ClkrArticleEsPage({ params }: Props) {
         navArticles={navArticles}
         prerequisites={prerequisites.map((rel) => rel.to_article)}
         nextSteps={nextSteps.map((rel) => rel.to_article)}
-        studyPaths={studyPaths.map((path) => ({
-          id: path.id,
-          slug: path.slug,
-          title: path.title,
-        }))}
         linkedPrompts={linkedPrompts}
         linkedSkills={linkedSkills}
         headerAction={

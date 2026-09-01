@@ -187,10 +187,18 @@ function Sidebar({
           data-sidebar="sidebar"
           data-slot="sidebar"
           data-mobile="true"
-          className="w-(--sidebar-width) bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+          className="w-(--sidebar-width) bg-white p-0 text-[#191b1e] [&>button]:hidden"
           style={
             {
               "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
+              "--sidebar": "#ffffff",
+              "--sidebar-foreground": "#191b1e",
+              "--sidebar-accent": "#e8ebf0",
+              "--sidebar-accent-foreground": "#1c1f24",
+              "--sidebar-border": "#cfd5dd",
+              "--sidebar-primary": "#1c1f24",
+              "--sidebar-primary-foreground": "#ffffff",
+              "--sidebar-ring": "#e4bb00",
             } as React.CSSProperties
           }
           side={side}
@@ -207,7 +215,7 @@ function Sidebar({
 
   return (
     <div
-      className="group peer hidden text-sidebar-foreground md:block"
+      className="group peer hidden h-full text-sidebar-foreground md:block"
       data-state={state}
       data-collapsible={state === "collapsed" ? collapsible : ""}
       data-variant={variant}
@@ -218,7 +226,7 @@ function Sidebar({
       <div
         data-slot="sidebar-gap"
         className={cn(
-          "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
+          "relative h-full w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
           "group-data-[collapsible=offcanvas]:w-0",
           "group-data-[side=right]:rotate-180",
           variant === "floating" || variant === "inset"

@@ -1,10 +1,8 @@
 import { notFound } from "next/navigation";
 
 import { LibraryDetailView } from "@/components/agents/library-detail-view";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { getPublishedSkillBySlug } from "@/lib/agents/get-agents";
-import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { clkrLibraryPath, clkrPublicPath } from "@/lib/clkr/types";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -12,10 +10,7 @@ type Props = { params: Promise<{ slug: string }> };
 export default async function SkillDetailEsPage({ params }: Props) {
   const { slug } = await params;
   const locale = "es" as const;
-  const [skill, signedIn] = await Promise.all([
-    getPublishedSkillBySlug(slug, locale),
-    getSignedInFlag(),
-  ]);
+  const skill = await getPublishedSkillBySlug(slug, locale);
 
   if (!skill) notFound();
 
@@ -25,7 +20,6 @@ export default async function SkillDetailEsPage({ params }: Props) {
 
   return (
     <main className="flex-1">
-      <ClkrProductNav locale={locale} signedIn={signedIn} />
       <Container className="py-12 sm:py-14">
         <LibraryDetailView
           title={skill.title}

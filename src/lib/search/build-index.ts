@@ -13,8 +13,7 @@ import type { SearchLocale, SiteSearchItem } from "./types";
 
 const PAGE_TITLES: Record<string, { en: string; es: string }> = {
   "/": { en: "Home", es: "Inicio" },
-  "/clkr": { en: "Legal resources", es: "Recursos legales" },
-  "/clkr/guides": { en: "CLKR articles", es: "Artículos CLKR" },
+  "/clkr": { en: "CLKR articles", es: "Artículos CLKR" },
   "/clkr/norms": { en: "Norms catalog", es: "Normograma" },
   "/clkr/library": { en: "Skills & prompts", es: "Skills y prompts" },
   "/clkr/agents": { en: "Agents", es: "Agentes" },
@@ -25,11 +24,30 @@ const PAGE_TITLES: Record<string, { en: string; es: string }> = {
   "/services": { en: "Services", es: "Servicios" },
 };
 
+const PAGE_KEYWORDS: Record<string, string[]> = {
+  "/clkr": ["clkr", "guides", "guias", "artículos", "articles"],
+  "/clkr/norms": [
+    "norma",
+    "normas",
+    "normograma",
+    "laws",
+    "statutes",
+    "codigo",
+    "código",
+    "constitucion",
+    "constitución",
+  ],
+  "/clkr/library": ["library", "biblioteca", "prompts", "skills", "lucy"],
+  "/posts": ["blog", "posts", "noticias"],
+  "/pricing": ["pricing", "planes", "precios", "rates", "fees"],
+  "/services": ["services", "servicios", "practice", "areas"],
+  "/about": ["about", "nosotros", "team", "equipo"],
+};
+
 function pageSeoDescription(enPath: string, locale: SearchLocale): string {
   const keyMap: Record<string, keyof typeof PAGE_SEO> = {
     "/": "home",
-    "/clkr": "clkrHub",
-    "/clkr/guides": "clkrGuides",
+    "/clkr": "clkrGuides",
     "/clkr/norms": "normsHub",
     "/clkr/library": "clkrLibrary",
     "/posts": "postsHub",
@@ -70,6 +88,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       href: pair.en,
       type: pair.en.includes("/services/") || pair.en === "/services" ? "service" : "page",
       locale: "en",
+      keywords: PAGE_KEYWORDS[pair.en],
     });
     items.push({
       id: `page:es:${pair.es}`,
@@ -78,6 +97,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       href: pair.es,
       type: pair.es.includes("/servicios/") || pair.es === "/es/servicios" ? "service" : "page",
       locale: "es",
+      keywords: PAGE_KEYWORDS[pair.en],
     });
   }
 
@@ -93,6 +113,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       href: clkrGuidesHubPath(locale),
       type: "article",
       locale,
+      keywords: ["clkr", "guides", "guias", "artículos", "articles"],
     });
     items.push({
       id: `hub:library:${locale}`,
@@ -104,6 +125,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       href: clkrLibraryPath(locale),
       type: "page",
       locale,
+      keywords: ["library", "biblioteca", "prompts", "skills", "lucy"],
     });
     items.push({
       id: `hub:norms:${locale}`,
@@ -115,6 +137,17 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
       href: normsHubPath(locale),
       type: "norm",
       locale,
+      keywords: [
+        "norma",
+        "normas",
+        "normograma",
+        "laws",
+        "statutes",
+        "codigo",
+        "código",
+        "constitucion",
+        "constitución",
+      ],
     });
   }
 
@@ -200,6 +233,7 @@ export async function buildSiteSearchIndex(): Promise<SiteSearchItem[]> {
     href: "/portal/lucy",
     type: "torny",
     locale: "all",
+    keywords: ["lucy", "torny", "ai", "assistant", "asistente"],
   });
 
   // Dedupe by id (hubs may overlap static pairs)

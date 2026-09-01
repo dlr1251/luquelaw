@@ -65,25 +65,28 @@ type Props = {
   productName: string;
   productTagline: string;
   groups: DashboardNavGroup[];
+  compact?: boolean;
 };
 
 const itemClass =
   "rounded-none font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.1em] hover:bg-surface hover:text-[color:var(--forest)] data-active:bg-surface data-active:font-medium data-active:text-[color:var(--forest)] data-active:shadow-[inset_2px_0_0_var(--moss)]";
 
-export function AppSidebar({ email, productName, groups }: Props) {
+export function AppSidebar({ email, productName, groups, compact = false }: Props) {
   const pathname = usePathname();
 
   return (
     <Sidebar collapsible="icon">
-      <SidebarHeader className="border-b border-sidebar-border px-3 py-4">
-        <p className="px-2 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.16em] text-[color:var(--moss)] group-data-[collapsible=icon]:hidden">
-          {productName}
-        </p>
-      </SidebarHeader>
+      {compact ? null : (
+        <SidebarHeader className="border-b border-sidebar-border px-3 py-4">
+          <p className="px-2 font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.16em] text-[color:var(--moss)] group-data-[collapsible=icon]:hidden">
+            {productName}
+          </p>
+        </SidebarHeader>
+      )}
 
       <SidebarContent>
         {groups.map((group) => (
-          <SidebarGroup key={group.label}>
+          <SidebarGroup key={group.label} className={compact ? "p-1.5" : undefined}>
             <SidebarGroupLabel className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.14em] text-muted-foreground">
               {group.label}
             </SidebarGroupLabel>

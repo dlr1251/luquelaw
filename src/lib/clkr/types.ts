@@ -89,7 +89,11 @@ export const NOTION_MODULE_TO_CATEGORY: Record<string, ClkrCategory> = {
 };
 
 export function clkrGuidesHubPath(locale: "en" | "es"): string {
-  return locale === "es" ? "/es/clkr/guides" : "/clkr/guides";
+  return locale === "es" ? "/es/clkr" : "/clkr";
+}
+
+export function clkrAgentsPath(locale: "en" | "es"): string {
+  return locale === "es" ? "/es/clkr/agents" : "/clkr/agents";
 }
 
 export function clkrPublicPath(slugKey: string, locale: "en" | "es"): string {

@@ -1,36 +1,24 @@
 import { BookOpen, Layers } from "lucide-react";
-
 import { Suspense } from "react";
 
 import { ClkrBrowser } from "@/components/clkr/clkr-browser";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
-import { StudyPathsSection } from "@/components/clkr/study-paths-section";
 import { Container } from "@/components/container";
 import type { ClkrArticle } from "@/lib/clkr/articles";
-import type { StudyPath } from "@/lib/clkr/types";
 import { clkrHubContent, type ClkrHubLocale } from "@/lib/clkr/hub-content";
 
 type Props = {
   articles: ClkrArticle[];
-  studyPaths?: StudyPath[];
   locale?: ClkrHubLocale;
-  signedIn?: boolean;
 };
 
-export function ClkrHub({
-  articles,
-  studyPaths = [],
-  locale = "en",
-  signedIn = false,
-}: Props) {
+export function ClkrHub({ articles, locale = "en" }: Props) {
   const copy = clkrHubContent[locale];
   const topicCount = new Set(articles.map((a) => a.category)).size;
 
   return (
     <main className="flex-1">
-      <ClkrProductNav locale={locale} signedIn={signedIn} />
       <ClkrModuleHero
         locale={locale}
         eyebrow={copy.eyebrow}
@@ -92,8 +80,6 @@ export function ClkrHub({
           </div>
         </Container>
       </section>
-
-      <StudyPathsSection paths={studyPaths} locale={locale} />
 
       <Container className="py-14 sm:py-16">
         <div className="mb-10 max-w-2xl space-y-2">

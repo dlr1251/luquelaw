@@ -1,6 +1,5 @@
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { Suspense } from "react";
 
@@ -11,15 +10,13 @@ import { normsHubContent, type NormsHubLocale } from "@/lib/norms/hub-content";
 type Props = {
   norms: NormCatalogItem[];
   locale?: NormsHubLocale;
-  signedIn?: boolean;
 };
 
-export function NormsHub({ norms, locale = "en", signedIn = false }: Props) {
+export function NormsHub({ norms, locale = "en" }: Props) {
   const copy = normsHubContent[locale];
 
   return (
     <main className="flex-1">
-      <ClkrProductNav locale={locale} signedIn={signedIn} />
       <ClkrModuleHero
         locale={locale}
         eyebrow={copy.eyebrow}

@@ -8,6 +8,8 @@ import { usePathname } from "next/navigation";
 import { useBookingModal } from "@/components/booking/BookingProvider";
 import { SiteSearchTrigger } from "@/components/search/site-search-trigger";
 import { LanguageSwitch } from "@/components/language-switch";
+import { loginHref } from "@/lib/auth/safe-next";
+import { clkrAgentsPath, clkrLibraryPath } from "@/lib/clkr/types";
 import { localeFromPathname } from "@/lib/locale/paths";
 import { normsHubPath } from "@/lib/norms/types";
 import { getServiceAreas } from "@/lib/services/content";
@@ -51,7 +53,9 @@ export function HeaderNav({
         services: "Servicios",
         allServices: "Todos los servicios",
         resources: "Recursos",
-        norms: "Normas",
+        norms: "Normograma",
+        library: "Skills y prompts",
+        agents: "Agentes",
         clkr: "CLKR",
         blog: "Blog",
         community: "Comunidad",
@@ -71,7 +75,9 @@ export function HeaderNav({
         services: "Services",
         allServices: "All services",
         resources: "Resources",
-        norms: "Norms",
+        norms: "Norms catalog",
+        library: "Skills & prompts",
+        agents: "Agents",
         clkr: "CLKR",
         blog: "Blog",
         community: "Community",
@@ -95,8 +101,16 @@ export function HeaderNav({
   const serviceAreas = useMemo(() => getServiceAreas(locale), [locale]);
 
   const resourceItems = useMemo(
-    () => [{ href: normsHubPath(locale), label: copy.norms }],
-    [copy.norms, locale],
+    () => [
+      { href: normsHubPath(locale), label: copy.norms },
+      { href: clkrLibraryPath(locale), label: copy.library },
+      { href: clkrAgentsPath(locale), label: copy.agents },
+      {
+        href: signedIn ? "/portal/lucy" : loginHref("/portal/lucy", locale),
+        label: copy.torny,
+      },
+    ],
+    [copy.agents, copy.library, copy.norms, copy.torny, locale, signedIn],
   );
 
   const portalItems = useMemo(
@@ -106,8 +120,9 @@ export function HeaderNav({
       { href: "/portal/tickets", label: copy.tickets },
       { href: "/portal/saved", label: copy.saved },
       { href: "/portal/settings", label: copy.settings },
+      ...(isAdmin ? [{ href: "/admin/clkr", label: copy.admin }] : []),
     ],
-    [copy.portalHome, copy.saved, copy.settings, copy.tickets, copy.torny],
+    [copy.admin, copy.portalHome, copy.saved, copy.settings, copy.tickets, copy.torny, isAdmin],
   );
 
   const servicesActive =
@@ -121,11 +136,20 @@ export function HeaderNav({
     pathname === href || pathname.startsWith(`${href}/`);
 
   const clkrActive =
-    isPath(clkrHref) && !pathname.startsWith(`${prefix}/clkr/norms`);
+    pathname === clkrHref || pathname.startsWith(`${prefix}/clkr/guides`);
   const blogActive = isPath(postsHref);
   const communityActive = isPath(communityHref);
-  const resourcesActive = pathname.startsWith(`${prefix}/clkr/norms`);
-  const portalActive = pathname === "/portal" || pathname.startsWith("/portal/");
+  const resourcesActive =
+    pathname.startsWith(`${prefix}/clkr/norms`) ||
+    pathname.startsWith(`${prefix}/clkr/library`) ||
+    pathname.startsWith(`${prefix}/clkr/agents`) ||
+    pathname === "/portal/lucy" ||
+    pathname.startsWith("/portal/lucy/");
+  const portalActive =
+    pathname === "/portal" ||
+    (pathname.startsWith("/portal/") &&
+      pathname !== "/portal/lucy" &&
+      !pathname.startsWith("/portal/lucy/"));
   const adminActive = pathname === "/admin" || pathname.startsWith("/admin/");
 
   const primaryLinks = [
@@ -324,12 +348,12 @@ export function HeaderNav({
             {resourcesOpen ? (
               <div
                 id={resourcesMenuId}
-                className="absolute left-0 top-full z-50 min-w-[12rem] border border-border bg-card py-2 shadow-lg"
+                className="absolute left-0 top-full z-50 min-w-[14rem] border border-border bg-card py-2 shadow-lg"
                 role="menu"
               >
                 {resourceItems.map((item) => (
                   <Link
-                    key={item.label}
+                    key={item.href}
                     href={item.href}
                     role="menuitem"
                     className={menuItemClass}
@@ -538,7 +562,7 @@ export function HeaderNav({
                     <div className="pb-2 pl-2">
                       {resourceItems.map((item) => (
                         <Link
-                          key={item.label}
+                          key={item.href}
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
                           className="block px-4 py-2.5 font-[family-name:var(--font-ui)] text-sm text-[color:var(--parchment)]/70 transition hover:text-[color:var(--parchment)]"

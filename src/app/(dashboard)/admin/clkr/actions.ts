@@ -23,6 +23,8 @@ async function requireAdminSupabase() {
 function revalidateClkrPaths(slugKey: string) {
   revalidatePath("/clkr");
   revalidatePath("/es/clkr");
+  revalidatePath("/clkr");
+  revalidatePath("/es/clkr");
   revalidatePath("/clkr/guides");
   revalidatePath("/es/clkr/guides");
   revalidatePath(`/clkr/guides/${slugKey}`);

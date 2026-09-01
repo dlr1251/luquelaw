@@ -5,11 +5,10 @@ import type { ClkrArticle } from "@/lib/clkr/types";
 type Props = {
   prerequisites?: ClkrArticle[];
   nextSteps?: ClkrArticle[];
-  studyPaths?: Array<{ id: string; slug: string; title: string }>;
   locale?: "en" | "es";
 };
 
-export function ArticleNavigation({ prerequisites, nextSteps, studyPaths, locale = "en" }: Props) {
+export function ArticleNavigation({ prerequisites, nextSteps, locale = "en" }: Props) {
   const copy =
     locale === "es"
       ? {
@@ -17,8 +16,6 @@ export function ArticleNavigation({ prerequisites, nextSteps, studyPaths, locale
           prerequisitesDesc: "Se recomienda leer primero:",
           nextSteps: "Próximos pasos",
           nextStepsDesc: "Continúa tu aprendizaje con:",
-          studyPaths: "Parte de estas rutas",
-          viewPath: "Ver ruta completa",
           read: "Leer →",
         }
       : {
@@ -26,15 +23,11 @@ export function ArticleNavigation({ prerequisites, nextSteps, studyPaths, locale
           prerequisitesDesc: "Recommended reading first:",
           nextSteps: "Next steps",
           nextStepsDesc: "Continue your learning with:",
-          studyPaths: "Part of these learning paths",
-          viewPath: "View full path",
           read: "Read →",
         };
 
   const hasContent =
-    (prerequisites && prerequisites.length > 0) ||
-    (nextSteps && nextSteps.length > 0) ||
-    (studyPaths && studyPaths.length > 0);
+    (prerequisites && prerequisites.length > 0) || (nextSteps && nextSteps.length > 0);
 
   if (!hasContent) return null;
 
@@ -95,30 +88,6 @@ export function ArticleNavigation({ prerequisites, nextSteps, studyPaths, locale
                     strokeWidth={1.75}
                     aria-hidden="true"
                   />
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ) : null}
-
-      {studyPaths && studyPaths.length > 0 ? (
-        <section>
-          <div className="mb-3 flex items-center gap-2">
-            <BookOpen className="h-4 w-4 text-[color:var(--moss)]" strokeWidth={1.75} aria-hidden="true" />
-            <h3 className="font-[family-name:var(--font-ui)] text-[0.75rem] font-bold uppercase tracking-[0.12em] text-[color:var(--forest)]">
-              {copy.studyPaths}
-            </h3>
-          </div>
-          <ul className="space-y-2">
-            {studyPaths.map((path) => (
-              <li key={path.id}>
-                <Link
-                  href={path.slug}
-                  className="block border border-[color:var(--moss)]/35 bg-[color:var(--surface)] px-4 py-3 text-sm font-medium text-[color:var(--forest)] transition hover:border-[color:var(--moss)] hover:bg-[color:var(--card)]"
-                >
-                  {path.title}
-                  <span className="ml-2 text-xs text-muted-foreground">{copy.viewPath} →</span>
                 </Link>
               </li>
             ))}

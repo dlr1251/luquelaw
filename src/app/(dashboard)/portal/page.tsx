@@ -1,3 +1,4 @@
+import { isAppAdmin } from "@/lib/auth/is-admin";
 import { hasEntitlement, getSessionUserId } from "@/lib/billing/entitlements";
 import { ACTIVE_SUB_STATUSES } from "@/lib/billing/types";
 import { getLucyBalance } from "@/lib/lucy/wallet";
@@ -10,6 +11,13 @@ type Props = {
 export default async function PortalPage({ searchParams }: Props) {
   const { checkout, password } = await searchParams;
   const userId = await getSessionUserId();
+
+  let isAdmin = false;
+  if (isSupabaseConfigured()) {
+    const supabase = await createClient();
+    const { data } = await supabase.auth.getClaims();
+    isAdmin = isAppAdmin(data?.claims);
+  }
 
   const [agents, tickets, balanceCents, subscriptions] = await Promise.all([
     hasEntitlement("agents"),
@@ -119,6 +127,11 @@ export default async function PortalPage({ searchParams }: Props) {
           <a href="/pricing" className="btn-secondary btn-secondary-sm">
             Plans & billing
           </a>
+          {isAdmin ? (
+            <a href="/admin/clkr" className="btn-secondary btn-secondary-sm">
+              Admin
+            </a>
+          ) : null}
         </div>
       </section>
 

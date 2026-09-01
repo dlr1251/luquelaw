@@ -4,7 +4,6 @@ import { AgentsLibrary } from "@/components/agents/agents-library";
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
 import { ClkrModuleGate } from "@/components/clkr/clkr-module-gate";
 import { ClkrModuleHero } from "@/components/clkr/clkr-module-hero";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { getPublishedAgents } from "@/lib/agents/get-agents";
 import { requireEntitlement } from "@/lib/billing/entitlements";
@@ -40,7 +39,6 @@ export default async function ClkrAgentsEsPage() {
 
   return (
     <main className="flex-1">
-      <ClkrProductNav locale="es" signedIn />
       <ClkrModuleHero
         locale="es"
         eyebrow="CLKR · Agentes"

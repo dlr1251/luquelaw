@@ -32,7 +32,6 @@ type Props = {
   navArticles?: ClkrArticleNavItem[];
   prerequisites?: ClkrArticle[];
   nextSteps?: ClkrArticle[];
-  studyPaths?: Array<{ id: string; slug: string; title: string }>;
   linkedPrompts?: Array<{ slug: string; title: string; description: string; useCase?: string | null }>;
   linkedSkills?: Array<{ slug: string; title: string; description: string }>;
   headerAction?: ReactNode;
@@ -52,7 +51,6 @@ export function ClkrArticleLayout({
   navArticles = [],
   prerequisites = [],
   nextSteps = [],
-  studyPaths = [],
   linkedPrompts = [],
   linkedSkills = [],
   headerAction,
@@ -60,7 +58,6 @@ export function ClkrArticleLayout({
   const prefix = locale === "es" ? "/es" : "";
   const homeHref = locale === "es" ? "/es" : "/";
   const clkrHref = `${prefix}/clkr`;
-  const guidesHref = `${prefix}/clkr/guides`;
   const libraryHref = `${prefix}/clkr/library`;
   const contactHref = locale === "es" ? "/es#contact" : "/#contact";
 
@@ -69,7 +66,6 @@ export function ClkrArticleLayout({
       ? {
           home: "Inicio",
           hub: "CLKR",
-          guides: "Artículos",
           contents: "Contenido",
           mobileContents: "Tabla de contenido",
           related: "Otros artículos",
@@ -88,7 +84,6 @@ export function ClkrArticleLayout({
       : {
           home: "Home",
           hub: "CLKR",
-          guides: "Articles",
           contents: "Contents",
           mobileContents: "Table of contents",
           related: "More articles",
@@ -131,12 +126,6 @@ export function ClkrArticleLayout({
               <li>
                 <Link href={clkrHref} className="hover:text-[color:var(--forest)] hover:underline">
                   {copy.hub}
-                </Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <Link href={guidesHref} className="hover:text-[color:var(--forest)] hover:underline">
-                  {copy.guides}
                 </Link>
               </li>
               <li aria-hidden="true" className="max-sm:hidden">
@@ -227,7 +216,6 @@ export function ClkrArticleLayout({
             <ArticleNavigation
               prerequisites={prerequisites}
               nextSteps={nextSteps}
-              studyPaths={studyPaths}
               locale={locale}
             />
 

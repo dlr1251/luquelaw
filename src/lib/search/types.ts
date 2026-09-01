@@ -16,6 +16,8 @@ export type SiteSearchItem = {
   type: SiteSearchItemType;
   locale: SearchLocale | "all";
   category?: string;
+  /** Extra match terms (aliases, Spanish/English variants) — not shown in UI */
+  keywords?: string[];
 };
 
 export const SEARCH_TYPE_LABELS: Record<

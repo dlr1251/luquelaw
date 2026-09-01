@@ -17,16 +17,29 @@ import type { ClkrArticleRecord } from "@/lib/clkr/types";
 import { CLKR_CATEGORIES } from "@/lib/clkr/types";
 import { cn } from "@/lib/utils";
 
+type DraftDefaults = {
+  slug_key?: string;
+  category?: ClkrArticleRecord["category"];
+  sort_order?: number;
+};
+
 type Props = {
   article?: ClkrArticleRecord | null;
   locale: "en" | "es";
   saveAction: (formData: FormData) => Promise<void>;
   deleteAction?: (formData: FormData) => Promise<void>;
+  defaults?: DraftDefaults;
 };
 
 type EditorMode = "write" | "preview";
 
-export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }: Props) {
+export function ClkrArticleEditor({
+  article,
+  locale,
+  saveAction,
+  deleteAction,
+  defaults,
+}: Props) {
   const [markdown, setMarkdown] = useState(() =>
     article?.sections?.length ? sectionsToMarkdown(article.sections) : defaultArticleMarkdown(),
   );
@@ -71,7 +84,7 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
           <Input
             id="slug_key"
             name="slug_key"
-            defaultValue={article?.slug_key ?? ""}
+            defaultValue={article?.slug_key ?? defaults?.slug_key ?? ""}
             placeholder="investor-visa"
             pattern="[a-z0-9-]+"
             required
@@ -104,7 +117,7 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
           <select
             id="category"
             name="category"
-            defaultValue={article?.category ?? "Immigration"}
+            defaultValue={article?.category ?? defaults?.category ?? "Immigration"}
             className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
           >
             {CLKR_CATEGORIES.map((c) => (
@@ -144,7 +157,7 @@ export function ClkrArticleEditor({ article, locale, saveAction, deleteAction }:
             id="sort_order"
             name="sort_order"
             type="number"
-            defaultValue={article?.sort_order ?? 0}
+            defaultValue={article?.sort_order ?? defaults?.sort_order ?? 0}
           />
         </div>
       </div>

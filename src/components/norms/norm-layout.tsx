@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
 import { ClkrDisclaimer } from "@/components/clkr/clkr-disclaimer";
-import { ClkrProductNav } from "@/components/clkr/clkr-product-nav";
 import { Container } from "@/components/container";
 import { NormCopyMarkdownButton } from "@/components/norms/norm-copy-markdown-button";
 import { NormReaderBar } from "@/components/norms/norm-reader-bar";
@@ -108,8 +107,6 @@ export function NormLayout({
 
   return (
     <main className="flex-1 pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))] lg:pb-0">
-      <ClkrProductNav locale={locale} signedIn={signedIn} />
-
       {/* Compact norm chrome */}
       <section className="border-b border-[color:var(--moss)]/20 bg-[color:var(--forest)] text-[color:var(--parchment)]">
         <Container className="py-8 sm:py-10">

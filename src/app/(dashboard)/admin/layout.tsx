@@ -1,11 +1,13 @@
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import { AdminTopbar } from "@/components/admin/admin-topbar";
 import {
   adminNavGroups,
   resolveAdminPageMeta,
 } from "@/components/dashboard/dashboard-nav";
 import { DashboardShell } from "@/components/dashboard/dashboard-shell";
+import { getAdminTopbarStats } from "@/lib/admin/stats";
 import { isAppAdmin } from "@/lib/auth/is-admin";
 import { loginHref } from "@/lib/auth/safe-next";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
@@ -35,17 +37,24 @@ export default async function AdminLayout({
 
   const email = typeof data.claims.email === "string" ? data.claims.email : null;
   const page = resolveAdminPageMeta(pathname);
+  const stats = await getAdminTopbarStats();
 
   return (
-    <DashboardShell
-      email={email}
-      productName="Admin"
-      productTagline="CMS & operations"
-      pageTitle={page.title}
-      pageDescription={page.description}
-      groups={adminNavGroups}
-    >
-      {children}
-    </DashboardShell>
+    <>
+      <AdminTopbar stats={stats} />
+      <div id="main" className="flex min-h-0 flex-1 flex-col overflow-hidden">
+        <DashboardShell
+          email={email}
+          productName="Admin"
+          productTagline="CMS & operations"
+          pageTitle={page.title}
+          pageDescription={page.description}
+          groups={adminNavGroups}
+          compactSidebar
+        >
+          {children}
+        </DashboardShell>
+      </div>
+    </>
   );
 }

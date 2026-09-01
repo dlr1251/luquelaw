@@ -7,6 +7,7 @@ import {
   resolvePortalPageMeta,
 } from "@/components/dashboard/dashboard-nav";
 import { LucyWalletChip } from "@/components/lucy/lucy-wallet-chip";
+import { isAppAdmin } from "@/lib/auth/is-admin";
 import { loginHref } from "@/lib/auth/safe-next";
 import { getSessionUserId } from "@/lib/billing/entitlements";
 import { getLucyBalance } from "@/lib/lucy/wallet";
@@ -32,6 +33,7 @@ export default async function PortalLayout({
   }
 
   const email = typeof data.claims.email === "string" ? data.claims.email : null;
+  const isAdmin = isAppAdmin(data.claims);
   const page = resolvePortalPageMeta(pathname);
 
   const userId = await getSessionUserId();
@@ -45,7 +47,7 @@ export default async function PortalLayout({
       productTagline="Workspace"
       pageTitle={page.title}
       pageDescription={page.description}
-      groups={portalNavGroups()}
+      groups={portalNavGroups({ isAdmin })}
       headerAction={headerAction}
       contentClassName={
         /^\/portal\/lucy\/[^/]+\/[^/]+/.test(pathname)

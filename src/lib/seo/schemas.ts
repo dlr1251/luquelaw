@@ -71,12 +71,12 @@ export function clkrHubJsonLd(locale: SeoLocale) {
 
 export function clkrGuidesHubJsonLd(locale: SeoLocale) {
   const isEs = locale === "es";
-  const path = isEs ? "/es/clkr/guides" : "/clkr/guides";
+  const path = isEs ? "/es/clkr" : "/clkr";
 
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: isEs ? "Guías jurídicas" : "Legal guides",
+    name: isEs ? "CLKR — Artículos jurídicos" : "CLKR — Legal articles",
     url: `${SITE_URL}${path}`,
     inLanguage: isEs ? "es" : "en",
     isPartOf: {

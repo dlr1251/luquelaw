@@ -28,51 +28,58 @@ export type DashboardNavGroup = {
 };
 
 /** @deprecated Prefer portalNavGroups — kept for any leftover flat consumers */
-export const portalNavItems = (): DashboardNavItem[] =>
-  portalNavGroups().flatMap((g) => g.items);
+export const portalNavItems = (opts?: { isAdmin?: boolean }): DashboardNavItem[] =>
+  portalNavGroups(opts).flatMap((g) => g.items);
 
-export const portalNavGroups = (): DashboardNavGroup[] => [
-  {
-    label: "Workspace",
-    items: [
-      { href: "/portal", label: "Home", icon: "home" },
-      { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
-      { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
-      { href: "/portal/saved", label: "Saved", icon: "bookmark" },
-      { href: "/portal/settings", label: "Settings", icon: "settings" },
-    ],
-  },
-];
+export const portalNavGroups = (opts?: { isAdmin?: boolean }): DashboardNavGroup[] => {
+  const groups: DashboardNavGroup[] = [
+    {
+      label: "Workspace",
+      items: [
+        { href: "/portal", label: "Home", icon: "home" },
+        { href: "/portal/lucy", label: "Lucy AI", icon: "sparkles" },
+        { href: "/portal/tickets", label: "Tickets", icon: "ticket" },
+        { href: "/portal/saved", label: "Saved", icon: "bookmark" },
+        { href: "/portal/settings", label: "Settings", icon: "settings" },
+      ],
+    },
+  ];
+  if (opts?.isAdmin) {
+    groups.push({
+      label: "Firm",
+      items: [{ href: "/admin/clkr", label: "Admin", icon: "layout-dashboard" }],
+    });
+  }
+  return groups;
+};
 
 export const adminNavGroups: DashboardNavGroup[] = [
   {
     label: "Content",
     items: [
-      { href: "/admin/posts", label: "Blog – News", icon: "book-open" },
-      { href: "/admin/visas", label: "Visas", icon: "scroll-text" },
-      { href: "/admin/clkr", label: "CLKR", icon: "file-text" },
+      { href: "/admin/clkr", label: "Articles", icon: "file-text" },
       { href: "/admin/norms", label: "Norms", icon: "scale" },
-      { href: "/admin/commentaries", label: "Legal Commentaries", icon: "message-square" },
+      { href: "/admin/posts", label: "Blog", icon: "book-open" },
+      { href: "/admin/visas", label: "Visas", icon: "scroll-text" },
+      { href: "/admin/commentaries", label: "Commentaries", icon: "message-square" },
     ],
   },
   {
-    label: "Community",
-    items: [
-      { href: "/admin/community", label: "Forum", icon: "users" },
-      { href: "/admin/comments", label: "Moderation", icon: "shield" },
-    ],
-  },
-  {
-    label: "Legal AI",
+    label: "Library",
     items: [
       { href: "/admin/agents", label: "Agents", icon: "bot" },
-      { href: "/admin/prompts", label: "Prompts Arena", icon: "scroll-text" },
+      { href: "/admin/prompts", label: "Prompts", icon: "scroll-text" },
       { href: "/admin/skills", label: "Skills", icon: "sparkles" },
     ],
   },
   {
     label: "Operations",
-    items: [{ href: "/admin/tickets", label: "Tickets & reviews", icon: "ticket" }],
+    items: [
+      { href: "/admin/users", label: "Users", icon: "users" },
+      { href: "/admin/tickets", label: "Tickets", icon: "ticket" },
+      { href: "/admin/community", label: "Forum", icon: "bookmark" },
+      { href: "/admin/comments", label: "Moderation", icon: "shield" },
+    ],
   },
 ];
 
@@ -117,7 +124,10 @@ export function resolvePortalPageMeta(pathname: string): DashboardPageMeta {
 
 export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   if (pathname.startsWith("/admin/tickets")) {
-    return { title: "Tickets & reviews", description: "Queue and Lucy AI consultation reviews" };
+    return { title: "Tickets", description: "Queue and Lucy AI consultation reviews" };
+  }
+  if (pathname.startsWith("/admin/users")) {
+    return { title: "Users", description: "Portal accounts and CMS access" };
   }
   if (pathname === "/admin/comments" || pathname.startsWith("/admin/comments/")) {
     return { title: "Moderation", description: "Norm discussion moderation" };
@@ -126,7 +136,7 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
     return { title: "Forum", description: "Community questions and reports" };
   }
   if (pathname.startsWith("/admin/commentaries")) {
-    return { title: "Legal Commentaries", description: "Firm doctrinal notes on norm sections" };
+    return { title: "Commentaries", description: "Firm doctrinal notes on norm sections" };
   }
   if (pathname.startsWith("/admin/norms")) {
     return { title: "Norms", description: "Statute catalog CMS" };
@@ -136,7 +146,7 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   }
   if (pathname.startsWith("/admin/prompts")) {
     return {
-      title: "Prompts Arena",
+      title: "Prompts",
       description: "Curated prompts for the public library",
     };
   }
@@ -147,7 +157,7 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
     };
   }
   if (pathname.startsWith("/admin/posts")) {
-    return { title: "Blog – News", description: "Posts CMS" };
+    return { title: "Blog", description: "Posts CMS" };
   }
   if (pathname.startsWith("/admin/visas")) {
     return {
@@ -155,8 +165,8 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
       description: "Visa categories CMS (Resolución 5477)",
     };
   }
-  if (pathname.startsWith("/admin/clkr")) {
-    return { title: "CLKR", description: "CLKR articles CMS" };
+  if (pathname.startsWith("/admin/clkr") || pathname === "/admin" || pathname === "/admin/") {
+    return { title: "Articles", description: "CLKR guides CMS" };
   }
   return { title: "Administration", description: "Site & content CMS" };
 }
