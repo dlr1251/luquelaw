@@ -1,8 +1,11 @@
 import { HomePage } from "@/components/home/home-page";
 import { JsonLd } from "@/lib/seo/json-ld";
+import { loadHomeReading } from "@/lib/home/load-reading";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 import { PAGE_SEO } from "@/lib/seo/config";
 import { homeJsonLd } from "@/lib/seo/schemas";
+
+export const revalidate = 60;
 
 export const metadata = buildPageMetadata({
   title: PAGE_SEO.home.en.title,
@@ -11,11 +14,12 @@ export const metadata = buildPageMetadata({
   locale: "en",
 });
 
-export default function Home() {
+export default async function Home() {
+  const { articles, posts } = await loadHomeReading("en");
   return (
     <>
       <JsonLd data={homeJsonLd("en")} />
-      <HomePage locale="en" />
+      <HomePage locale="en" articles={articles} posts={posts} />
     </>
   );
 }

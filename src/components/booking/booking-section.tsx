@@ -1,22 +1,15 @@
-"use client";
+import type { ReactNode } from "react";
 
-import { useBookingModal } from "@/components/booking/BookingProvider";
 import { Container } from "@/components/container";
 
 type Props = {
-  buttonLabel: string;
+  children: ReactNode;
 };
 
-export function BookingSection({ buttonLabel }: Props) {
-  const { open } = useBookingModal();
-
+export function BookingSection({ children }: Props) {
   return (
     <section id="book" className="scroll-mt-28 border-b border-border bg-surface">
-      <Container className="flex justify-center py-8 sm:py-10">
-        <button type="button" onClick={open} className="btn-primary btn-primary-lg w-full sm:w-auto">
-          {buttonLabel}
-        </button>
-      </Container>
+      <Container className="py-8 sm:py-10 lg:py-14">{children}</Container>
     </section>
   );
 }

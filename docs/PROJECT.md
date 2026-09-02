@@ -39,7 +39,8 @@ Living guide for humans and AI agents. **No fixed dates** — work proceeds by p
 |------|------------------|--------|-------|
 | **CLKR hub** | `/clkr`, `/es/clkr` | Public | Three-module landing |
 | **CLKR Guide** | `/clkr/guides/[slug]` | Public when `published` | Long guides, JSON sections + TOC |
-| **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser (includes Estatuto Tributario; judgments still pending) |
+| **Norm** | `/clkr/norms/[slug]/...` | Public when `published` | Hierarchical statute browser (ET with DIAN apparatus; DUR 1625 and tax-reform laws in catalog) |
+| **Authority record** | `/clkr/authorities/[slug]` | Public | Stub or ingested judgment / DIAN doctrine cited from the ET; official source at the foot. Not listed on the norms hub. |
 | **Agent / skill / prompt** | `/clkr/agents/...` | Entitlement `agents` | Curated LegalAI toolkit |
 | **Norm annotation** | on norm sections | Entitlement `norm_annotations` | Professional study notes |
 | **Doctrinal commentary** | on norm sections | Public when `published` | Firm notes; CMS `/admin/commentaries` |
@@ -236,8 +237,8 @@ Unique: `(slug_key, locale)`. RLS: public SELECT where `status = 'published'`; a
 | 2026-07 | Retired Quizzes module + Student plan from product surface |
 | 2026-07-23 | Torny on real `eve` package (`withEve`/`useEveAgent`); About account pitch; profile/saves; community forum |
 | 2026-08-14 | Product name **Lucy AI**; USD 10 signup credit; default model `google/gemini-2.5-flash-lite`; login lands in chat |
-| 2026-07 | Admin team (4) + doctrinal commentaries CMS; norms visual editor; Moderation polish |
+| 2026-09 | Estatuto Tributario from DIAN compilation with apparatus graph; unofficial U.S. desk translation (art. 10 first); `/clkr/authorities` stubs; DUR 1625 + tax-reform sisters in catalog |
 
 ---
 
-*Last updated: 2026-07 — update this file when completing roadmap items or changing product scope.*
+*Last updated: 2026-09 — update this file when completing roadmap items or changing product scope.*

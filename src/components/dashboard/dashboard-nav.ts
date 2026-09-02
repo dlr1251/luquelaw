@@ -62,6 +62,7 @@ export const adminNavGroups: DashboardNavGroup[] = [
       { href: "/admin/posts", label: "Blog", icon: "book-open" },
       { href: "/admin/visas", label: "Visas", icon: "scroll-text" },
       { href: "/admin/commentaries", label: "Commentaries", icon: "message-square" },
+      { href: "/admin/translation-notes", label: "Translator notes", icon: "scroll-text" },
     ],
   },
   {
@@ -134,6 +135,12 @@ export function resolveAdminPageMeta(pathname: string): DashboardPageMeta {
   }
   if (pathname.startsWith("/admin/community")) {
     return { title: "Forum", description: "Community questions and reports" };
+  }
+  if (pathname.startsWith("/admin/translation-notes")) {
+    return {
+      title: "Translator notes",
+      description: "Spot-check high-risk notes on the unofficial English desk translation",
+    };
   }
   if (pathname.startsWith("/admin/commentaries")) {
     return { title: "Commentaries", description: "Firm doctrinal notes on norm sections" };

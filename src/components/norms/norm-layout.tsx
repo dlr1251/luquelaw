@@ -9,10 +9,18 @@ import { Container } from "@/components/container";
 import { NormCopyMarkdownButton } from "@/components/norms/norm-copy-markdown-button";
 import { NormReaderBar } from "@/components/norms/norm-reader-bar";
 import { NormToc } from "@/components/norms/norm-toc";
+import { NormApparatus } from "@/components/norms/norm-apparatus";
+import { NormTranslationNotes } from "@/components/norms/norm-translation-notes";
 import { Prose } from "@/components/prose";
 import { findAdjacentContent, type TocNode } from "@/lib/norms/tree";
 import type { ClkrArticle } from "@/lib/clkr/articles";
 import { normsHubContent } from "@/lib/norms/hub-content";
+import type { ApparatusBox, TranslationNoteRecord } from "@/lib/norms/citations";
+import {
+  etDeskTranslationNotice,
+  resolveCitationHref,
+  rewriteDianHrefs,
+} from "@/lib/norms/citations";
 import type { NormCategory, NormType } from "@/lib/norms/types";
 import { normCategoryLabel, normTypeLabel } from "@/lib/norms/types";
 
@@ -24,6 +32,7 @@ type Props = {
   officialReference: string;
   officialSourceUrl?: string | null;
   locale?: "en" | "es";
+  slugKey?: string;
   signedIn?: boolean;
   sectionPath: string[];
   sectionTitle: string;
@@ -33,6 +42,9 @@ type Props = {
   children: ReactNode;
   headerAction?: ReactNode;
   relatedArticles?: ClkrArticle[];
+  readerHref?: string | null;
+  apparatus?: ApparatusBox[];
+  translationNotes?: TranslationNoteRecord[];
 };
 
 export function NormLayout({
@@ -43,6 +55,7 @@ export function NormLayout({
   officialReference,
   officialSourceUrl,
   locale = "en",
+  slugKey,
   signedIn = false,
   sectionPath,
   sectionTitle,
@@ -52,6 +65,9 @@ export function NormLayout({
   children,
   headerAction,
   relatedArticles = [],
+  readerHref = null,
+  apparatus = [],
+  translationNotes = [],
 }: Props) {
   const hubCopy = normsHubContent[locale];
   const prefix = locale === "es" ? "/es" : "";
@@ -94,6 +110,16 @@ export function NormLayout({
             "This section is a structural heading. Select a child section in the table of contents.",
         };
 
+  const rewrittenHtml = sectionHtml?.trim()
+    ? rewriteDianHrefs(sectionHtml, locale, (file, anchor) =>
+        resolveCitationHref({
+          locale,
+          dianFile: file,
+          dianAnchor: anchor,
+          authority: null,
+        }).href,
+      )
+    : sectionHtml;
   const activeTitle = findActiveTitle(toc, sectionPath);
   const { prev, next } = findAdjacentContent(toc, sectionPath.join("/"));
   const tocCopy = {
@@ -136,6 +162,21 @@ export function NormLayout({
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[color:var(--parchment)]/70 sm:text-base">
             {description}
           </p>
+          {slugKey === "estatuto-tributario" ? (
+            <p className="mt-2 max-w-2xl text-xs leading-relaxed text-[color:var(--parchment)]/55">
+              {etDeskTranslationNotice(locale)}
+            </p>
+          ) : null}
+          {readerHref ? (
+            <p className="mt-4">
+              <Link
+                href={readerHref}
+                className="font-[family-name:var(--font-ui)] text-[0.75rem] font-medium uppercase tracking-[0.08em] text-[color:var(--parchment)] underline-offset-4 hover:underline"
+              >
+                {hubCopy.readerMode} →
+              </Link>
+            </p>
+          ) : null}
 
           <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
             <span className="font-[family-name:var(--font-ui)] text-[0.625rem] font-medium uppercase tracking-[0.1em] text-[color:var(--parchment)]/50">
@@ -205,19 +246,21 @@ export function NormLayout({
                     locale={locale}
                     title={sectionTitle}
                     numberLabel={sectionNumberLabel}
-                    html={sectionHtml}
+                    html={rewrittenHtml}
                     className="shrink-0"
                     disabled={!sectionHtml?.trim()}
                   />
                 </header>
 
                 <Prose>
-                  {sectionHtml?.trim() ? (
-                    <div dangerouslySetInnerHTML={{ __html: sectionHtml }} />
+                  {rewrittenHtml?.trim() ? (
+                    <div dangerouslySetInnerHTML={{ __html: rewrittenHtml }} />
                   ) : (
                     <p className="text-sm text-muted-foreground">{copy.structural}</p>
                   )}
                 </Prose>
+                <NormApparatus boxes={apparatus} locale={locale} />
+                <NormTranslationNotes notes={translationNotes} locale={locale} />
                 {children}
               </article>
 

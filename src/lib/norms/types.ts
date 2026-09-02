@@ -118,6 +118,10 @@ export function normPublicPath(
   return `${base}/${sectionPath.join("/")}`;
 }
 
+export function normReaderPath(slugKey: string, locale: "en" | "es"): string {
+  return `${normPublicPath(slugKey, locale)}/read`;
+}
+
 export function recordToCatalogItem(row: NormRecord): NormCatalogItem {
   return {
     slug: normPublicPath(row.slug_key, row.locale),

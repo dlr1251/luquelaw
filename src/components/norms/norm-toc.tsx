@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState, type RefObject } from "react";
 import { ChevronRight, Search, X } from "lucide-react";
 
 import type { TocNode } from "@/lib/norms/tree";
+import { headingAfterDash } from "@/lib/norms/reader-display";
 import { cn } from "@/lib/utils";
 
 type Copy = {
@@ -241,6 +242,10 @@ function TocBranch({
 }) {
   const isOpen = forceOpen || expanded.has(node.pathKey);
   const hasKids = node.children.length > 0;
+  const tocExtra = node.hasContent
+    ? null
+    : headingAfterDash(node.title, node.numberLabel) ??
+      (node.numberLabel ? null : node.title);
 
   return (
     <li>
@@ -294,7 +299,7 @@ function TocBranch({
               {node.numberLabel}
             </span>
           ) : null}
-          <span className="line-clamp-2">{node.title}</span>
+          {tocExtra ? <span className="line-clamp-2">{tocExtra}</span> : null}
         </Link>
       </div>
 

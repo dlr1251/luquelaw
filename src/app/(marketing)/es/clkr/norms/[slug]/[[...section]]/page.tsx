@@ -9,6 +9,7 @@ import {
   getPublishedNormWithSections,
   getTranslationSlugKey,
 } from "@/lib/norms/get-norms";
+import { getApparatusForSections } from "@/lib/norms/get-apparatus";
 import {
   buildTocTree,
   defaultSectionPath,
@@ -18,7 +19,7 @@ import { getSignedInFlag } from "@/lib/auth/signed-in";
 import { getSessionUserId } from "@/lib/billing/entitlements";
 import { listCommentsForSection } from "@/lib/comments/queries";
 import { getHubArticlesByClkrCategories } from "@/lib/clkr/get-articles";
-import { normCategoryToClkrCategories, normPublicPath } from "@/lib/norms/types";
+import { normCategoryToClkrCategories, normPublicPath, normReaderPath } from "@/lib/norms/types";
 import { isSaved } from "@/lib/saves/actions";
 import { JsonLd } from "@/lib/seo/json-ld";
 import { buildNormMetadata } from "@/lib/seo/metadata";
@@ -82,13 +83,15 @@ export default async function NormPageEs({ params }: Props) {
   }
 
   const toc = buildTocTree(tree, slug, locale, canonicalPath);
-  const [signedIn, viewerUserId, doctrinal, saved, relatedArticles] = await Promise.all([
-    getSignedInFlag(),
-    getSessionUserId(),
-    getPublishedCommentariesForSection(active.id),
-    isSaved("norm", slug, locale),
-    getHubArticlesByClkrCategories(normCategoryToClkrCategories(norm.category), locale, 6),
-  ]);
+  const [signedIn, viewerUserId, doctrinal, saved, relatedArticles, apparatusMap] =
+    await Promise.all([
+      getSignedInFlag(),
+      getSessionUserId(),
+      getPublishedCommentariesForSection(active.id),
+      isSaved("norm", slug, locale),
+      getHubArticlesByClkrCategories(normCategoryToClkrCategories(norm.category), locale, 6),
+      getApparatusForSections([active.id], locale),
+    ]);
   const comments = await listCommentsForSection(active.id, viewerUserId);
   const currentPath = normPublicPath(slug, locale, canonicalPath);
 
@@ -97,6 +100,7 @@ export default async function NormPageEs({ params }: Props) {
       <JsonLd data={normJsonLd(norm, canonicalPath, active.title)} />
       <NormLayout
         locale={locale}
+        slugKey={slug}
         signedIn={signedIn}
         sectionPath={canonicalPath}
         sectionTitle={active.title}
@@ -121,6 +125,8 @@ export default async function NormPageEs({ params }: Props) {
           />
         }
         relatedArticles={relatedArticles}
+        readerHref={normReaderPath(slug, locale)}
+        apparatus={apparatusMap[active.id] ?? []}
       >
         <NormDoctrinalCommentaries
           commentaries={doctrinal}

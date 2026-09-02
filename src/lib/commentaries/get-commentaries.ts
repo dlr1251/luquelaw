@@ -6,6 +6,27 @@ import {
   mapDoctrinalCommentaryRow,
 } from "./types";
 
+export async function getPublishedCommentariesForNorm(
+  normId: string,
+): Promise<DoctrinalCommentaryRecord[]> {
+  if (!isSupabaseConfigured()) return [];
+
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("norm_doctrinal_commentaries")
+      .select("*")
+      .eq("norm_id", normId)
+      .eq("status", "published")
+      .order("sort_order", { ascending: true });
+
+    if (error || !data?.length) return [];
+    return data.map((row) => mapDoctrinalCommentaryRow(row));
+  } catch {
+    return [];
+  }
+}
+
 export async function getPublishedCommentariesForSection(
   sectionId: string,
 ): Promise<DoctrinalCommentaryRecord[]> {

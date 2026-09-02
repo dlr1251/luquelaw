@@ -26,6 +26,8 @@ export function Prose({ children, className }: Props) {
         "[&_blockquote]:mt-6 [&_blockquote]:border-l-2 [&_blockquote]:border-[color:var(--moss)] [&_blockquote]:pl-4 [&_blockquote]:text-muted-foreground",
         "[&_code]:bg-[color:var(--surface)] [&_code]:px-1.5 [&_code]:py-0.5 [&_code]:font-mono [&_code]:text-[13px]",
         "[&_hr]:my-10 [&_hr]:border-[color:var(--moss)]/35",
+        "[&_.dian-editor-note]:not-italic [&_.dian-editor-note]:text-[0.9em] [&_.dian-editor-note]:text-muted-foreground",
+        "[&_.dian-editor-note]:before:content-['['] [&_.dian-editor-note]:after:content-[']']",
         className,
       )}
     >

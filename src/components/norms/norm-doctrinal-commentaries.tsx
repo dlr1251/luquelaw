@@ -5,9 +5,10 @@ import { Prose } from "@/components/prose";
 type Props = {
   commentaries: DoctrinalCommentaryRecord[];
   locale: "en" | "es";
+  compact?: boolean;
 };
 
-export function NormDoctrinalCommentaries({ commentaries, locale }: Props) {
+export function NormDoctrinalCommentaries({ commentaries, locale, compact = false }: Props) {
   if (!commentaries.length) return null;
 
   const copy =
@@ -24,7 +25,13 @@ export function NormDoctrinalCommentaries({ commentaries, locale }: Props) {
         };
 
   return (
-    <aside className="mt-10 space-y-6 border-t border-[color:var(--moss)]/25 pt-8">
+    <aside
+      className={
+        compact
+          ? "mt-6 space-y-4 border-t border-[color:var(--moss)]/15 pt-5"
+          : "mt-10 space-y-6 border-t border-[color:var(--moss)]/25 pt-8"
+      }
+    >
       <div>
         <p className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-[color:var(--moss)]">
           {copy.eyebrow}

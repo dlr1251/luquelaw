@@ -55,6 +55,55 @@ export async function getHubPosts(locale: "en" | "es"): Promise<Post[]> {
   }
 }
 
+/** Latest published hub posts for marketing surfaces (no body). */
+export async function getLatestHubPosts(locale: "en" | "es", limit = 2): Promise<Post[]> {
+  const byDate = (a: Post, b: Post) => {
+    const da = a.publishedAt ? Date.parse(a.publishedAt) : 0;
+    const db = b.publishedAt ? Date.parse(b.publishedAt) : 0;
+    return db - da;
+  };
+
+  if (!isSupabaseConfigured()) {
+    return [...fallbackHub(locale)].sort(byDate).slice(0, limit);
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("posts")
+      .select("slug_key, locale, title, description, category, reading_time, published_at")
+      .eq("locale", locale)
+      .eq("status", "published")
+      .order("published_at", { ascending: false, nullsFirst: false })
+      .limit(limit);
+
+    if (error || !data?.length) {
+      return [...fallbackHub(locale)].sort(byDate).slice(0, limit);
+    }
+
+    return data.map((row) =>
+      recordToHubPost({
+        id: "",
+        slug_key: String(row.slug_key),
+        locale: row.locale as "en" | "es",
+        title: String(row.title),
+        description: String(row.description),
+        category: row.category as PostRecord["category"],
+        reading_time: String(row.reading_time),
+        sections: [],
+        status: "published",
+        sort_order: 0,
+        translation_group_id: null,
+        published_at: row.published_at ? String(row.published_at) : null,
+        created_at: "",
+        updated_at: "",
+      }),
+    );
+  } catch {
+    return [...fallbackHub(locale)].sort(byDate).slice(0, limit);
+  }
+}
+
 export async function getPublishedPost(
   slugKey: string,
   locale: "en" | "es",

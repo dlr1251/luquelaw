@@ -1,5 +1,5 @@
 import { clkrPublicPath } from "@/lib/clkr/types";
-import { normPublicPath } from "@/lib/norms/types";
+import { normPublicPath, normReaderPath } from "@/lib/norms/types";
 import { postPublicPath } from "@/lib/posts/types";
 import { alternateImmigrationPath } from "@/lib/practice-areas/paths";
 
@@ -141,6 +141,24 @@ export function buildNormLanguageAlternates(
     languages[otherLocale] = absoluteUrl(
       normPublicPath(translationSlugKey, otherLocale, sectionPath),
     );
+  }
+
+  return languages;
+}
+
+export function buildNormReaderLanguageAlternates(
+  slugKey: string,
+  locale: SeoLocale,
+  translationSlugKey?: string | null,
+): Record<string, string> {
+  const languages: Record<string, string> = {
+    [locale]: absoluteUrl(normReaderPath(slugKey, locale)),
+    "x-default": absoluteUrl(normReaderPath(slugKey, "en")),
+  };
+
+  if (translationSlugKey) {
+    const otherLocale = locale === "en" ? "es" : "en";
+    languages[otherLocale] = absoluteUrl(normReaderPath(translationSlugKey, otherLocale));
   }
 
   return languages;

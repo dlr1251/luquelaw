@@ -263,6 +263,50 @@ export async function getHubArticles(locale: "en" | "es"): Promise<ClkrArticle[]
   }
 }
 
+/** Latest published CLKR hub cards for marketing surfaces (no body). */
+export async function getLatestHubArticles(locale: "en" | "es", limit = 3): Promise<ClkrArticle[]> {
+  if (!isSupabaseConfigured()) {
+    return fallbackHub(locale).slice(0, limit);
+  }
+
+  try {
+    const supabase = await createClient();
+    const { data, error } = await supabase
+      .from("clkr_articles")
+      .select("slug_key, locale, title, description, category, reading_time, sort_order, published_at")
+      .eq("locale", locale)
+      .eq("status", "published")
+      .order("published_at", { ascending: false, nullsFirst: false })
+      .order("sort_order", { ascending: true })
+      .limit(limit);
+
+    if (error || !data?.length) {
+      return fallbackHub(locale).slice(0, limit);
+    }
+
+    return data.map((row) =>
+      recordToHubArticle({
+        id: "",
+        slug_key: String(row.slug_key),
+        locale: row.locale as "en" | "es",
+        title: String(row.title),
+        description: String(row.description),
+        category: row.category as ClkrArticleRecord["category"],
+        reading_time: String(row.reading_time),
+        sections: [],
+        status: "published",
+        sort_order: Number(row.sort_order) || 0,
+        translation_group_id: null,
+        published_at: row.published_at ? String(row.published_at) : null,
+        created_at: "",
+        updated_at: "",
+      }),
+    );
+  } catch {
+    return fallbackHub(locale).slice(0, limit);
+  }
+}
+
 function toNavItem(row: {
   slug_key: string;
   title: string;

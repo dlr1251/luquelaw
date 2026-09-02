@@ -119,6 +119,15 @@ export function sectionHref(
   return normPublicPath(slugKey, locale, path);
 }
 
+/** Stable in-page id for long-read anchors (`titulo-1/art-1` → `s-titulo-1--art-1`). */
+export function sectionAnchorId(pathKey: string): string {
+  return `s-${pathKey.replace(/\//g, "--")}`;
+}
+
+export function sectionAnchorHref(pathKey: string): string {
+  return `#${sectionAnchorId(pathKey)}`;
+}
+
 export type TocEntry = {
   id: string;
   title: string;
@@ -171,6 +180,7 @@ export function buildTocTree(
   slugKey: string,
   locale: "en" | "es",
   activePath: string[],
+  hrefMode: "page" | "anchor" = "page",
 ): TocNode[] {
   const activeKey = activePath.join("/");
 
@@ -182,7 +192,10 @@ export function buildTocTree(
         id: node.id,
         title: node.title,
         numberLabel: node.number_label,
-        href: sectionHref(slugKey, locale, path),
+        href:
+          hrefMode === "anchor"
+            ? sectionAnchorHref(pathKey)
+            : sectionHref(slugKey, locale, path),
         depth: node.depth,
         isActive: pathKey === activeKey,
         hasChildren: node.children.length > 0,

@@ -208,11 +208,11 @@ export function NormsBrowser({ norms, locale = "en" }: Props) {
               <ul className="divide-y divide-[color:var(--moss)]/15">
                 {items.map((norm) => (
                   <li key={norm.slug}>
-                    <Link
-                      href={norm.slug}
-                      className="group flex items-start gap-4 py-4 transition hover:bg-[color:var(--surface)]/60 sm:items-center sm:gap-6"
-                    >
-                      <div className="min-w-0 flex-1">
+                    <div className="flex items-start gap-4 py-4 sm:items-center sm:gap-6">
+                      <Link
+                        href={norm.slug}
+                        className="group min-w-0 flex-1"
+                      >
                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                           <span
                             className={cn(
@@ -238,13 +238,24 @@ export function NormsBrowser({ norms, locale = "en" }: Props) {
                         <p className="mt-1 font-[family-name:var(--font-ui)] text-[0.6875rem] text-muted-foreground sm:hidden">
                           {norm.officialReference}
                         </p>
+                      </Link>
+                      <div className="mt-1 flex shrink-0 flex-col items-end gap-2 sm:mt-0 sm:flex-row sm:items-center">
+                        {norm.normType === "constitution" ? (
+                          <Link
+                            href={`${norm.slug}/read`}
+                            className="font-[family-name:var(--font-ui)] text-[0.6875rem] font-medium uppercase tracking-[0.08em] text-[color:var(--forest)] underline-offset-2 hover:underline"
+                          >
+                            {locale === "es" ? "Leer de corrido" : "Read continuously"}
+                          </Link>
+                        ) : (
+                          <ArrowRight
+                            className="size-4 text-[color:var(--moss)]/50"
+                            strokeWidth={1.75}
+                            aria-hidden
+                          />
+                        )}
                       </div>
-                      <ArrowRight
-                        className="mt-1 size-4 shrink-0 text-[color:var(--moss)]/50 transition group-hover:translate-x-0.5 group-hover:text-[color:var(--forest)] sm:mt-0"
-                        strokeWidth={1.75}
-                        aria-hidden
-                      />
-                    </Link>
+                    </div>
                   </li>
                 ))}
               </ul>

@@ -1,0 +1,77 @@
+{
+  "residencia fiscal": {
+    "us": "tax residence",
+    "uk": "residence (fiscal residence)",
+    "note": "Not immigration status or a visa clock. DIAN looks at art. 10; Migración looks at stay."
+  },
+  "periodo gravable": {
+    "us": "taxable year",
+    "uk": "year of assessment",
+    "note": "Colombian calendar-year default unless the statute says otherwise."
+  },
+  "renta": {
+    "us": "taxable income",
+    "uk": "chargeable income",
+    "note": "Keep 'renta' in a gloss on first use in a title. Not 'rent'."
+  },
+  "ganancia ocasional": {
+    "us": "occasional gain",
+    "uk": "chargeable gain (occasional)",
+    "note": "A Colombian schedule, not UK CGT. Do not render as capital gains tax."
+  },
+  "impuesto sobre la renta": {
+    "us": "income tax",
+    "uk": "income tax",
+    "note": "The Colombian income tax on residents and, with limits, nonresidents."
+  },
+  "retención en la fuente": {
+    "us": "withholding tax",
+    "uk": "tax deducted at source",
+    "note": "Keep the Colombian mechanism visible; it is not U.S. backup withholding."
+  },
+  "contribuyente": {
+    "us": "taxpayer",
+    "uk": "taxpayer",
+    "note": "Natural or juridical person as the statute defines."
+  },
+  "responsable": {
+    "us": "liable person",
+    "uk": "person liable",
+    "note": "Not always the taxpayer. VAT and withholding have 'responsables'."
+  },
+  "persona natural": {
+    "us": "individual",
+    "uk": "individual",
+    "note": "Prefer 'individual' over 'natural person' in running text; keep the Spanish on first mention."
+  },
+  "persona jurídica": {
+    "us": "legal entity",
+    "uk": "body corporate",
+    "note": "Do not default to 'corporation'; Colombian entities are broader than U.S. C-corps."
+  },
+  "sociedad nacional": {
+    "us": "domestic company",
+    "uk": "resident company",
+    "note": "Art. 12-1 tests. Not 'U.S. domestic corporation'."
+  },
+  "establecimiento permanente": {
+    "us": "permanent establishment",
+    "uk": "permanent establishment",
+    "note": "OECD term. Keep it. Do not invent a U.S. 'office or fixed place' paraphrase as the rule."
+  },
+  "declaración": {
+    "us": "tax return",
+    "uk": "return",
+    "note": "The filing, not a court declaration."
+  },
+  "sanción": {
+    "us": "penalty",
+    "uk": "penalty",
+    "note": "Administrative unless the provision is criminal."
+  },
+  "GMF": {
+    "us": "financial-transactions tax (GMF)",
+    "uk": "tax on financial movements (GMF)",
+    "note": "Keep the acronym. It is not a stamp duty."
+  }
+}

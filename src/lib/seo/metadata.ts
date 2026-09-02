@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { normPublicPath } from "@/lib/norms/types";
+import { normPublicPath, normReaderPath } from "@/lib/norms/types";
 
 import {
   DEFAULT_SEO,
@@ -13,6 +13,7 @@ import {
   absoluteUrl,
   buildClkrLanguageAlternates,
   buildNormLanguageAlternates,
+  buildNormReaderLanguageAlternates,
   buildPostLanguageAlternates,
   buildStaticLanguageAlternates,
   type SeoLocale,
@@ -208,6 +209,34 @@ export function buildNormMetadata(
       norm.slug_key,
       norm.locale,
       sectionPath,
+      translationSlugKey,
+    ),
+    ogType: "article",
+    publishedTime: norm.published_at,
+    modifiedTime: norm.updated_at,
+  });
+}
+
+export function buildNormReaderMetadata(
+  norm: {
+    title: string;
+    description: string;
+    slug_key: string;
+    locale: SeoLocale;
+    published_at: string | null;
+    updated_at: string;
+  },
+  translationSlugKey?: string | null,
+): Metadata {
+  const readerLabel = norm.locale === "es" ? "Lectura continua" : "Reader";
+  return buildPageMetadata({
+    title: `${readerLabel} · ${norm.title}`,
+    description: norm.description,
+    path: normReaderPath(norm.slug_key, norm.locale),
+    locale: norm.locale,
+    languageAlternates: buildNormReaderLanguageAlternates(
+      norm.slug_key,
+      norm.locale,
       translationSlugKey,
     ),
     ogType: "article",

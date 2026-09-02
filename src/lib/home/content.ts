@@ -45,16 +45,23 @@ export type HomeContent = {
     title: string;
     subtitle: string;
   };
-  booking: {
-    buttonLabel: string;
+  reading: {
+    eyebrow: string;
+    title: string;
+    body: string;
+    clkrLabel: string;
+    clkrAll: string;
+    blogLabel: string;
+    blogAll: string;
+    readLabel: string;
   };
 };
 
 const heroIntroEn =
-  "Visas, property, and business in Colombia — explained in plain language, in English or Spanish.";
+  "Visas, property, and business in Colombia — explained in English and Spanish.";
 
 const heroIntroEs =
-  "Visas, propiedad y negocios en Colombia: en lenguaje claro, en español o en inglés.";
+  "Visas, propiedad y negocios en Colombia: en español y en inglés.";
 
 const practiceAreasEn = [
   {
@@ -137,7 +144,7 @@ const practiceAreasEs = [
 export const homeContent: Record<HomeLocale, HomeContent> = {
   en: {
     eyebrow: "Immigration · Real Estate · Corporate",
-    title: "Colombian law for international clients.",
+    title: "Colombian Law for international clients.",
     intro: heroIntroEn,
     bookCta: "Book a consultation",
     clkrCta: "Explore CLKR",
@@ -182,10 +189,17 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     contactForm: {
       title: "Send a message",
-      subtitle: "We’ll get back to you as soon as we can. For urgent matters, use WhatsApp below.",
+      subtitle: "We’ll get back to you as soon as we can.",
     },
-    booking: {
-      buttonLabel: "45-minute initial consultation",
+    reading: {
+      eyebrow: "Reading",
+      title: "CLKR guides and blog notes",
+      body: "Longer guides on the rule. Shorter posts when the facts on the ground move.",
+      clkrLabel: "CLKR",
+      clkrAll: "All guides",
+      blogLabel: "Blog",
+      blogAll: "All posts",
+      readLabel: "Read",
     },
   },
   es: {
@@ -235,10 +249,17 @@ export const homeContent: Record<HomeLocale, HomeContent> = {
     },
     contactForm: {
       title: "Enviar un mensaje",
-      subtitle: "Te respondemos lo antes posible. Para asuntos urgentes, usa WhatsApp abajo.",
+      subtitle: "Te respondemos lo antes posible.",
     },
-    booking: {
-      buttonLabel: "Consulta inicial de 45 minutos",
+    reading: {
+      eyebrow: "Lectura",
+      title: "Guías CLKR y notas del blog",
+      body: "Guías más largas sobre la norma. Textos más cortos cuando cambia lo que se ve en la práctica.",
+      clkrLabel: "CLKR",
+      clkrAll: "Todas las guías",
+      blogLabel: "Blog",
+      blogAll: "Todos los artículos",
+      readLabel: "Leer",
     },
   },
 };

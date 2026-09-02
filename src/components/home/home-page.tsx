@@ -7,14 +7,19 @@ import { BookingSection } from "@/components/booking/booking-section";
 import { Container } from "@/components/container";
 import { EngagementModel } from "@/components/engagement/EngagementModel";
 import { HeroEngagementPanel } from "@/components/home/hero-engagement-panel";
+import { HomeReadingHighlight } from "@/components/home/home-reading-highlight";
 import { PracticeAreasPanel } from "@/components/home/practice-areas-panel";
+import type { ClkrArticle } from "@/lib/clkr/types";
 import { homeContent, type HomeLocale } from "@/lib/home/content";
+import type { Post } from "@/lib/posts/types";
 
 type Props = {
   locale: HomeLocale;
+  articles: ClkrArticle[];
+  posts: Post[];
 };
 
-export function HomePage({ locale }: Props) {
+export function HomePage({ locale, articles, posts }: Props) {
   const c = homeContent[locale];
   const { open: openBooking } = useBookingModal();
 
@@ -65,7 +70,15 @@ export function HomePage({ locale }: Props) {
         </Container>
       </section>
 
-      <BookingSection buttonLabel={c.booking.buttonLabel} />
+      <BookingSection>
+        <HomeReadingHighlight
+          articles={articles}
+          posts={posts}
+          copy={c.reading}
+          clkrHref={c.clkrHref}
+          postsHref={locale === "es" ? "/es/posts" : "/posts"}
+        />
+      </BookingSection>
 
       {/* Practice areas */}
       <section className="bg-background">
