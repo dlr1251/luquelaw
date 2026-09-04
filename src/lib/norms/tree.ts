@@ -21,7 +21,7 @@ export function buildSectionTree(sections: NormSectionRecord[]): NormSectionNode
   }
 
   const sortNodes = (list: NormSectionNode[]) => {
-    list.sort((a, b) => a.sort_order - b.sort_order || a.title.localeCompare(b.title));
+    list.sort(compareSectionSiblings);
     for (const node of list) {
       sortNodes(node.children);
     }
@@ -221,7 +221,43 @@ export function buildTocEntries(
   return flatten(buildTocTree(tree, slugKey, locale, activePath));
 }
 
+function articleNumParts(sectionKey: string): [number, number] | null {
+  const match = sectionKey.match(/^art-(\d+)(?:-(\d+))?$/i);
+  if (!match) return null;
+  return [Number(match[1]), Number(match[2] || 0)];
+}
+
+function compareSectionSiblings(a: NormSectionNode, b: NormSectionNode): number {
+  const byOrder = a.sort_order - b.sort_order;
+  if (byOrder) return byOrder;
+
+  const artA = articleNumParts(a.section_key);
+  const artB = articleNumParts(b.section_key);
+  if (artA && artB) return artA[0] - artB[0] || artA[1] - artB[1];
+  if (artA) return -1;
+  if (artB) return 1;
+
+  return a.title.localeCompare(b.title, "es");
+}
+
+function findFirstArticlePath(
+  nodes: NormSectionNode[],
+  ancestors: string[] = [],
+): string[] | null {
+  for (const node of nodes) {
+    const path = [...ancestors, node.section_key];
+    if (articleNumParts(node.section_key)) return path;
+    const nested = findFirstArticlePath(node.children, path);
+    if (nested) return nested;
+  }
+  return null;
+}
+
 export function defaultSectionPath(tree: NormSectionNode[]): string[] {
   if (!tree.length) return [];
+  const firstArticle = findFirstArticlePath(tree);
+  if (firstArticle) return firstArticle;
+  const overview = tree.find((node) => node.section_key === "overview");
+  if (overview) return [overview.section_key];
   return [tree[0].section_key];
 }

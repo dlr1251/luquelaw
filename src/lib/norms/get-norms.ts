@@ -89,19 +89,33 @@ export async function getPublishedNorm(
   }
 }
 
+/** PostgREST caps a single select at 1_000 rows. ET and the Civil Code exceed that. */
+const SECTION_PAGE_SIZE = 1000;
+
 export async function getNormSections(normId: string): Promise<NormSectionRecord[]> {
   if (!isSupabaseConfigured()) return [];
 
   try {
     const supabase = await createClient();
-    const { data, error } = await supabase
-      .from("norm_sections")
-      .select("*")
-      .eq("norm_id", normId)
-      .order("sort_order", { ascending: true });
+    const rows: Record<string, unknown>[] = [];
 
-    if (error || !data) return [];
-    return data.map((row) => mapSectionRow(row));
+    for (let from = 0; ; from += SECTION_PAGE_SIZE) {
+      const to = from + SECTION_PAGE_SIZE - 1;
+      const { data, error } = await supabase
+        .from("norm_sections")
+        .select("*")
+        .eq("norm_id", normId)
+        .order("sort_order", { ascending: true })
+        .order("id", { ascending: true })
+        .range(from, to);
+
+      if (error) return [];
+      if (!data?.length) break;
+      rows.push(...(data as Record<string, unknown>[]));
+      if (data.length < SECTION_PAGE_SIZE) break;
+    }
+
+    return rows.map((row) => mapSectionRow(row));
   } catch {
     return [];
   }
