@@ -44,9 +44,18 @@ export function getRootMetadata(): Metadata {
       siteName: SITE_NAME,
       locale: OG_LOCALE.en,
       alternateLocale: [OG_LOCALE.es],
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: `${SITE_NAME} — Colombian law for international clients`,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
+      images: ["/opengraph-image"],
     },
   };
 
@@ -101,6 +110,14 @@ export function buildPageMetadata({
       locale: OG_LOCALE[locale],
       alternateLocale: [alternateLocale],
       type: ogType,
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: `${SITE_NAME} — ${title}`,
+        },
+      ],
       ...(ogType === "article" && publishedTime
         ? {
             publishedTime,
@@ -112,6 +129,7 @@ export function buildPageMetadata({
       card: "summary_large_image",
       title,
       description,
+      images: ["/opengraph-image"],
     },
   };
 
