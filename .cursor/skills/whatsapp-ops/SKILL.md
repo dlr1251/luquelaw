@@ -9,7 +9,7 @@ description: >-
 
 # WhatsApp Ops (Barrido)
 
-Local Cursor execution of the Notion protocol. Source of truth (blacklist edits, hub views): [WhatsApp Ops](https://app.notion.com/p/3b1a689f002581c58c2bfc3452783fca). Full protocol: [Skill: WhatsApp Ops (Barrido)](https://app.notion.com/p/3b1a689f0025817bb4f8c03cfa6c054e).
+Local Cursor execution of the Notion protocol. Full protocol + cadence: [Skill: WhatsApp Ops (Sweep)](https://app.notion.com/p/3b1a689f0025817bb4f8c03cfa6c054e) (v1.3.0). Hub [WhatsApp Ops](https://app.notion.com/p/3b1a689f002581c58c2bfc3452783fca) is **archived** — do not unarchive from an org pass; its 08:00 / 11:00 / 15:00 / 20:00 times are stale. Blacklist snapshot: [reference.md](./reference.md).
 
 **Browser:** always use `browser-harness` (read that skill). Attach to **local** Chrome with WA Business already logged in. Do not use cloud browser (needs the firm session).
 

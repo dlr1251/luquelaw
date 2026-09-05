@@ -91,9 +91,9 @@ close or “clean up”:
 
 - Local Chrome only. Title badge lies; scout **All** + label
   `Pendientes por registrar en notion` + open Reviews.
-- Cadence in **this repo** (whatsapp-ops): 07:30 / 10:45 / 14:45 / 19:00
-  COT. The Notion skill page still says 10:00 / 15:00 / 17:00 — repo
-  wins for Cursor until that page is patched.
+- Cadence (repo + Notion skill v1.3.0): 07:30 / 10:45 / 14:45 / 19:00
+  COT. Four windows, not a tight loop. Cloud-only runs skip WA.
+  Archived hub still lists 08:00 / 11:00 / 15:00 / 20:00 — ignore.
 - Cloud agent on this Mac can attach if Chrome remote debugging is on.
 - Organización: scout + report is enough. Phase B (open chats / send)
   only in ejecución.
