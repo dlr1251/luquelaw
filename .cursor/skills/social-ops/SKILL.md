@@ -15,6 +15,36 @@ IG: `@luque_restrepo` (professional, linked to Page).
 FB: Page **Luque Law**.  
 Voice: [VOICE.md](../../VOICE.md). No Sunday Properties on Luque Law captions.
 Engagement model unchanged (45 min → Concepto + quote in 3 business days).
+Surface router: [ops-surfaces](../ops-surfaces/SKILL.md) (Chrome MBS vs phone IG vs Canva).
+
+## Two brands (sister, May 2026)
+
+| | **Luque Law** | **Sunday Properties** |
+| --- | --- | --- |
+| Job | Visas, property *legal*, companies, CLKR | Rent / buy listings in Medellín |
+| Site | https://luquelaw.co | https://sundayproperties.co |
+| IG | `@luque_restrepo` (professional, linked to LL Page) | Unknown — do not invent a handle |
+| FB | Page **Luque Law** (Navi pages) | Page **Sunday Properties** (~29 followers) |
+| Caption rule | Never name Sunday | Never name Luque Law |
+| About exception | — | Optional: Founded by Daniel Luque, attorney at law |
+| Voice | Firm **we**. On-camera Reels may use *I* | Listing + file (CLYT, tax clearances, contract). Paid visits, NDA, identity check |
+| Kit | `tmp/instagram/`, `tmp/facebook-page/` | `tmp/sunday-facebook/` |
+
+`business.facebook.com` **defaults to Sunday Properties**. Confirm the
+combobox before every compose. Do not copy Luque Law’s 10:00 carousel
+cadence onto Sunday unless he says so.
+
+## How he feeds this (no brand book)
+
+Prefer a correction in chat over a strategy doc. Four dumps that stick:
+
+1. Screenshot or URL + one line: **Luque Law** or **Sunday**.
+2. “This post brought a consult / visit” vs “this was noise.”
+3. “Never do X” in the moment I get the Page wrong.
+4. Captions or bios he wrote himself (paste). Sunday has no VOICE.md yet.
+
+Do not wait for a Notion “social strategy” page. One real post + one
+rule is enough to update this file.
 
 Captions + schedule: [tmp/instagram/CAPTIONS.md](../../tmp/instagram/CAPTIONS.md).  
 Coach: [instagram-coach canvas](../canvases/instagram-coach.canvas.tsx)
