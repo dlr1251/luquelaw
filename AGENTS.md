@@ -22,6 +22,7 @@ That file is the master project document: product vision, ontology, phased roadm
 - EN routes at `/`, ES at `/es`. Guide slugs: `/clkr/guides/[slug_key]`. Norms: `/clkr/norms/[slug_key]/...`.
 - Entitlements via `hasEntitlement(userId, feature)` — see `src/lib/billing/entitlements.ts`.
 - Do not commit secrets; use `.env.example` as template.
+- **Ops surfaces:** [.cursor/skills/ops-surfaces/SKILL.md](./.cursor/skills/ops-surfaces/SKILL.md) — Chrome vs MCP vs phone. Organizar ≠ ejecutar.
 
 ## Current work
 

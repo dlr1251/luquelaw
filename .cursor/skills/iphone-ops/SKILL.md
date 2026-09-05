@@ -13,7 +13,7 @@ description: >-
 
 **Always read the phone-harness skill first** (helpers, `# task:` line,
 measured iOS gotchas). This skill is **this device and this firm**, not how
-to tap iOS.
+to tap iOS. Web vs phone routing: [ops-surfaces](../ops-surfaces/SKILL.md).
 
 Canvases from the 4–5 Sep 2026 audit (Cursor opens the live copies beside
 chat; git copies are under `.cursor/canvases/` in this repo):

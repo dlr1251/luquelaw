@@ -1,6 +1,7 @@
 # WhatsApp Ops — links, IDs, snapshots, snippets
 
 Fetch Notion pages only when writing or resolving ambiguity. Snapshot date: **2026-08-12**.
+Cadence (5 Sep 2026): **07:30 / 10:45 / 14:45 / 19:00** COT — Documentation skill v1.3.0. Archived hub still shows 08:00 / 11:00 / 15:00 / 20:00; ignore those.
 
 ## Page icons (Updates)
 

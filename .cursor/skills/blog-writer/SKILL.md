@@ -38,7 +38,7 @@ Never insert a row in Supabase or set `status = published`. Deliver copy for `/a
 
 ## Phase 1 — Scout
 
-Use WebSearch + WebFetch. Prefer URLs in [sources.md](sources.md). Also search the repo (`clkr_articles` copy, guides, norms mentions) so the post can point at live `/clkr` pages when they exist.
+Use WebSearch + WebFetch. Prefer URLs in [sources.md](sources.md). Also search the repo (`clkr_articles` copy, guides, norms mentions) so the post can point at live `/clkr` pages when they exist. Official sites and X in Chrome: [ops-surfaces](../ops-surfaces/SKILL.md).
 
 For each candidate story capture:
 
