@@ -13,6 +13,8 @@ Local Cursor execution of the Notion protocol. Source of truth (blacklist edits,
 
 **Browser:** always use `browser-harness` (read that skill). Attach to **local** Chrome with WA Business already logged in. Do not use cloud browser (needs the firm session).
 
+**Session gate:** if the thread is **organización** (harness map, surfaces, “qué más puede hacer”) or he says Pendientes stay in Notion — scout/report only. Do **not** run Phase B. Ejecución = explicit `barrido` / `revisar WhatsApp` / `pasada`. A bare “dale” after a capability menu is not a sweep. Router: [ops-surfaces](../ops-surfaces/SKILL.md).
+
 **Cadence:** prefer **07:30 / 10:45 / 14:45 / 19:00** Colombia — not continuous loops. WhatsApp Web must run on **this Mac** with the firm session (cloud Automation cannot see the inbox).
 
 IDs, blacklist snapshot, templates, Drive root, and CDP snippets: [reference.md](./reference.md).
