@@ -1,0 +1,14 @@
+{
+  "name": "Luque Law",
+  "install": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; nvm install 24 >/dev/null; export PATH=\"$(dirname \"$(nvm which 24)\"):$PATH\"; node -v; npm ci",
+  "terminals": [
+    {
+      "name": "dev",
+      "command": "export NVM_DIR=\"$HOME/.nvm\"; . \"$NVM_DIR/nvm.sh\"; export PATH=\"$(dirname \"$(nvm which 24)\"):$PATH\"; npm run dev",
+      "description": "Next.js dev server (Turbopack) on http://localhost:3000. Runs under Node 24 (required by package.json engines and eve)."
+    }
+  ],
+  "ports": [
+    { "name": "web", "port": 3000 }
+  ]
+}
