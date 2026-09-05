@@ -15,11 +15,14 @@ description: >-
 measured iOS gotchas). This skill is **this device and this firm**, not how
 to tap iOS.
 
-Canvases from the 4–5 Sep 2026 audit (open beside chat if the task is
-coaching, not just a setting):
+Canvases from the 4–5 Sep 2026 audit (Cursor opens the live copies beside
+chat; git copies are under `.cursor/canvases/` in this repo):
 
-- [Plan maestro iPhone](/Users/danielluque/.cursor/projects/Users-danielluque-Projects-luquelaw/canvases/iphone-plan-maestro.canvas.tsx)
-- [Coach Instagram](/Users/danielluque/.cursor/projects/Users-danielluque-Projects-luquelaw/canvases/instagram-coach.canvas.tsx)
+- [Plan maestro iPhone](../canvases/iphone-plan-maestro.canvas.tsx)
+- [Coach Instagram](../canvases/instagram-coach.canvas.tsx)
+
+Phone-harness helpers backup: [agent_helpers.py](./agent_helpers.py). Live
+file remains `~/.phone-harness/agent-workspace/agent_helpers.py`.
 
 ## Consent (hard)
 

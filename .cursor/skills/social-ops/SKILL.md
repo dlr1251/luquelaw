@@ -17,7 +17,8 @@ Voice: [VOICE.md](../../VOICE.md). No Sunday Properties on Luque Law captions.
 Engagement model unchanged (45 min → Concepto + quote in 3 business days).
 
 Captions + schedule: [tmp/instagram/CAPTIONS.md](../../tmp/instagram/CAPTIONS.md).  
-Coach: [instagram-coach canvas](/Users/danielluque/.cursor/projects/Users-danielluque-Projects-luquelaw/canvases/instagram-coach.canvas.tsx).
+Coach: [instagram-coach canvas](../canvases/instagram-coach.canvas.tsx)
+(live Cursor copy still opens beside chat).
 
 ## Where to work (read before acting)
 
